@@ -3,10 +3,14 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to the Innsbruck Stereographic documentation!
-=====================================================
+
+.. image:: _static/logo_about.svg
 
 
+Welcome to the documentation of Innsbruck Stereographic!
+========================================================
+
+Innsbruck Stereographic is a open-source stereographic projection software for structural geology written in Python 3 and based on `MPLStereonet <https://github.com/joferkington/mplstereonet>`_. The program is currently in early developement and the source code is tracked in `this Github repository <https://github.com/tobias47n9e/innsbruck-stereographic>`_. Due to the early stage in development the documentation will also still undergo changes.
 
 Contents:
 ---------
@@ -15,6 +19,8 @@ Contents:
    :maxdepth: 2
    
    datasets
+   views
+   calculations
 
 
 Indices and tables
