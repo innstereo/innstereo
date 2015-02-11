@@ -47,7 +47,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'innsbruck_stereographic'
-copyright = '2015, Tobias Schönberg'
+copyright = '2015, Tobias Schoenberg'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
