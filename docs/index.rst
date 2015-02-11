@@ -19,8 +19,7 @@ Contents:
    :maxdepth: 2
    
    datasets
-   views
-   calculations
+   stereonet
 
 
 Indices and tables
