@@ -3,6 +3,9 @@
 # Innsbruck Stereographic
 Innsbruck Stereographic is an open-source stereographic plotting program for structural geology and related fields. It is build on many other open-source libraries, most importantly [MPLStereonet](https://github.com/joferkington/mplstereonet).
 
+## Code metrics
+[![Code Health](https://landscape.io/github/tobias47n9e/innsbruck-stereographic/master/landscape.svg?style=flat)](https://landscape.io/github/tobias47n9e/innsbruck-stereographic/master)
+
 ## Installation
 Builds for different operating systems will be done as soon as time permits. Currently the best way to test the program is to do the following on Linux or a Linux-Virtual-Machine. In both cases you can also test this in a virtual environment:
 
