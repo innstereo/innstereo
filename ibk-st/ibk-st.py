@@ -855,7 +855,7 @@ class MainWindow(object):
         alpha = np.arctan2(event.xdata, event.ydata)
         alpha_deg = np.degrees(alpha)
         if alpha_deg < 0:
-         alpha_deg += 360
+            alpha_deg += 360
 
         xy = np.array([[event.xdata, event.ydata]])
         xy_trans = self.inv.transform(xy)
@@ -1002,4 +1002,4 @@ def startup():
     Gtk.main()
 
 if __name__ == "__main__":
-     startup()
+    startup()
