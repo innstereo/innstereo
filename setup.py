@@ -5,7 +5,7 @@ setup(
     version = "0",
     description = "Sterographic plotting for structural geology",
     author = "Tobias Schoenberg",
-    author_emial = "tobias47n9e@gmail.com",
+    author_email = "tobias47n9e@gmail.com",
     url = "https://github.com/tobias47n9e/innsbruck-stereographic",
     keywords = ["geology", "stereonet", "structural geology"],
     classifiers = [
