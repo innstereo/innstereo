@@ -6,11 +6,15 @@
 Welcome to the Innsbruck Stereographic documentation!
 =====================================================
 
+
+
 Contents:
-
+---------
 .. toctree::
+   :numbered:
    :maxdepth: 2
-
+   
+   datasets
 
 
 Indices and tables
