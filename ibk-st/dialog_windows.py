@@ -97,6 +97,8 @@ class StereonetProperties(object):
         self.radio_wulff = self.builder.get_object("radiobutton_wulff")
         self.checkbutton_draw_grid = \
                     self.builder.get_object("checkbutton_draw_grid")
+        self.checkbutton_draw_legend = \
+                    self.builder.get_object("checkbutton_draw_legend")
         
         self.redraw = redraw_function
         self.changes = []
@@ -112,6 +114,8 @@ class StereonetProperties(object):
 
         self.checkbutton_draw_grid.set_active(
                                     self.settings.get_draw_grid_state())
+        self.checkbutton_draw_legend.set_active(
+                                    self.settings.get_draw_legend())
 
         self.builder.connect_signals(self)
 
@@ -150,10 +154,19 @@ class StereonetProperties(object):
 
     def on_checkbutton_draw_grid_toggled(self, checkbutton):
         """
-        If the 
+        Triggered when the checkbutton for the grid drawing is toggled. Queues
+        up the new state in the list of changes.
         """
         state = checkbutton.get_active()
         self.changes.append(lambda: self.settings.set_draw_grid_state(state))
+
+    def on_checkbutton_draw_legend_toggled(self, checkbutton):
+        """
+        Triggered when the checkbutton for the legend drawing is toggled. Queues
+        up the new state in the list of changes.
+        """
+        state = checkbutton.get_active()
+        self.changes.append(lambda: self.settings.set_draw_legend(state))
 
     def run(self):
         """

@@ -33,6 +33,7 @@ class PlotSettings(object):
         self.grid_color = "#787878"
         self.grid_width = 0.4
         self.fig = Figure(dpi = self.pixel_density)
+        self.draw_legend = True
 
     def get_fig(self):
         """
@@ -125,6 +126,18 @@ class PlotSettings(object):
         Returns the width of the grid.
         """
         return self.grid_width
+
+    def get_draw_legend(self):
+        """
+        Returns if the legend should be drawn as a boolean.
+        """
+        return self.draw_legend
+
+    def set_draw_legend(self, new_state):
+        """
+        Sets a new state for wheter the legend should be drawn.
+        """
+        self.draw_legend = new_state
 
     def get_stereonet(self):
         """

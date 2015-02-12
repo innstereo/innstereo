@@ -713,15 +713,16 @@ class MainWindow(object):
 
         self.layer_store.foreach(iterate_over_rows)
 
-        handles, labels = self.ax_stereo.get_legend_handles_labels()
-        newLabels, newHandles = [], []
-        for handle, label in zip(handles, labels):
-            if label not in newLabels:
-                newLabels.append(label)
-                newHandles.append(handle)
-        if len(handles) != 0:
-            self.ax_stereo.legend(newHandles, newLabels,
-                                  bbox_to_anchor=(1.3, 1.1))
+        if self.settings.get_draw_legend() == True:
+            handles, labels = self.ax_stereo.get_legend_handles_labels()
+            newLabels, newHandles = [], []
+            for handle, label in zip(handles, labels):
+                if label not in newLabels:
+                    newLabels.append(label)
+                    newHandles.append(handle)
+            if len(handles) != 0:
+                self.ax_stereo.legend(newHandles, newLabels,
+                                      bbox_to_anchor=(1.3, 1.1))
         self.canvas.draw()
 
     def on_toolbutton_create_group_layer_clicked(self, widget):
