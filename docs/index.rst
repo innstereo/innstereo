@@ -21,6 +21,7 @@ Contents:
    stereonet
    datasets
    formatting
+   views
    screenshots
    
 

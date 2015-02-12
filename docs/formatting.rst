@@ -3,6 +3,8 @@
 Formatting
 ==========
 
+The plots produced by Innsbruck Stereographic can be customized in various ways. It should be noted that it is currently not planned to offer professional layout options. This means that most plots will need some post-processing in order to make them print-ready. The easiest way to do this is to save a SVG file of the plot and edit it in a vector editing program like Inkscape.
+
 Layer formatting
 ----------------
 
