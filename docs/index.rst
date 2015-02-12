@@ -18,8 +18,11 @@ Contents:
    :numbered:
    :maxdepth: 2
    
-   datasets
    stereonet
+   datasets
+   formatting
+   screenshots
+   
 
 
 Indices and tables

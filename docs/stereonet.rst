@@ -2,12 +2,15 @@
 
 Stereonet
 =========
+
 The *stereonet* or *stereographic projection* is the most important visualization tool for orientation data in structural geology. Most figures are made using an equal area projection, but sometimes and equal angle projection is used as well.
 
 Projections
 -----------
+
 Equal area projection
 ^^^^^^^^^^^^^^^^^^^^^
+
 In most cases it is preferable to use a projection that optimises equal area, because it makes it easier to assess the spatial distribution of structures. The projection that is usually chosen for this, is the *Lambert Azimuthal Equal-Area Projection with equatorial aspect* (See: Snyder 1987, p. 182). In geology this is usually referred to a *Schmidt Net*, after Walter Schmidt.
 
 .. figure:: _static/equal_area_small_circles.svg
@@ -19,6 +22,7 @@ In most cases it is preferable to use a projection that optimises equal area, be
 
 Equal angle projection
 ^^^^^^^^^^^^^^^^^^^^^^
+
 Equal angle projection preserve angle but severely distort areas. The projection used for this kind of plots is the *Stereographic Projection with equatorial aspect* (See: Synder 1987, p. 154). This is usually referred to as a *Wulff Net* in geology, after Georgij Viktorovich Wulff.
 
 .. figure:: _static/equal_angle_small_circles.svg
@@ -30,6 +34,7 @@ Equal angle projection preserve angle but severely distort areas. The projection
 
 Further Reading
 ---------------
+
  - John P. Snyder (1987): `Map Projections - A Working Manual <http://pubs.er.usgs.gov/publication/pp1395>`_
  - `Georgij Viktorovich Wulff <https://www.wikidata.org/wiki/Q907171>`_  on Wikidata 
  - `Walter Schmidt <https://www.wikidata.org/wiki/Q15979728>`_ on Wikidata

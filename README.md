@@ -5,7 +5,6 @@ Innsbruck Stereographic is an open-source stereographic plotting program for str
 
 ## Code metrics
 [![Code Health](https://landscape.io/github/tobias47n9e/innsbruck-stereographic/master/landscape.svg?style=flat)](https://landscape.io/github/tobias47n9e/innsbruck-stereographic/master)
-[![Documentation Status](https://readthedocs.org/projects/innsbruck-stereographic/badge/?version=latest)](https://readthedocs.org/projects/innsbruck-stereographic/?badge=latest)
 [![Build Status](https://travis-ci.org/tobias47n9e/innsbruck-stereographic.svg)](https://travis-ci.org/tobias47n9e/innsbruck-stereographic)
 
 ## Installation
@@ -24,6 +23,13 @@ git clone https://github.com/tobias47n9e/innsbruck-stereographic
 ```Shell
 python3 ibk-st.py
 ```
+
+## Documentation
+The latest documentation can be read on this page:
+
+http://innsbruck-stereographic.readthedocs.org
+
+[![Documentation Status](https://readthedocs.org/projects/innsbruck-stereographic/badge/?version=latest)](https://readthedocs.org/projects/innsbruck-stereographic/?badge=latest)
 
 ## Development
 Innsbruck-Stereographic is developed open-source and anybody who wishes can participate. There are many ways in which one can participate. If you would like to participate you can email [Tobias](https://github.com/tobias47n9e) or open an [issue](https://github.com/tobias47n9e/innsbruck-stereographic/issues).
