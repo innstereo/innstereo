@@ -1729,7 +1729,7 @@ equatorial aspect</property>
                       <object class="GtkMenuItem" id="menuitem_pt_view">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">PT-Axis View</property>
+                        <property name="label" translatable="yes">Paleostress View</property>
                         <property name="use_underline">True</property>
                         <signal name="activate" handler="on_menuitem_pt_view_activate" swapped="no"/>
                       </object>
