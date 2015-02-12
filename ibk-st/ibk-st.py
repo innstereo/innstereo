@@ -17,6 +17,7 @@ from layer_types import PlaneLayer, FaultPlaneLayer, LineLayer, SmallCircleLayer
 from dialog_windows import (AboutDialog, PrintDialog, LayerProperties, 
                            StereonetProperties)
 from plot_control import PlotSettings
+from polar_axes import NorthPolarAxes
 
 class MainWindow(object):
     def __init__(self, builder):
@@ -627,8 +628,6 @@ class MainWindow(object):
             elif self.view_mode == "rose":
                 self.inv = self.settings.get_inverse_transform()
                 self.ax_rose = self.settings.get_rose_diagram()
-                self.canvas.draw()
-                return
             elif self.view_mode == "pt":
                 self.inv = self.settings.get_inverse_transform()
                 self.ax_stereo, self.ax_fluc, self.ax_mohr = (
@@ -639,12 +638,8 @@ class MainWindow(object):
         elif self.view_mode == "stereo_rose":
             self.ax_rose.cla()
             self.ax_stereo.cla()
-            self.ax_rose.set_theta_direction(-1)
-            self.ax_rose.set_theta_offset(np.pi/2.0)
         elif self.view_mode == "rose":
             self.ax_rose.cla()
-            self.ax_rose.set_theta_direction(-1)
-            self.ax_rose.set_theta_offset(np.pi/2.0)
         elif self.view_mode == "pt":
             self.ax_stereo.cla()
             self.ax_fluc.cla()

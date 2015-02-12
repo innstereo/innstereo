@@ -5,6 +5,7 @@ from matplotlib.figure import Figure
 from matplotlib.gridspec import GridSpec
 import mplstereonet
 import numpy as np
+from polar_axes import NorthPolarAxes
 
 class PlotSettings(object):
     def __init__(self):
@@ -148,9 +149,7 @@ class PlotSettings(object):
                                            rowspan = 1, colspan = 1)
         ax_stereo = self.fig.add_subplot(sp_stereo, projection =
                                          self.get_projection())
-        ax_rose = self.fig.add_subplot(sp_rose, polar=True)
-        ax_rose.set_theta_direction(-1)
-        ax_rose.set_theta_offset(np.pi/2.0)
+        ax_rose = self.fig.add_subplot(sp_rose, projection = "northpolar")
         return ax_stereo, ax_rose
 
     def get_rose_diagram(self):
@@ -160,9 +159,7 @@ class PlotSettings(object):
         self.fig.clf()
         gridspec = GridSpec(1, 1)
         sp_rose = gridspec.new_subplotspec((0, 0))
-        ax_rose = self.fig.add_subplot(sp_rose, polar=True)
-        ax_rose.set_theta_direction(-1)
-        ax_rose.set_theta_offset(np.pi/2.0)
+        ax_rose = self.fig.add_subplot(sp_rose, projection = "northpolar")
         return ax_rose
 
     def get_pt_view(self):
