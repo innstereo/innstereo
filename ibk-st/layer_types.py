@@ -35,6 +35,10 @@ class PlaneLayer(object):
         self.marker_edge_width = 1.0
         self.marker_alpha = 1.0
 
+        #Rose diagram properties
+        self.rose_spacing = 10
+        self.rose_bottom = 0
+
         self.render_plane_contours = False
         self.render_line_contours = False
 
@@ -378,6 +382,30 @@ class PlaneLayer(object):
         Returns if contours should be drawn for the poles of this layer.
         """
         return self.render_plane_contours
+
+    def get_rose_spacing(self):
+        """
+        Returns the current rose diagram spacing for this layer.
+        """
+        return self.rose_spacing
+
+    def set_rose_spacing(self, new_spacing):
+        """
+        Sets a new spacing for the rose diagram for this layer.
+        """
+        self.rose_spacing = new_spacing
+
+    def get_rose_bottom(self):
+        """
+        Returns the current rose diagram bottom cutoff for this layer.
+        """
+        return self.rose_bottom
+
+    def set_rose_bottom(self, new_bottom):
+        """
+        Sets a new spacing for the rose bottom cutoff for this layer.
+        """
+        self.rose_bottom = new_bottom
 
 class FaultPlaneLayer(PlaneLayer):
     def __init__(self, treestore, treeview):

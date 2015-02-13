@@ -208,7 +208,8 @@ class LayerProperties(object):
             "adjustment_line_width", "liststore_capstyle",
             "liststore_marker_style", "adjustment_marker_size",
             "adjustment_edge_width", "adjustment_pole_size",
-            "adjustment_pole_edge_width"))
+            "adjustment_pole_edge_width", "adjustment_rose_spacing",
+            "adjustment_rose_bottom"))
         self.layer = layer
         self.redraw = redraw_plot
         self.changes = []
@@ -263,6 +264,14 @@ class LayerProperties(object):
                         self.builder.get_object("adjustment_pole_size")
         self.adjustment_pole_edge_width = \
                         self.builder.get_object("adjustment_pole_edge_width")
+        self.spinbutton_rose_spacing = \
+                        self.builder.get_object("spinbutton_rose_spacing")
+        self.adjustment_rose_spacing = \
+                        self.builder.get_object("adjustment_rose_spacing")
+        self.spinbutton_rose_bottom = \
+                        self.builder.get_object("spinbutton_rose_bottom")
+        self.adjustment_rose_bottom = \
+                        self.builder.get_object("adjustment_rose_bottom")
 
         self.colorbutton_line.set_color(self.layer.get_rgba())
 
@@ -307,6 +316,8 @@ class LayerProperties(object):
         self.checkbutton_render_poles.set_active(layer.get_render_poles())
         self.checkbutton_render_linears.set_active(
                                 marker_style_dict[layer.get_pole_style()])
+        self.adjustment_rose_spacing.set_value(self.layer.get_rose_spacing())
+        self.adjustment_rose_bottom.set_value(self.layer.get_rose_bottom())
 
         layertype = layer.get_layer_type()
         if layertype == "line":
@@ -547,3 +558,21 @@ class LayerProperties(object):
         in the title bar. It hides the about dialog.
         """
         self.dialog.hide()
+
+    def on_spinbutton_rose_spacing_value_changed(self, spinbutton):
+        """
+        Triggered when the value in the spinbutton for the spacing of the
+        rose diagram is changed. Queues up the new value in the list of changes.
+        """
+        new_rose_spacing = spinbutton.get_value()
+        self.changes.append(lambda: self.layer.set_rose_spacing(
+                                                    new_rose_spacing))
+
+    def on_spinbutton_rose_bottom_value_changed(self, spinbutton):
+        """
+        Triggered when the value in the spinbutton for the bottom cutoff of the
+        rose diagram is changed. Queues up the new value in the list of changes.
+        """
+        new_rose_bottom = spinbutton.get_value()
+        self.changes.append(lambda: self.layer.set_rose_bottom(
+                                                    new_rose_bottom))

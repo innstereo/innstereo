@@ -682,7 +682,7 @@ class MainWindow(object):
                 if layer_obj.get_render_plane_contours() == True:
                     self.draw_contours(layer_obj, strike, dip, "poles")
 
-                num_bins = 360 / 20
+                num_bins = 360 / layer_obj.get_rose_spacing()
                 bin_width = 2 * np.pi / num_bins
                 dipdir = np.radians(dipdir)
                 values, bin_edges = np.histogram(dipdir, num_bins,
@@ -692,8 +692,8 @@ class MainWindow(object):
                     self.ax_rose.bar(left = bin_edges[:-1], height = values,
                                      width = bin_width, alpha = 0.5,
                                      color = layer_obj.get_line_color(),
-                                     edgecolor = layer_obj.get_pole_edge_color(
-                                     ))
+                                     edgecolor = layer_obj.get_pole_edge_color(),
+                                     bottom = layer_obj.get_rose_bottom())
 
             if layer_type == "faultplane":
                 plane_dir, plane_dip, line_dir, line_dip, sense = (
@@ -705,6 +705,19 @@ class MainWindow(object):
                 dipdir, dip, sense = self.parse_lines(
                                          layer_obj.get_data_treestore())
                 self.draw_line(layer_obj, dipdir, dip)
+
+                num_bins = 360 / layer_obj.get_rose_spacing()
+                bin_width = 2 * np.pi / num_bins
+                dipdir = np.radians(dipdir)
+                values, bin_edges = np.histogram(dipdir, num_bins,
+                                                     range = (0, 2 * np.pi))
+
+                if self.ax_rose != None:
+                    self.ax_rose.bar(left = bin_edges[:-1], height = values,
+                                     width = bin_width, alpha = 0.5,
+                                     color = layer_obj.get_marker_fill(),
+                                     edgecolor = layer_obj.get_marker_edge_color(),
+                                     bottom = layer_obj.get_rose_bottom())
 
             if layer_type == "smallcircle":
                 dipdir, dip, angle = self.parse_smallcircles(
