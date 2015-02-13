@@ -1,11 +1,9 @@
 #!/usr/bin/python3
 
-from gi.repository import Gtk, Gdk, GdkPixbuf
+from gi.repository import Gtk, GdkPixbuf
 from matplotlib.figure import Figure
 from matplotlib.gridspec import GridSpec
 import mplstereonet
-import numpy as np
-from polar_axes import NorthPolarAxes
 
 class PlotSettings(object):
     def __init__(self):

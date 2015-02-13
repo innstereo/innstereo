@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-from gi.repository import Gtk, Gdk, GdkPixbuf
+from gi.repository import Gdk, GdkPixbuf
 
 class PlaneLayer(object):
     def __init__(self, treestore, treeview):

@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-from gi.repository import Gtk, Gdk
+from gi.repository import Gtk
 
 class LayerTreeView(Gtk.TreeView):
     def __init__(self, store):
