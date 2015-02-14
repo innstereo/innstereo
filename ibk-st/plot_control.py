@@ -12,7 +12,7 @@ class PlotSettings(object):
         of the Matplotlib-Figure.
         """
         self.folder_icon = Gtk.IconTheme.get_default().load_icon(
-            "gtk-directory", 16, 0)
+            "folder", 16, 0)
         self.default_color = "#0000ff"
         self.default_color_alpha = int("0x{0}ff".format(
             self.default_color[1:]), base=16)
