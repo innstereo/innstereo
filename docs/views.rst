@@ -3,7 +3,7 @@
 Views
 =====
 
-In order to get an optimal overview over a dataset, Innbruck Stereographic uses different preconfigured views that each show different aspects of the data. The views can be selected from the menubar.
+In order to get an optimal overview over a dataset, Innsbruck Stereographic uses different preconfigured views that each show different aspects of the data. The views can be selected from the menubar.
 
 .. figure:: _static/interface_views.png
     :width: 400px

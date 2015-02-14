@@ -17,7 +17,7 @@ A plane dataset are used for any geologic structure that can be abstracted to a 
 
     A plane oriented 140/40 is shown here both as a great circle and a pole.
 
-Another important information for planes is their stratigraphic orientation. This information can be entered in the "Stratigraphy"-column, but is not required. An "n" indicates that the plane is oriented normally and an "i" indicates that the plane is oriented inversly.
+Another important information for planes is their stratigraphic orientation. This information can be entered in the "Stratigraphy"-column, but is not required. An "n" indicates that the plane is oriented normally and an "i" indicates that the plane is oriented inversely.
 
 Line dataset
 ------------
@@ -27,7 +27,7 @@ Line datasets should be chosen for structures that can be abstracted to linear e
 Faultplane dataset
 ------------------
 
-This dataset is used for faults that have a conjugated linear element, associated with the movement along this plane. In the stereonet this appears as a combination of hwo planes and linear elements are displayed.
+This dataset is used for faults that have a conjugated linear element, associated with the movement along this plane. In the stereonet this appears as a combination of how planes and linear elements are displayed.
 
 Fold dataset
 ------------

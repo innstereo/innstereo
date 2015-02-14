@@ -8,11 +8,11 @@ The plots produced by Innsbruck Stereographic can be customized in various ways.
 Layer formatting
 ----------------
 
-Layers can be formatted by double-clicking the layer-view (In order to avoid renaming the layer it is best to double-click on the colored square).
+Layers can be formatted by double-clicking the layer-view (In order to avoid renaming the layer it is best to double-click on the coloured square).
 
-Great circles and small circles both appear as lines in the stereonet. One can set the color, thickness, style (solid, dashed), and the capstyle for lines.
+Great circles and small circles both appear as lines in the stereonet. One can set the colour, thickness, style (solid, dashed), and the capstyle for lines.
 
-Linears appear as points in the stereonet. One can set a fill color, edge color, style (circle, square, etc..), size, and edge thickness for points.
+Linears appear as points in the stereonet. One can set a fill colour, edge colour, style (circle, square, etc..), size, and edge thickness for points.
 
 .. figure:: _static/layer_properties_dialog.png
     :width: 400px

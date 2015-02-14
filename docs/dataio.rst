@@ -17,7 +17,7 @@ The easiest way to add data to an existing layer is the file parse dialog. In or
 
     The button for the file parser is in the folder icon in the highlighted area.
 
-After a file has been choosen the parsing dialog opens. It includes an option to skip over lines at the beginning of the file, that usually contain metadata. The result of the parsing are shown in a table at the bottom of the dialog. Using the column numbers shows in that table, one can assign the columns to their respective counterparts of Innsbruck Stereographic.
+After a file has been chosen the parsing dialog opens. It includes an option to skip over lines at the beginning of the file, that usually contain metadata. The result of the parsing are shown in a table at the bottom of the dialog. Using the column numbers shows in that table, one can assign the columns to their respective counterparts of Innsbruck Stereographic.
 
 .. figure:: _static/interface_file_parser_dialog.png
     :width: 400px
@@ -57,6 +57,6 @@ Data output is still under development.
 
 Further Reading
 ---------------
- - Desription of `Comma-separated values <https://en.wikipedia.org/wiki/Comma-separated_values>`_ on Wikipedia
+ - Description of `Comma-separated values <https://en.wikipedia.org/wiki/Comma-separated_values>`_ on Wikipedia
  - Ortner, H., Reiter, F. & Acs, P. (2002). *Easy handling of tectonic data: the programs TectonicVB for Mac and TectonicsFP for Windows.* Computers & Geosciences(28/10), 1193-1200 (`doi:10.1016/S0098-3004(02)00038-9 <http://dx.doi.org/10.1016/S0098-3004%2802%2900038-9>`_).
  - Reiter, F. & Acs, P., (1996-2011). *TectonicsFP 1.75 - Computer Software for Structural Geology: Operating Manual.* Bundled with the TectonicsFP installation.

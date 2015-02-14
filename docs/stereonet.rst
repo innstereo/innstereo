@@ -23,7 +23,7 @@ In most cases it is preferable to use a projection that optimises equal area, be
 Equal angle projection
 ^^^^^^^^^^^^^^^^^^^^^^
 
-Equal angle projection preserve angle but severely distort areas. The projection used for this kind of plots is the *Stereographic Projection with equatorial aspect* (See: Synder 1987, p. 154). This is usually referred to as a *Wulff Net* in geology, after Georgij Viktorovich Wulff.
+Equal angle projection preserve angle but severely distort areas. The projection used for this kind of plots is the *Stereographic Projection with equatorial aspect* (See: Snyder 1987, p. 154). This is usually referred to as a *Wulff Net* in geology, after Georgij Viktorovich Wulff.
 
 .. figure:: _static/equal_angle_small_circles.svg
     :width: 400px
