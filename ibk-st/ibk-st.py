@@ -15,9 +15,10 @@ from dataview_classes import (PlaneDataView, LineDataView,
 from layer_view import LayerTreeView
 from layer_types import PlaneLayer, FaultPlaneLayer, LineLayer, SmallCircleLayer
 from dialog_windows import (AboutDialog, PrintDialog, LayerProperties, 
-                           StereonetProperties)
+                           StereonetProperties, FileChooserParse)
 from plot_control import PlotSettings
 from polar_axes import NorthPolarAxes
+from file_parser import FileParseDialog
 
 class MainWindow(object):
     def __init__(self, builder):
@@ -989,6 +990,35 @@ class MainWindow(object):
             gamma_deg = str(gamma_deg).rjust(2, "0")
 
             self.statbar.push(1, ("{0} / {1}".format(alpha_deg, gamma_deg)))
+
+    def on_toolbutton_file_parse_clicked(self, toolbutton):
+        """
+        Triggered from the GUI. Opens the filechooserdialog for parsing text
+        files.
+        """
+        selection = self.layer_view.get_selection()
+        model, row_list = selection.get_selected_rows()
+
+        if len(row_list) == 1:
+            fc = FileChooserParse(self.run_file_parser)
+            fc.run()
+
+    def run_file_parser(self, text_file):
+        """
+        Triggered when a file is opend from the filechooserdialog for parsing
+        files. Passes the file to the file parsing dialog.
+        """
+        selection = self.layer_view.get_selection()
+        model, row_list = selection.get_selected_rows()
+
+        if len(row_list) == 1:
+            row = row_list[0]
+            layer_obj = model[row][3]
+            fp = FileParseDialog(text_file, layer_obj, self.redraw_plot,
+                                 self.add_planar_feature,
+                                 self.add_linear_feature,
+                                 self.add_faultplane_feature)
+            fp.run()
 
 def startup():
     """

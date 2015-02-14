@@ -576,3 +576,60 @@ class LayerProperties(object):
         new_rose_bottom = spinbutton.get_value()
         self.changes.append(lambda: self.layer.set_rose_bottom(
                                                     new_rose_bottom))
+
+class FileChooserParse(object):
+    """
+    This class handles the actions of the filechooserdialog that selects
+    files for text parsing.
+    """
+    def __init__(self, run_file_parser):
+        self.builder = Gtk.Builder()
+        self.builder.add_objects_from_file("gui_layout.glade",
+            ("filechooserdialog_parse", "filefilter_parse"))
+        self.dialog = self.builder.get_object("filechooserdialog_parse")
+        self.filefilters = self.builder.get_object("filefilter_parse")
+        self.filefilters.set_name("Text Files")
+        self.dialog.add_filter(self.filefilters)
+        self.run_file_parser = run_file_parser
+        self.builder.connect_signals(self)
+
+    def run(self):
+        """
+        This function is run when the filechooserdialog for text parsing
+        is called from the main window. It runs the dialog.
+        """
+        self.dialog.run()
+
+    def on_filechooserdialog_parse_destroy(self, widget):
+        """
+        This function is run when the filechooserdialog is destroyed. Hides
+        the dialog.
+        """
+        self.dialog.hide()
+
+    def on_filechooserdialog_parse_close(self, widget):
+        """
+        Triggered when the filechooserdialog is closed. Hides the dialog.
+        """
+        self.dialog.hide()
+
+    def on_filechooserdialog_parse_response(self, widget, response):
+        """
+        Triggered when the filechooserdialog sends a response.
+        """
+        if response == -4:
+            self.dialog.hide()
+
+    def on_button_open_clicked(self, widget):
+        """
+        Triggered when "open" is clicked.
+        """
+        text_file = self.dialog.get_filename()
+        self.dialog.hide()
+        self.run_file_parser(text_file)
+
+    def on_button_cancel_clicked(self, widget):
+        """
+        Triggered when "cancel" is clicked. Hides the dialog.
+        """
+        self.dialog.hide()

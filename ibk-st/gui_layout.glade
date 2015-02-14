@@ -80,6 +80,11 @@ In Preperation (2015)</property>
     <property name="step_increment">0.10000000000000001</property>
     <property name="page_increment">10</property>
   </object>
+  <object class="GtkAdjustment" id="adjustment_parse_start_line">
+    <property name="upper">100</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
   <object class="GtkAdjustment" id="adjustment_pixel_density">
     <property name="upper">100</property>
     <property name="step_increment">1</property>
@@ -608,9 +613,30 @@ equatorial aspect</property>
     <property name="step_increment">1</property>
     <property name="page_increment">10</property>
   </object>
-  <object class="GtkFileChooserDialog" id="filechooserdialog">
+  <object class="GtkFileFilter" id="filefilter_parse">
+    <mime-types>
+      <mime-type>text/plain</mime-type>
+    </mime-types>
+    <patterns>
+      <pattern>*.azi</pattern>
+      <pattern>*.cor</pattern>
+      <pattern>*.fpl</pattern>
+      <pattern>*.lin</pattern>
+      <pattern>*.txt</pattern>
+      <pattern>*.csv</pattern>
+      <pattern>*.pln</pattern>
+    </patterns>
+  </object>
+  <object class="GtkFileChooserDialog" id="filechooserdialog_parse">
     <property name="can_focus">False</property>
+    <property name="title" translatable="yes">Choose file to parse</property>
+    <property name="default_width">400</property>
+    <property name="icon_name">document-open</property>
     <property name="type_hint">dialog</property>
+    <property name="filter">filefilter_parse</property>
+    <signal name="close" handler="on_filechooserdialog_parse_close" swapped="no"/>
+    <signal name="destroy" handler="on_filechooserdialog_parse_destroy" swapped="no"/>
+    <signal name="response" handler="on_filechooserdialog_parse_response" swapped="no"/>
     <child internal-child="vbox">
       <object class="GtkBox" id="filechooserdialog-vbox1">
         <property name="can_focus">False</property>
@@ -621,11 +647,12 @@ equatorial aspect</property>
             <property name="can_focus">False</property>
             <property name="layout_style">end</property>
             <child>
-              <object class="GtkButton" id="button3">
-                <property name="label" translatable="yes">button</property>
+              <object class="GtkButton" id="button_cancel">
+                <property name="label" translatable="yes">Cancel</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <signal name="clicked" handler="on_button_cancel_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -634,11 +661,12 @@ equatorial aspect</property>
               </packing>
             </child>
             <child>
-              <object class="GtkButton" id="button1">
-                <property name="label" translatable="yes">button</property>
+              <object class="GtkButton" id="button_open">
+                <property name="label" translatable="yes">Open</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <signal name="clicked" handler="on_button_open_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -699,6 +727,593 @@ equatorial aspect</property>
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="pixbuf">calculate_plane_intersect.svg</property>
+  </object>
+  <object class="GtkListStore" id="liststore_assign_columns">
+    <columns>
+      <!-- column-name gint1 -->
+      <column type="gint"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0">0</col>
+      </row>
+      <row>
+        <col id="0">1</col>
+      </row>
+      <row>
+        <col id="0">2</col>
+      </row>
+      <row>
+        <col id="0">3</col>
+      </row>
+      <row>
+        <col id="0">4</col>
+      </row>
+      <row>
+        <col id="0">5</col>
+      </row>
+      <row>
+        <col id="0">6</col>
+      </row>
+      <row>
+        <col id="0">7</col>
+      </row>
+      <row>
+        <col id="0">-1</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkDialog" id="file_parse_dialog">
+    <property name="can_focus">False</property>
+    <property name="type_hint">dialog</property>
+    <signal name="close" handler="on_file_parse_dialog_close" swapped="no"/>
+    <signal name="destroy" handler="on_file_parse_dialog_destroy" swapped="no"/>
+    <signal name="response" handler="on_file_parse_dialog_response" swapped="no"/>
+    <child internal-child="vbox">
+      <object class="GtkBox" id="dialog-vbox4">
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">2</property>
+        <child internal-child="action_area">
+          <object class="GtkButtonBox" id="dialog-action_area4">
+            <property name="can_focus">False</property>
+            <property name="layout_style">end</property>
+            <child>
+              <object class="GtkButton" id="button_parse_cancel">
+                <property name="label" translatable="yes">Cancel</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <signal name="clicked" handler="on_button_cancel_clicked" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="button_parse_apply">
+                <property name="label" translatable="yes">Add Data</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <signal name="clicked" handler="on_button_parse_apply_clicked" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="pack_type">end</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox" id="box7">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkLabel" id="Parsing options">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="margin_top">10</property>
+                <property name="margin_bottom">10</property>
+                <property name="label" translatable="yes">Separator options</property>
+                <attributes>
+                  <attribute name="weight" value="bold"/>
+                </attributes>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkGrid" id="grid11">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <child>
+                  <object class="GtkLabel" id="label37">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="margin_left">25</property>
+                    <property name="margin_right">10</property>
+                    <property name="label" translatable="yes">Start Line</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkSpinButton" id="spinbutton_start_line">
+                    <property name="width_request">100</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="margin_left">10</property>
+                    <property name="margin_right">10</property>
+                    <property name="adjustment">adjustment_parse_start_line</property>
+                    <signal name="value-changed" handler="on_spinbutton_start_line_value_changed" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <object class="GtkLabel" id="label38">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="margin_top">10</property>
+                <property name="margin_bottom">10</property>
+                <property name="label" translatable="yes">Assign columns</property>
+                <attributes>
+                  <attribute name="weight" value="bold"/>
+                </attributes>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">4</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkBox" id="box8">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="orientation">vertical</property>
+                <child>
+                  <object class="GtkGrid" id="grid_planes">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <child>
+                      <object class="GtkComboBox" id="combobox_plane_dipdir">
+                        <property name="width_request">80</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="model">liststore_assign_columns</property>
+                        <child>
+                          <object class="GtkCellRendererText" id="cellrenderertext5"/>
+                          <attributes>
+                            <attribute name="text">0</attribute>
+                          </attributes>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="top_attach">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="label45">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="margin_left">30</property>
+                        <property name="margin_right">10</property>
+                        <property name="label" translatable="yes">Stratigraphy</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">4</property>
+                        <property name="top_attach">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkComboBox" id="combobox_strat">
+                        <property name="width_request">80</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="model">liststore_assign_columns</property>
+                        <child>
+                          <object class="GtkCellRendererText" id="cellrenderertext7"/>
+                          <attributes>
+                            <attribute name="text">0</attribute>
+                          </attributes>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="left_attach">5</property>
+                        <property name="top_attach">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="label33">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="margin_left">20</property>
+                        <property name="margin_right">10</property>
+                        <property name="label" translatable="yes">Dip direction</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">0</property>
+                        <property name="top_attach">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="label43">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="margin_top">5</property>
+                        <property name="margin_bottom">5</property>
+                        <property name="label" translatable="yes">Planes</property>
+                        <attributes>
+                          <attribute name="weight" value="light"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="left_attach">0</property>
+                        <property name="top_attach">0</property>
+                        <property name="width">6</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="label35">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="margin_left">30</property>
+                        <property name="margin_right">10</property>
+                        <property name="label" translatable="yes">Dip</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">2</property>
+                        <property name="top_attach">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkComboBox" id="combobox_plane_dip">
+                        <property name="width_request">80</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="model">liststore_assign_columns</property>
+                        <child>
+                          <object class="GtkCellRendererText" id="cellrenderertext6"/>
+                          <attributes>
+                            <attribute name="text">0</attribute>
+                          </attributes>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="left_attach">3</property>
+                        <property name="top_attach">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkGrid" id="grid_linears">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <child>
+                      <object class="GtkLabel" id="label36">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="margin_left">20</property>
+                        <property name="margin_right">10</property>
+                        <property name="label" translatable="yes">Dip direction</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">0</property>
+                        <property name="top_attach">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkComboBox" id="combobox_line_dipdir">
+                        <property name="width_request">80</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="model">liststore_assign_columns</property>
+                        <child>
+                          <object class="GtkCellRendererText" id="cellrenderertext8"/>
+                          <attributes>
+                            <attribute name="text">0</attribute>
+                          </attributes>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="top_attach">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="label42">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="margin_left">30</property>
+                        <property name="margin_right">10</property>
+                        <property name="label" translatable="yes">Dip</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">2</property>
+                        <property name="top_attach">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkComboBox" id="combobox_line_dip">
+                        <property name="width_request">80</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="model">liststore_assign_columns</property>
+                        <child>
+                          <object class="GtkCellRendererText" id="cellrenderertext9"/>
+                          <attributes>
+                            <attribute name="text">0</attribute>
+                          </attributes>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="left_attach">3</property>
+                        <property name="top_attach">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="label46">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="margin_left">30</property>
+                        <property name="margin_right">10</property>
+                        <property name="label" translatable="yes">Sense</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">4</property>
+                        <property name="top_attach">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkComboBox" id="combobox_line_sense">
+                        <property name="width_request">80</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="model">liststore_assign_columns</property>
+                        <child>
+                          <object class="GtkCellRendererText" id="cellrenderertext10"/>
+                          <attributes>
+                            <attribute name="text">0</attribute>
+                          </attributes>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="left_attach">5</property>
+                        <property name="top_attach">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="label44">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="margin_top">5</property>
+                        <property name="margin_bottom">5</property>
+                        <property name="label" translatable="yes">Linears</property>
+                        <attributes>
+                          <attribute name="weight" value="light"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="left_attach">0</property>
+                        <property name="top_attach">0</property>
+                        <property name="width">6</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkSeparator" id="separator1">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="margin_top">5</property>
+                        <property name="margin_bottom">5</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">0</property>
+                        <property name="top_attach">2</property>
+                        <property name="width">6</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkCheckButton" id="checkbutton_tectonicsfpl">
+                        <property name="label" translatable="yes">Tectonics FPL Notation</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">False</property>
+                        <property name="margin_left">10</property>
+                        <property name="margin_right">10</property>
+                        <property name="margin_top">5</property>
+                        <property name="margin_bottom">5</property>
+                        <property name="xalign">0</property>
+                        <property name="draw_indicator">True</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">0</property>
+                        <property name="top_attach">3</property>
+                        <property name="width">2</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="label47">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="margin_top">5</property>
+                        <property name="margin_bottom">5</property>
+                        <property name="label" translatable="yes">Sense of linears is given as the first integer of the column.
+(0 = unknown, 1 = up, 2 = down, 3 = dextral, 4 = sinistral)</property>
+                        <attributes>
+                          <attribute name="weight" value="thin"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="left_attach">2</property>
+                        <property name="top_attach">3</property>
+                        <property name="width">4</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">5</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="label39">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="margin_top">10</property>
+                <property name="margin_bottom">10</property>
+                <property name="label" translatable="yes">Preview</property>
+                <attributes>
+                  <attribute name="weight" value="bold"/>
+                </attributes>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">6</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkScrolledWindow" id="scrolledwindow_file_parser">
+                <property name="width_request">300</property>
+                <property name="height_request">300</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="shadow_type">in</property>
+                <child>
+                  <placeholder/>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">7</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+      </object>
+    </child>
   </object>
   <object class="GtkListStore" id="liststore_capstyle">
     <columns>
@@ -1609,42 +2224,6 @@ equatorial aspect</property>
                         <property name="top_attach">1</property>
                       </packing>
                     </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
                   </object>
                   <packing>
                     <property name="position">5</property>
@@ -2440,13 +3019,13 @@ equatorial aspect</property>
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkToolButton" id="toolbutton1">
+                          <object class="GtkToolButton" id="toolbutton_file_parse">
                             <property name="visible">True</property>
-                            <property name="sensitive">False</property>
                             <property name="can_focus">False</property>
                             <property name="label" translatable="yes">toolbutton1</property>
                             <property name="use_underline">True</property>
                             <property name="stock_id">gtk-open</property>
+                            <signal name="clicked" handler="on_toolbutton_file_parse_clicked" swapped="no"/>
                           </object>
                           <packing>
                             <property name="expand">False</property>
