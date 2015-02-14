@@ -10,7 +10,7 @@
 Welcome to the documentation of Innsbruck Stereographic!
 ========================================================
 
-Innsbruck Stereographic is a open-source stereographic projection software for structural geology written in Python 3 and based on `MPLStereonet <https://github.com/joferkington/mplstereonet>`_. The program is currently in early developement and the source code is tracked in `this Github repository <https://github.com/tobias47n9e/innsbruck-stereographic>`_. Due to the early stage in development the documentation will also still undergo changes.
+Innsbruck Stereographic is a open-source stereographic projection software thats primary use is structural geology. It is written in Python 3 and based on `MPLStereonet <https://github.com/joferkington/mplstereonet>`_. The program is currently in early developement and the source code is tracked in `this Github repository <https://github.com/tobias47n9e/innsbruck-stereographic>`_. Due to the early stage of the development the documentation will still undergo changes.
 
 Contents:
 ---------
@@ -22,8 +22,8 @@ Contents:
    datasets
    formatting
    views
+   dataio
    screenshots
-   
 
 
 Indices and tables
