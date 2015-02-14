@@ -5,10 +5,17 @@ Screenshots
 
 This is collection of screenshots how the interface looks in various distributions.
 
-.. figure:: _static/screenshot_ubuntu_gnome_15_04.png
+.. figure:: _static/screenshot_fedora_21.png
     :width: 400px
     :align: center
     :alt: screenshot of innsbruck stereographic running on Fedora 21
+
+    Innsbruck Sterographic running on Fedora 21 using the Gnome 3 desktop.
+
+.. figure:: _static/screenshot_ubuntu_gnome_15_04.png
+    :width: 400px
+    :align: center
+    :alt: screenshot of innsbruck stereographic running on Ubuntu-Gnome 15.04
 
     Innsbruck Sterographic running on Ubuntu-Gnome 15.04.
 
