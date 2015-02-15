@@ -5,8 +5,8 @@ python:
   - "3.4"
 
 install:
-   - pip3 install python3-numpy
-   - pip3 install python3-matplotlib
+   - pip3 install numpy
+   - pip3 install matplotlib
    - pip3 install git+git://github.com/joferkington/mplstereonet.git
 
 script:
