@@ -188,6 +188,11 @@ class StereonetProperties(object):
         """
         self.spd.hide()
 
+    def on_button_settings_cancel_clicked(self, widget):
+        """
+        Triggered when Cancel is clicked. Hides the dialog.
+        """
+        self.spd.hide()
 
 class LayerProperties(object):
     """
