@@ -154,7 +154,7 @@ In Preperation (2015)</property>
                 <property name="margin_left">5</property>
                 <property name="margin_bottom">10</property>
                 <property name="hexpand">False</property>
-                <property name="label" translatable="yes">Plot</property>
+                <property name="label" translatable="yes">General Settings</property>
                 <property name="ellipsize">start</property>
                 <attributes>
                   <attribute name="weight" value="bold"/>
@@ -191,6 +191,7 @@ In Preperation (2015)</property>
                     <property name="can_focus">True</property>
                     <property name="margin_left">10</property>
                     <property name="margin_right">10</property>
+                    <property name="shadow_type">out</property>
                     <property name="adjustment">adjustment_pixel_density</property>
                     <signal name="value-changed" handler="on_spinbutton_pixel_density_value_changed" swapped="no"/>
                   </object>
@@ -198,6 +199,40 @@ In Preperation (2015)</property>
                     <property name="left_attach">1</property>
                     <property name="top_attach">0</property>
                   </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="label48">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="margin_left">25</property>
+                    <property name="margin_right">10</property>
+                    <property name="label" translatable="yes">Canvas color</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">2</property>
+                    <property name="top_attach">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkColorButton" id="colorbutton_canvas">
+                    <property name="width_request">100</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
+                    <property name="margin_left">10</property>
+                    <property name="margin_right">10</property>
+                    <signal name="color-set" handler="on_colorbutton_canvas_color_set" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="left_attach">3</property>
+                    <property name="top_attach">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
                 </child>
               </object>
               <packing>

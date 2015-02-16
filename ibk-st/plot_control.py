@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-from gi.repository import Gtk, GdkPixbuf
+from gi.repository import Gtk, Gdk, GdkPixbuf
 from matplotlib.figure import Figure
 from matplotlib.gridspec import GridSpec
 import mplstereonet
@@ -32,6 +32,7 @@ class PlotSettings(object):
         self.grid_width = 0.4
         self.fig = Figure(dpi = self.pixel_density)
         self.draw_legend = True
+        self.canvas_color = "#bfbfbf"
 
     def get_fig(self):
         """
@@ -137,11 +138,37 @@ class PlotSettings(object):
         """
         self.draw_legend = new_state
 
+    def get_canvas_color(self):
+        """
+        Returns the current canvas color in the hex-triplet-format
+        (e.g. "#bfbfbf").
+        """
+        return self.canvas_color
+
+    def get_canvas_rgba(self):
+        """
+        Returns the RGBA for lines (great and small circles) of the
+        current layer.
+        __!!__ does not return alpha yet
+        """
+        rgba = Gdk.RGBA()
+        rgba.parse(self.canvas_color)
+        return rgba.to_color()
+
+    def set_canvas_color(self, new_color):
+        """
+        Sets a new canvas color. Requires a string in the hex-triplet-format
+        (e.g. "#bfbfbf").
+        """
+        self.canvas_color = new_color
+
     def get_stereonet(self):
         """
         Resets the canvas and returns the stereonet axis.
         """
         self.fig.clf()
+        self.fig.patch.set_facecolor(self.canvas_color)
+        self.fig.set_dpi(self.pixel_density)
         gridspec = GridSpec(1, 1)
         sp_stereo = gridspec.new_subplotspec((0, 0))
         ax_stereo = self.fig.add_subplot(sp_stereo,
@@ -153,6 +180,8 @@ class PlotSettings(object):
         Resets the canvas and returns the stereonet and rose digarm axis.
         """
         self.fig.clf()
+        self.fig.patch.set_facecolor(self.canvas_color)
+        self.fig.set_dpi(self.pixel_density)
         gridspec = GridSpec(1, 2)
         sp_stereo = gridspec.new_subplotspec((0, 0),
                                              rowspan = 1, colspan = 1)
@@ -168,6 +197,8 @@ class PlotSettings(object):
         Resets the canvas and returns the rose diagram axis.
         """
         self.fig.clf()
+        self.fig.patch.set_facecolor(self.canvas_color)
+        self.fig.set_dpi(self.pixel_density)
         gridspec = GridSpec(1, 1)
         sp_rose = gridspec.new_subplotspec((0, 0))
         ax_rose = self.fig.add_subplot(sp_rose, projection = "northpolar")
@@ -179,6 +210,8 @@ class PlotSettings(object):
         used for inversion: Stereonet, fluctuation-histogram and mohr-circle.
         """
         self.fig.clf()
+        self.fig.patch.set_facecolor(self.canvas_color)
+        self.fig.set_dpi(self.pixel_density)
         gridspec = GridSpec(2, 5)
         sp_stereo = gridspec.new_subplotspec((0, 0), colspan=3, rowspan=2)
         sp_fluc = gridspec.new_subplotspec((0, 3), colspan=2)

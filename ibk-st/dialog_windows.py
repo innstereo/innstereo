@@ -99,6 +99,8 @@ class StereonetProperties(object):
                     self.builder.get_object("checkbutton_draw_grid")
         self.checkbutton_draw_legend = \
                     self.builder.get_object("checkbutton_draw_legend")
+        self.colorbutton_canvas = \
+                    self.builder.get_object("colorbutton_canvas")
         
         self.redraw = redraw_function
         self.changes = []
@@ -106,6 +108,7 @@ class StereonetProperties(object):
 
         pixel_density = self.settings.get_pixel_density()
         self.adjustment_pixel_density.set_value(pixel_density)
+        self.colorbutton_canvas.set_color(self.settings.get_canvas_rgba())
 
         if self.settings.get_projection_state() == True:
             self.radio_schmidt.set_active(True)
@@ -193,6 +196,18 @@ class StereonetProperties(object):
         Triggered when Cancel is clicked. Hides the dialog.
         """
         self.spd.hide()
+
+    def on_colorbutton_canvas_color_set(self, colorbutton):
+        """
+        Triggered when a new color is chosen for the canvas.
+        """
+        rgba = colorbutton.get_rgba()
+        rgb_str = rgba.to_string()
+        red, green, blue = rgb_str[4:-1].split(",")
+        color_list = [int(red)/255, int(green)/255, int(blue)/255]
+        new_canvas_color = colors.rgb2hex(color_list)
+        self.changes.append(
+                lambda: self.settings.set_canvas_color(new_canvas_color))
 
 class LayerProperties(object):
     """
