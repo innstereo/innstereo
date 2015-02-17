@@ -235,11 +235,38 @@ class LayerProperties(object):
         self.layer = layer
         self.redraw = redraw_plot
         self.changes = []
+        self.dialog = self.builder.get_object("dialog_layer_properties")
+        self.marker_style_dict = {".": 0, ",": 1, "o": 2, "v": 3, "^": 4, "<": 5,
+                             ">": 6, "s": 7, "8": 8, "p": 9, "*": 10, "h": 11,
+                             "H": 12, "+": 13, "x": 14, "D": 15, "d": 16,
+                             "|": 17, "_": 18}
+        self.capstyle_dict = {"butt": 0, "round": 1, "projecting": 2}
+        self.line_style_dict = {"-": 0, "--": 1, "-.": 2, ":": 3}
+        self.contour_method_dict = {"exponential_kamb": 0, "linear_kamb": 1,
+                               "kamb": 2, "schmidt": 3}
+        self.colormaps_dict = {"Blues": 0, "BuGn": 1, "BuPu": 2, "GnBu": 3,
+                          "Greens": 4, "Greys": 5, "Oranges": 6, "OrRd": 7,
+                          "PuBu": 8, "PuBuGn": 9, "PuRd": 10, "Purples": 11,
+                          "RdPu": 12, "Reds": 13, "YlGn": 14, "YlGnBu": 15,
+                          "YlOrBr": 16, "YlOrRd": 17, "afmhot": 18,
+                          "autumn": 19, "bone": 20, "cool": 21, "copper": 22,
+                          "gist_heat": 23, "gray": 24, "hot": 25, "pink": 26,
+                          "spring": 27, "summer": 28}
 
-        self.notebook = \
-                        self.builder.get_object("notebook1")
-        self.dialog = \
-                        self.builder.get_object("dialog_layer_properties")
+        self.load_circle_properties()
+        self.load_pole_properties()
+        self.load_linear_properties()
+        self.load_contour_properties()
+        self.load_rose_properties()
+        self.hide_gui_elements()
+        self.builder.connect_signals(self)
+
+    def load_circle_properties(self):
+        """
+        Load default settings for great & small circles
+        """
+        self.checkbutton_render_gcircles = \
+                        self.builder.get_object("checkbutton_render_gcircles")
         self.colorbutton_line = \
                         self.builder.get_object("colorbutton_line")
         self.combobox_line_style = \
@@ -250,6 +277,52 @@ class LayerProperties(object):
                         self.builder.get_object("adjustment_line_width")
         self.combobox_capstyle = \
                         self.builder.get_object("combobox_capstyle")
+        self.checkbutton_render_gcircles.set_active(
+                              self.layer.get_render_gcircles())
+        self.colorbutton_line.set_color(self.layer.get_rgba())
+        self.adjustment_line_width.set_value(self.layer.get_line_width())
+        self.combobox_line_style.set_active(
+                              self.line_style_dict[self.layer.get_line_style()])
+        self.combobox_capstyle.set_active(
+                              self.capstyle_dict[self.layer.get_capstyle()])
+
+    def load_pole_properties(self):
+        """
+        Load default settings for pole points
+        """
+        self.checkbutton_render_poles = \
+                        self.builder.get_object("checkbutton_render_poles")
+        self.colorbutton_pole_fill = \
+                        self.builder.get_object("colorbutton_pole_fill")
+        self.colorbutton_pole_edge_color = \
+                        self.builder.get_object("colorbutton_pole_edge_color")
+        self.spinbutton_pole_size = \
+                        self.builder.get_object("spinbutton_pole_size")
+        self.adjustment_pole_size = \
+                        self.builder.get_object("adjustment_pole_size")
+        self.spinbutton_pole_edge_width = \
+                        self.builder.get_object("spinbutton_pole_edge_width")
+        self.adjustment_pole_edge_width = \
+                        self.builder.get_object("adjustment_pole_edge_width")
+        self.combobox_pole_style = \
+                        self.builder.get_object("combobox_pole_style")
+        self.checkbutton_render_poles.set_active(self.layer.get_render_poles())
+        self.colorbutton_pole_fill.set_color(self.layer.get_pole_rgba())
+        self.colorbutton_pole_edge_color.set_color(
+                            self.layer.get_pole_edge_rgba())
+        self.adjustment_pole_size.set_value(
+                            self.layer.get_pole_size())
+        self.adjustment_pole_edge_width.set_value(
+                            self.layer.get_pole_edge_width())
+        self.combobox_pole_style.set_active(
+                            self.marker_style_dict[self.layer.get_pole_style()])
+
+    def load_linear_properties(self):
+        """
+        Load default settings for linear markers
+        """
+        self.checkbutton_render_linears = \
+                        self.builder.get_object("checkbutton_render_linears")
         self.combobox_marker_style = \
                         self.builder.get_object("combobox_marker_style")
         self.spinbutton_marker_size = \
@@ -260,10 +333,25 @@ class LayerProperties(object):
                         self.builder.get_object("colorbutton_marker")
         self.colorbutton_marker_edge = \
                         self.builder.get_object("colorbutton_marker_edge")
-        self.adjustment_marker_edge_width = \
-                        self.builder.get_object("adjustment_edge_width")
         self.spinbutton_edge_width = \
                         self.builder.get_object("spinbutton_edge_width")
+        self.adjustment_marker_edge_width = \
+                        self.builder.get_object("adjustment_edge_width")
+        self.checkbutton_render_linears.set_active(
+                        self.marker_style_dict[self.layer.get_pole_style()])
+        self.combobox_marker_style.set_active(
+                        self.marker_style_dict[self.layer.get_marker_style()])
+        self.adjustment_marker_size.set_value(self.layer.get_marker_size())
+        self.colorbutton_marker.set_color(self.layer.get_marker_rgba())
+        self.colorbutton_marker_edge.set_color(
+                                self.layer.get_marker_edge_rgba())
+        self.adjustment_marker_edge_width.set_value(
+                                self.layer.get_marker_edge_width())
+
+    def load_contour_properties(self):
+        """
+        Load default settings for contours
+        """
         self.checkbutton_draw_contour_fills = \
                        self.builder.get_object("checkbutton_draw_contour_fills")
         self.checkbutton_draw_contour_lines = \
@@ -274,8 +362,6 @@ class LayerProperties(object):
                         self.builder.get_object("radiobutton_contour_linears")
         self.combobox_contour_method = \
                         self.builder.get_object("combobox_contour_method")
-        self.liststore_colormaps = \
-                        self.builder.get_object("liststore_colormaps")
         self.combobox_colormaps = \
                         self.builder.get_object("combobox_colormaps")
         self.spinbutton_contour_resolution = \
@@ -298,95 +384,14 @@ class LayerProperties(object):
                         self.builder.get_object("radiobutton_use_color")
         self.radiobutton_use_colormap = \
                         self.builder.get_object("radiobutton_use_colormap")
-        self.box_contour_faultplanes = \
-                        self.builder.get_object("box_contour_faultplanes")
         self.colorbutton_contour_line_color = \
                         self.builder.get_object("colorbutton_contour_line_color")
-        self.checkbutton_render_gcircles = \
-                        self.builder.get_object("checkbutton_render_gcircles")
-        self.checkbutton_render_poles = \
-                        self.builder.get_object("checkbutton_render_poles")
-        self.checkbutton_render_linears = \
-                        self.builder.get_object("checkbutton_render_linears")
-        self.colorbutton_pole_fill = \
-                        self.builder.get_object("colorbutton_pole_fill")
-        self.colorbutton_pole_edge_color = \
-                        self.builder.get_object("colorbutton_pole_edge_color")
-        self.spinbutton_pole_size = \
-                        self.builder.get_object("spinbutton_pole_size")
-        self.spinbutton_pole_edge_width = \
-                        self.builder.get_object("spinbutton_pole_edge_width")
-        self.combobox_pole_style = \
-                        self.builder.get_object("combobox_pole_style")
-        self.adjustment_pole_size = \
-                        self.builder.get_object("adjustment_pole_size")
-        self.adjustment_pole_edge_width = \
-                        self.builder.get_object("adjustment_pole_edge_width")
-        self.spinbutton_rose_spacing = \
-                        self.builder.get_object("spinbutton_rose_spacing")
-        self.adjustment_rose_spacing = \
-                        self.builder.get_object("adjustment_rose_spacing")
-        self.spinbutton_rose_bottom = \
-                        self.builder.get_object("spinbutton_rose_bottom")
-        self.adjustment_rose_bottom = \
-                        self.builder.get_object("adjustment_rose_bottom")
-
-        marker_style_dict = {".": 0, ",": 1, "o": 2, "v": 3, "^": 4, "<": 5,
-                             ">": 6, "s": 7, "8": 8, "p": 9, "*": 10, "h": 11,
-                             "H": 12, "+": 13, "x": 14, "D": 15, "d": 16,
-                             "|": 17, "_": 18}
-        capstyle_dict = {"butt": 0, "round": 1, "projecting": 2}
-        line_style_dict = {"-": 0, "--": 1, "-.": 2, ":": 3}
-        contour_method_dict = {"exponential_kamb": 0, "linear_kamb": 1,
-                               "kamb": 2, "schmidt": 3}
-        colormaps_dict = {"Blues": 0, "BuGn": 1, "BuPu": 2, "GnBu": 3,
-                          "Greens": 4, "Greys": 5, "Oranges": 6, "OrRd": 7,
-                          "PuBu": 8, "PuBuGn": 9, "PuRd": 10, "Purples": 11,
-                          "RdPu": 12, "Reds": 13, "YlGn": 14, "YlGnBu": 15,
-                          "YlOrBr": 16, "YlOrRd": 17, "afmhot": 18,
-                          "autumn": 19, "bone": 20, "cool": 21, "copper": 22,
-                          "gist_heat": 23, "gray": 24, "hot": 25, "pink": 26,
-                          "spring": 27, "summer": 28}
-
-        #Load default settings for great & small circles
-        self.checkbutton_render_gcircles.set_active(layer.get_render_gcircles())
-        self.colorbutton_line.set_color(self.layer.get_rgba())
-        self.combobox_capstyle.set_active(capstyle_dict[layer.get_capstyle()])
-        self.adjustment_line_width.set_value(layer.get_line_width())
-        self.combobox_line_style.set_active(
-                                        line_style_dict[layer.get_line_style()])
-
-        #Load default settings for linear markers
-        self.checkbutton_render_linears.set_active(
-                                marker_style_dict[layer.get_pole_style()])
-        self.combobox_marker_style.set_active(
-                                marker_style_dict[layer.get_marker_style()])
-        self.adjustment_marker_size.set_value(layer.get_marker_size())
-        self.colorbutton_marker.set_color(self.layer.get_marker_rgba())
-        self.colorbutton_marker_edge.set_color(
-                                self.layer.get_marker_edge_rgba())
-        self.adjustment_marker_edge_width.set_value(
-                                layer.get_marker_edge_width())
-
-        #Load default settings for pole points
-        self.checkbutton_render_poles.set_active(layer.get_render_poles())
-        self.colorbutton_pole_fill.set_color(self.layer.get_pole_rgba())
-        self.colorbutton_pole_edge_color.set_color(
-                                self.layer.get_pole_edge_rgba())
-        self.adjustment_pole_size.set_value(
-                                layer.get_pole_size())
-        self.adjustment_pole_edge_width.set_value(
-                                layer.get_pole_edge_width())
-        self.combobox_pole_style.set_active(
-                                marker_style_dict[layer.get_pole_style()])
-
-        #Load default settings for contours
         self.checkbutton_draw_contour_fills.set_active(
-                                layer.get_draw_contour_fills())
+                                self.layer.get_draw_contour_fills())
         self.checkbutton_draw_contour_lines.set_active(
-                                layer.get_draw_contour_lines())
+                                self.layer.get_draw_contour_lines())
         self.checkbutton_draw_contour_labels.set_active(
-                                layer.get_draw_contour_labels())
+                                self.layer.get_draw_contour_labels())
         if self.layer.get_render_pole_contours() == True:
             self.radiobutton_contour_poles.set_active(True)
         else:
@@ -398,24 +403,44 @@ class LayerProperties(object):
             self.radiobutton_use_colormap.set_active(True)
 
         self.adjustment_contour_resolution.set_value(
-                                            layer.get_contour_resolution())
+                                            self.layer.get_contour_resolution())
         self.adjustment_contour_sigma.set_value(
-                                            layer.get_contour_sigma())
+                                            self.layer.get_contour_sigma())
         self.adjustment_contour_label_size.set_value(
-                                            layer.get_contour_label_size())
+                                            self.layer.get_contour_label_size())
         self.combobox_contour_method.set_active(
-                               contour_method_dict[layer.get_contour_method()])
-        self.combobox_colormaps.set_active(colormaps_dict[layer.get_colormap()])
+                      self.contour_method_dict[self.layer.get_contour_method()])
+        self.combobox_colormaps.set_active(
+                      self.colormaps_dict[self.layer.get_colormap()])
         self.combobox_contour_line_style.set_active(
-                                line_style_dict[layer.get_contour_line_style()])
+                      self.line_style_dict[self.layer.get_contour_line_style()])
         self.colorbutton_contour_line_color.set_color(
                                         self.layer.get_contour_line_rgba())
 
-        #Load default settings the rose diagram
+    def load_rose_properties(self):
+        """
+        Load default settings the rose diagram
+        """
+        self.spinbutton_rose_spacing = \
+                        self.builder.get_object("spinbutton_rose_spacing")
+        self.adjustment_rose_spacing = \
+                        self.builder.get_object("adjustment_rose_spacing")
+        self.spinbutton_rose_bottom = \
+                        self.builder.get_object("spinbutton_rose_bottom")
+        self.adjustment_rose_bottom = \
+                        self.builder.get_object("adjustment_rose_bottom")
         self.adjustment_rose_spacing.set_value(self.layer.get_rose_spacing())
         self.adjustment_rose_bottom.set_value(self.layer.get_rose_bottom())
 
-        layertype = layer.get_layer_type()
+    def hide_gui_elements(self):
+        """
+        Hides some elements of the GUI depending on the layer type.
+        """
+        self.notebook = \
+                        self.builder.get_object("notebook1")
+        self.box_contour_faultplanes = \
+                        self.builder.get_object("box_contour_faultplanes")
+        layertype = self.layer.get_layer_type()
         if layertype == "line":
             self.notebook.get_nth_page(0).hide()
             self.notebook.get_nth_page(1).hide()
@@ -429,9 +454,6 @@ class LayerProperties(object):
             self.notebook.get_nth_page(3).hide()
             self.notebook.get_nth_page(4).hide()
             self.box_contour_faultplanes.hide()
-
-
-        self.builder.connect_signals(self)
 
     def on_checkbutton_render_linears_toggled(self, checkbutton):
         """

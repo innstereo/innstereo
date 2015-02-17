@@ -198,6 +198,12 @@ class PlaneLayer(object):
         """
         return self.pole_style
 
+    def set_pole_style(self, new_pole_style):
+        """
+        Sets a new pole style for this layer.
+        """
+        self.pole_style = new_pole_style
+
     def get_pole_size(self):
         """
         Returns the pole size of this layer.
@@ -258,18 +264,6 @@ class PlaneLayer(object):
         """
         return self.marker_style
 
-    def get_pole_style(self):
-        """
-        Returns the pole style set for this layer.
-        """
-        return self.pole_style
-
-    def set_pole_style(self, new_pole_style):
-        """
-        Sets a new pole style for this layer.
-        """
-        self.pole_style = new_pole_style
-
     def set_marker_style(self, new_marker_style):
         """
         Assigns a new marker style to this layer.
@@ -299,12 +293,6 @@ class PlaneLayer(object):
         Sets a new fill color for the markers in this layer.
         """
         self.marker_fill = new_marker_fill
-
-    def set_marker_edge_color(self, new_marker_edge_color):
-        """
-        Sets a new edge color for the markers in this layer.
-        """
-        self.marker_edge_color = new_marker_edge_color
 
     def get_marker_edge_width(self):
         """

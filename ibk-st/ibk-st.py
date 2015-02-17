@@ -1,13 +1,13 @@
 #!/usr/bin/python3
 
-from gi.repository import Gtk, Gdk, GdkPixbuf
+from gi.repository import Gtk, GdkPixbuf
 from matplotlib.backends.backend_gtk3cairo import (FigureCanvasGTK3Cairo
     as FigureCanvas)
 from matplotlib.backends.backend_gtk3 import (NavigationToolbar2GTK3 
     as NavigationToolbar)
 import mplstereonet
 import numpy as np
-from numpy import sin, cos, sqrt
+from numpy import sin, sqrt
 
 #Internal imports
 from dataview_classes import (PlaneDataView, LineDataView,
