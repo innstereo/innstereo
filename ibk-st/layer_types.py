@@ -39,8 +39,21 @@ class PlaneLayer(object):
         self.rose_spacing = 10
         self.rose_bottom = 0
 
+        #Contours
+        self.draw_contour_fills = False
+        self.draw_contour_lines = False
+        self.draw_contour_labels = False
         self.render_plane_contours = False
-        self.render_line_contours = False
+        self.render_line_contours = True
+        self.colormap = "Blues"
+        self.contour_resolution = 40
+        self.contour_method = "exponential_kamb"
+        self.contour_sigma = 3
+        self.contour_line_color = "#000000"
+        self.contour_use_line_color = True
+        self.contour_line_width = 1
+        self.contour_line_style = "-"
+        self.contour_label_size = 12
 
     def get_pixbuf(self):
         """
@@ -377,11 +390,71 @@ class PlaneLayer(object):
         """
         self.render_linears = new_render_linears_state
 
-    def get_render_plane_contours(self):
+    def get_draw_contour_fills(self):
+        """
+        Returns if contour fills should be drawn for this layer.
+        Returns a boolean. Default is False.
+        """
+        return self.draw_contour_fills
+
+    def set_draw_contour_fills(self, new_state):
+        """
+        Sets a new state for wheter contour fills should be drawn for
+        this layer. Expects a boolean.
+        """
+        self.draw_contour_fills = new_state
+
+    def get_draw_contour_lines(self):
+        """
+        Returns if contour-lines should be drawn for this layer.
+        Returns a boolean. Default is False.
+        """
+        return self.draw_contour_lines
+
+    def set_draw_contour_lines(self, new_state):
+        """
+        Sets a new state for wheter contour-lines should be drawn for
+        this layer. Expects a boolean.
+        """
+        self.draw_contour_lines = new_state
+
+    def get_draw_contour_labels(self):
+        """
+        Returns if contour labels should be drawn for this layer.
+        Returns a boolean. Default is False.
+        """
+        return self.draw_contour_labels
+
+    def set_draw_contour_labels(self, new_state):
+        """
+        Sets a new state for wheter contour labels should be drawn for
+        this layer. Expects a boolean.
+        """
+        self.draw_contour_labels = new_state
+
+    def get_render_pole_contours(self):
         """
         Returns if contours should be drawn for the poles of this layer.
         """
         return self.render_plane_contours
+
+    def set_render_pole_contours(self, new_state):
+        """
+        Sets a new state for wheter the pole contours should be drawn.
+        """
+        self.render_plane_contours = new_state
+
+    def get_render_line_contours(self):
+        """
+        Returns if contours should be drawn for the linears of this layer.
+        """
+        return self.render_line_contours
+
+    def set_render_line_contours(self, new_state):
+        """
+        Sets a new state for wheter the line contours should be drawn.
+        """
+        self.render_line_contours = new_state
 
     def get_rose_spacing(self):
         """
@@ -406,6 +479,138 @@ class PlaneLayer(object):
         Sets a new spacing for the rose bottom cutoff for this layer.
         """
         self.rose_bottom = new_bottom
+
+    def get_colormap(self):
+        """
+        Returns the colormap for contours as a string (e.g. "Blues")
+        """
+        return self.colormap
+
+    def set_colormap(self, new_colormap):
+        """
+        Sets a new colormap. Expects a string (e.g. Blues")
+        """
+        self.colormap = new_colormap
+
+    def get_contour_resolution(self):
+        """
+        Returns the contour resolution of the layer as an integer (default
+        is 100)
+        """
+        return self.contour_resolution
+
+    def set_contour_resolution(self, new_resolution):
+        """
+        Sets a new contour resolution. Expects an integer.
+        """
+        self.contour_resolution = new_resolution
+
+    def get_contour_method(self):
+        """
+        Returns the contour method of the layer as a string (default:
+        "exponential_kamb")
+        """
+        return self.contour_method
+
+    def set_contour_method(self, new_method):
+        """
+        Sets a new contour method. Expects an string.
+        """
+        self.contour_method = new_method
+
+    def get_contour_line_width(self):
+        """
+        Returns the contour line width as a int or float. Default is 1.
+        """
+        return self.contour_line_width
+
+    def set_contour_line_width(self, new_width):
+        """
+        Sets a new contour-line line-width for the current layer. Expects an
+        int or float.
+        """
+        self.contour_line_width = new_width
+
+    def get_contour_line_color(self):
+        """
+        Returns the color for contour lines (default is "#000000").
+        """
+        return self.contour_line_color
+
+    def set_contour_line_color(self, new_color):
+        """
+        Sets a new line colour for contour intervals. Expects a hex triplet
+        in the form of e.g. "#ab00ab"
+        """
+        self.contour_line_color = new_color
+
+    def get_contour_line_rgba(self):
+        """
+        Returns the contour line RGBA for the current layer. Default is
+        "#000000".
+        __!!__ does not return alpha yet
+        """
+        rgba = Gdk.RGBA()
+        rgba.parse(self.contour_line_color)
+        return rgba.to_color()
+
+    def get_contour_sigma(self):
+        """
+        Return the sigma value for contour intervalls of this layer as
+        an int or float. Default is 3.
+        """
+        return self.contour_sigma
+
+    def set_contour_sigma(self, new_sigma):
+        """
+        Sets a new sigma for the contour intervalls of this layer. Expects
+        an int or float.
+        """
+        self.contour_sigma = new_sigma
+
+    def get_contour_line_style(self):
+        """
+        Returns the line style for contour lines as a string. Default is a solid
+        line as "-".
+        """
+        return self.contour_line_style
+
+    def set_contour_line_style(self, new_style):
+        """
+        Sets a new line style for the contour-lines of this layer. Expects
+        a string (Example "--")
+        """
+        self.contour_line_style = new_style
+
+    def get_contour_label_size(self):
+        """
+        Returns the contour label size of the current layer as a int or float.
+        Defeault is 12.
+        """
+        return self.contour_label_size
+
+    def set_contour_label_size(self, new_size):
+        """
+        Sets a new label size for the contours of this layer. Expects an int or
+        float.
+        """
+        self.contour_label_size = new_size
+
+    def get_use_line_color(self):
+        """
+        Returns if a color should be used instead of the colormap for
+        contour lines as a boolean. Default is True.
+        True = Use color, False = Use colormap
+        """
+        return self.contour_use_line_color
+
+    def set_use_line_color(self, new_state):
+        """
+        Sets a state for wheter a color should be used instead of a colormap
+        for the contour lines. Expects a boolean.
+        True = Use color, False = Use colormap
+        """
+        self.contour_use_line_color = new_state
 
 class FaultPlaneLayer(PlaneLayer):
     def __init__(self, treestore, treeview):

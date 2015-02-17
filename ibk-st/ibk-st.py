@@ -509,18 +509,20 @@ class MainWindow(object):
         Parses a faultplane treestore. Converts planes from dip-direction to
         strikes so they can be plotted.
         """
+        strike = []
         plane_dir = []
         plane_dip = []
         line_dir = []
         line_dip = []
         sense = []
         for row in treestore:
-            plane_dir.append(float(row[0])-90)
+            strike.append(float(row[0]-90))
+            plane_dir.append(float(row[0]))
             plane_dip.append(float(row[1]))
             line_dir.append(float(row[2]))
             line_dip.append(float(row[3]))
             sense.append(row[4])
-        return plane_dir, plane_dip, line_dir, line_dip, sense
+        return strike, plane_dir, plane_dip, line_dir, line_dip, sense
 
     def parse_lines(self, treestore):
         """
@@ -605,11 +607,50 @@ class MainWindow(object):
 
     def draw_contours(self, layer_obj, dipdir, dips, measure_type):
         """
-        MplStereonet accepts measurement type "poles" for planes and
+        MplStereonet accepts measurements as "poles" for planes and
         "lines" for linear measurements.
         """
-        cbar = self.ax_stereo.density_contourf(dipdir, dips,
-                                               measurement=measure_type)
+        if len(dipdir) == 0:
+            return None
+
+        #Implement hatches = (['-', '+', 'x', '\\', '*', 'o', 'O', '.'])
+        if layer_obj.get_draw_contour_fills() == True:
+            cbar = self.ax_stereo.density_contourf(dipdir, dips,
+                              measurement=measure_type,
+                              method = layer_obj.get_contour_method(),
+                              gridsize = layer_obj.get_contour_resolution(),
+                              cmap = layer_obj.get_colormap(),
+                              sigma = layer_obj.get_contour_sigma())
+        else:
+            cbar = None
+
+        if layer_obj.get_draw_contour_lines() == True:
+            if layer_obj.get_use_line_color() == True:
+                clines = self.ax_stereo.density_contour(dipdir, dips,
+                                measurement=measure_type,
+                                method = layer_obj.get_contour_method(),
+                                gridsize = layer_obj.get_contour_resolution(),
+                                sigma = layer_obj.get_contour_sigma(),
+                                colors = layer_obj.get_contour_line_color(),
+                                linewidths = layer_obj.get_contour_line_width(),
+                                linestyles = layer_obj.get_contour_line_style())
+            else:
+                clines = self.ax_stereo.density_contour(dipdir, dips,
+                                measurement=measure_type,
+                                method = layer_obj.get_contour_method(),
+                                gridsize = layer_obj.get_contour_resolution(),
+                                sigma = layer_obj.get_contour_sigma(),
+                                cmap = layer_obj.get_colormap(),
+                                linewidths = layer_obj.get_contour_line_width(),
+                                linestyles = layer_obj.get_contour_line_style())                
+
+        if layer_obj.get_draw_contour_labels() == True:
+            if clines != None:
+                self.ax_stereo.clabel(clines,
+                                fontsize = layer_obj.get_contour_label_size())
+
+
+
         return cbar
 
     def redraw_plot(self, checkout_canvas = False):
@@ -680,8 +721,7 @@ class MainWindow(object):
                     self.draw_plane(layer_obj, strike, dip)
                 if layer_obj.get_render_poles() == True:
                     self.draw_poles(layer_obj, strike, dip)
-                if layer_obj.get_render_plane_contours() == True:
-                    self.draw_contours(layer_obj, strike, dip, "poles")
+                self.draw_contours(layer_obj, strike, dip, "poles")
 
                 num_bins = 360 / layer_obj.get_rose_spacing()
                 bin_width = 2 * np.pi / num_bins
@@ -697,15 +737,21 @@ class MainWindow(object):
                                      bottom = layer_obj.get_rose_bottom())
 
             if layer_type == "faultplane":
-                plane_dir, plane_dip, line_dir, line_dip, sense = (
+                strike, plane_dir, plane_dip, line_dir, line_dip, sense = (
                         self.parse_faultplanes(layer_obj.get_data_treestore()))
-                self.draw_plane(layer_obj, plane_dir, plane_dip)
+                self.draw_plane(layer_obj, strike, plane_dip)
                 self.draw_line(layer_obj, line_dir, line_dip)
+
+                if layer_obj.get_render_pole_contours() == True:
+                    self.draw_contours(layer_obj, strike, plane_dip, "poles")
+                else:
+                    self.draw_contours(layer_obj, line_dip, line_dir, "lines")
 
             if layer_type == "line":
                 dipdir, dip, sense = self.parse_lines(
                                          layer_obj.get_data_treestore())
                 self.draw_line(layer_obj, dipdir, dip)
+                self.draw_contours(layer_obj, dip, dipdir, "lines")
 
                 num_bins = 360 / layer_obj.get_rose_spacing()
                 bin_width = 2 * np.pi / num_bins
