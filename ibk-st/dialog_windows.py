@@ -11,7 +11,7 @@ class AboutDialog(object):
         """
         Initializes the Gtk.Builder and loads the about dialog from glade file.
         The builder creates and instance of the about dialog and connects
-        the signals.        
+        the signals.
         """
         self.builder = Gtk.Builder()
         self.builder.add_objects_from_file("gui_layout.glade",
@@ -84,6 +84,9 @@ class StereonetProperties(object):
     """
     def __init__(self, settings, redraw_function):
         """
+        Initializes the plot-properties dialog. Connects the Gtk.Builder
+        loads the current settings and connects the signals of the dialog
+        window.
         """
         self.builder = Gtk.Builder()
         self.builder.add_objects_from_file("gui_layout.glade",
@@ -105,21 +108,17 @@ class StereonetProperties(object):
         self.redraw = redraw_function
         self.changes = []
         self.settings = settings
-
-        pixel_density = self.settings.get_pixel_density()
-        self.adjustment_pixel_density.set_value(pixel_density)
+        self.adjustment_pixel_density.set_value(
+                                        self.settings.get_pixel_density())
         self.colorbutton_canvas.set_color(self.settings.get_canvas_rgba())
-
         if self.settings.get_projection_state() == True:
             self.radio_schmidt.set_active(True)
         else:
             self.radio_wulff.set_active(True)
-
         self.checkbutton_draw_grid.set_active(
                                     self.settings.get_draw_grid_state())
         self.checkbutton_draw_legend.set_active(
                                     self.settings.get_draw_legend())
-
         self.builder.connect_signals(self)
 
     def on_spinbutton_pixel_density_value_changed(self, spinbutton):
@@ -263,7 +262,7 @@ class LayerProperties(object):
 
     def load_circle_properties(self):
         """
-        Load default settings for great & small circles
+        Load default settings for great- and small circles
         """
         self.checkbutton_render_gcircles = \
                         self.builder.get_object("checkbutton_render_gcircles")
@@ -319,7 +318,7 @@ class LayerProperties(object):
 
     def load_linear_properties(self):
         """
-        Load default settings for linear markers
+        Load the current settings for linear markers
         """
         self.checkbutton_render_linears = \
                         self.builder.get_object("checkbutton_render_linears")
@@ -350,7 +349,7 @@ class LayerProperties(object):
 
     def load_contour_properties(self):
         """
-        Load default settings for contours
+        Load the current settings for contours
         """
         self.checkbutton_draw_contour_fills = \
                        self.builder.get_object("checkbutton_draw_contour_fills")
@@ -419,7 +418,7 @@ class LayerProperties(object):
 
     def load_rose_properties(self):
         """
-        Load default settings the rose diagram
+        Load the current settings for the rose diagram
         """
         self.spinbutton_rose_spacing = \
                         self.builder.get_object("spinbutton_rose_spacing")
@@ -434,7 +433,7 @@ class LayerProperties(object):
 
     def hide_gui_elements(self):
         """
-        Hides some elements of the GUI depending on the layer type.
+        Hides some elements of the GUI depending on the layer type
         """
         self.notebook = \
                         self.builder.get_object("notebook1")

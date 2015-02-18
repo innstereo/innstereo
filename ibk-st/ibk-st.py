@@ -498,7 +498,6 @@ class MainWindow(object):
         dipdir = []
         dip = []
         for row in treestore:
-            #Subtract 90°: MPLStereonet uses strikes for planes!
             strike.append(float(row[0])-90)
             dipdir.append(float(row[0]))
             dip.append(float(row[1]))
@@ -648,8 +647,6 @@ class MainWindow(object):
             if clines != None:
                 self.ax_stereo.clabel(clines,
                                 fontsize = layer_obj.get_contour_label_size())
-
-
 
         return cbar
 
@@ -1083,7 +1080,6 @@ def startup():
 
     window_instance = MainWindow(builder)
     builder.connect_signals(window_instance)
-
     Gtk.main()
 
 if __name__ == "__main__":

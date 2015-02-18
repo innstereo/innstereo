@@ -4,9 +4,17 @@ from gi.repository import Gtk, Gdk, GLib
 
 class DataTreeView(Gtk.TreeView):
     """
-    All data-treeviews inherit from this superclass.
+    This class inherits from Gtk.TreeView. It requires a treestore and the
+    main window redraw-function for the init. The class defines a function
+    that truncates the float-numbers and a function to tab through the
+    treeview. All other data-views inherit from this class.
     """
     def __init__(self, store, redraw_plot):
+        """
+        Initializes the treeview. Requires a model and the main window
+        redraw-function. Sets selection mode to MULTIPLE. Connect the
+        key-pres event.
+        """
         Gtk.TreeView.__init__(self, model=store)
         self.store = store
         self.redraw = redraw_plot
@@ -19,8 +27,8 @@ class DataTreeView(Gtk.TreeView):
     def truncate(self, number):
         """
         Rounds and truncates a number to one decimal place. Used for all
-        float numbers in the data-view. The numbers are saved with full float
-        precision.
+        float numbers in the data-view. The numbers are preserved with
+        full float precision.
         """
         number = round(number, 1)
         return number
@@ -54,11 +62,17 @@ class DataTreeView(Gtk.TreeView):
                 pass
 
 class PlaneDataView(DataTreeView):
+    """
+    This class is used for planes. The View consists of dip-direction, dip,
+    and stratigraphic orientation.
+    """
     def __init__(self, store, redraw_plot):
         """
-        This class stores any plane that only needs to store
-        dip-direction and dip.
-        Fault plane inherits from this class.
+        Passes store and redraw_plot to the parent DataTreeView-class.
+        Initializes 3 columns and connects their edited-signals. The columns:
+        0: Dip direction (Float)
+        1: Dip angle (Float)
+        2: Stratigraphy (String)
         """
         DataTreeView.__init__(self, store, redraw_plot)
 
@@ -118,9 +132,19 @@ class PlaneDataView(DataTreeView):
         self.redraw()
 
 class FaultPlaneDataView(DataTreeView):
+    """
+    This class is used for faultplanes. It inherits the truncate
+    and tab-through function from the DataTreeView class.
+    """
     def __init__(self, store, redraw_plot):
         """
-        Initializes a new fault plane.
+        Initializes a new faultplane view. 5 columns are created and their
+        respective edited-signals are connected. The columns are:
+        0: Plane dip direction (Float)
+        1: Plane dip (Float)
+        2: Lineation dip direction (Float)
+        3: Lineation dip (Float)
+        4: Lineation sense of movement (String)
         """
         DataTreeView.__init__(self, store, redraw_plot)
 
@@ -211,17 +235,25 @@ class FaultPlaneDataView(DataTreeView):
 
     def renderer_sense_edited(self, widget, path, new_string):
         """
-        If the linear sense is edited, replace the existing value.
+        If the linear shear sense is edited, replace the existing value.
         """
         self.store[path][4] = new_string
         self.redraw()
 
 class LineDataView(DataTreeView):
+    """
+    This class is used for linear data. It inherits the truncate
+    and tab-through function from the DataTreeView class. It creates 3 columns
+    for dip direction, dip and linear direction sense.
+    """
     def __init__(self, store, redraw_plot):
         """
-        This class stores any plane that only needs to store
-        dip-direction and dip.
-        Fault plane inherits from this class.
+        Initalizes the LineDataView class. Passes 2 arguments to the
+        DataTreeView class and creates 3 TreeViewColumns and connects their
+        edited-signals. The columns are:
+        0: Dip direction (Float)
+        1: Dip (Float)
+        2: Sense of direction/movement (String)
         """
         DataTreeView.__init__(self, store, redraw_plot)
 
@@ -280,11 +312,18 @@ class LineDataView(DataTreeView):
         self.redraw()
 
 class SmallCircleDataView(DataTreeView):
+    """
+    This class is used for small circle datasets. It inherits from DataTreeView.
+    It creates 3 columns for dip direction, dip and opening angle.
+    """
     def __init__(self, store, redraw_plot):
         """
-        This class stores any plane that only needs to store
-        dip-direction and dip.
-        Fault plane inherits from this class.
+        Initalizes the SmallCircleDataView class. Passes 2 arguments to the
+        DataTreeView class and creates 3 TreeViewColumns and connects their
+        edited-signals. The columns are:
+        0: Dip direction (Float)
+        1: Dip (Float)
+        2: Opening angle (Float)
         """
         DataTreeView.__init__(self, store, redraw_plot)
 

@@ -117,7 +117,7 @@ class FileParseDialog(object):
 
     def on_file_parse_dialog_response(self, widget, response):
         """
-        Executes when a response is triggered.
+        Executes when a response is triggered. Hides the dialog.
         """
         self.dialog.hide()
 
@@ -234,6 +234,6 @@ class FileParseDialog(object):
 
     def on_button_cancel_clicked(self, button):
         """
-        Cancels the file parsing.
+        Cancels the file parsing. Hides the dilalog.
         """
         self.dialog.hide()
