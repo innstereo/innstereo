@@ -147,7 +147,7 @@ One or more layers can be selected for calculations, grouping, or deleting. Drag
 
     The highlighted area shows the layer view with a few nested layers.
 
-.. _layer_settings-dialog:
+.. _layer-settings-dialog:
 
 Layer-Settings Dialog
 ----------------------
