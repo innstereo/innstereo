@@ -1,0 +1,6 @@
+include README.md LICENSE
+include tests/*.py
+include docs/*.py
+include docs/*.rst
+include docs/_static/*.svg
+include docs/_static/*.png
