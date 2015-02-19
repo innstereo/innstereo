@@ -27,7 +27,7 @@ setup(
     setup_requires=["numpy >= 1.6.0",
                     "matplotlib >= 1.4.0",
                     "mplstereonet >= 0.4"],
-    py_modules = ["__init__py",
+    py_modules = ["__init__",
                   "dataview_classes",
                   "dialog_windows",
                   "file_parser",
