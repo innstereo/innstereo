@@ -9,4 +9,4 @@ install:
    - pip3 install git+git://github.com/joferkington/mplstereonet.git
 
 script:
-   - nosetests
+   - py.test
