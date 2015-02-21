@@ -36,6 +36,9 @@ Further Reading
 ---------------
 
  - John P. Snyder (1987): `Map Projections - A Working Manual <http://pubs.er.usgs.gov/publication/pp1395>`_
+ - `Stereographic Projection <http://en.wikipedia.org/wiki/Stereographic_projection>`_ on Wikipedia
+ - `Schmidt Net <http://en.wikipedia.org/wiki/Schmidt_net>`_ on Wikipedia
+ - `Wulff Net <http://de.wikipedia.org/wiki/Wulffsches_Netz>`_ on Wikipedia
  - `Georgij Viktorovich Wulff <https://www.wikidata.org/wiki/Q907171>`_  on Wikidata 
  - `Walter Schmidt <https://www.wikidata.org/wiki/Q15979728>`_ on Wikidata
 

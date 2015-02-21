@@ -109,7 +109,8 @@ Plot formatting options are set in the plot properties dialog. Currently only th
 Further Reading
 ---------------
  - Ben A. Van Der Pluijm & Stephen Marshak (2004) *Earth Structure.* 2nd Edition. ISBN: 978-0-393-92467-1
- - Overview of the `Matplotlib colourmaps <http://matplotlib.org/examples/color/colormaps_reference.html>`_
+ - Introduction to `Matplotlib colourmaps <http://matplotlib.org/users/colormaps.html>`_
+ - List of the `Matplotlib colourmaps <http://matplotlib.org/examples/color/colormaps_reference.html>`_
  - Jake Vanderplas (2014) `How Bad Is Your Colormap? <https://jakevdp.github.io/blog/2014/10/16/how-bad-is-your-colormap/>`_
  - Kristen M. Thyng (2014) `Perceptions of Matplotlib Colormaps <https://www.youtube.com/watch?v=rkDgBvT-giw>`_
  - Damon McDougall (2014) `How to Choose a Good Colour Map <https://www.youtube.com/watch?v=Alnc9E1RnD8>`_
