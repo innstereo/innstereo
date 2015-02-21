@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 
 """
+Controls the appearance and behaviour of the liststores shown in the data-view.
+
 This module contains classes that control the appearance and behaviour of
 the ListStores that are shown in the lower left side of the GUI. The
 DataTreeView-class inherits from Gtk.TreeView and is a superclass of all other
