@@ -1,14 +1,29 @@
 #!/usr/bin/python3
 
+"""
+This module contains classes that control the appearance and behaviour of
+the ListStores that are shown in the lower left side of the GUI. The
+DataTreeView-class inherits from Gtk.TreeView and is a superclass of all other
+classes in this module. The other classes are PlaneDataView, FaultPlaneDataView,
+LineDataView, and SmallCircleDataView.
+Sources:
+on_key_pressed:
+http://stackoverflow.com/questions/15497766/python-pygoobject-treeview-
+confirm-edit-after-move-between-cells-with-tab-key
+"""
+
 from gi.repository import Gtk, Gdk, GLib
 
+
 class DataTreeView(Gtk.TreeView):
+
     """
     This class inherits from Gtk.TreeView. It requires a treestore and the
     main window redraw-function for the init. The class defines a function
     that truncates the float-numbers and a function to tab through the
     treeview. All other data-views inherit from this class.
     """
+
     def __init__(self, store, redraw_plot):
         """
         Initializes the treeview. Requires a model and the main window
@@ -18,10 +33,8 @@ class DataTreeView(Gtk.TreeView):
         Gtk.TreeView.__init__(self, model=store)
         self.store = store
         self.redraw = redraw_plot
-
         self.select = self.get_selection()
         self.select.set_mode(Gtk.SelectionMode.MULTIPLE)
-        
         self.connect("key-press-event", self.on_key_pressed)
 
     def truncate(self, number):
@@ -35,15 +48,16 @@ class DataTreeView(Gtk.TreeView):
 
     def on_key_pressed(self, treeview, event):
         """
-        Enables going through the treeview-cells by pressing tab.
-        Source: http://stackoverflow.com/questions/15497766/python-pygoobject-treeview-confirm-edit-after-move-between-cells-with-tab-key
+        Triggered when a key is pressed while the TreeView is active.
+        If the Tab key was pressed the current value in the active cell
+        is saved and the cursor jumps to the next cell and makes it editable.
         """
         keyname = Gdk.keyval_name(event.keyval)
         path, col = treeview.get_cursor() 
         columns = [c for c in treeview.get_columns() if c.get_visible()] 
         colnum = columns.index(col)     
 
-        if keyname=="Tab" or keyname=="Esc":
+        if keyname == "Tab" or keyname == "Esc":
             if colnum + 1 < len(columns): 
                 next_column = columns[colnum + 1]               
             else: 
@@ -54,18 +68,20 @@ class DataTreeView(Gtk.TreeView):
                 path = tmodel.get_path(titer) 
                 next_column = columns[0] 
 
-            if keyname == 'Tab':
+            if keyname == "Tab":
                 GLib.timeout_add(50,
-                                treeview.set_cursor,
-                                path, next_column, True)
-            elif keyname == 'Escape':
+                                 treeview.set_cursor,
+                                 path, next_column, True)
+            elif keyname == "Escape":
                 pass
 
 class PlaneDataView(DataTreeView):
+
     """
     This class is used for planes. The View consists of dip-direction, dip,
     and stratigraphic orientation.
     """
+
     def __init__(self, store, redraw_plot):
         """
         Passes store and redraw_plot to the parent DataTreeView-class.
@@ -81,18 +97,18 @@ class PlaneDataView(DataTreeView):
         column_dir = Gtk.TreeViewColumn("Dir", renderer_dir, text=0)
         column_dir.set_alignment(0.5)
         column_dir.set_expand(True)
-        column_dir.set_cell_data_func(renderer_dir, \
+        column_dir.set_cell_data_func(renderer_dir, 
                     lambda col, cell, model, iter, unused:
                     cell.set_property("text",
                     "{0}".format(self.truncate(model.get(iter, 0)[0]))))
         self.append_column(column_dir)
-        
+
         renderer_dip = Gtk.CellRendererText()
         renderer_dip.set_property("editable", True)
         column_dip = Gtk.TreeViewColumn("Dip", renderer_dip, text=1)
         column_dip.set_alignment(0.5)
         column_dip.set_expand(True)
-        column_dip.set_cell_data_func(renderer_dip, \
+        column_dip.set_cell_data_func(renderer_dip, 
                     lambda col, cell, model, iter, unused:
                     cell.set_property("text",
                     "{0}".format(self.truncate(model.get(iter, 1)[0]))))
@@ -112,30 +128,36 @@ class PlaneDataView(DataTreeView):
     def renderer_dir_edited(self, widget, path, new_string):
         """
         If the dip direction is edited, replace the existing value.
+        The function replaces a ","- with a "."-comma. Converts
+        the string value to a float.
         """
-        self.store[path][0] = float(new_string.replace(',', '.'))
+        self.store[path][0] = float(new_string.replace(",", "."))
         self.redraw()
 
     def renderer_dip_edited(self, widget, path, new_string):
         """
         If the dip angle is edited, replace the existing value.
+        The function replaces a ","- with a "."-comma. Converts
+        the string value to a float.
         """
-        self.store[path][1] = float(new_string.replace(',', '.'))
+        self.store[path][1] = float(new_string.replace(",", "."))
         self.redraw()
 
     def renderer_strat_edited(self, widget, path, new_string):
         """
         If the stratigraphic orientation direction is edited, replace the
-        existing value.
+        existing value. The column takes the raw string.
         """
         self.store[path][2] = new_string
         self.redraw()
 
 class FaultPlaneDataView(DataTreeView):
+
     """
     This class is used for faultplanes. It inherits the truncate
     and tab-through function from the DataTreeView class.
     """
+
     def __init__(self, store, redraw_plot):
         """
         Initializes a new faultplane view. 5 columns are created and their
@@ -153,18 +175,18 @@ class FaultPlaneDataView(DataTreeView):
         column_dir = Gtk.TreeViewColumn("Dir", renderer_dir, text=0)
         column_dir.set_alignment(0.5)
         column_dir.set_expand(True)
-        column_dir.set_cell_data_func(renderer_dir, \
+        column_dir.set_cell_data_func(renderer_dir, 
                     lambda col, cell, model, iter, unused:
                     cell.set_property("text",
                     "{0}".format(self.truncate(model.get(iter, 0)[0]))))
         self.append_column(column_dir)
-        
+
         renderer_dip = Gtk.CellRendererText()
         renderer_dip.set_property("editable", True)
         column_dip = Gtk.TreeViewColumn("Dip", renderer_dip, text=1)
         column_dip.set_alignment(0.5)
         column_dip.set_expand(True)
-        column_dip.set_cell_data_func(renderer_dip, \
+        column_dip.set_cell_data_func(renderer_dip, 
                     lambda col, cell, model, iter, unused:
                     cell.set_property("text",
                     "{0}".format(self.truncate(model.get(iter, 1)[0]))))
@@ -175,7 +197,7 @@ class FaultPlaneDataView(DataTreeView):
         column_ldir = Gtk.TreeViewColumn("L-Dir", renderer_ldir, text=2)
         column_ldir.set_alignment(0.5)
         column_ldir.set_expand(True)
-        column_ldir.set_cell_data_func(renderer_ldir, \
+        column_ldir.set_cell_data_func(renderer_ldir, 
                     lambda col, cell, model, iter, unused:
                     cell.set_property("text",
                     "{0}".format(self.truncate(model.get(iter, 2)[0]))))
@@ -186,7 +208,7 @@ class FaultPlaneDataView(DataTreeView):
         column_ldip = Gtk.TreeViewColumn("L-Dip", renderer_ldip, text=3)
         column_ldip.set_alignment(0.5)
         column_ldip.set_expand(True)
-        column_ldip.set_cell_data_func(renderer_ldip, \
+        column_ldip.set_cell_data_func(renderer_ldip, 
                     lambda col, cell, model, iter, unused:
                     cell.set_property("text",
                     "{0}".format(self.truncate(model.get(iter, 3)[0]))))
@@ -208,44 +230,55 @@ class FaultPlaneDataView(DataTreeView):
     def renderer_dir_edited(self, widget, path, new_string):
         """
         If the dip direction is edited, replace the existing value.
+        The function replaces a ","- with a "."-comma. Converts
+        the string value to a float.
         """
-        self.store[path][0] = float(new_string.replace(',', '.'))
+        self.store[path][0] = float(new_string.replace(",", "."))
         self.redraw()
 
     def renderer_dip_edited(self, widget, path, new_string):
         """
         If the dip angle is edited, replace the existing value.
+        The function replaces a ","- with a "."-comma. Converts
+        the string value to a float.
         """
-        self.store[path][1] = float(new_string.replace(',', '.'))
+        self.store[path][1] = float(new_string.replace(",", "."))
         self.redraw()
 
     def renderer_ldir_edited(self, widget, path, new_string):
         """
         If the linear dip direction is edited, replace the existing value.
+        The function replaces a ","- with a "."-comma. Converts
+        the string value to a float.
         """
-        self.store[path][2] = float(new_string.replace(',', '.'))
+        self.store[path][2] = float(new_string.replace(",", "."))
         self.redraw()
 
     def renderer_ldip_edited(self, widget, path, new_string):
         """
         If the linear dip is edited, replace the existing value.
+        The function replaces a ","- with a "."-comma. Converts
+        the string value to a float.
         """
-        self.store[path][3] = float(new_string.replace(',', '.'))
+        self.store[path][3] = float(new_string.replace(",", "."))
         self.redraw()
 
     def renderer_sense_edited(self, widget, path, new_string):
         """
         If the linear shear sense is edited, replace the existing value.
+        The the values is replaced by the raw input-string.
         """
         self.store[path][4] = new_string
         self.redraw()
 
 class LineDataView(DataTreeView):
+
     """
     This class is used for linear data. It inherits the truncate
     and tab-through function from the DataTreeView class. It creates 3 columns
     for dip direction, dip and linear direction sense.
     """
+
     def __init__(self, store, redraw_plot):
         """
         Initalizes the LineDataView class. Passes 2 arguments to the
@@ -262,7 +295,7 @@ class LineDataView(DataTreeView):
         column_dir = Gtk.TreeViewColumn("Dir", renderer_dir, text=0)
         column_dir.set_alignment(0.5)
         column_dir.set_expand(True)
-        column_dir.set_cell_data_func(renderer_dir, \
+        column_dir.set_cell_data_func(renderer_dir, 
                     lambda col, cell, model, iter, unused:
                     cell.set_property("text",
                     "{0}".format(self.truncate(model.get(iter, 0)[0]))))
@@ -273,7 +306,7 @@ class LineDataView(DataTreeView):
         column_dip = Gtk.TreeViewColumn("Dip", renderer_dip, text=1)
         column_dip.set_alignment(0.5)
         column_dip.set_expand(True)
-        column_dip.set_cell_data_func(renderer_dip, \
+        column_dip.set_cell_data_func(renderer_dip, 
                     lambda col, cell, model, iter, unused:
                     cell.set_property("text",
                     "{0}".format(self.truncate(model.get(iter, 1)[0]))))
@@ -293,29 +326,36 @@ class LineDataView(DataTreeView):
     def renderer_dir_edited(self, widget, path, new_string):
         """
         If the dip direction is edited, replace the existing value.
+        The function replaces a ","- with a "."-comma. Converts
+        the string value to a float.
         """
-        self.store[path][0] = float(new_string.replace(',', '.'))
+        self.store[path][0] = float(new_string.replace(",", "."))
         self.redraw()
 
     def renderer_dip_edited(self, widget, path, new_string):
         """
         If the dip angle is edited, replace the existing value.
+        The function replaces a ","- with a "."-comma. Converts
+        the string value to a float.
         """
-        self.store[path][1] = float(new_string.replace(',', '.'))
+        self.store[path][1] = float(new_string.replace(",", "."))
         self.redraw()
 
     def renderer_sense_edited(self, widget, path, new_string):
         """
         If the sense of the linear is edited, replace the existing value.
+        The new values is the raw input-string.
         """
-        self.store[path][4] = new_string
+        self.store[path][2] = new_string
         self.redraw()
 
 class SmallCircleDataView(DataTreeView):
+
     """
     This class is used for small circle datasets. It inherits from DataTreeView.
     It creates 3 columns for dip direction, dip and opening angle.
     """
+
     def __init__(self, store, redraw_plot):
         """
         Initalizes the SmallCircleDataView class. Passes 2 arguments to the
@@ -332,7 +372,7 @@ class SmallCircleDataView(DataTreeView):
         column_dir = Gtk.TreeViewColumn("Dir", renderer_dir, text=0)
         column_dir.set_alignment(0.5)
         column_dir.set_expand(True)
-        column_dir.set_cell_data_func(renderer_dir, \
+        column_dir.set_cell_data_func(renderer_dir, 
                     lambda col, cell, model, iter, unused:
                     cell.set_property("text",
                     "{0}".format(self.truncate(model.get(iter, 0)[0]))))
@@ -343,7 +383,7 @@ class SmallCircleDataView(DataTreeView):
         column_dip = Gtk.TreeViewColumn("Dip", renderer_dip, text=1)
         column_dip.set_alignment(0.5)
         column_dip.set_expand(True)
-        column_dip.set_cell_data_func(renderer_dip, \
+        column_dip.set_cell_data_func(renderer_dip, 
                     lambda col, cell, model, iter, unused:
                     cell.set_property("text",
                     "{0}".format(self.truncate(model.get(iter, 1)[0]))))
@@ -354,7 +394,7 @@ class SmallCircleDataView(DataTreeView):
         column_angle = Gtk.TreeViewColumn("Angle", renderer_angle, text=2)
         column_angle.set_alignment(0.5)
         column_angle.set_expand(True)
-        column_angle.set_cell_data_func(renderer_angle, \
+        column_angle.set_cell_data_func(renderer_angle, 
                     lambda col, cell, model, iter, unused:
                     cell.set_property("text",
                     "{0}".format(self.truncate(model.get(iter, 2)[0]))))
@@ -367,20 +407,26 @@ class SmallCircleDataView(DataTreeView):
     def renderer_dir_edited(self, widget, path, new_string):
         """
         If the dip direction is edited, replace the existing value.
+        The function replaces a ","- with a "."-comma. Converts
+        the string value to a float.
         """
-        self.store[path][0] = float(new_string.replace(',', '.'))
+        self.store[path][0] = float(new_string.replace(",", "."))
         self.redraw()
 
     def renderer_dip_edited(self, widget, path, new_string):
         """
         If the dip is edited, replace the existing value.
+        The function replaces a ","- with a "."-comma. Converts
+        the string value to a float.
         """
-        self.store[path][1] = float(new_string.replace(',', '.'))
+        self.store[path][1] = float(new_string.replace(",", "."))
         self.redraw()
 
     def renderer_angle_edited(self, widget, path, new_string):
         """
         If the opening angle is edited, replace the existing value.
+        The function replaces a ","- with a "."-comma. Converts
+        the string value to a float.
         """
-        self.store[path][2] = float(new_string.replace(',', '.'))
+        self.store[path][2] = float(new_string.replace(",", "."))
         self.redraw()
