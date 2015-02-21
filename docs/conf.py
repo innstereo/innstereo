@@ -200,7 +200,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
   ('index', 'innsbruck_stereographic.tex', 'innsbruck\\_stereographic Documentation',
-   'Tobias Schönberg', 'manual'),
+   'Tobias Schoenberg', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -230,7 +230,7 @@ latex_documents = [
 # (source start file, name, description, authors, manual section).
 man_pages = [
     ('index', 'innsbruck_stereographic', 'innsbruck_stereographic Documentation',
-     ['Tobias Schönberg'], 1)
+     ['Tobias Schoenberg'], 1)
 ]
 
 # If true, show URL addresses after external links.
@@ -244,7 +244,7 @@ man_pages = [
 #  dir menu entry, description, category)
 texinfo_documents = [
   ('index', 'innsbruck_stereographic', 'innsbruck_stereographic Documentation',
-   'Tobias Schönberg', 'innsbruck_stereographic', 'One line description of project.',
+   'Tobias Schoenberg', 'innsbruck_stereographic', 'One line description of project.',
    'Miscellaneous'),
 ]
 
