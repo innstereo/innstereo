@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 
 
-.. image:: _static/logo_about.svg
+.. image:: _static/logo_about.png
 
 
 Welcome to the documentation of Innsbruck Stereographic!

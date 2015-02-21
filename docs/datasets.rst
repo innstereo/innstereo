@@ -10,7 +10,7 @@ Plane dataset
 
 A plane dataset are used for any geologic structure that can be abstracted to a plane. In a stereonet a plane can be displayed as either a great circle or its pole.
 
-.. figure:: _static/great_circle_pole.svg
+.. figure:: _static/great_circle_pole.png
     :width: 400px
     :align: center
     :alt: stereonet with great circle and pole

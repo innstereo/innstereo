@@ -46,7 +46,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'innsbruck_stereographic'
+project = 'Innsbruck Stereographic'
 copyright = '2015, Tobias Schoenberg'
 
 # The version info for the project you're documenting, acts as replacement for
