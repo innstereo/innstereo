@@ -1,0 +1,11 @@
+doc-warnings: yes
+test-warnings: no
+strictness: high
+max-line-length: 80
+autodetect: yes
+requirements:
+    - requirements.txt
+ignore-paths:
+    - docs
+ignore-patterns:
+    - (^|/)docs(/|$)
