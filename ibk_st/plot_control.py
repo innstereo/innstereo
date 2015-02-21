@@ -1,15 +1,41 @@
 #!/usr/bin/python3
 
+"""
+Contains the PlotSettings-class that controls the appearance of the plot.
+
+The PlotSettings-class initializes with default values for the plot. The class
+can return those values to the main window and the plot-settings dialog. The
+plot-settings dialog will call the instance of this class to change the
+different settings. This class also stores the figure and can return different
+subplot-layouts. This class also stores the normal and inverse transformations
+of the stereonet, and will return the correct one for either the Schmidt- or
+Wulff-Net.
+"""
+
 from gi.repository import Gtk, Gdk, GdkPixbuf
 from matplotlib.figure import Figure
 from matplotlib.gridspec import GridSpec
 import mplstereonet
 
+
 class PlotSettings(object):
+
+    """
+    The PlotSettings-class initializes with default values for the plot. The
+    class can return those values to the main window and the plot-settings
+    dialog. The plot-settings dialog will call the instance of this class to
+    change the different settings. This class also stores the figure and can
+    return different subplot-layouts. This class also stores the normal and
+    inverse transformations of the stereonet, and will return the correct
+    one for either the Schmidt- or Wulff-Net.
+    """
+
     def __init__(self):
         """
-        Initializes default settings for the figure and stores the instance
-        of the Matplotlib-Figure.
+        Initalizes the default values, colors and the matplotlib-figure.
+
+        Initializes and stores the default settings. Initializes the
+        matplotlib-figure, a folder-icon for the group-layers of the layer-view.
         """
         self.folder_icon = Gtk.IconTheme.get_default().load_icon(
             "folder", 16, 0)
@@ -37,18 +63,40 @@ class PlotSettings(object):
     def get_fig(self):
         """
         Returns the Matplotlib-Figure.
-        """        
+
+        Returns the figure that is stored by this class. The MainWindow class
+        calls this function once during initialization to add the figure to
+        the FigureCanvas.
+        """
         return self.fig
 
     def get_inverse_transform(self):
         """
-        Returns the inverse transform for the stereonet.
+        Returns the inverse transform for the current stereonet projection.
+
+        If the projection is equal are (True) the function returns the
+        InvertedLambertTransform- or else the
+        InvertedSterreographicTransform-class.
         """
-        if self.equal_area_projection == True:
+        if self.equal_area_projection is True:
             return mplstereonet.stereonet_transforms.InvertedLambertTransform(
-                                0, 0, self.get_pixel_density())
+                        0, 0, self.get_pixel_density())
         else:
             return mplstereonet.stereonet_transforms.InvertedStereographicTransform(
+                        0, 0, self.get_pixel_density())
+
+    def get_transform(self):
+        """
+        Returns the normal transform for the current stereonet projection.
+
+        If the projection is equal are (True) the function returns the
+        LambertTransform- or else the SterreographicTransform-class.
+        """
+        if self.equal_area_projection is True:
+            return mplstereonet.stereonet_transforms.LambertTransform(
+                                0, 0, self.get_pixel_density())
+        else:
+            return mplstereonet.stereonet_transforms.StereographicTransform(
                                 0, 0, self.get_pixel_density())
 
     def get_color(self):
