@@ -1,17 +1,33 @@
 #!/usr/bin/python3
 
+"""
+This module contains dialog windows.
+
+Each dialog window has its own class that controls its behaviour. This module
+stores the AboutDialog-, PrintDialog-, StereonetProperties-, LayerProperties-,
+and FileChooserParse-class.
+"""
+
 from gi.repository import Gtk
 import matplotlib.colors as colors
 
+
 class AboutDialog(object):
+
     """
-    This class intializes the about dialog and handles its signals.
+    This class controls the about dialog and handles its signals.
+
+    The layout and content of the About Dialog is stored in the Glade file.
+    This class parses the glade file for the dialog, and connects the signals
+    that are declared in Glade.
     """
+
     def __init__(self):
         """
-        Initializes the Gtk.Builder and loads the about dialog from glade file.
-        The builder creates and instance of the about dialog and connects
-        the signals.
+        Initializes the About dialog.
+
+        Loads the Gtk.Builder and parses the Glade file. Then the signals, that
+        are declared in the Glade file are connected to this class.
         """
         self.builder = Gtk.Builder()
         self.builder.add_objects_from_file("gui_layout.glade",
@@ -41,10 +57,21 @@ class AboutDialog(object):
         self.ab.hide()
 
 class PrintDialog(object):
+
     """
     This class handles the signals of the GtkPrintUnixDialog.
+
+    The properties and signals of the Print dialog are set in Glade. This
+    class parses the Glade file and controls the signals of the dialog.
     """
+
     def __init__(self):
+        """
+        Initializes the Print dialog.
+
+        Loads the Gtk.Builder and parses the Glade file. An instance of the
+        Print dialog is created and the signals are connected to this class.
+        """
         self.builder = Gtk.Builder()
         self.builder.add_objects_from_file("gui_layout.glade",
             ("printdialog", ""))
@@ -79,9 +106,11 @@ class PrintDialog(object):
             pass
 
 class StereonetProperties(object):
+
     """
     This class handles the signals of the plot properties dialog.
     """
+
     def __init__(self, settings, redraw_function):
         """
         Initializes the plot-properties dialog. Connects the Gtk.Builder
@@ -209,12 +238,14 @@ class StereonetProperties(object):
                 lambda: self.settings.set_canvas_color(new_canvas_color))
 
 class LayerProperties(object):
+
     """
     This class intializes the layer properties dialog and handles its signals.
     The init method requires a layer object, so the changes can be applied and
     a function from the main loop that redraws the plot after changes are
     applied.
     """
+
     def __init__(self, layer, redraw_plot):
         """
         Initializes the Gtk.Builder and loads the about dialog from glade file.
@@ -830,10 +861,12 @@ class LayerProperties(object):
                     lambda: self.layer.set_contour_line_color(new_color))
 
 class FileChooserParse(object):
+
     """
     This class handles the actions of the filechooserdialog that selects
     files for text parsing.
     """
+
     def __init__(self, run_file_parser):
         self.builder = Gtk.Builder()
         self.builder.add_objects_from_file("gui_layout.glade",
