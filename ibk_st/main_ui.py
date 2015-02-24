@@ -8,6 +8,8 @@ from matplotlib.backends.backend_gtk3 import (NavigationToolbar2GTK3
 import mplstereonet
 import numpy as np
 from numpy import sin, sqrt
+from scipy.interpolate import splev
+import scipy
 
 #Internal imports
 from dataview_classes import (PlaneDataView, LineDataView,
@@ -60,6 +62,7 @@ class MainWindow(object):
         self.sw_plot.add_with_viewport(self.canvas)
         self.ax_stereo = self.settings.get_stereonet()
         self.inv = self.settings.get_inverse_transform()
+        self.trans = self.settings.get_transform()
         self.view_mode = "stereonet"
         self.view_changed = False
         self.ax_rose = None
@@ -507,6 +510,8 @@ class MainWindow(object):
         """
         Parses a faultplane treestore. Converts planes from dip-direction to
         strikes so they can be plotted.
+        #lp_plane = linear-pole_plane (The great circles that connect the
+        lineation with the pole of the faultplane. Used for Hoeppener-Plots.
         """
         strike = []
         plane_dir = []
@@ -514,6 +519,10 @@ class MainWindow(object):
         line_dir = []
         line_dip = []
         sense = []
+        line_sense_dir = []
+        line_sense_dip = []
+        lp_plane_dir = []
+        lp_plane_dip = []
         for row in treestore:
             strike.append(float(row[0]-90))
             plane_dir.append(float(row[0]))
@@ -521,7 +530,20 @@ class MainWindow(object):
             line_dir.append(float(row[2]))
             line_dip.append(float(row[3]))
             sense.append(row[4])
-        return strike, plane_dir, plane_dip, line_dir, line_dip, sense
+            if row[4] == "up":
+                line_sense_dir.append(float(row[2]) + 180)
+                line_sense_dip.append(90 - float(row[3]))
+            elif row[4] == "dn":
+                line_sense_dir.append(float(row[2]))
+                line_sense_dip.append(float(row[3]))
+            fit_strike, fit_dip = mplstereonet.fit_girdle(
+                                [float(row[3]), 90 - float(row[1])],
+                                [float(row[2]), float(row[0]) + 180],
+                                measurement = "lines")
+            lp_plane_dir.append(fit_strike)
+            lp_plane_dip.append(fit_dip)
+        return strike, plane_dir, plane_dip, line_dir, line_dip, sense, \
+               line_sense_dir, line_sense_dip, lp_plane_dir, lp_plane_dip
 
     def parse_lines(self, treestore):
         """
@@ -650,6 +672,123 @@ class MainWindow(object):
 
         return cbar
 
+    def draw_hoeppener(self, layer_obj, plane_dir, plane_dip, line_dir,
+                        line_dip, lp_plane_dir, lp_plane_dip, sense):
+        """
+        Receives data from a faultplane and draws a Hoeppener arrow.
+
+        Triggered by the redraw_plot function.
+        Receives a plane (direction and dip), linear (direction and dip), and
+        the plane that connects them to each other (direction and dip). Finds
+        the closest index to the pole on the pole-linear-plane and uses that
+        index as the center of the arrow. The arrow connects the two points on
+        the pole-linear-plane that lie f = 2 indexes in either direction. The
+        length is corrected if it obviously crosses the stereonet (length > 1).
+        Then the start and end direction is determined by the shear sense. If
+        the datapoint has no shear sense no arrow is drawn. Unknown shear sense
+        is just a line. The arrow direction is determined like this:
+        -------------
+        "up" (overthrust) Arrow should point away from equator.
+        "dn" (downthrust) Arrow should point towards the equator.
+        "sin" (sinistral strike-slip) Arrows should point left.
+        "dex" (dextral strike-slip) Arrows should point right.
+        __!!__ Still has a bug. Some orientations are wrong!
+        """
+        if len(line_dir) == 0:
+            return
+
+        def find_nearest_point(plane_stack, point):
+            """
+            Finds the closest index to the pole on the pole-linear-plane.
+
+            The pole lies on the pole-linear plane. The index that is closest to
+            this point is returned and further used as the center of the arrow.
+            """
+            tree = scipy.spatial.cKDTree(plane_stack)
+            dist, index = tree.query(point)
+            return index
+
+        for k, x in enumerate(plane_dir):
+            plane_lons, plane_lats = mplstereonet.plane(lp_plane_dir[k],
+                                                        lp_plane_dip[k])
+            line_lons, line_lats = mplstereonet.pole(plane_dir[k] - 90,
+                                                     plane_dip[k])
+            plane_stack = np.dstack([plane_lons.ravel(), plane_lats.ravel()])[0]
+            point = np.array([line_lons, line_lats]).transpose()
+            i = find_nearest_point(plane_stack, point)
+
+            #This solution works well for short arrows. Longer arrows bypass
+            #the pole point. If length of arrow is a concern this needs to be
+            #redone in a different way.
+            f = 2
+
+            lon_start = plane_lons[i-f][0][0]
+            lat_start = plane_lats[i-f][0][0]
+            lon_end = plane_lons[i+f][0][0]
+            lat_end = plane_lats[i+f][0][0]
+            dlon = lon_end - lon_start
+            dlat = lat_end - lat_start
+            
+            #If the arrow crosses the stereonet, the arrow is moved so long
+            #until the closer point touches the edge of the stereonet
+            c = 0
+            while dlon > 1 or dlat > 1:
+                c = c + 1
+                if abs(lon_start) > abs(lon_end) or abs(lat_start) > (lat_end):
+                    lon_start = plane_lons[i-f+c][0][0]
+                    lat_start = plane_lats[i-f+c][0][0]
+                    lon_end = plane_lons[i+f+c][0][0]
+                    lat_end = plane_lats[i+f+c][0][0]
+                else:
+                    lon_start = plane_lons[i-f-c][0][0]
+                    lat_start = plane_lats[i-f-c][0][0]
+                    lon_end = plane_lons[i+f-c][0][0]
+                    lat_end = plane_lats[i+f-c][0][0]
+                
+                dlon = lon_end - lon_start
+                dlat = lat_end - lat_start
+
+            #Correct the direction of the arrow
+            if sense[k] == "up":
+                if abs(lon_start) > abs(lon_end):
+                    lon_start, lon_end = lon_end, lon_start
+                    lat_start, lat_end = lat_end, lat_start
+
+            elif sense[k] == "dn":
+                if abs(lon_start) < abs(lon_end):
+                    lon_start, lon_end = lon_end, lon_start
+                    lat_start, lat_end = lat_end, lat_start
+
+            elif sense[k] == "sin":
+                if lon_start > lon_end:
+                    lon_start, lon_end = lon_end, lon_start
+                    lat_start, lat_end = lat_end, lat_start
+
+            elif sense[k] == "dex":
+                if lon_start < lon_end:
+                    lon_start, lon_end = lon_end, lon_start
+                    lat_start, lat_end = lat_end, lat_start
+
+            #Draw line for "uk", nothing for "" and arrow for everything else
+            #__!!__ The arrows direction might not be determined by
+            #xy = start and xytext = end
+            if sense[k] == "uk":
+                self.ax_stereo.annotate("", xy = (lon_end, lat_end),
+                                        xytext = (lon_start, lat_start),
+                                        xycoords = "data",
+                                        textcoords = "data",
+                                        arrowprops = dict(arrowstyle = "-",
+                                                      connectionstyle = "arc3"))
+            elif sense[k] == "":
+                pass
+            else:
+                self.ax_stereo.annotate("", xy = (lon_end, lat_end),
+                                        xytext = (lon_start, lat_start),
+                                        xycoords = "data",
+                                        textcoords = "data",
+                                        arrowprops = dict(arrowstyle = "->",
+                                                      connectionstyle = "arc3"))
+
     def redraw_plot(self, checkout_canvas = False):
         """
         This function is called after any changes to the datasets or when
@@ -734,10 +873,25 @@ class MainWindow(object):
                                      bottom = layer_obj.get_rose_bottom())
 
             if layer_type == "faultplane":
-                strike, plane_dir, plane_dip, line_dir, line_dip, sense = (
+                strike, plane_dir, plane_dip, line_dir, line_dip, \
+                    sense, line_sense_dir, line_sense_dip, \
+                    lp_plane_dir, lp_plane_dip = (
                         self.parse_faultplanes(layer_obj.get_data_treestore()))
-                self.draw_plane(layer_obj, strike, plane_dip)
-                self.draw_line(layer_obj, line_dir, line_dip)
+
+                if layer_obj.get_render_gcircles() == True:
+                    self.draw_plane(layer_obj, strike, plane_dip)
+                if layer_obj.get_render_poles() == True:
+                    self.draw_poles(layer_obj, strike, plane_dip)
+                if layer_obj.get_render_linears() == True:
+                    self.draw_line(layer_obj, line_dir, line_dip)
+                if layer_obj.get_draw_lp_plane() == True:
+                    self.ax_stereo.plane(lp_plane_dir, lp_plane_dip,
+                                         linestyle = "dotted",
+                                         color = "#000000")
+                if layer_obj.get_draw_hoeppener() == True:
+                    self.draw_hoeppener(layer_obj, plane_dir, plane_dip,
+                                        line_dir, line_dip, lp_plane_dir,
+                                        lp_plane_dip, sense)
 
                 if layer_obj.get_render_pole_contours() == True:
                     self.draw_contours(layer_obj, strike, plane_dip, "poles")
@@ -747,7 +901,8 @@ class MainWindow(object):
             if layer_type == "line":
                 dipdir, dip, sense = self.parse_lines(
                                          layer_obj.get_data_treestore())
-                self.draw_line(layer_obj, dipdir, dip)
+                if layer_obj.get_render_linears() == True:
+                    self.draw_line(layer_obj, dipdir, dip)
                 self.draw_contours(layer_obj, dip, dipdir, "lines")
 
                 num_bins = 360 / layer_obj.get_rose_spacing()
@@ -1078,8 +1233,8 @@ def startup():
          "image_create_small_circle", "menu_plot_views", "image_eigenvector",
          "poles_to_lines"))
 
-    window_instance = MainWindow(builder)
-    builder.connect_signals(window_instance)
+    gui_instance = MainWindow(builder)
+    builder.connect_signals(gui_instance)
     Gtk.main()
 
 if __name__ == "__main__":

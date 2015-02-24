@@ -68,6 +68,10 @@ class PlaneLayer(object):
         self.rose_spacing = 10
         self.rose_bottom = 0
 
+        #Faulplane properties
+        self.draw_hoeppener = False
+        self.draw_lp_plane = False
+
         #Contours
         self.draw_contour_fills = False
         self.draw_contour_lines = False
@@ -628,6 +632,43 @@ class PlaneLayer(object):
         True = Use color, False = Use colormap
         """
         self.contour_use_line_color = new_state
+
+    def get_draw_hoeppener(self):
+        """
+        Returns if Hoeppener Arrows should be drawn.
+
+        Function is called by the MainWindow by the redraw_plot function to
+        check if the arrows should be drawn. It is also called by the
+        LayerProperties-dialog to update the interface to the current settings.
+        """
+        return self.draw_hoeppener
+
+    def set_draw_hoeppener(self, new_state):
+        """
+        Sets whether the Hoeppener arrows should be drawn.
+
+        Function is called by the layer-properties dialog when a new state
+        is set. The function expects a boolean.
+        """
+        self.draw_hoeppener = new_state
+
+    def get_draw_lp_plane(self):
+        """
+        Returns if the Linear-Pole-plane should be drawn.
+
+        Function is called by the MainWindow by the redraw_plot function to
+        check if the linear-pole-plane should be drawn.
+        """
+        return self.draw_lp_plane
+
+    def set_draw_lp_plane(self, new_state):
+        """
+        Sets whether the Linear-Pole-plane should be drawn.
+
+        Function is called by the layer-properties dialog when a new state
+        is set. The function expects a boolean.
+        """
+        self.draw_lp_plane = new_state
 
 class FaultPlaneLayer(PlaneLayer):
 

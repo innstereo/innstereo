@@ -286,6 +286,7 @@ class LayerProperties(object):
         self.load_circle_properties()
         self.load_pole_properties()
         self.load_linear_properties()
+        self.load_fault_properties()
         self.load_contour_properties()
         self.load_rose_properties()
         self.hide_gui_elements()
@@ -377,6 +378,21 @@ class LayerProperties(object):
                                 self.layer.get_marker_edge_rgba())
         self.adjustment_marker_edge_width.set_value(
                                 self.layer.get_marker_edge_width())
+
+    def load_fault_properties(self):
+        """
+        Initializes the interface for fault plots.
+
+        Loads the ojects from the glade file using the GtkBuilder. Gets the
+        current settings from the active layer and applies these settings to
+        the interface.
+        """
+        self.checkbutton_hoeppener = \
+                        self.builder.get_object("checkbutton_hoeppener")
+        self.checkbutton_lp_plane = \
+                        self.builder.get_object("checkbutton_lp_plane")
+        self.checkbutton_hoeppener.set_active(self.layer.get_draw_hoeppener())
+        self.checkbutton_lp_plane.set_active(self.layer.get_draw_lp_plane())
 
     def load_contour_properties(self):
         """
@@ -474,15 +490,18 @@ class LayerProperties(object):
         if layertype == "line":
             self.notebook.get_nth_page(0).hide()
             self.notebook.get_nth_page(1).hide()
+            self.notebook.get_nth_page(3).hide()
             self.box_contour_faultplanes.hide()
         elif layertype == "plane":
             self.notebook.get_nth_page(2).hide()
+            self.notebook.get_nth_page(3).hide()
             self.box_contour_faultplanes.hide()
         elif layertype == "smallcircle":
             self.notebook.get_nth_page(1).hide()
             self.notebook.get_nth_page(2).hide()
             self.notebook.get_nth_page(3).hide()
             self.notebook.get_nth_page(4).hide()
+            self.notebook.get_nth_page(5).hide()
             self.box_contour_faultplanes.hide()
 
     def on_checkbutton_render_linears_toggled(self, checkbutton):
@@ -859,6 +878,28 @@ class LayerProperties(object):
         new_color = colors.rgb2hex(color_list)
         self.changes.append(
                     lambda: self.layer.set_contour_line_color(new_color))
+
+    def on_checkbutton_lp_plane_toggled(self, checkbutton):
+        """
+        Queues up a new state for the linear-pole-plane checkbutton.
+
+        Triggered when a new state for the linear-pole-plane checkbutton
+        is set. Gets the new state and queues it up in the list of changes.
+        """
+        draw_lp_plane = checkbutton.get_active()
+        self.changes.append(
+            lambda: self.layer.set_draw_lp_plane(draw_lp_plane))
+
+    def on_checkbutton_hoeppener_toggled(self, checkbutton):
+        """
+        Queues up a new state for the draw Hoeppener checkbutton.
+
+        Triggered when a new state for the Hoeppener checkbutton
+        is set. Gets the new state and queues it up in the list of changes.
+        """
+        draw_hoeppener = checkbutton.get_active()
+        self.changes.append(
+            lambda: self.layer.set_draw_hoeppener(draw_hoeppener))
 
 class FileChooserParse(object):
 
