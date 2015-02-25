@@ -30,6 +30,14 @@ from file_parser import FileParseDialog
 
 
 class MainWindow(object):
+
+    """
+    The MainWindow-class handles the properties and signals of the GUI.
+
+    The class sets up the GUI and connects all signals. Most methods are
+    for individual functions of the GUI.
+    """
+
     def __init__(self, builder):
         """
         Initializes the main window and connects different functions.
@@ -59,7 +67,7 @@ class MainWindow(object):
         self.layer_store = Gtk.TreeStore(bool, GdkPixbuf.Pixbuf, str, object)
         self.layer_view = LayerTreeView(self.layer_store)
         self.sw_layer.add(self.layer_view)
-        
+
         #Connect signals of layer view
         self.layer_view.renderer_name.connect("edited", self.layer_name_edited)
         self.layer_view.renderer_activate_layer.connect("toggled", 
@@ -88,7 +96,7 @@ class MainWindow(object):
 
         self.redraw_plot()
         self.main_window.show_all()
-    
+
     def on_menuitem_stereo_activate(self, widget):
         """
         Triggered from the menu bar. If the canvas is in a different view mode
@@ -170,7 +178,7 @@ class MainWindow(object):
         self.add_linear_feature(store, fit_strike2 + 180, 90 - fit_dip2)
         self.add_linear_feature(store, fit_strike3 + 180, 90 - fit_dip3)
         self.redraw_plot()
-        
+
     def on_toolbutton_new_project_clicked(self, widget):
         """
         Triggered from the GUI. When the "new project"-button is pressed
