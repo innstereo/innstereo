@@ -1,31 +1,44 @@
 #!/usr/bin/python3
 
+"""
+This module contains the startup-function and the MainWindow-class.
+
+The MainWindow-class sets up the GUI and controls all its signals. All other
+modules and clases are controlled from this class. The startup-function creates
+the first instance of the GUI when the program starts.
+"""
+
 from gi.repository import Gtk, GdkPixbuf
 from matplotlib.backends.backend_gtk3cairo import (FigureCanvasGTK3Cairo
-    as FigureCanvas)
+                                                   as FigureCanvas)
 from matplotlib.backends.backend_gtk3 import (NavigationToolbar2GTK3 
-    as NavigationToolbar)
+                                              as NavigationToolbar)
 import mplstereonet
 import numpy as np
-from numpy import sin, sqrt
-from scipy.interpolate import splev
 import scipy
 
 #Internal imports
 from dataview_classes import (PlaneDataView, LineDataView,
-                             FaultPlaneDataView, SmallCircleDataView)
+                              FaultPlaneDataView, SmallCircleDataView)
 from layer_view import LayerTreeView
 from layer_types import PlaneLayer, FaultPlaneLayer, LineLayer, SmallCircleLayer
 from dialog_windows import (AboutDialog, PrintDialog, LayerProperties, 
-                           StereonetProperties, FileChooserParse)
+                            StereonetProperties, FileChooserParse)
 from plot_control import PlotSettings
 from polar_axes import NorthPolarAxes
 from file_parser import FileParseDialog
+
 
 class MainWindow(object):
     def __init__(self, builder):
         """
         Initializes the main window and connects different functions.
+
+        Initializes the GUI, connects all its sinals, and runs the
+        Gtk-main-loop. An instance of the Gtk.Builder is required for init.
+        An instance of the figure is created and added to the FigureCanvas.
+        The global startup function enables the program to open another
+        independent instance of the GUI.
         """
         global startup
         self.main_window = builder.get_object("main_window")
