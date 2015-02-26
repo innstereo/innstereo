@@ -12,7 +12,7 @@ of the stereonet, and will return the correct one for either the Schmidt- or
 Wulff-Net.
 """
 
-from gi.repository import Gtk, Gdk, GdkPixbuf
+from gi.repository import Gtk, Gdk
 from matplotlib.figure import Figure
 from matplotlib.gridspec import GridSpec
 import mplstereonet
@@ -74,11 +74,11 @@ class PlotSettings(object):
         InvertedSterreographicTransform-class.
         """
         if self.equal_area_projection is True:
-            return mplstereonet.stereonet_transforms.InvertedLambertTransform(
-                   0, 0, self.pixel_density)
+            return mplstereonet.stereonet_transforms.\
+                        InvertedLambertTransform(0, 0, self.pixel_density)
         else:
             return mplstereonet.stereonet_transforms.\
-                   InvertedStereographicTransform(0, 0, self.pixel_density)
+                        InvertedStereographicTransform(0, 0, self.pixel_density)
 
     def get_transform(self):
         """
@@ -88,11 +88,11 @@ class PlotSettings(object):
         LambertTransform- or else the SterreographicTransform-class.
         """
         if self.equal_area_projection is True:
-            return mplstereonet.stereonet_transforms.LambertTransform(
-                                0, 0, self.pixel_density)
+            return mplstereonet.stereonet_transforms.\
+                        LambertTransform(0, 0, self.pixel_density)
         else:
-            return mplstereonet.stereonet_transforms.StereographicTransform(
-                                0, 0, self.pixel_density)
+            return mplstereonet.stereonet_transforms.\
+                        StereographicTransform(0, 0, self.pixel_density)
 
     def get_draw_grid_state(self):
         """
@@ -171,7 +171,7 @@ class PlotSettings(object):
     def set_projection_state(self, new_state):
         """
         Sets a new projection state.
-        
+
         Expects a boolean. True means that the projection will be equal-area,
         False means equal-angle. This method is called by the
         StereonetProperties-dialog when a new setting for the projection is
@@ -200,7 +200,7 @@ class PlotSettings(object):
     def get_grid_width(self):
         """
         Returns the width of the grid lines.
-        
+
         The width of the grid lines is returned as a float or int. The default
         is "0.4". This method is called by the MainWindow "redraw_plot"-method.
         """
