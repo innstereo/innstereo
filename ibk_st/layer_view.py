@@ -12,6 +12,7 @@ from gi.repository import Gtk
 
 
 class LayerTreeView(Gtk.TreeView):
+
     """
     Controls the behaviour of the treeview for the layer-view.
 
@@ -19,6 +20,7 @@ class LayerTreeView(Gtk.TreeView):
     which is in the upper left side of the GUI. The class inherits from
     Gtk.TreeView and requires a Gtk.TreeStore to initialize.
     """
+
     def __init__(self, store):
         """
         Initializes the TreeViewColumns and some special behaviour.
@@ -42,17 +44,18 @@ class LayerTreeView(Gtk.TreeView):
 
         self.renderer_activate_layer = Gtk.CellRendererToggle()
         self.column_activate_layer = Gtk.TreeViewColumn("",
-            self.renderer_activate_layer, active = 0)
+                                                   self.renderer_activate_layer,
+                                                   active=0)
         self.append_column(self.column_activate_layer)
 
         icon_renderer = Gtk.CellRendererPixbuf()
-        icon_column = Gtk.TreeViewColumn("", icon_renderer, pixbuf = 1)
+        icon_column = Gtk.TreeViewColumn("", icon_renderer, pixbuf=1)
         self.append_column(icon_column)
 
-        self.renderer_name = Gtk.CellRendererText(weight = 700,
-                                                  weight_set = True)
-        self.column_name = Gtk.TreeViewColumn(
-            "Layer", self.renderer_name, text = 2)
+        self.renderer_name = Gtk.CellRendererText(weight=700,
+                                                  weight_set=True)
+        self.column_name = Gtk.TreeViewColumn("Layer",
+                                              self.renderer_name, text=2)
         self.column_name.set_min_width(100)
         self.renderer_name.set_property("editable", True)
         self.column_name.set_resizable(True)
