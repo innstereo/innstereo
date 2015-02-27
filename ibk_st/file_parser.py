@@ -233,6 +233,7 @@ class FileParseDialog(object):
         self.dialog.hide()
 
     def on_button_cancel_clicked(self, button):
+        # pylint: disable=unused-argument
         """
         Cancels the file parsing. Hides the dilalog.
         """
