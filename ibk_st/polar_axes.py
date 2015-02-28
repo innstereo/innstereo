@@ -51,10 +51,10 @@ class NorthPolarAxes(PolarAxes):
             The new tranformation is North-up and counts clockwise positive.
             """
             xy = np.zeros(tr.shape, np.float_)
-            t = tr[:, 0:1] # pylint: disable=invalid-name
-            r = tr[:, 1:2] # pylint: disable=invalid-name
-            x = xy[:, 0:1] # pylint: disable=invalid-name
-            y = xy[:, 1:2] # pylint: disable=invalid-name
+            t = tr[:, 0:1]  # pylint: disable=invalid-name
+            r = tr[:, 1:2]  # pylint: disable=invalid-name
+            x = xy[:, 0:1]  # pylint: disable=invalid-name
+            y = xy[:, 1:2]  # pylint: disable=invalid-name
             x[:] = r * np.sin(t)
             y[:] = r * np.cos(t)
             return xy
@@ -91,9 +91,9 @@ class NorthPolarAxes(PolarAxes):
             InvertedPolarTransform-class. The new tranformation is North-up
             and counts clockwise positive.
             """
-            x = xy[:, 0:1] # pylint: disable=invalid-name
-            y = xy[:, 1:] # pylint: disable=invalid-name
-            r = np.sqrt(x * x + y * y) # pylint: disable=invalid-name
+            x = xy[:, 0:1]  # pylint: disable=invalid-name
+            y = xy[:, 1:]  # pylint: disable=invalid-name
+            r = np.sqrt(x * x + y * y)  # pylint: disable=invalid-name
             theta = np.arctan2(y, x)
             return np.concatenate((theta, r), 1)
 
@@ -115,29 +115,25 @@ class NorthPolarAxes(PolarAxes):
         that the limits and label placement fit the north-polar projection.
         """
         PolarAxes._set_lim_and_transforms(self)
-        # pylint: attribute-defined-outside-init
         self.transProjection = self.NorthPolarTransform()
-        # pylint: attribute-defined-outside-init
+        # pylint: attribute-defined-outside-init,invalid-name
         self.transData = (
             self.transScale + 
             self.transProjection + 
             (self.transProjectionAffine + self.transAxes))
-        # pylint: attribute-defined-outside-init
+        # pylint: attribute-defined-outside-init,invalid-name
         self._xaxis_transform = (
             self.transProjection +
             self.PolarAffine(IdentityTransform(), Bbox.unit()) +
-            self.transAxes)
-        # pylint: attribute-defined-outside-init
+            self.transAxes)  # pylint: attribute-defined-outside-init
         self._xaxis_text1_transform = (
             self._theta_label1_position +
-            self._xaxis_transform)
-        # pylint: attribute-defined-outside-init
+            self._xaxis_transform)  # pylint: attribute-defined-outside-init
         self._yaxis_transform = (
             Affine2D().scale(np.pi * 2.0, 1.0) +
-            self.transData)
-        # pylint: attribute-defined-outside-init
+            self.transData)  # pylint: attribute-defined-outside-init
         self._yaxis_text1_transform = (
             Affine2D().scale(1.0 / 360.0, 1.0) +
-            self._yaxis_transform)
+            self._yaxis_transform)  # pylint: attribute-defined-outside-init
 
 register_projection(NorthPolarAxes)
