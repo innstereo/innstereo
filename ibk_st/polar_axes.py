@@ -43,6 +43,7 @@ class NorthPolarAxes(PolarAxes):
         """
 
         def transform(self, tr):
+            # pylint: disable=no-self-use,invalid-name
             """
             Overrides the transformation of the PolarTranform-class.
 
@@ -50,10 +51,10 @@ class NorthPolarAxes(PolarAxes):
             The new tranformation is North-up and counts clockwise positive.
             """
             xy = np.zeros(tr.shape, np.float_)
-            t = tr[:, 0:1]
-            r = tr[:, 1:2]
-            x = xy[:, 0:1]
-            y = xy[:, 1:2]
+            t = tr[:, 0:1] # pylint: disable=invalid-name
+            r = tr[:, 1:2] # pylint: disable=invalid-name
+            x = xy[:, 0:1] # pylint: disable=invalid-name
+            y = xy[:, 1:2] # pylint: disable=invalid-name
             x[:] = r * np.sin(t)
             y[:] = r * np.cos(t)
             return xy
@@ -61,6 +62,7 @@ class NorthPolarAxes(PolarAxes):
         transform_non_affine = transform
 
         def inverted(self):
+            # pylint: disable=no-self-use
             """
             Returns the inverted transformation class.
 
@@ -81,6 +83,7 @@ class NorthPolarAxes(PolarAxes):
         """
 
         def transform(self, xy):
+            # pylint: disable=no-self-use,invalid-name
             """
             Overrides the transformation of the InvertedPolarTransform-class.
 
@@ -88,13 +91,14 @@ class NorthPolarAxes(PolarAxes):
             InvertedPolarTransform-class. The new tranformation is North-up
             and counts clockwise positive.
             """
-            x = xy[:, 0:1]
-            y = xy[:, 1:]
-            r = np.sqrt(x * x + y * y)
+            x = xy[:, 0:1] # pylint: disable=invalid-name
+            y = xy[:, 1:] # pylint: disable=invalid-name
+            r = np.sqrt(x * x + y * y) # pylint: disable=invalid-name
             theta = np.arctan2(y, x)
             return np.concatenate((theta, r), 1)
 
         def inverted(self):
+            # pylint: disable=no-self-use
             """
             Returns the normal transformation class.
 
@@ -104,7 +108,6 @@ class NorthPolarAxes(PolarAxes):
             return NorthPolarAxes.NorthPolarTransform()
 
     def _set_lim_and_transforms(self):
-        # pylint: attribute-defined-outside-init
         """
         Overrides the method with the same name in the PolarAxes-class.
 
@@ -112,21 +115,27 @@ class NorthPolarAxes(PolarAxes):
         that the limits and label placement fit the north-polar projection.
         """
         PolarAxes._set_lim_and_transforms(self)
+        # pylint: attribute-defined-outside-init
         self.transProjection = self.NorthPolarTransform()
+        # pylint: attribute-defined-outside-init
         self.transData = (
             self.transScale + 
             self.transProjection + 
             (self.transProjectionAffine + self.transAxes))
+        # pylint: attribute-defined-outside-init
         self._xaxis_transform = (
             self.transProjection +
             self.PolarAffine(IdentityTransform(), Bbox.unit()) +
             self.transAxes)
+        # pylint: attribute-defined-outside-init
         self._xaxis_text1_transform = (
             self._theta_label1_position +
             self._xaxis_transform)
+        # pylint: attribute-defined-outside-init
         self._yaxis_transform = (
             Affine2D().scale(np.pi * 2.0, 1.0) +
             self.transData)
+        # pylint: attribute-defined-outside-init
         self._yaxis_text1_transform = (
             Affine2D().scale(1.0 / 360.0, 1.0) +
             self._yaxis_transform)
