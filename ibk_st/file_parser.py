@@ -38,6 +38,8 @@ class FileParseDialog(object):
         self.builder.add_objects_from_file("gui_layout.glade",
             ("file_parse_dialog", "liststore_assign_columns",
              "adjustment_parse_start_line"))
+        self.tfpl_dic = {"0": "ukn", "1": "up", "2": "dn", "3": "dex",
+                         "4": "sin"}
         self.redraw_plot = redraw_plot
         self.layer_obj = layer_obj
         self.append_plane = append_plane
@@ -124,7 +126,7 @@ class FileParseDialog(object):
         self.store.append([st_lst[0], st_lst[1], st_lst[2], st_lst[3],
                           st_lst[4], st_lst[5], st_lst[6], st_lst[7]])
 
-    def parse_file(self, start_line = 0):
+    def parse_file(self, start_line=0):
         """
         Parses the file according to the settings and updates the TreeView.
 
@@ -133,8 +135,8 @@ class FileParseDialog(object):
         row are omitted. The rows are passed to the append_data-method.
         """
         self.store.clear()
-        f = open(self.file, "r")
-        for key, line in enumerate(f):
+        parse_file = open(self.file, "r")
+        for key, line in enumerate(parse_file):
             if key < start_line:
                 continue
             else:
@@ -214,9 +216,7 @@ class FileParseDialog(object):
         layer_type = self.layer_obj.get_layer_type()
         self.checkbutton_tectonicsfpl = \
                             self.builder.get_object("checkbutton_tectonicsfpl")
-        self.tfpl_dic = {"0": "ukn", "1": "up", "2": "dn", "3": "dex", "4": "sin"}
         self.use_tfpl = self.checkbutton_tectonicsfpl.get_active()
-        
 
         def iterate_over_planes(m, p, i):
             """
@@ -261,7 +261,7 @@ class FileParseDialog(object):
             if cb_ln_sense == -1:
                 sense = ""
             else:
-                if self.use_tfpl == True:
+                if self.use_tfpl is True:
                     sense = self.tfpl_dic[m[p][cb_ln_sense][0:1]]
                 else:
                     sense = str(m[p][cb_ln_sense])
@@ -299,14 +299,14 @@ class FileParseDialog(object):
             if cb_ln_sense == -1:
                 ln_sense = ""
             else:
-                if self.use_tfpl == True:
+                if self.use_tfpl is True:
                     ln_sense = self.tfpl_dic[m[p][cb_ln_sense][0:1]]
                 else:
                     ln_sense = str(m[p][cb_ln_sense])
 
             self.append_faultplane(layer_store, pl_dipdir, pl_dip, ln_dipdir,
                                    ln_dip, ln_sense)
-        
+
         if layer_type == "plane":
             self.store.foreach(iterate_over_planes)
         elif layer_type == "line":
