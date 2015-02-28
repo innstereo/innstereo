@@ -18,6 +18,7 @@ from matplotlib.transforms import Affine2D, Bbox, IdentityTransform
 
 
 class NorthPolarAxes(PolarAxes):
+    # pylint: disable=no-init
 
     """
     Custom MPL-PolarAxes with theta 0 in the north and counting clockwise.
@@ -31,6 +32,7 @@ class NorthPolarAxes(PolarAxes):
     name = "northpolar"
 
     class NorthPolarTransform(PolarAxes.PolarTransform):
+        # pylint: disable=no-init
 
         """
         Custom normal transformation for the NorthPolarAxes.
@@ -41,6 +43,12 @@ class NorthPolarAxes(PolarAxes):
         """
 
         def transform(self, tr):
+            """
+            Overrides the transformation of the PolarTranform-class.
+
+            This method overrides the same method in the PolarTransform-class.
+            The new tranformation is North-up and counts clockwise positive.
+            """
             xy = np.zeros(tr.shape, np.float_)
             t = tr[:, 0:1]
             r = tr[:, 1:2]
@@ -53,9 +61,16 @@ class NorthPolarAxes(PolarAxes):
         transform_non_affine = transform
 
         def inverted(self):
+            """
+            Returns the inverted transformation class.
+
+            The transformation also has to have a method to return the
+            inverted transformation.
+            """
             return NorthPolarAxes.InvertedNorthPolarTransform()
 
     class InvertedNorthPolarTransform(PolarAxes.InvertedPolarTransform):
+        # pylint: disable=no-init
 
         """
         Custom inverted transformation for the NorthPolarAxes.
@@ -66,16 +81,36 @@ class NorthPolarAxes(PolarAxes):
         """
 
         def transform(self, xy):
+            """
+            Overrides the transformation of the InvertedPolarTransform-class.
+
+            This method overrides the same method in the
+            InvertedPolarTransform-class. The new tranformation is North-up
+            and counts clockwise positive.
+            """
             x = xy[:, 0:1]
             y = xy[:, 1:]
-            r = np.sqrt(x*x + y*y)
+            r = np.sqrt(x * x + y * y)
             theta = np.arctan2(y, x)
             return np.concatenate((theta, r), 1)
 
         def inverted(self):
+            """
+            Returns the normal transformation class.
+
+            The inverted transformation also has to have a method to return the
+            normal transformation.
+            """
             return NorthPolarAxes.NorthPolarTransform()
 
     def _set_lim_and_transforms(self):
+        # pylint: attribute-defined-outside-init
+        """
+        Overrides the method with the same name in the PolarAxes-class.
+
+        This method replaces the same method in the PolarAxes-class. It ensures
+        that the limits and label placement fit the north-polar projection.
+        """
         PolarAxes._set_lim_and_transforms(self)
         self.transProjection = self.NorthPolarTransform()
         self.transData = (

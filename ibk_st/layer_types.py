@@ -196,7 +196,7 @@ class PlaneLayer(object):
         view is changed.
         """
         return self.data_treeview
-     
+
     def get_layer_type(self):
         """
         Returns the layer type of this object.
@@ -806,7 +806,7 @@ class PlaneLayer(object):
     def get_contour_line_style(self):
         """
         Returns the line style for contour lines as a string.
-        
+
         Default is a solid line as "-".
         """
         return self.contour_line_style
