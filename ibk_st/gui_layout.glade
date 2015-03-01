@@ -32,6 +32,7 @@ Author: Tobias Schönberg
     <property name="can_focus">False</property>
     <property name="type">popup</property>
     <property name="title" translatable="yes">About</property>
+    <property name="window_position">center</property>
     <property name="icon_name">help-about</property>
     <property name="type_hint">splashscreen</property>
     <property name="program_name">An open-source structural geology program based on mplstereonet</property>
@@ -41,7 +42,7 @@ In Preperation (2015)</property>
     <property name="website_label" translatable="yes">https://github.com/tobias47n9e/innsbruck-stereographic</property>
     <property name="authors">Tobias Schönberg</property>
     <property name="logo">logo_about.svg</property>
-    <property name="license_type">gpl-3-0-only</property>
+    <property name="license_type">gpl-2-0</property>
     <signal name="close" handler="on_aboutdialog_close" swapped="no"/>
     <signal name="response" handler="on_aboutdialog_response" swapped="no"/>
     <child internal-child="vbox">
@@ -2224,36 +2225,6 @@ equatorial aspect</property>
                         <property name="top_attach">1</property>
                       </packing>
                     </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
                   </object>
                   <packing>
                     <property name="position">3</property>
@@ -3094,6 +3065,33 @@ equatorial aspect</property>
                   <object class="GtkMenu" id="menu3">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
+                    <child>
+                      <object class="GtkMenuItem" id="menuitem_online_help">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">View Online Help</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_menuitem_online_help_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="menuitem_website">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Visit the Website</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_menuitem_website_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="menuitem_report_bug">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Report a Bug</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_menuitem_report_bug_activate" swapped="no"/>
+                      </object>
+                    </child>
                     <child>
                       <object class="GtkImageMenuItem" id="menuitem_about">
                         <property name="label">gtk-about</property>

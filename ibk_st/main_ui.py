@@ -16,14 +16,16 @@ from matplotlib.backends.backend_gtk3 import (NavigationToolbar2GTK3
 import mplstereonet
 import numpy as np
 import scipy
+import webbrowser
 
 #Internal imports
 from dataview_classes import (PlaneDataView, LineDataView,
                               FaultPlaneDataView, SmallCircleDataView)
 from layer_view import LayerTreeView
 from layer_types import PlaneLayer, FaultPlaneLayer, LineLayer, SmallCircleLayer
-from dialog_windows import (AboutDialog, PrintDialog, LayerProperties, 
-                            StereonetProperties, FileChooserParse)
+from dialog_windows import (AboutDialog, PrintDialog, StereonetProperties,
+                            FileChooserParse)
+from layer_properties import LayerProperties
 from plot_control import PlotSettings
 from polar_axes import NorthPolarAxes
 from file_parser import FileParseDialog
@@ -1239,8 +1241,44 @@ class MainWindow(object):
                                  self.add_faultplane_feature)
             fp.run()
 
+    def on_menuitem_online_help_activate(self, menuitem):
+        # pylint: disable=unused-argument
+        """
+        This menuitem opens a new browser tab with the online help.
+
+        Triggered when the user clicks "Help -> View Online Help" in the
+        MenuBar.
+        """
+        webbrowser.open_new_tab(
+                        "http://innsbruck-stereographic.readthedocs.org")
+
+    def on_menuitem_website_activate(self, menuitem):
+        # pylint: disable=unused-argument
+        """
+        This menuitem opens a new browser tab with the website of InnStereo.
+
+        Triggered when the user clicks "Help -> Visit the Website" in the
+        MenuBar.
+        """
+        webbrowser.open_new_tab(
+                "https://github.com/tobias47n9e/innsbruck-stereographic")
+
+    def on_menuitem_report_bug_activate(self, menuitem):
+        # pylint: disable=unused-argument
+        """
+        This menuitem opens a new browser tab with the bug tracker.
+
+        Triggered when the user clicks "Help -> Report a Bug" in the
+        MenuBar.
+        """
+        webbrowser.open_new_tab(
+            "https://github.com/tobias47n9e/innsbruck-stereographic/issues")
+
+
 def startup():
     """
+    Starts the GUI and the application main-loop.
+
     Initializes an instance of the Gtk.Builder and loads the GUI from the
     ".glade" file. Then it initializes the main window and starts the Gtk.main
     loop. This function is also passed to the window, so it can open up new
