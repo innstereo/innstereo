@@ -1,7 +1,7 @@
 from distutils.core import setup
 
 setup(
-    name = "innsbruck-stereographic",
+    name = "innstereo",
     version = "1.0-a1",
     description = "Sterographic plotting for structural geology",
     author = "Tobias Schoenberg",
@@ -19,8 +19,8 @@ setup(
         "Operating System :: OS Independent",
         "Topic :: Scientific/Engineering",
         ],
-    packages = ["ibk_st"],
-    scripts = ["bin/innsbruck-stereographic"],
+    packages = ["innstereo"],
+    scripts = ["bin/innstereo"],
     install_requires = ["numpy >= 1.6.0",
                         "scipy >= 0.14",
                         "matplotlib >= 1.4.0",
@@ -50,9 +50,9 @@ setup(
                                "logo_about.svg",
                                "gui_layout.glade"]},
     long_description = """
-    Innsbruck Stereographic is an open-source stereographic projection program
-    for structural geology and based on MPLStereonet. It can be used to create
-    plots of geologic data and can perform a number of calculations on the
-    datasets.
+    Innstereo (or Innsbruck Stereographic) is an open-source stereographic
+    projection program for structural geology and based on MPLStereonet. It can
+    be used to create plots of geologic data and can perform a number of
+    calculations on the datasets.
     """
     )
