@@ -1,4 +1,4 @@
 numpy >= 1.6.0
-scipy >= 0.14
+scipy >= 0.13
 matplotlib >= 1.4.0
 mplstereonet >= 0.4
