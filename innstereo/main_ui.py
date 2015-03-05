@@ -234,14 +234,14 @@ class MainWindow(object):
         """
         Triggered from the GUI. Saves the project.
         """
-        raise NotImplementedError
+        pass
 
     def on_toolbutton_show_table_clicked(self, widget):
         """
         Opens a new dialog window that makes it easier to view and filter the
         data of one layer.
         """
-        raise NotImplementedError
+        pass
 
     def on_toolbutton_delete_layer_clicked(self, widget):
         """
@@ -272,7 +272,7 @@ class MainWindow(object):
         Triggered fromt the GUI. This function creates an instance of the
         GtkPrintUnixDialog and runs it.
         """
-        raise NotImplementedError
+        pass
         #print_dialog = PrintDialog()
         #print_dialog.run()
 
