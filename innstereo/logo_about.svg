@@ -26,7 +26,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.4"
-     inkscape:cx="307.74912"
+     inkscape:cx="163.46341"
      inkscape:cy="75.294695"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -48,7 +48,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -87,7 +87,9 @@
          x="137.2879"
          y="57.264515"
          style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-family:'URW Gothic L';-inkscape-font-specification:'URW Gothic L Semi-Bold';text-align:start;letter-spacing:5px;text-anchor:start;fill:#0055d4;stroke:none"
-         dx="0">Innsbruck</tspan></text>
+         dx="0">Inn<tspan
+   style="fill:#4d4d4d;fill-opacity:1"
+   id="tspan4143">sbruck</tspan></tspan></text>
     <circle
        style="fill:#4e4e4e;fill-opacity:1;stroke:none;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none"
        id="path4232-3-3-0"
@@ -105,6 +107,8 @@
          id="tspan3211-6"
          x="138.88936"
          y="106.75945"
-         style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-family:'URW Gothic L';-inkscape-font-specification:'URW Gothic L Semi-Bold';letter-spacing:5px;fill:#4d4d4d">Stereographic</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-family:'URW Gothic L';-inkscape-font-specification:'URW Gothic L Semi-Bold';letter-spacing:5px;fill:#4d4d4d"><tspan
+   style="fill:#0055d4;fill-opacity:1"
+   id="tspan4141">Stereo</tspan>graphic</tspan></text>
   </g>
 </svg>
