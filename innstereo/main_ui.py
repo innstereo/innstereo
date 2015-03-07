@@ -100,60 +100,62 @@ class MainWindow(object):
         self.main_window.show_all()
 
     def on_menuitem_stereo_activate(self, widget):
+        # pylint: disable=unused-argument
         """
+        Switches to the stereonet-only view.
+
         Triggered from the menu bar. If the canvas is in a different view mode
         it switches to stereonet-only.
         """
-        if self.view_mode != "stereonet":
+        if self.view_mode is not "stereonet":
             self.view_changed = True
             self.view_mode = "stereonet"
             self.redraw_plot()
 
     def on_menuitem_stereo_rose_activate(self, widget):
+        # pylint: disable=unused-argument
         """
+        Switches to the stereonet and rose-diagram view.
+
         Triggered from the menu bar. If the canvas is in a different view mode
         it will be switched to a combined stereonet and rose diagram view.
         """
-        if self.view_mode != "stereo-rose":
+        if self.view_mode is not "stereo-rose":
             self.view_changed = True
             self.view_mode = "stereo_rose"
             self.redraw_plot()
 
     def on_menuitem_rose_view_activate(self, widget):
+        # pylint: disable=unused-argument
         """
+        Switches to the rose-diagram-only view.
+
         Triggered from the menu bar. If the canvas is in a different view mode
         it will be switched to a rose diagram only view.
         """
-        if self.view_mode != "rose":
+        if self.view_mode is not "rose":
             self.view_changed = True
             self.view_mode = "rose"
             self.redraw_plot()
 
     def on_menuitem_pt_view_activate(self, widget):
+        # pylint: disable=unused-argument
         """
+        Switches to the paleostress view.
+
         Triggered from the menu bar. If the canvas is in a different view mode
         it switches to the PT-View.
         """
-        if self.view_mode != "pt":
+        if self.view_mode is not "pt":
             self.view_changed = True
             self.view_mode = "pt"
             self.redraw_plot()
 
-    def on_toolbutton_rose_dataset_clicked(self, widget):
-        """
-        Triggered by the GUI. Copies the selected datasets to the rose diagram
-        group of the layer treeview. The dataview is relinked so data changes
-        are still registered.
-        """
-        selection = self.layer_view.get_selection()
-        model, row_list = selection.get_selected_rows()
-
-        for row in row_list:
-            r = model[row]
-            self.layer_store.append(None, [r[0], r[1], r[2], r[3]])
-
     def on_toolbutton_eigenvector_clicked(self, widget):
+        # pylint: disable=unused-argument
         """
+        Calculates the eigenvectors and eigenvalues of one or more layers.
+
         __!!__Implemented in mplstereonet now, change this function!
         """
         selection = self.layer_view.get_selection()
@@ -182,7 +184,10 @@ class MainWindow(object):
         self.redraw_plot()
 
     def on_toolbutton_new_project_clicked(self, widget):
+        # pylint: disable=unused-argument
         """
+        Opens a new and indenpendent window of the GUI.
+
         Triggered from the GUI. When the "new project"-button is pressed
         this function runs the startup function and creates a new and
         independent instance of the GUI.
@@ -190,14 +195,20 @@ class MainWindow(object):
         startup()
 
     def on_menuitem_new_window_activate(self, widget):
+        # pylint: disable=unused-argument
         """
+        Opens a new and indenpendent window of the GUI.
+
         Triggered from the menu bar: "File -> New". Opens a new independent
         window by calling the global startup function.
         """
         startup()
 
     def on_toolbutton_poles_to_lines_clicked(self, widget):
+        # pylint: disable=unused-argument
         """
+        Copies the poles of a plane-layer into a new line-layer.
+
         Checks if selected layers are planes or faultplanes. Copies the
         dip-direction - dip data into a line-dataset. If many layers are
         selected the data will be merged into one layer.
@@ -231,20 +242,29 @@ class MainWindow(object):
         self.redraw_plot()
 
     def on_toolbutton_save_clicked(self, widget):
+        # pylint: disable=unused-argument
         """
         Triggered from the GUI. Saves the project.
+
+        __!!__ Save function is not implemented yet.
         """
         pass
 
     def on_toolbutton_show_table_clicked(self, widget):
+        # pylint: disable=unused-argument
         """
-        Opens a new dialog window that makes it easier to view and filter the
-        data of one layer.
+        Opens dialog to view the data in a table.
+
+        __!!__ Maybe implement sorting in this dialog?
+        __!!__ Not implemented yet.
         """
         pass
 
     def on_toolbutton_delete_layer_clicked(self, widget):
+        # pylint: disable=unused-argument
         """
+        Deltes the currently selected layer(s).
+
         Triggered when the "remove layers" toolbutton is pressed. Deletes all
         selected layers.
         __!!__ Currently has no warning message. What happens to data?
@@ -260,7 +280,10 @@ class MainWindow(object):
         self.redraw_plot()
 
     def on_toolbutton_plot_properties_clicked(self, widget):
+        # pylint: disable=unused-argument
         """
+        Opens the plot-properties dialog.
+
         Triggered when the toolbutton is pressed. Creates and instance of the
         StereonetProperties class, which is a Gtk DialogWindow and runs it.
         """
@@ -268,8 +291,11 @@ class MainWindow(object):
         plot_properties.run()
 
     def on_toolbutton_print_figure_clicked(self, widget):
+        # pylint: disable=unused-argument
         """
-        Triggered fromt the GUI. This function creates an instance of the
+        Prints the figure.
+
+        Triggered from the GUI. This function creates an instance of the
         GtkPrintUnixDialog and runs it.
         """
         pass
@@ -277,7 +303,10 @@ class MainWindow(object):
         #print_dialog.run()
 
     def on_toolbutton_save_figure_clicked(self, widget):
+        # pylint: disable=unused-argument
         """
+        Opens a dialog to save the figure specified location and file-format.
+
         Opens the matplotlib dialog window that allows saving the current figure
         in a specified location, name and file format.
         """
@@ -286,6 +315,8 @@ class MainWindow(object):
 
     def layer_view_clicked(self, treeview, button):
         """
+        Unselects all layers if the layer-view is clicked.
+
         Called when one clicks with the mouse on the layer-treeview.
         Unselects all selected layers.
         """
@@ -293,7 +324,10 @@ class MainWindow(object):
         selection.unselect_all()
 
     def on_toolbutton_draw_features_toggled(self, widget):
+        # pylint: disable=unused-argument
         """
+        Toggles if featues can be drawn by clicking on the canvas.
+
         Activated when the toggle button is pressed. When self.draw_features
         is True then clicking on the canvas with an active layer will draw
         a features at that point.
@@ -304,8 +338,12 @@ class MainWindow(object):
             self.draw_features = False
 
     def on_toolbutton_best_plane_clicked(self, widget):
+        # pylint: disable=unused-argument
         """
         Finds the optimal plane for a set of linears.
+
+        Iterates over all selected rows and collects the data. Finds the
+        optimal plane that can be fitted to the data.
         """
         selection = self.layer_view.get_selection()
         model, row_list = selection.get_selected_rows()
@@ -339,8 +377,11 @@ class MainWindow(object):
         self.redraw_plot()
 
     def on_toolbutton_plane_intersect_clicked(self, widget):
+        # pylint: disable=unused-argument
         """
-        Gets the selected layers and calculates a best fitting plane for them.
+        Gets the selected layers and calculates a best fitting intersect.
+
+        __!!__
         """
         selection = self.layer_view.get_selection()
         model, row_list = selection.get_selected_rows()
@@ -383,12 +424,14 @@ class MainWindow(object):
 
     def layer_row_activated(self, treeview, path, column):
         """
+        Double clicking a layer, opens the layer-property dialog.
+
         Excecutes when a treeview row is double-clicked. This passes the
         treeview-object, the path (or row) as an integer and the
         TreeViewColumn-object to this function.
         """
         layer_obj = self.layer_store[path][3]
-        if layer_obj != None:
+        if layer_obj is not None:
             layer_prop = LayerProperties(layer_obj, self.redraw_plot)
             layer_prop.run()
 
@@ -407,14 +450,14 @@ class MainWindow(object):
             child = self.sw_data.get_child()
             if layer_object == None:
                 #If it has a child remove it
-                if child != None:
+                if child is not None:
                     self.sw_data.remove(child)
             #Else: not a group layer
             else:
                 #Get the treeview
                 treeview_object = layer_object.get_data_treeview()
                 #If there is a child remove it
-                if child != None:
+                if child is not None:
                     self.sw_data.remove(child)
                 #Add new treeview
                 self.sw_data.add(treeview_object)
@@ -422,7 +465,7 @@ class MainWindow(object):
         else:
             child = self.sw_data.get_child()
             #If there is a child remove it
-            if child != None:
+            if child is not None:
                 self.sw_data.remove(child)
             #Add new treeview
             self.main_window.show_all()
@@ -689,7 +732,7 @@ class MainWindow(object):
                                 linestyles = layer_obj.get_contour_line_style())                
 
         if layer_obj.get_draw_contour_labels() == True:
-            if clines != None:
+            if clines is not None:
                 self.ax_stereo.clabel(clines,
                                 fontsize = layer_obj.get_contour_label_size())
 
@@ -854,7 +897,7 @@ class MainWindow(object):
         deselected = []
         def iterate_over_rows(model, path, itr):
             layer_obj = model[path][3]
-            if layer_obj != None:
+            if layer_obj is not None:
                 layer_type = layer_obj.get_layer_type()
                 model[path][2] = layer_obj.get_label()
                 model[path][1] = layer_obj.get_pixbuf()
@@ -888,7 +931,7 @@ class MainWindow(object):
                 values, bin_edges = np.histogram(dipdir, num_bins,
                                                      range = (0, 2 * np.pi))
 
-                if self.ax_rose != None:
+                if self.ax_rose is not None:
                     self.ax_rose.bar(left = bin_edges[:-1], height = values,
                                      width = bin_width, alpha = 0.5,
                                      color = layer_obj.get_line_color(),
@@ -934,7 +977,7 @@ class MainWindow(object):
                 values, bin_edges = np.histogram(dipdir, num_bins,
                                                      range = (0, 2 * np.pi))
 
-                if self.ax_rose != None:
+                if self.ax_rose is not None:
                     self.ax_rose.bar(left = bin_edges[:-1], height = values,
                                      width = bin_width, alpha = 0.5,
                                      color = layer_obj.get_marker_fill(),
@@ -955,7 +998,7 @@ class MainWindow(object):
                 if label not in newLabels:
                     newLabels.append(label)
                     newHandles.append(handle)
-            if len(handles) != 0:
+            if len(handles) is not 0:
                 self.ax_stereo.legend(newHandles, newLabels,
                                       bbox_to_anchor=(1.3, 1.1))
         self.canvas.draw()
@@ -1025,7 +1068,7 @@ class MainWindow(object):
         self.layer_store[path][2] = new_label
         layer_obj = self.layer_store[path][3]
 
-        if layer_obj != None:
+        if layer_obj is not None:
             layer_obj.set_label(new_label)
 
         self.redraw_plot()
@@ -1141,7 +1184,7 @@ class MainWindow(object):
             layer = row_list[0]
             current = model[layer][3]
             data_treestore = current.get_data_treestore()
-            if data_treestore != None:
+            if data_treestore is not None:
                 layer_type = current.get_layer_type()
                 if layer_type == "plane":
                     self.add_planar_feature(data_treestore)
@@ -1160,7 +1203,7 @@ class MainWindow(object):
         click should draw a feature.
         """
         selection = self.layer_view.get_selection()
-        if event.inaxes != None:
+        if event.inaxes is not None:
             if self.draw_features == False:
                 selection.unselect_all()
                 return
@@ -1169,7 +1212,7 @@ class MainWindow(object):
             model, row_list = selection.get_selected_rows()
 
             if len(row_list) == 1:
-                if event.inaxes != None:
+                if event.inaxes is not None:
                     alpha_deg, gamma_deg = self.convert_xy_to_dirdip(event)
             else:
                 selection.unselect_all()
@@ -1179,7 +1222,7 @@ class MainWindow(object):
             current = model[layer][3]
             data_treestore = current.get_data_treestore()
 
-            if data_treestore != None:
+            if data_treestore is not None:
                 layer_type = current.get_layer_type()
                 if layer_type == "plane":
                     self.add_planar_feature(data_treestore, alpha_deg,
@@ -1200,7 +1243,7 @@ class MainWindow(object):
         When the mouse cursor hovers inside the plot, the position of the
         event is pushed to the statusbar at the bottom of the GUI.
         """
-        if event.inaxes != None:
+        if event.inaxes is not None:
             alpha_deg, gamma_deg = self.convert_xy_to_dirdip(event)
 
             alpha_deg = int(alpha_deg)
