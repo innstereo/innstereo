@@ -2895,7 +2895,6 @@ equatorial aspect</property>
                       <object class="GtkImageMenuItem" id="menuitem_new_window">
                         <property name="label">gtk-new</property>
                         <property name="visible">True</property>
-                        <property name="sensitive">False</property>
                         <property name="can_focus">False</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
@@ -2939,12 +2938,13 @@ equatorial aspect</property>
                       </object>
                     </child>
                     <child>
-                      <object class="GtkImageMenuItem" id="imagemenuitem5">
+                      <object class="GtkImageMenuItem" id="menuitem_quit">
                         <property name="label">gtk-quit</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
+                        <signal name="activate" handler="on_menuitem_quit_activate" swapped="no"/>
                       </object>
                     </child>
                   </object>
