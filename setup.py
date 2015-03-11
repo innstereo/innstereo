@@ -49,6 +49,7 @@ setup(
                                "create_small_circle.svg",
                                "logo_about.svg",
                                "gui_layout.glade"]},
+    tests_require = "pytest"
     long_description = """
     Innstereo (or Innsbruck Stereographic) is an open-source stereographic
     projection program for structural geology and based on MPLStereonet. It can

@@ -1,6 +1,8 @@
 include README.md LICENSE
 include tests/*.py
 include docs/*.py
+include innstereo/*.svg
 include docs/*.rst
 include docs/_static/*.svg
 include docs/_static/*.png
+include bin/*.py
