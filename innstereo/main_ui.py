@@ -217,6 +217,13 @@ class MainWindow(object):
         model, row_list = selection.get_selected_rows()
 
         def iterate_over_data(model, path, itr, n):
+            """
+            Copies data to new layer.
+
+            Receives a model, path and itr of a layer, plus the datastore
+            of the new layer. Converts the plane orientation into a pole
+            orientation and adds it to the new layer.
+            """
             r = model[path]
             self.add_linear_feature(n, 180 + r[0], 90 - r[1])
         
@@ -314,6 +321,7 @@ class MainWindow(object):
         nav.save_figure()
 
     def layer_view_clicked(self, treeview, button):
+        # pylint: disable=unused-argument
         """
         Unselects all layers if the layer-view is clicked.
 
@@ -332,7 +340,7 @@ class MainWindow(object):
         is True then clicking on the canvas with an active layer will draw
         a features at that point.
         """
-        if self.draw_features == False:
+        if self.draw_features is False:
             self.draw_features = True
         else:
             self.draw_features = False
@@ -370,7 +378,7 @@ class MainWindow(object):
                 total_dip.append(y)
 
         fit_strike, fit_dip = mplstereonet.fit_girdle(total_dip, total_dipdir,
-                                measurement = "lines")
+                                measurement="lines")
 
         store = self.add_layer_dataset("plane")
         self.add_planar_feature(store, fit_strike + 90, fit_dip)
@@ -393,9 +401,9 @@ class MainWindow(object):
             if layer_obj.get_layer_type() == "line":
                 only_planes = False
 
-        if only_planes == False:
+        if only_planes is False:
             return
-        
+
         total_dipdir = []
         total_dip = []
         for row in row_list:
@@ -409,15 +417,15 @@ class MainWindow(object):
 
         plane_strike, plane_dip = mplstereonet.fit_pole(
                                     total_dipdir, total_dip,
-                                    measurement = "poles")
+                                    measurement="poles")
 
         plane_strike2, plane_dip2 = mplstereonet.fit_pole(
                                     *mplstereonet.pole(total_dipdir, total_dip),
-                                    measurement = "poles")
+                                    measurement="poles")
 
-        self.ax_stereo.line(plane_dip, plane_strike+90)
+        self.ax_stereo.line(plane_dip, plane_strike + 90)
         self.ax_stereo.plane(plane_strike, plane_dip)
-        self.ax_stereo.plane(plane_strike2, plane_dip2, color = "#ff0000")
+        self.ax_stereo.plane(plane_strike2, plane_dip2, color="#ff0000")
         self.ax_stereo.pole(plane_strike, plane_dip)
         self.ax_stereo.pole(plane_strike2, plane_dip2)
         self.canvas.draw()
@@ -448,7 +456,7 @@ class MainWindow(object):
             row = row_list[0]
             layer_object = model[row][3]
             child = self.sw_data.get_child()
-            if layer_object == None:
+            if layer_object is None:
                 #If it has a child remove it
                 if child is not None:
                     self.sw_data.remove(child)
@@ -471,6 +479,7 @@ class MainWindow(object):
             self.main_window.show_all()
 
     def on_layer_toggled(self, widget, path):
+        # pylint: disable=unused-argument
         """
         If the layer is toggled the bool field is switched between
         True (visible) and False (invisible).
@@ -522,7 +531,7 @@ class MainWindow(object):
             row = row_list[0]
             layer_obj = model[row][3]
             selection_itr = model.get_iter(row_list[0])
-            if layer_obj == None:
+            if layer_obj is None:
                 store = add_layer(selection_itr)
             else:
                 parent_itr = model.iter_parent(selection_itr)
@@ -531,6 +540,7 @@ class MainWindow(object):
         return store
 
     def on_toolbutton_create_plane_dataset_clicked(self, widget):
+        # pylint: disable=unused-argument
         """
         When the toolbutton "toolbutton_create_dataset" is pressed this function
         creates a new dataset in the currently active layer group.
@@ -539,6 +549,7 @@ class MainWindow(object):
         self.add_layer_dataset("plane")
 
     def on_toolbutton_create_faultplane_dataset_clicked(self, widget):
+        # pylint: disable=unused-argument
         """
         When the toolbutton "toolbutton_create_dataset" is pressed this function
         creates a new dataset in the currently active layer group.
@@ -547,12 +558,14 @@ class MainWindow(object):
         self.add_layer_dataset("faultplane")
 
     def on_toolbutton_create_line_dataset_clicked(self, widget):
+        # pylint: disable=unused-argument
         """
         Creates a new line data layer.
         """
         self.add_layer_dataset("line")
 
     def on_toolbutton_create_small_circle_clicked(self, widget):
+        # pylint: disable=unused-argument
         """
         Creates a new small cirlce layer.
         """
@@ -560,14 +573,15 @@ class MainWindow(object):
 
     def parse_planes(self, treestore):
         """
-        Parses planes and adds them to the plot. Parsing converts from dip
-        direction to strikes.
+        Parses planes and returns a list of strikes, dipdirs and dips.
+
+        Parsing converts from dip direction to strikes.
         """
         strike = []
         dipdir = []
         dip = []
         for row in treestore:
-            strike.append(float(row[0])-90)
+            strike.append(float(row[0]) - 90)
             dipdir.append(float(row[0]))
             dip.append(float(row[1]))
         return strike, dipdir, dip
@@ -590,7 +604,7 @@ class MainWindow(object):
         lp_plane_dir = []
         lp_plane_dip = []
         for row in treestore:
-            strike.append(float(row[0]-90))
+            strike.append(float(row[0] - 90))
             plane_dir.append(float(row[0]))
             plane_dip.append(float(row[1]))
             line_dir.append(float(row[2]))
@@ -605,7 +619,7 @@ class MainWindow(object):
             fit_strike, fit_dip = mplstereonet.fit_girdle(
                                 [float(row[3]), 90 - float(row[1])],
                                 [float(row[2]), float(row[0]) + 180],
-                                measurement = "lines")
+                                measurement="lines")
             lp_plane_dir.append(fit_strike)
             lp_plane_dip.append(fit_dip)
         return strike, plane_dir, plane_dip, line_dir, line_dip, sense, \
