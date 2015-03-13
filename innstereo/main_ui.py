@@ -226,11 +226,11 @@ class MainWindow(object):
             """
             r = model[path]
             self.add_linear_feature(n, 180 + r[0], 90 - r[1])
-        
+
         for row in row_list:
             layer_obj = model[row][3]
-            
-            if layer_obj == None:
+
+            if layer_obj is None:
                 return
             else:
                 layer_type = layer_obj.get_layer_type()
@@ -363,7 +363,7 @@ class MainWindow(object):
             if layer_obj.get_layer_type() == "plane":
                 only_linears = False
 
-        if only_linears == False:
+        if only_linears is False:
             return
 
         total_dipdir = []
@@ -658,12 +658,12 @@ class MainWindow(object):
         Function draws a great circle in the stereonet. It calls the formatting
         from the layer object.
         """
-        self.ax_stereo.plane(dipdir, dip, color = layer_obj.get_line_color(),
-                    label = layer_obj.get_label(),
-                    linewidth = layer_obj.get_line_width(),
-                    linestyle = layer_obj.get_line_style(),
-                    dash_capstyle = layer_obj.get_capstyle(),
-                    alpha = layer_obj.get_line_alpha(), clip_on = False)
+        self.ax_stereo.plane(dipdir, dip, color=layer_obj.get_line_color(),
+                    label=layer_obj.get_label(),
+                    linewidth=layer_obj.get_line_width(),
+                    linestyle=layer_obj.get_line_style(),
+                    dash_capstyle=layer_obj.get_capstyle(),
+                    alpha=layer_obj.get_line_alpha(), clip_on=False)
 
     def draw_line(self, layer_obj, dipdir, dip):
         """
@@ -671,13 +671,13 @@ class MainWindow(object):
         formatting from the layer object.
         """
         #ax.line takes dip first and then dipdir (as strike)
-        self.ax_stereo.line(dip, dipdir, marker = layer_obj.get_marker_style(),
-                    markersize = layer_obj.get_marker_size(),
-                    color = layer_obj.get_marker_fill(),
-                    label = layer_obj.get_label(),
-                    markeredgewidth = layer_obj.get_marker_edge_width(),
-                    markeredgecolor = layer_obj.get_marker_edge_color(),
-                    alpha = layer_obj.get_marker_alpha(), clip_on = False)
+        self.ax_stereo.line(dip, dipdir, marker=layer_obj.get_marker_style(),
+                    markersize=layer_obj.get_marker_size(),
+                    color=layer_obj.get_marker_fill(),
+                    label=layer_obj.get_label(),
+                    markeredgewidth=layer_obj.get_marker_edge_width(),
+                    markeredgecolor=layer_obj.get_marker_edge_color(),
+                    alpha=layer_obj.get_marker_alpha(), clip_on=False)
 
     def draw_smallcircles(self, layer_obj, dipdir, dip, angle):
         """
@@ -687,24 +687,24 @@ class MainWindow(object):
         #ax.cone takes dip first and then dipdir!
         #facecolor needs to be "None" because there is a bug with which side to fill
         #Is not added to the legend yet. Matplotlib bug?
-        self.ax_stereo.cone(dip, dipdir, angle, facecolor = "None",
-                    color = layer_obj.get_line_color(),
-                    linewidth = layer_obj.get_line_width(),
-                    label = layer_obj.get_label(),
-                    linestyle = layer_obj.get_line_style())
+        self.ax_stereo.cone(dip, dipdir, angle, facecolor="None",
+                    color=layer_obj.get_line_color(),
+                    linewidth=layer_obj.get_line_width(),
+                    label=layer_obj.get_label(),
+                    linestyle=layer_obj.get_line_style())
 
     def draw_poles(self, layer_obj, dipdir, dip):
         """
         Function draws a plane pole in the stereonet. It calls the formatting
         from the layer object.
         """
-        self.ax_stereo.pole(dipdir, dip, marker = layer_obj.get_pole_style(),
-                    markersize = layer_obj.get_pole_size(),
-                    color = layer_obj.get_pole_fill(),
-                    label = "Poles of {0}".format(layer_obj.get_label()),
-                    markeredgewidth = layer_obj.get_pole_edge_width(),
-                    markeredgecolor = layer_obj.get_pole_edge_color(),
-                    alpha = layer_obj.get_pole_alpha(), clip_on = False)
+        self.ax_stereo.pole(dipdir, dip, marker=layer_obj.get_pole_style(),
+                    markersize=layer_obj.get_pole_size(),
+                    color=layer_obj.get_pole_fill(),
+                    label="Poles of {0}".format(layer_obj.get_label()),
+                    markeredgewidth=layer_obj.get_pole_edge_width(),
+                    markeredgecolor=layer_obj.get_pole_edge_color(),
+                    alpha=layer_obj.get_pole_alpha(), clip_on=False)
 
     def draw_contours(self, layer_obj, dipdir, dips, measure_type):
         """
