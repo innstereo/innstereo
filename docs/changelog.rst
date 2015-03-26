@@ -3,10 +3,10 @@
 Changelog
 =========
 
-So far no release has been made. The intention is to release a number of 1.0-alphas and -betas until the program is ready for a 1.0 release. After the first alpha release bugs will be included in the changelog.
+So far no release has been made. The intention is to release a number of 1.0-alphas and -betas until the program is ready for a 1.0 release. After the first alpha-release bugs will be included in the changelog.
 
-First release placeholder
--------------------------
+Innstereo v1.0-alpha.1
+----------------------
 
  - [Feature] Plot planar structures as great circles or poles.
  - [Feature] Plot linear structures.
