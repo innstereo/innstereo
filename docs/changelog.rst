@@ -3,7 +3,7 @@
 Changelog
 =========
 
-So far no release has been made. The intention is to release a number of 1.0-alphas and -betas until the program is ready for a 1.0 release. After the first alpha-release bugs will be included in the changelog.
+Versioning will work this way. Alpha releases will be done, so people can test early interface design decisions. Beta releases will done after the program is more mature. Eventually this will lead to the first 1.0 release. Download the most recent release from `this page <https://github.com/tobias47n9e/innsbruck-stereographic/releases>`_.
 
 Innstereo v1.0-alpha.2
 ----------------------
