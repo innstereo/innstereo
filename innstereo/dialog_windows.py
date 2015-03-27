@@ -10,6 +10,7 @@ and FileChooserParse-class.
 
 from gi.repository import Gtk
 import matplotlib.colors as colors
+import os
 
 
 class AboutDialog(object):
@@ -30,7 +31,10 @@ class AboutDialog(object):
         are declared in the Glade file are connected to this class.
         """
         self.builder = Gtk.Builder()
-        self.builder.add_objects_from_file("gui_layout.glade",
+        script_dir = os.path.dirname(__file__)
+        rel_path = "gui_layout.glade"
+        abs_path = os.path.join(script_dir, rel_path)
+        self.builder.add_objects_from_file(abs_path,
             ("aboutdialog", ""))
         self.ab = self.builder.get_object("aboutdialog")
         self.builder.connect_signals(self)
@@ -81,7 +85,10 @@ class PrintDialog(object):
         Print dialog is created and the signals are connected to this class.
         """
         self.builder = Gtk.Builder()
-        self.builder.add_objects_from_file("gui_layout.glade",
+        script_dir = os.path.dirname(__file__)
+        rel_path = "gui_layout.glade"
+        abs_path = os.path.join(script_dir, rel_path)
+        self.builder.add_objects_from_file(abs_path,
             ("printdialog", ""))
         self.pd = self.builder.get_object("printdialog")
         self.builder.connect_signals(self)
@@ -148,7 +155,10 @@ class StereonetProperties(object):
         window.
         """
         self.builder = Gtk.Builder()
-        self.builder.add_objects_from_file("gui_layout.glade",
+        script_dir = os.path.dirname(__file__)
+        rel_path = "gui_layout.glade"
+        abs_path = os.path.join(script_dir, rel_path)
+        self.builder.add_objects_from_file(abs_path,
             ("stereonet_properties_dialog", "adjustment_pixel_density"))
         self.spd = self.builder.get_object("stereonet_properties_dialog")
         self.spinbutton_pixel_density = \
@@ -309,7 +319,10 @@ class FileChooserParse(object):
 
     def __init__(self, run_file_parser):
         self.builder = Gtk.Builder()
-        self.builder.add_objects_from_file("gui_layout.glade",
+        script_dir = os.path.dirname(__file__)
+        rel_path = "gui_layout.glade"
+        abs_path = os.path.join(script_dir, rel_path)
+        self.builder.add_objects_from_file(abs_path,
             ("filechooserdialog_parse", "filefilter_parse"))
         self.dialog = self.builder.get_object("filechooserdialog_parse")
         self.filefilters = self.builder.get_object("filefilter_parse")

@@ -10,6 +10,7 @@ and FileChooserParse-class.
 
 from gi.repository import Gtk
 import matplotlib.colors as colors
+import os
 
 
 class LayerProperties(object):
@@ -28,7 +29,10 @@ class LayerProperties(object):
         the signals.        
         """
         self.builder = Gtk.Builder()
-        self.builder.add_objects_from_file("gui_layout.glade",
+        script_dir = os.path.dirname(__file__)
+        rel_path = "gui_layout.glade"
+        abs_path = os.path.join(script_dir, rel_path)
+        self.builder.add_objects_from_file(abs_path,
             ("dialog_layer_properties", "liststore_line_style",
             "adjustment_line_width", "liststore_capstyle",
             "liststore_marker_style", "adjustment_marker_size",

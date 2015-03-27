@@ -31,7 +31,7 @@ git clone https://github.com/tobias47n9e/innsbruck-stereographic
 ```
 4. Run the program by executing:
 ```Shell
-python3 __init__.py
+python3 -m innstereo
 ```
 in the ```innstereo``` directory.
 
@@ -52,3 +52,4 @@ Innsbruck Stereographic is based on the following open-source libraries:
 * [MPLStereonet](https://github.com/joferkington/mplstereonet)
 * [NumPy](http://www.numpy.org/)
 * [SciPy](http://www.scipy.org/)
+* [Pynsist](https://github.com/takluyver/pynsist)

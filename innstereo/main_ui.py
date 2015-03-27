@@ -17,18 +17,19 @@ import mplstereonet
 import numpy as np
 import scipy
 import webbrowser
+import os
 
 #Internal imports
-from dataview_classes import (PlaneDataView, LineDataView,
+from .dataview_classes import (PlaneDataView, LineDataView,
                               FaultPlaneDataView, SmallCircleDataView)
-from layer_view import LayerTreeView
-from layer_types import PlaneLayer, FaultPlaneLayer, LineLayer, SmallCircleLayer
-from dialog_windows import (AboutDialog, PrintDialog, StereonetProperties,
+from .layer_view import LayerTreeView
+from .layer_types import PlaneLayer, FaultPlaneLayer, LineLayer, SmallCircleLayer
+from .dialog_windows import (AboutDialog, PrintDialog, StereonetProperties,
                             FileChooserParse)
-from layer_properties import LayerProperties
-from plot_control import PlotSettings
-from polar_axes import NorthPolarAxes
-from file_parser import FileParseDialog
+from .layer_properties import LayerProperties
+from .plot_control import PlotSettings
+from .polar_axes import NorthPolarAxes
+from .file_parser import FileParseDialog
 
 
 class MainWindow(object):
@@ -1342,7 +1343,12 @@ def startup():
     instances of the program.
     """
     builder = Gtk.Builder()
-    objects = builder.add_objects_from_file("gui_layout.glade",
+
+    script_dir = os.path.dirname(__file__)
+    rel_path = "gui_layout.glade"
+    abs_path = os.path.join(script_dir, rel_path)
+
+    objects = builder.add_objects_from_file(abs_path,
          ("main_window", "image_new_plane", "image_new_faultplane",
          "image_new_line", "image_new_fold", "image_plane_intersect",
          "image_best_fitting_plane", "layer_right_click_menu",

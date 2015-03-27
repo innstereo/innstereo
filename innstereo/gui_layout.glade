@@ -23,7 +23,6 @@ Author: Tobias Schönberg
 -->
 <interface>
   <requires lib="gtk+" version="3.12"/>
-  <requires lib="unixprint" version="0.0"/>
   <!-- interface-license-type gplv2 -->
   <!-- interface-name Innsbruck Stereographic -->
   <!-- interface-description An open source stereographic projection program used for geology -->
@@ -3730,34 +3729,6 @@ equatorial aspect</property>
             <property name="expand">True</property>
             <property name="fill">True</property>
             <property name="position">2</property>
-          </packing>
-        </child>
-      </object>
-    </child>
-  </object>
-  <object class="GtkPrintUnixDialog" id="printdialog">
-    <property name="can_focus">False</property>
-    <property name="icon_name">document-print</property>
-    <property name="type_hint">dialog</property>
-    <property name="embed_page_setup">True</property>
-    <signal name="close" handler="on_printdialog_close" swapped="no"/>
-    <signal name="destroy" handler="on_printdialog_destroy" swapped="no"/>
-    <signal name="response" handler="on_printdialog_response" swapped="no"/>
-    <child internal-child="vbox">
-      <object class="GtkBox" id="printdialog-vbox1">
-        <property name="can_focus">False</property>
-        <property name="orientation">vertical</property>
-        <property name="spacing">2</property>
-        <child internal-child="action_area">
-          <object class="GtkButtonBox" id="printdialog-action_area1">
-            <property name="can_focus">False</property>
-            <property name="layout_style">end</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="pack_type">end</property>
-            <property name="position">1</property>
           </packing>
         </child>
       </object>

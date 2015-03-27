@@ -9,6 +9,7 @@ loads the GUI from the glade file and connects all the GUI signals.
 
 from gi.repository import Gtk
 import re
+import os
 
 
 class FileParseDialog(object):
@@ -35,7 +36,10 @@ class FileParseDialog(object):
         file.
         """
         self.builder = Gtk.Builder()
-        self.builder.add_objects_from_file("gui_layout.glade",
+        script_dir = os.path.dirname(__file__)
+        rel_path = "gui_layout.glade"
+        abs_path = os.path.join(script_dir, rel_path)
+        self.builder.add_objects_from_file(abs_path,
             ("file_parse_dialog", "liststore_assign_columns",
              "adjustment_parse_start_line"))
         self.tfpl_dic = {"0": "ukn", "1": "up", "2": "dn", "3": "dex",

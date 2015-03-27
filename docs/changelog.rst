@@ -5,6 +5,11 @@ Changelog
 
 So far no release has been made. The intention is to release a number of 1.0-alphas and -betas until the program is ready for a 1.0 release. After the first alpha-release bugs will be included in the changelog.
 
+Innstereo v1.0-alpha.2
+----------------------
+
+ - `[Bug] <https://github.com/tobias47n9e/innsbruck-stereographic/issues/1>`_ Fixed issue that prevented any operations that required the GtkFileChooserDialog under Windows. This prevented saving a figure and choosing a file for file-parsing.
+
 Innstereo v1.0-alpha.1
 ----------------------
 
