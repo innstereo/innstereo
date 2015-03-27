@@ -9,6 +9,7 @@ Innstereo v1.0-alpha.2
 ----------------------
 
  - `[Bug] <https://github.com/tobias47n9e/innsbruck-stereographic/issues/1>`_ Fixed issue that prevented any operations that required the GtkFileChooserDialog under Windows. This prevented saving a figure and choosing a file for file-parsing.
+ - `[Bug] <https://github.com/tobias47n9e/innsbruck-stereographic/issues/2>`_ Fixed unresponsive find best-fitting plane button.
 
 Innstereo v1.0-alpha.1
 ----------------------
