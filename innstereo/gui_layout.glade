@@ -2863,13 +2863,10 @@ equatorial aspect</property>
     <property name="pixbuf">calculate_poles_to_lines.svg</property>
   </object>
   <object class="GtkWindow" id="main_window">
-    <property name="width_request">1024</property>
-    <property name="height_request">768</property>
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">InnStereo</property>
-    <property name="default_width">1400</property>
-    <property name="default_height">800</property>
-    <property name="hide_titlebar_when_maximized">True</property>
+    <property name="default_width">1200</property>
+    <property name="default_height">600</property>
     <signal name="destroy" handler="on_main_window_destroy" swapped="no"/>
     <child>
       <object class="GtkBox" id="box1">
@@ -3654,7 +3651,7 @@ equatorial aspect</property>
                     </child>
                     <child>
                       <object class="GtkScrolledWindow" id="scrolledwindow3">
-                        <property name="height_request">400</property>
+                        <property name="height_request">200</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="shadow_type">in</property>
@@ -3670,8 +3667,8 @@ equatorial aspect</property>
                     </child>
                   </object>
                   <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">False</property>
+                    <property name="expand">True</property>
+                    <property name="fill">True</property>
                     <property name="position">3</property>
                   </packing>
                 </child>
