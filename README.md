@@ -1,5 +1,5 @@
 # InnStereo
-InnStereo (shortened from Innsbruck Stereographic) is an open-source program for stereographic projections, also called stereonets. It is developed for data processing in geology, structural-geology and related fields. The program itself is build on top of other open-source libraries, most importantly [MPLStereonet](https://github.com/joferkington/mplstereonet).
+InnStereo (abbreviated from Innsbruck Stereographic) is an open-source program for stereographic projections, also called stereonets. It is developed for data processing in geology, structural-geology and related fields. The program itself is build on top of other open-source libraries, most importantly [MPLStereonet](https://github.com/joferkington/mplstereonet).
 
 ## Documentation
 The latest documentation can be read on this page:
@@ -30,7 +30,7 @@ git clone https://github.com/tobias47n9e/innsbruck-stereographic
 ```Shell
 python3 -m innstereo
 ```
-in the ```innstereo``` directory.
+in the project directory.
 
 ## Development
 InnStereo is developed open-source, and anybody is welcome to participate. There are many ways in which to participate (Documentation, testing, bug-reporting, user-interface improvements). If you would like to participate you can email [Tobias](https://github.com/tobias47n9e) or open an [issue](https://github.com/tobias47n9e/innsbruck-stereographic/issues). More advanced users can also fork the repository and create pull requests.
