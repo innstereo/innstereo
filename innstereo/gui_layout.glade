@@ -3290,9 +3290,8 @@ equatorial aspect</property>
             <child>
               <object class="GtkToolButton" id="toolbutton_plane_intersect">
                 <property name="visible">True</property>
-                <property name="sensitive">False</property>
                 <property name="can_focus">False</property>
-                <property name="tooltip_text" translatable="yes">Finds the ideal pole for a set of planes.</property>
+                <property name="tooltip_text" translatable="yes">Finds the average intersect of all selected plane layers.</property>
                 <property name="label" translatable="yes">Calculate Best Pole</property>
                 <property name="use_underline">True</property>
                 <property name="icon_widget">image_plane_intersect</property>

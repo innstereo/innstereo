@@ -388,12 +388,17 @@ class MainWindow(object):
     def on_toolbutton_plane_intersect_clicked(self, widget):
         # pylint: disable=unused-argument
         """
-        Gets the selected layers and calculates a best fitting intersect.
+        Calculates the best fitting intersect for the selected planes.
 
-        __!!__
+        This method gathers all the dip-direction and dips of all selected
+        layers. If linear layers are also selected nothing will be done.
+        The best-fit intersection is added to the project as a new linear layer.
         """
         selection = self.layer_view.get_selection()
         model, row_list = selection.get_selected_rows()
+
+        if len(row_list) == 0:
+            return
 
         #Check if all selected layers are planes or faultplanes.
         only_planes = True
@@ -407,29 +412,24 @@ class MainWindow(object):
 
         total_dipdir = []
         total_dip = []
+
+        #Iterate over layers and rows, gather poles
         for row in row_list:
             layer_obj = model[row][3]
             strike, dipdir, dip = self.parse_planes(
                                             layer_obj.get_data_treestore())
             for x in strike:
-                total_dipdir.append(x)
+                total_dipdir.append(270 + x)
             for y in dip:
-                total_dip.append(y)
+                total_dip.append(90 - y)
+        
+        self.ax_stereo.line(total_dip, total_dipdir)
+        fit_strike, fit_dip = mplstereonet.fit_girdle(total_dip, total_dipdir,
+                                measurement="lines")
 
-        plane_strike, plane_dip = mplstereonet.fit_pole(
-                                    total_dipdir, total_dip,
-                                    measurement="poles")
-
-        plane_strike2, plane_dip2 = mplstereonet.fit_pole(
-                                    *mplstereonet.pole(total_dipdir, total_dip),
-                                    measurement="poles")
-
-        self.ax_stereo.line(plane_dip, plane_strike + 90)
-        self.ax_stereo.plane(plane_strike, plane_dip)
-        self.ax_stereo.plane(plane_strike2, plane_dip2, color="#ff0000")
-        self.ax_stereo.pole(plane_strike, plane_dip)
-        self.ax_stereo.pole(plane_strike2, plane_dip2)
-        self.canvas.draw()
+        store = self.add_layer_dataset("line")
+        self.add_linear_feature(store, fit_strike + 270, 90 - fit_dip)
+        self.redraw_plot()
 
     def layer_row_activated(self, treeview, path, column):
         """
