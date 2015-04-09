@@ -10,7 +10,7 @@ http://innsbruck-stereographic.readthedocs.org
 
 ## Installation
 
-Check the [releases page](https://github.com/tobias47n9e/innsbruck-stereographic/releases) for builds for you system:
+Check the [releases page](https://github.com/tobias47n9e/innsbruck-stereographic/releases) for builds for your system:
 
 ## Development Version
 
