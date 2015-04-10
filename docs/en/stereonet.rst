@@ -13,7 +13,7 @@ Equal area projection
 
 In most cases it is preferable to use a projection that optimises equal area, because it makes it easier to assess the spatial distribution of structures. The projection that is usually chosen for this, is the *Lambert Azimuthal Equal-Area Projection with equatorial aspect* (See: Snyder 1987, p. 182). In geology this is usually referred to a *Schmidt Net*, after Walter Schmidt.
 
-.. figure:: _static/equal_area_small_circles.png
+.. figure:: ../_static/equal_area_small_circles.png
     :width: 400px
     :align: center
     :alt: equal area stereonet with small circles showing consistent size
@@ -25,7 +25,7 @@ Equal angle projection
 
 Equal angle projection preserve angle but severely distort areas. The projection used for this kind of plots is the *Stereographic Projection with equatorial aspect* (See: Snyder 1987, p. 154). This is usually referred to as a *Wulff Net* in geology, after Georgij Viktorovich Wulff.
 
-.. figure:: _static/equal_angle_small_circles.png
+.. figure:: ../_static/equal_angle_small_circles.png
     :width: 400px
     :align: center
     :alt: equal angle stereonet with small circles showing inconsistent size

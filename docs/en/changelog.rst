@@ -5,6 +5,14 @@ Changelog
 
 Versioning will work this way. Alpha releases will be done, so people can test early interface design decisions. Beta releases will done after the program is more mature. Eventually this will lead to the first 1.0 release. Download the most recent release from `this page <https://github.com/tobias47n9e/innsbruck-stereographic/releases>`_.
 
+Innstereo v1.0-alpha.3
+----------------------
+
+ - [Feature] Function to calculate the intersection of a group of planes.
+ - [Feature] Calculate the plane that lies normal to a linear.
+ - [Bug] Fixed some strings in the user interface that were not English. Localization of the program will be done as soon as time permits.
+
+
 Innstereo v1.0-alpha.2
 ----------------------
 

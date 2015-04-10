@@ -14,7 +14,7 @@ Canvas
 
 The canvas is the central and most important part of the interface. It displays different plots and the legend. The layout of the plots depends on what view is currently selected (For details see: :ref:`views`).
 
-.. figure:: _static/interface_overview.png
+.. figure:: ../_static/interface_overview.png
     :width: 400px
     :align: center
     :alt: screenshot of the whole graphical user interface
@@ -28,14 +28,14 @@ The menubar currently has four menus. The first offers project functions, like c
 
     The menubar is still under development and might be replaced by a GTK-Headerbar as development proceeds.
 
-.. figure:: _static/interface_menubar.png
+.. figure:: ../_static/interface_menubar.png
     :width: 400px
     :align: center
     :alt: screenshot with the menubar highlighted
 
     The menubar as it currently appears in the development version of Innsbruck Stereographic.
 
-.. figure:: _static/interface_menubar_views.png
+.. figure:: ../_static/interface_menubar_views.png
     :width: 400px
     :align: center
     :alt: screenshot with the project menu for views highlighted
@@ -47,7 +47,7 @@ Project Functions
 
 The project functions are still under development. A new project can be created by clicking on the first button of the row. Saving and loading of projects will be implemented soon.
 
-.. figure:: _static/interface_project_functions.png
+.. figure:: ../_static/interface_project_functions.png
     :width: 400px
     :align: center
     :alt: screenshot with the project functions highlighted
@@ -59,7 +59,7 @@ Printing and Image-Export
 
 There are two ways to export images from Innsbruck Stereographic. A print function (not implemented yet) and an image-export dialog.
 
-.. figure:: _static/interface_print.png
+.. figure:: ../_static/interface_print.png
     :width: 400px
     :align: center
     :alt: screenshot with the printing and image export button highlighted
@@ -68,7 +68,7 @@ There are two ways to export images from Innsbruck Stereographic. A print functi
 
 The image export dialog can save images in a number of different formats. Especially the vector formats, for example SVG, are ideal for publishing and post-processing. SVGs can be edited in programs like Inkscape to be print-ready.
 
-.. figure:: _static/interface_image_dialog.png
+.. figure:: ../_static/interface_image_dialog.png
     :width: 400px
     :align: center
     :alt: screenshot with the image-export dialog highlighted
@@ -80,7 +80,7 @@ Plot Settings
 
 The plot-settings button from the top toolbar opens the plot-settings dialog.
 
-.. figure:: _static/interface_plot_settings.png
+.. figure:: ../_static/interface_plot_settings.png
     :width: 400px
     :align: center
     :alt: screenshot with the plot settings button highlighted
@@ -93,7 +93,7 @@ The next option lets the user change the projection of the stereonet. Two option
 
 Below that are options to turn the grid of the stereonet on and off, and the option to turn the legend on or off.
 
-.. figure:: _static/interface_plot_settings_dialog.png
+.. figure:: ../_static/interface_plot_settings_dialog.png
     :width: 400px
     :align: center
     :alt: screenshot with the plot settings dialog highlighted
@@ -105,7 +105,7 @@ Steronet operations
 
 The next group of buttons in the menubar perform stereonet operations. This part of the interface will likely still undergo many changes. Currently there are options to calculate the eigenvalue of a layer, move the poles of a layer to an independent linear dataset, and the option to find the best-fitting plane for a set of linear elements.
 
-.. figure:: _static/interface_calculations.png
+.. figure:: ../_static/interface_calculations.png
     :width: 400px
     :align: center
     :alt: screenshot highlighting the buttons that execute stereonet operations
@@ -122,7 +122,7 @@ This part of the interface performs layer operations. This includes adding new d
 
 The 5 circular symbols, that each have a green plus symbol, create new layers, that correspond the the 5 datatypes that Innsbruck Stereographic uses. This includes layers for planes, linears, faultplanes, folds and small-circles (For details see: :ref:`datasets`).
 
-.. figure:: _static/interface_layer_operations.png
+.. figure:: ../_static/interface_layer_operations.png
     :width: 400px
     :align: center
     :alt: screenshot highlighting the buttons for layer operations
@@ -140,7 +140,7 @@ The checkbox allows the toggling of each layers' visibility in the plot. A group
 
 One or more layers can be selected for calculations, grouping, or deleting. Drag-and-drop is currently under development.
 
-.. figure:: _static/interface_layer_view.png
+.. figure:: ../_static/interface_layer_view.png
     :width: 400px
     :align: center
     :alt: screenshot highlighting the layer view
@@ -154,7 +154,7 @@ Layer-Settings Dialog
 
 Double clicking on a data-layer opens up the layer-settings dialog. This dialog allows each layer to be customized individually. This includes various formatting options and how the layer should be drawn. For plane-layers for example the user can customize the styling of the great circle and the pole point. The user can also choose to draw the great circle, the pole point, or both.
 
-.. figure:: _static/interface_layer_settings.png
+.. figure:: ../_static/interface_layer_settings.png
     :width: 400px
     :align: center
     :alt: screenshot highlighting the layer settings dialog
@@ -163,7 +163,7 @@ Double clicking on a data-layer opens up the layer-settings dialog. This dialog 
 
 Colours can be chosen for the lines, and the fill and edge of markers. This is done by clicking on the colour-buttons, which opens the colour-chooser dialog.
 
-.. figure:: _static/interface_color_dialog.png
+.. figure:: ../_static/interface_color_dialog.png
     :width: 400px
     :align: center
     :alt: screenshot highlighting the color-chooser dialog
@@ -180,7 +180,7 @@ The menubar for data operations stores functions that affect the data of a layer
 
 The first button can be toggled on, to directly draw datapoints on the stereonet. There is also a button to add empty lines to the layer, to enter data in the data-view cells. The button with the folder icon opens the data-import dialog (For details see: :ref:`dataio`).
 
-.. figure:: _static/interface_data_operations.png
+.. figure:: ../_static/interface_data_operations.png
     :width: 400px
     :align: center
     :alt: screenshot highlighting the menubar for data-operations
@@ -192,7 +192,7 @@ Data-View
 
 The data-view displays the datapoints of the currently selected layer. If no layer or a group-layer is selected the data-view will be empty.
 
-.. figure:: _static/interface_data_view.png
+.. figure:: ../_static/interface_data_view.png
     :width: 400px
     :align: center
     :alt: screenshot highlighting the data-view
@@ -204,7 +204,7 @@ Statusbar
 
 The statusbar lies below the figure canvas and is either empty or shows the dip-direction and dip of the current mouse-cursor position, when the mouse-cursor moves of the stereonet.
 
-.. figure:: _static/interface_statusbar.png
+.. figure:: ../_static/interface_statusbar.png
     :width: 400px
     :align: center
     :alt: screenshot highlighting the statusbar and the dip-direction and dip indicator

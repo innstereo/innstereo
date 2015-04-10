@@ -10,7 +10,7 @@ Input
 
 The easiest way to add data to an existing layer is the file parse dialog. In order to use the file parser, one needs to create a dataset first (e.g. a plane dataset) and select it. The button opens a file chooser dialog, that one can use to locate the file on the hard-drive.
 
-.. figure:: _static/interface_file_parser_button.png
+.. figure:: ../_static/interface_file_parser_button.png
     :width: 300px
     :align: center
     :alt: screenshot with location of file parser button highlighted
@@ -19,7 +19,7 @@ The easiest way to add data to an existing layer is the file parse dialog. In or
 
 After a file has been chosen the parsing dialog opens. It includes an option to skip over lines at the beginning of the file, that usually contain metadata. The result of the parsing are shown in a table at the bottom of the dialog. Using the column numbers shows in that table, one can assign the columns to their respective counterparts of Innsbruck Stereographic.
 
-.. figure:: _static/interface_file_parser_dialog.png
+.. figure:: ../_static/interface_file_parser_dialog.png
     :width: 400px
     :align: center
     :alt: screenshot of the file parser dialog

@@ -25,7 +25,7 @@ Planes are transformed to great circles and conical-distributions to small circl
 
 Plane- and faultplane-datasets have the option to draw the great circles or the pole-points of the individual planes. Both can be turned on an off independently. If the pole-points are contoured it might even make sense to switch both of the options off to only display the contouring.
 
-.. figure:: _static/formatting_great_small_circles.png
+.. figure:: ../_static/formatting_great_small_circles.png
     :width: 400px
     :align: center
     :alt: screenshot showing some great and small circles and the layer formatting dialog
@@ -41,14 +41,14 @@ Linear structures appear as points in the stereonet. Common linears are pole-poi
 
 The user can set fill-colours, edge-colours, point-styles (circles, squares, etc..), size, and edge-thickness for points.
 
-.. figure:: _static/formatting_linears.png
+.. figure:: ../_static/formatting_linears.png
     :width: 400px
     :align: center
     :alt: screenshot showing different formatting of linear structures
 
     Linear structures, or the points they become in the stereonet are shown here with different formatting.
 
-.. figure:: _static/formatting_pole_points.png
+.. figure:: ../_static/formatting_pole_points.png
     :width: 400px
     :align: center
     :alt: screenshot showing pole points formatting
@@ -62,28 +62,28 @@ Contours
 
 Contours have formatting options for the contour-fills, contour-lines and the contour-line-labels. In addition to formatting options the dialog tab also offers different methods for how the contours should be calculated (The contouring methods and their trade-offs will be discussed in a separate section of the documentation).
 
-.. figure:: _static/formatting_contour_dialog.png
+.. figure:: ../_static/formatting_contour_dialog.png
     :width: 400px
     :align: center
     :alt: screenshot showing the dialog tab for contouring a layer
 
     Most layers have a tab in the layer-setting dialog to contour the data. There are options for contouring method and the formatting of the contours.
 
-.. figure:: _static/formatting_contour_fill.png
+.. figure:: ../_static/formatting_contour_fill.png
     :width: 400px
     :align: center
     :alt: screenshot showing contour fills
 
     Contours can be shown as fills. The colours depend on the colourmap the user chooses.
 
-.. figure:: _static/formatting_contour_lines.png
+.. figure:: ../_static/formatting_contour_lines.png
     :width: 400px
     :align: center
     :alt: screenshot showing contour lines
 
     Contour lines can either shown with a single colour, or like here, with a colourmap.
 
-.. figure:: _static/formatting_contour_fill_and_line.png
+.. figure:: ../_static/formatting_contour_fill_and_line.png
     :width: 400px
     :align: center
     :alt: screenshot showing contours with both fills and lines
