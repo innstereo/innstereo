@@ -431,6 +431,44 @@ class MainWindow(object):
         self.add_linear_feature(store, fit_strike + 270, 90 - fit_dip)
         self.redraw_plot()
 
+    def on_toolbutton_linears_to_planes_clicked(self, toolbutton):
+        # pylint: disable=unused-argument
+        """
+        Finds the plane normal to the selected linears and adds them as planes.
+
+        This method calculates the normal planes for all selected linear
+        layers and adds them as a new plane dataset. This can be used to
+        calculate the cross-section plane of a set of fold axis.
+        """
+        selection = self.layer_view.get_selection()
+        model, row_list = selection.get_selected_rows()
+
+        if len(row_list) == 0:
+            return
+
+        #Check if all selected layers are linear layers.
+        only_lines = True
+        for row in row_list:
+            layer_obj = model[row][3]
+            if layer_obj.get_layer_type() == "plane":
+                only_lines = False
+            elif layer_obj.get_layer_type() == "faultplane":
+                only_lines = False
+
+        if only_lines is False:
+            return
+
+        store = self.add_layer_dataset("plane")
+
+        for row in row_list:
+            layer_obj = model[row][3]
+            strike, dipdir, sense = self.parse_lines(
+                                            layer_obj.get_data_treestore())
+            for strike, dipdir in zip(strike, dipdir):
+                self.add_linear_feature(store, strike + 180, 90 - dipdir)
+
+        self.redraw_plot()
+
     def layer_row_activated(self, treeview, path, column):
         """
         Double clicking a layer, opens the layer-property dialog.
@@ -1353,7 +1391,7 @@ def startup():
          "image_new_line", "image_new_fold", "image_plane_intersect",
          "image_best_fitting_plane", "layer_right_click_menu",
          "image_create_small_circle", "menu_plot_views", "image_eigenvector",
-         "poles_to_lines"))
+         "poles_to_lines", "image_linears_to_planes"))
 
     gui_instance = MainWindow(builder)
     builder.connect_signals(gui_instance)

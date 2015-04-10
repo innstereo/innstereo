@@ -749,6 +749,11 @@ equatorial aspect</property>
     <property name="can_focus">False</property>
     <property name="pixbuf">calculate_eigenvector.svg</property>
   </object>
+  <object class="GtkImage" id="image_linears_to_planes">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">calculate_normal_plane.svg</property>
+  </object>
   <object class="GtkImage" id="image_new_faultplane">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
@@ -3322,10 +3327,24 @@ equatorial aspect</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="tooltip_text" translatable="yes">Moves the poles of a plane layer to a new linear layer.</property>
-                <property name="label" translatable="yes">Poles to Layer</property>
+                <property name="label" translatable="yes">Poles to Linear Layer</property>
                 <property name="use_underline">True</property>
                 <property name="icon_widget">poles_to_lines</property>
                 <signal name="clicked" handler="on_toolbutton_poles_to_lines_clicked" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="homogeneous">True</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkToolButton" id="toolbutton_linears_to_planes">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Linears to Plane Layer</property>
+                <property name="use_underline">True</property>
+                <property name="icon_widget">image_linears_to_planes</property>
+                <signal name="clicked" handler="on_toolbutton_linears_to_planes_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
