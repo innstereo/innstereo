@@ -24,7 +24,7 @@ pip3 install git+git://github.com/joferkington/mplstereonet.git
 ```
 3. Clone this repository:
 ```Shell
-git clone https://github.com/tobias47n9e/innsbruck-stereographic
+git clone https://github.com/tobias47n9e/innstereo
 ```
 4. Run the program by executing:
 ```Shell
