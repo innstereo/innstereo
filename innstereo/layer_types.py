@@ -81,7 +81,7 @@ class PlaneLayer(object):
         self.colormap = "Blues"
         self.contour_resolution = 40
         self.contour_method = "exponential_kamb"
-        self.contour_sigma = 3
+        self.contour_sigma = 2
         self.contour_line_color = "#000000"
         self.contour_use_line_color = True
         self.contour_line_width = 1
