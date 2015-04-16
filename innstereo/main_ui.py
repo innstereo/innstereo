@@ -947,6 +947,21 @@ class MainWindow(object):
                                 color = self.settings.get_grid_color(),
                                 linewidth = self.settings.get_grid_width())
 
+        if self.settings.get_show_cross() == True:
+            self.ax_stereo.annotate("", xy = (-0.03, 0),
+                                    xytext = (0.03, 0),
+                                    xycoords = "data",
+                                    arrowprops = dict(arrowstyle = "-",
+                                                      connectionstyle = "arc3"))
+            self.ax_stereo.annotate("", xy = (0, -0.03),
+                                    xytext = (0, 0.03),
+                                    xycoords = "data",
+                                    arrowprops = dict(arrowstyle = "-",
+                                                      connectionstyle = "arc3"))
+
+        if self.settings.get_show_north() == True:
+            self.ax_stereo.set_azimuth_ticks([0], labels=['N'])
+
         deselected = []
         def iterate_over_rows(model, path, itr):
             layer_obj = model[path][3]
@@ -1055,6 +1070,12 @@ class MainWindow(object):
                 self.ax_stereo.legend(newHandles, newLabels,
                                       bbox_to_anchor=(1.3, 1.1))
         self.canvas.draw()
+
+            #print("Setting ticklabel")
+            #labels = self.ax_stereo.get_xticklabels().tolist()
+            #print(labels)
+            #labels[0] = "N"
+            #self.ax_stereo.set_xticklabels(labels)
 
     def on_toolbutton_create_group_layer_clicked(self, widget):
         """

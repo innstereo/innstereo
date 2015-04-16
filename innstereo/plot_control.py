@@ -45,8 +45,8 @@ class PlotSettings(object):
         self.minor_grid_spacing = 2
         self.major_grid_spacing = 10
         self.grid_cutoff_lat = 80
-        self.show_north = False
-        self.show_center_cross = False
+        self.show_north = True
+        self.show_cross = True
         self.pixel_density = 75
         self.grid_linestyle = "--"
         self.grid_color = "#787878"
@@ -326,3 +326,39 @@ class PlotSettings(object):
         ax_fluc = self.fig.add_subplot(sp_fluc, aspect="equal")
         ax_mohr = self.fig.add_subplot(sp_mohr, aspect="equal")
         return ax_stereo, ax_fluc, ax_mohr
+
+    def get_show_north(self):
+        """
+        Returns if the stereonet should show the North symbol or degrees
+
+        Returns True if the North symbol should be drawn (the default value),
+        or False in which case numbers will be drawn for different degrees.
+        """
+        return self.show_north
+
+    def set_show_north(self, new_state):
+        """
+        Sets a new state for whether the North symbol should be drawn.
+
+        Expects a boolean. True means the North symbol will be drawn. False
+        means that the stereonet will show different degrees along the outside.
+        """
+        self.show_north = new_state
+
+    def get_show_cross(self):
+        """
+        Returns if the stereonet should draw a cross at the center.
+
+        Returns True if the cross should be drawn (the default value) or False
+        if the cross should not be drawn.
+        """
+        return self.show_cross
+
+    def set_show_cross(self, new_state):
+        """
+        Sets a new state for whether the center cross should be drawn.
+
+        Expects a boolean. True means the center cross will be drawn. False
+        means it will not be drawn.
+        """
+        self.show_cross = new_state

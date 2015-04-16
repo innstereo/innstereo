@@ -173,6 +173,12 @@ class StereonetProperties(object):
                     self.builder.get_object("checkbutton_draw_legend")
         self.colorbutton_canvas = \
                     self.builder.get_object("colorbutton_canvas")
+        self.radio_north = \
+                    self.builder.get_object("radiobutton_north")
+        self.radio_degrees = \
+                    self.builder.get_object("radiobutton_degrees")
+        self.checkbutton_cross = \
+                    self.builder.get_object("checkbutton_cross")
         
         self.redraw = redraw_function
         self.changes = []
@@ -188,6 +194,11 @@ class StereonetProperties(object):
             set_active(self.settings.get_draw_grid_state())
         self.checkbutton_draw_legend.\
             set_active(self.settings.get_draw_legend())
+        if self.settings.get_show_north() == True:
+            self.radio_north.set_active(True)
+        else:
+            self.radio_degrees.set_active(True)
+        self.checkbutton_cross.set_active(self.settings.get_show_cross())
         self.builder.connect_signals(self)
 
     def on_spinbutton_pixel_density_value_changed(self, spinbutton):
@@ -306,6 +317,33 @@ class StereonetProperties(object):
         new_canvas_color = colors.rgb2hex(color_list)
         self.changes.append(
                 lambda: self.settings.set_canvas_color(new_canvas_color))
+
+    def on_radiobutton_north_toggled(self, radiobutton):
+        # pylint: disable=unused-argument
+        """
+        Queues up the new setting for the North symbol.
+
+        Triggered when the radio-button-group for the North symbol or 
+        degree symbols is toggled. True means that the North symbol will be
+        drawn. False means that the degree symbols will be drawn.
+        """
+        if radiobutton.get_active():
+            state = True
+        else:
+            state = False
+        self.changes.append(lambda: self.settings.set_show_north(state))
+
+    def on_checkbutton_cross_toggled(self, checkbutton):
+        # pylint: disable=unused-argument
+        """
+        Queues up the new setting, if the center cross should be drawn
+
+        Triggered when the checkbutton for the center cross is toggled.
+        Queues up a boolean value. True means that the cross is drawn. False
+        means it is not drawn.
+        """
+        state = checkbutton.get_active()
+        self.changes.append(lambda: self.settings.set_show_cross(state))
 
 
 class FileChooserParse(object):
