@@ -1367,7 +1367,7 @@ class MainWindow(object):
         MenuBar.
         """
         webbrowser.open_new_tab(
-                        "http://innsbruck-stereographic.readthedocs.org")
+                        "http://innstereo.readthedocs.org")
 
     def on_menuitem_website_activate(self, menuitem):
         # pylint: disable=unused-argument
@@ -1378,7 +1378,7 @@ class MainWindow(object):
         MenuBar.
         """
         webbrowser.open_new_tab(
-                "https://github.com/tobias47n9e/innsbruck-stereographic")
+                "http://innstereo.github.io/")
 
     def on_menuitem_report_bug_activate(self, menuitem):
         # pylint: disable=unused-argument
@@ -1389,7 +1389,7 @@ class MainWindow(object):
         MenuBar.
         """
         webbrowser.open_new_tab(
-            "https://github.com/tobias47n9e/innsbruck-stereographic/issues")
+            "https://github.com/tobias47n9e/innstereo/issues")
 
 
 def startup():
