@@ -1223,6 +1223,15 @@ class MainWindow(object):
         Adds a planar feature row. Defaults to an empty row unless a dip
         direction and dip are given.
         """
+        while dip_direct > 360:
+            dip_direct = dip_direct - 360
+        while dip_direct < 0:
+            dip_direct = dip_direct + 360
+        while dip > 90:
+            dip = dip - 90
+        while dip < 0:
+            dip = dip + 90
+            
         datastore.append([dip_direct, dip, sense])
 
     def add_linear_feature(self, datastore, dip_direct=0, dip=0, sense=""):
@@ -1230,6 +1239,15 @@ class MainWindow(object):
         Adds a linear feature row. Defaults to an empty row unless a dip
         direction and dip are given.
         """
+        while dip_direct > 360:
+            dip_direct = dip_direct - 360
+        while dip_direct < 0:
+            dip_direct = dip_direct + 360
+        while dip > 90:
+            dip = dip - 90
+        while dip < 0:
+            dip = dip + 90
+
         datastore.append([dip_direct, dip, sense])
 
     def add_faultplane_feature(self, datastore, dip_direct = 0, dip = 0,
