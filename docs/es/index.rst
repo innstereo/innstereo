@@ -10,7 +10,7 @@
 ¡Bienvenido a la documentación de InnStereo!
 ============================================
 
-InnStereo (corto para Innsbruck Stereographic) es un programa de proyección estereográfica de open source destinado para el uso en la geología y la geología estructural. El programa pretende ser un equivalente libre de TectonicsFP en manejo y funcionalidad.
+InnStereo (corto para Innsbruck Stereographic) es un programa de proyección estereográfica de open source destinado para el uso en la geología y la geología estructural. El programa pretende ser un equivalente libre de TectonicsFP en manejo y funcionalidad. El sitio web oficial es `www.innstereo.com <http://www.innstereo.com>`_.
 
 El programa está escrito en Python 3 y se basa en `MPLStereonet <https://github.com/joferkington/mplstereonet>`_ para cálculos estereográficos. Las representaciónes utilizan `Matplotlib <http://matplotlib.org/>`_ y muchos cálculos se basan en `Numpy <http://www.numpy.org/>`_. La interfaz gráfica de usuario se construye utilizando `GTK+ <http://www.gtk.org/>`_ y el programa de desarrollo rápido de aplicaciones `Glade <https://glade.gnome.org/>`_.
 

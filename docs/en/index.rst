@@ -10,7 +10,7 @@
 Welcome to the documentation of Innsbruck Stereographic!
 ========================================================
 
-Innsbruck Stereographic (or InnStereo for a shorter name) is an open-source stereographic projection program, intended for usage in geology and structural geology. The program aims to be similar to TectonicsFP in usability and functionality.
+Innsbruck Stereographic (or InnStereo for a shorter name) is an open-source stereographic projection program, intended for usage in geology and structural geology. The program aims to be similar to TectonicsFP in usability and functionality. Visit InnStereo's website at `www.innstereo.com <http://www.innstereo.com>`_.
 
 The program is written in Python 3 and relies on `MPLStereonet <https://github.com/joferkington/mplstereonet>`_ for stereographic calculations. The plots are rendered using `Matplotlib <http://matplotlib.org/>`_ and many calculations rely on `Numpy <http://www.numpy.org/>`_. The graphical user interface is built using `GTK+ <http://www.gtk.org/>`_ and the `Glade <https://glade.gnome.org/>`_ rapid application development program.
 
