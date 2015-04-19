@@ -3409,6 +3409,7 @@ equatorial aspect</property>
               <object class="GtkToolButton" id="toolbutton_plot_properties">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="tooltip_text" translatable="yes">Opens the plot-properties dialog, that controls the appearance of the plot.</property>
                 <property name="label" translatable="yes">Plot properties</property>
                 <property name="use_underline">True</property>
                 <property name="stock_id">gtk-properties</property>
@@ -3478,6 +3479,7 @@ equatorial aspect</property>
               <object class="GtkToolButton" id="toolbutton_linears_to_planes">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="tooltip_text" translatable="yes">Finds the planes that lie normal to the currently selected linear layers.</property>
                 <property name="label" translatable="yes">Linears to Plane Layer</property>
                 <property name="use_underline">True</property>
                 <property name="icon_widget">image_linears_to_planes</property>
@@ -3492,7 +3494,7 @@ equatorial aspect</property>
               <object class="GtkToolButton" id="toolbutton_eigenvector">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="tooltip_text" translatable="yes">Calculates the eigenvectors and eigenvalue of the selected dataset and adds it as a new layer.</property>
+                <property name="tooltip_text" translatable="yes">Calculates the eigenvectors and eigenvalue of the selected datasets and adds it as a new layer.</property>
                 <property name="label" translatable="yes">Calculate Eigenvector</property>
                 <property name="use_underline">True</property>
                 <property name="icon_widget">image_eigenvector</property>
@@ -3568,7 +3570,7 @@ equatorial aspect</property>
                           <object class="GtkToolButton" id="toolbutton_create_group_layer">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="tooltip_text" translatable="yes">Creates a new layer group.</property>
+                            <property name="tooltip_text" translatable="yes">Creates a new layer group. Selected layers will be placed into the new group.</property>
                             <property name="label" translatable="yes">Create group layer</property>
                             <property name="use_underline">True</property>
                             <property name="stock_id">gtk-directory</property>
@@ -3629,6 +3631,7 @@ equatorial aspect</property>
                             <property name="visible">True</property>
                             <property name="sensitive">False</property>
                             <property name="can_focus">False</property>
+                            <property name="tooltip_text" translatable="yes">Creates a new fold dataset.</property>
                             <property name="label" translatable="yes">Create fold dataset</property>
                             <property name="use_underline">True</property>
                             <property name="icon_widget">image_new_fold</property>
@@ -3642,6 +3645,7 @@ equatorial aspect</property>
                           <object class="GtkToolButton" id="toolbutton_create_small_circle">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
+                            <property name="tooltip_text" translatable="yes">Creates a new small-circle dataset.</property>
                             <property name="label" translatable="yes">Create small circle dataset</property>
                             <property name="use_underline">True</property>
                             <property name="icon_widget">image_create_small_circle</property>
@@ -3656,6 +3660,7 @@ equatorial aspect</property>
                           <object class="GtkToolButton" id="toolbutton_delete_layer">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
+                            <property name="tooltip_text" translatable="yes">Deletes the currently selected layers and their children.</property>
                             <property name="label" translatable="yes">Delete Layer</property>
                             <property name="use_underline">True</property>
                             <property name="stock_id">gtk-remove</property>
@@ -3744,6 +3749,7 @@ equatorial aspect</property>
                           <object class="GtkToggleToolButton" id="toolbutton_draw_features">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
+                            <property name="tooltip_text" translatable="yes">When turned on, features can be added to the currently selected layer by clicking on the stereonet.</property>
                             <property name="label" translatable="yes">Draw Features</property>
                             <property name="use_underline">True</property>
                             <property name="stock_id">gtk-edit</property>
@@ -3758,7 +3764,7 @@ equatorial aspect</property>
                           <object class="GtkToolButton" id="toolbutton_add_feature">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="tooltip_text" translatable="yes">Adds a row to the current layer.</property>
+                            <property name="tooltip_text" translatable="yes">Adds an empty row to the current layer.</property>
                             <property name="label" translatable="yes">Add Feature</property>
                             <property name="use_underline">True</property>
                             <property name="stock_id">gtk-add</property>
@@ -3773,6 +3779,7 @@ equatorial aspect</property>
                           <object class="GtkToolButton" id="toolbutton_file_parse">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
+                            <property name="tooltip_text" translatable="yes">Open a dialog for importing data to the currently selected layer.</property>
                             <property name="label" translatable="yes">Import Data</property>
                             <property name="use_underline">True</property>
                             <property name="stock_id">gtk-open</property>
@@ -3787,6 +3794,7 @@ equatorial aspect</property>
                           <object class="GtkToolButton" id="toolbutton_export">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
+                            <property name="tooltip_text" translatable="yes">Exports the data of the currently selected layer.</property>
                             <property name="label" translatable="yes">Export Data</property>
                             <property name="use_underline">True</property>
                             <property name="stock_id">gtk-save</property>
@@ -3801,6 +3809,7 @@ equatorial aspect</property>
                           <object class="GtkToolButton" id="toolbutton_remove_feature">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
+                            <property name="tooltip_text" translatable="yes">Removes the currently selected features from the dataset.</property>
                             <property name="label" translatable="yes">Remove Features</property>
                             <property name="use_underline">True</property>
                             <property name="stock_id">gtk-remove</property>
