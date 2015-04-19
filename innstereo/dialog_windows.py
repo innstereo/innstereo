@@ -572,6 +572,6 @@ class OverwriteDialog(object):
         call_overwrite method of the FileChooserDialog class. This results in the
         existing file being overwritten. Then the dialog is closed.
         """
-        self.call_export()
+        self.call_overwrite()
         self.dialog.hide()
 
