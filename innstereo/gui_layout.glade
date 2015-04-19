@@ -662,12 +662,6 @@ equatorial aspect</property>
                 <child>
                   <placeholder/>
                 </child>
-                <child>
-                  <placeholder/>
-                </child>
-                <child>
-                  <placeholder/>
-                </child>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -756,6 +750,64 @@ equatorial aspect</property>
     <property name="upper">100</property>
     <property name="step_increment">1</property>
     <property name="page_increment">10</property>
+  </object>
+  <object class="GtkFileChooserDialog" id="filechooserdialog_export">
+    <property name="can_focus">False</property>
+    <property name="type_hint">dialog</property>
+    <property name="action">save</property>
+    <property name="do_overwrite_confirmation">True</property>
+    <signal name="close" handler="on_filechooserdialog_export_close" swapped="no"/>
+    <signal name="destroy" handler="on_filechooserdialog_export_destroy" swapped="no"/>
+    <signal name="response" handler="on_filechooserdialog_export_response" swapped="no"/>
+    <child internal-child="vbox">
+      <object class="GtkBox" id="filechooserdialog-vbox2">
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">2</property>
+        <child internal-child="action_area">
+          <object class="GtkButtonBox" id="filechooserdialog-action_area2">
+            <property name="can_focus">False</property>
+            <property name="layout_style">end</property>
+            <child>
+              <object class="GtkButton" id="button_cancel_export">
+                <property name="label" translatable="yes">Cancel</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <signal name="clicked" handler="on_button_cancel_export_clicked" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="button_export_data">
+                <property name="label" translatable="yes">Export</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <signal name="clicked" handler="on_button_export_data_clicked" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+      </object>
+    </child>
   </object>
   <object class="GtkFileFilter" id="filefilter_parse">
     <mime-types>
@@ -3329,7 +3381,7 @@ equatorial aspect</property>
               </packing>
             </child>
             <child>
-              <object class="GtkToolButton" id="toolbutton9">
+              <object class="GtkToolButton" id="toolbutton_copy">
                 <property name="visible">True</property>
                 <property name="sensitive">False</property>
                 <property name="can_focus">False</property>
@@ -3734,10 +3786,24 @@ equatorial aspect</property>
                           <object class="GtkToolButton" id="toolbutton_file_parse">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="label" translatable="yes">toolbutton1</property>
+                            <property name="label" translatable="yes">Import Data</property>
                             <property name="use_underline">True</property>
                             <property name="stock_id">gtk-open</property>
                             <signal name="clicked" handler="on_toolbutton_file_parse_clicked" swapped="no"/>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="homogeneous">True</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkToolButton" id="toolbutton_export">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Export Data</property>
+                            <property name="use_underline">True</property>
+                            <property name="stock_id">gtk-save</property>
+                            <signal name="clicked" handler="on_toolbutton_export_clicked" swapped="no"/>
                           </object>
                           <packing>
                             <property name="expand">False</property>

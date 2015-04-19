@@ -426,3 +426,82 @@ class FileChooserParse(object):
         Triggered when "cancel" is clicked. Hides the dialog.
         """
         self.dialog.hide()
+
+
+class FileChooserExport(object):
+
+    """
+    Sets up and handles the signals of the FileChooser for exporting data.
+
+    This class handles the actions of the filechooserdialog that is used
+    to export data.
+    """
+
+    def __init__(self, export_data):
+        self.builder = Gtk.Builder()
+        self.export_data = export_data
+        script_dir = os.path.dirname(__file__)
+        rel_path = "gui_layout.glade"
+        abs_path = os.path.join(script_dir, rel_path)
+        self.builder.add_objects_from_file(abs_path,
+            ("filechooserdialog_export", ""))
+        self.dialog = self.builder.get_object("filechooserdialog_export")
+        self.builder.connect_signals(self)
+
+    def run(self):
+        """
+        Runs the dialog.
+
+        This function is run when the filechooserdialog for export is called
+        from the main window.
+        """
+        self.dialog.run()
+
+    def on_filechooserdialog_export_close(self, widget):
+        # pylint: disable=unused-argument
+        """
+        Hides the FileChooserExport dialog.
+
+        Triggered when the FileChooserExport dialog is closed. Hides the dialog.
+        """
+        self.dialog.hide()
+
+    def on_filechooserdialog_export_response(self, widget, response):
+        # pylint: disable=unused-argument
+        """
+        Hides the FileChooserExport dialog.
+
+        Triggered when the FileChooserExport dialog sends a response.
+        """
+        if response == -4:
+            self.dialog.hide()
+
+    def on_filechooserdialog_export_destroy(self, widget):
+        # pylint: disable=unused-argument
+        """
+        Hides the FileChooserExport dialog.
+
+        This function is run when the FileChooserExport dialog is destroyed.
+        Hides the dialog.
+        """
+        self.dialog.hide()
+
+    def on_button_cancel_export_clicked(self, button):
+        # pylint: disable=unused-argument
+        """
+        Hides the FileChooserExport dialog.
+
+        Triggered when "cancel" is clicked. Hides the dialog.
+        """
+        self.dialog.hide()
+
+    def on_button_export_data_clicked(self, button):
+        # pylint: disable=unused-argument
+        """
+        """
+        filename = self.dialog.get_filename()
+        print(filename)
+        if not filename.endswith(".csv"):
+            filename += ".csv"
+        self.export_data(filename)
+        self.dialog.hide()

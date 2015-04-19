@@ -18,6 +18,7 @@ import numpy as np
 import scipy
 import webbrowser
 import os
+import csv
 
 #Internal imports
 from .dataview_classes import (PlaneDataView, LineDataView,
@@ -25,7 +26,7 @@ from .dataview_classes import (PlaneDataView, LineDataView,
 from .layer_view import LayerTreeView
 from .layer_types import PlaneLayer, FaultPlaneLayer, LineLayer, SmallCircleLayer
 from .dialog_windows import (AboutDialog, PrintDialog, StereonetProperties,
-                            FileChooserParse)
+                            FileChooserParse, FileChooserExport)
 from .layer_properties import LayerProperties
 from .plot_control import PlotSettings
 from .polar_axes import NorthPolarAxes
@@ -96,7 +97,6 @@ class MainWindow(object):
             self.update_cursor_position)
         self.canvas.mpl_connect('button_press_event',
             self.mpl_canvas_clicked)
-
         self.redraw_plot()
         self.main_window.show_all()
 
@@ -1375,6 +1375,65 @@ class MainWindow(object):
                                  self.add_linear_feature,
                                  self.add_faultplane_feature)
             fp.run()
+
+    def on_toolbutton_export_clicked(self, toolbutton):
+        # pylint: disable=unused-argument
+        """
+        Runs the FileChooserExport dialog.
+
+        Triggered when user clicks on the toolbutton_export. Creates an instance
+        of the FileChooserExport class and runs the dialog. Checks if the user
+        has selected a layer first.
+        """
+        selection = self.layer_view.get_selection()
+        model, row_list = selection.get_selected_rows()
+
+        if len(row_list) == 1:
+            self.redraw_plot()
+            exportdialog = FileChooserExport(self.export_data)
+            exportdialog.run()
+
+        elif len(row_list) == 0:
+            self.statbar.push(1, ("Please select a layer to export."))
+            self.canvas.draw()
+
+        elif len(row_list) > 1:
+            self.statbar.push(1, ("Please select only one layer to export."))
+            self.canvas.draw()
+
+    def export_data(self, save_location):
+        """
+        """
+        selection = self.layer_view.get_selection()
+        model, row_list = selection.get_selected_rows()
+        print(save_location)
+
+        def iterate_over_planes(model, path, itr):
+            r = model[path]
+            writer.writerow({"dip-direction": r[0], "dip": r[1],
+                             "stratigraphy": r[2]})
+
+        def iterate_over_linears(model, path, itr):
+            r = model[path]
+            writer.writerow({"dip-direction": r[0], "dip": r[1],
+                             "sense": r[2]})
+
+        row = row_list[0]
+        lyr_obj = model[row][3]
+        data_obj = lyr_obj.get_data_treestore()
+
+        with open(save_location, "w", newline="") as csvfile:
+            lyr_type = lyr_obj.get_layer_type()
+            if lyr_type == "plane":
+                fieldnames = ["dip-direction", "dip", "stratigraphy"]
+                writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+                writer.writeheader()
+                data_obj.foreach(iterate_over_planes)
+            elif lyr_type == "line":
+                fieldnames = ["dip-direction", "dip", "sense"]
+                writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+                writer.writeheader()
+                data_obj.foreach(iterate_over_linears)
 
     def on_menuitem_online_help_activate(self, menuitem):
         # pylint: disable=unused-argument
