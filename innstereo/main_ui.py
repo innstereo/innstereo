@@ -1434,6 +1434,20 @@ class MainWindow(object):
             writer.writerow({"dip-direction": r[0], "dip": r[1],
                              "sense": r[2]})
 
+        def iterate_over_faultplanes(model, path, itr):
+            r = model[path]
+            writer.writerow({"plane-dip-direction": r[0],
+                             "plane-dip": r[1],
+                             "linear-dip-direction": r[2],
+                             "linear-dip": r[3],
+                             "linear-sense": r[4]})
+
+        def iterate_over_smallcircles(model, path, itr):
+            r = model[path]
+            writer.writerow({"dip-direction": r[0],
+                             "dip": r[1],
+                             "opening-angle": r[2]})
+
         row = row_list[0]
         lyr_obj = model[row][3]
         data_obj = lyr_obj.get_data_treestore()
@@ -1450,6 +1464,18 @@ class MainWindow(object):
                 writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
                 writer.writeheader()
                 data_obj.foreach(iterate_over_linears)
+            elif lyr_type == "faultplane":
+                fieldnames = ["plane-dip-direction", "plane-dip",
+                              "linear-dip-direction", "linear-dip",
+                              "linear-sense"]
+                writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+                writer.writeheader()
+                data_obj.foreach(iterate_over_faultplanes)
+            elif lyr_type == "smallcircle":
+                fieldnames = ["dip-direction", "dip", "opening-angle"]
+                writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+                writer.writeheader()
+                data_obj.foreach(iterate_over_smallcircles)
 
     def on_menuitem_online_help_activate(self, menuitem):
         # pylint: disable=unused-argument
