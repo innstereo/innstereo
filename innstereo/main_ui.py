@@ -1346,6 +1346,8 @@ class MainWindow(object):
             gamma_deg = str(gamma_deg).rjust(2, "0")
 
             self.statbar.push(1, ("{0} / {1}".format(alpha_deg, gamma_deg)))
+        else:
+            self.statbar.push(1, (""))
 
     def on_toolbutton_file_parse_clicked(self, toolbutton):
         """
@@ -1358,6 +1360,15 @@ class MainWindow(object):
         if len(row_list) == 1:
             fc = FileChooserParse(self.run_file_parser)
             fc.run()
+
+        elif len(row_list) == 0:
+            self.statbar.push(1, ("Please select a layer to add data to."))
+            self.canvas.draw()
+
+        elif len(row_list) > 1:
+            self.statbar.push(1,
+                              ("Please select only one layer to add data to."))
+            self.canvas.draw()
 
     def run_file_parser(self, text_file):
         """
@@ -1403,10 +1414,15 @@ class MainWindow(object):
 
     def export_data(self, save_location):
         """
+        Exports data to a location that is passes by the FileExportDialog.
+
+        This method receives a save_location from the FileExportDialog class.
+        A CSV file is created at that location. Depending on the layer type a
+        different header is written to the file and it then iterates over
+        all rows.
         """
         selection = self.layer_view.get_selection()
         model, row_list = selection.get_selected_rows()
-        print(save_location)
 
         def iterate_over_planes(model, path, itr):
             r = model[path]

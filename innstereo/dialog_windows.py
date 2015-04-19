@@ -498,10 +498,12 @@ class FileChooserExport(object):
     def on_button_export_data_clicked(self, button):
         # pylint: disable=unused-argument
         """
+        Passes file location to the export_data function and closes the dialog.
+
+        The user should navigate to a desired location and type a filename. The
+        filename is called and passes to the MainWindow's export_data function.
+        The dialog is hidden afterwards.
         """
         filename = self.dialog.get_filename()
-        print(filename)
-        if not filename.endswith(".csv"):
-            filename += ".csv"
         self.export_data(filename)
         self.dialog.hide()
