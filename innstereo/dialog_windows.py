@@ -504,6 +504,74 @@ class FileChooserExport(object):
         filename is called and passes to the MainWindow's export_data function.
         The dialog is hidden afterwards.
         """
-        filename = self.dialog.get_filename()
-        self.export_data(filename)
+        self.filename = self.dialog.get_filename()
+        if os.path.exists(self.filename) == True:
+            overwrite = OverwriteDialog(self.call_overwrite)
+            overwrite.run()
+        else:
+            self.export_data(self.filename)
+            self.dialog.hide()
+
+    def call_overwrite(self):
+        """
+        Overwrites the existing file.
+
+        The function calls the export_data function of the MainWindow class,
+        overwritting the exisisting file, that needs to be passed to that
+        method. Then the dialog is hidden.
+        """
+        self.export_data(self.filename)
         self.dialog.hide()
+
+
+class OverwriteDialog(object):
+
+    """
+    Sets up and handles the signals of the OverWriteDialog for exporting data.
+
+    If a file already exists this dialog confirms if the file should be
+    overwritten. This class handles all the signals of the dialog.
+    """
+
+    def __init__(self, call_overwrite):
+        self.builder = Gtk.Builder()
+        self.call_overwrite = call_overwrite
+        script_dir = os.path.dirname(__file__)
+        rel_path = "gui_layout.glade"
+        abs_path = os.path.join(script_dir, rel_path)
+        self.builder.add_objects_from_file(abs_path,
+            ("dialog_overwrite", ""))
+        self.dialog = self.builder.get_object("dialog_overwrite")
+        self.builder.connect_signals(self)
+
+    def run(self):
+        """
+        Runs the dialog.
+
+        This function is run when the OverWriteDialog is called from another
+        dialog.
+        """
+        self.dialog.run()
+
+    def on_button_cancel_overwrite_clicked(self, button):
+        # pylint: disable=unused-argument
+        """
+        Cancels the overwrite and returns to the FileExportDialog.
+
+        When the user clicks on cancel the OverWriteDialog is closed. The
+        focus returns to the FileChooserDialog of the FileExportDialog class.
+        """
+        self.dialog.hide()
+
+    def on_button_overwrite_clicked(self, button):
+        # pylint: disable=unused-argument
+        """
+        Overwrites the exisisting file.
+
+        When the user clicks on overwrite, the OverWriteDialog calls the
+        call_overwrite method of the FileChooserDialog class. This results in the
+        existing file being overwritten. Then the dialog is closed.
+        """
+        self.call_export()
+        self.dialog.hide()
+
