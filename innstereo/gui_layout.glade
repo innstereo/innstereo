@@ -3490,6 +3490,20 @@ equatorial aspect</property>
               </packing>
             </child>
             <child>
+              <object class="GtkToolButton" id="toolbutton_layer_properties">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Layer properties</property>
+                <property name="use_underline">True</property>
+                <property name="stock_id">gtk-color-picker</property>
+                <signal name="clicked" handler="on_toolbutton_layer_properties_clicked" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="homogeneous">True</property>
+              </packing>
+            </child>
+            <child>
               <object class="GtkSeparatorToolItem" id="toolbutton4">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>

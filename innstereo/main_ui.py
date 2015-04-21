@@ -534,6 +534,28 @@ class MainWindow(object):
             layer_prop = LayerProperties(layer_obj, self.redraw_plot)
             layer_prop.run()
 
+    def on_toolbutton_layer_properties_clicked(self, toolbutton):
+        """
+        Triggered when the toolbutton for layer properties is pressed.
+
+        Checks if only one layer is selected. If more or less layers are
+        selected a warning is displayed in the statusbar.
+        """
+        selection = self.layer_view.get_selection()
+        model, row_list = selection.get_selected_rows()
+
+        if len(row_list) == 0:
+            self.statbar.push(1, ("Please select a layer to customize."))
+            return
+        elif len(row_list) > 1:
+            self.statbar.push(1, ("Please select only one layer to customize."))
+            return
+
+        row = row_list[0]
+        layer_obj = self.layer_store[row][3]
+        layer_prop = LayerProperties(layer_obj, self.redraw_plot)
+        layer_prop.run()
+
     def layer_selection_changed(self, selection):
         """
         When the selection in the layer-view is changed to a layer containing
