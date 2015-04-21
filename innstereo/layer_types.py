@@ -37,6 +37,7 @@ class PlaneLayer(object):
         self.data_treeview = treeview
         self.type = "plane"
         self.label = "Plane layer"
+        self.page = 0
 
         #Great circle / Small circle properties
         self.render_gcircles = True
@@ -87,6 +88,25 @@ class PlaneLayer(object):
         self.contour_line_width = 1
         self.contour_line_style = "-"
         self.contour_label_size = 12
+
+    def get_page(self):
+        """
+        Returns the current page
+
+        The current page of the layer-properties dialog is stored
+        for each layer. The integer value corresponds to the
+        value of the Gtk Notebook.
+        """
+        return self.page
+
+    def set_page(self, new_page):
+        """
+        Sets a new page. Saves the current notebook page.
+
+        Expects an integer that corresponds to the Gtk-Notebook page,
+        that was last viewed for this layer.
+        """
+        self.page = new_page
 
     def get_pixbuf(self):
         """
@@ -938,6 +958,7 @@ class LineLayer(PlaneLayer):
         PlaneLayer.__init__(self, treestore, treeview)
         self.type = "line"
         self.label = "Linear layer"
+        self.page = 1
 
     def get_pixbuf(self):
         """
@@ -976,6 +997,7 @@ class EigenVectorLayer(PlaneLayer):
         PlaneLayer.__init__(self, treestore, treeview)
         self.type = "eigenvector"
         self.label = "Eigenvector layer"
+        self.page = 1
 
     def get_pixbuf(self):
         """

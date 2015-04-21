@@ -282,6 +282,7 @@ class LayerProperties(object):
             self.notebook.get_nth_page(4).hide()
             self.notebook.get_nth_page(5).hide()
             self.box_contour_faultplanes.hide()
+        self.notebook.set_current_page(self.layer.get_page())
 
     def on_checkbutton_render_linears_toggled(self, checkbutton):
         """
@@ -480,6 +481,7 @@ class LayerProperties(object):
         If the dialog is canceled the changes are discarded (automatically),
         and the window is hidden.
         """
+        self.layer.set_page(self.notebook.get_current_page())
         self.dialog.hide()
 
     def on_button_layerproperties_apply_clicked(self, widget):
@@ -490,6 +492,7 @@ class LayerProperties(object):
         for change in self.changes:
             change()
         
+        self.layer.set_page(self.notebook.get_current_page())
         self.redraw()
         self.dialog.hide()
 
