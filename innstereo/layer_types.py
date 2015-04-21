@@ -49,9 +49,9 @@ class PlaneLayer(object):
 
         #Pole properties
         self.render_poles = False
-        self.pole_style = "o"
+        self.pole_style = "^"
         self.pole_size = 8.0
-        self.pole_fill = "#ff7e00"
+        self.pole_fill = "#1abd00"
         self.pole_edge_color = "#000000"
         self.pole_edge_width = 1.0
         self.pole_alpha = 1.0
@@ -60,7 +60,7 @@ class PlaneLayer(object):
         self.render_linears = True
         self.marker_style = "o"
         self.marker_size = 8.0
-        self.marker_fill = "#1283eb"
+        self.marker_fill = "#ff7a00"
         self.marker_edge_color = "#000000"
         self.marker_edge_width = 1.0
         self.marker_alpha = 1.0
