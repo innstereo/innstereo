@@ -956,6 +956,42 @@ class LineLayer(PlaneLayer):
         return pixbuf_color
 
 
+class EigenVectorLayer(PlaneLayer):
+
+    """
+    This class is used for the results of eigenvector calculations
+
+    It inherits from the PlaneLayer class and defines a new type and label.
+    On init it expects a treestore and treeview that are passed to the
+    PlaneLayer class.
+    """
+
+    def __init__(self, treestore, treeview):
+        """
+        Initializes the EigenVectorLayer class.
+
+        Expects a treestore and treeview that are passed to the PlaneLayer
+        class. Overrides the self.type and self.label of the PlaneLayer class.
+        """
+        PlaneLayer.__init__(self, treestore, treeview)
+        self.type = "eigenvector"
+        self.label = "Eigenvector layer"
+
+    def get_pixbuf(self):
+        """
+        Returns the pixbuf for eigenvectors, which is based on the marker fill.
+
+        Evaluates the marker fill, creates GdkPixbuf with that color and
+        returns it.
+        """
+        marker_color_alpha = int("0x{0}ff".format(
+            self.marker_fill[1:]), base=16)
+        pixbuf_color = GdkPixbuf.Pixbuf.new(
+            GdkPixbuf.Colorspace.RGB, True, 8, 16, 16)
+        pixbuf_color.fill(marker_color_alpha)
+        return pixbuf_color
+
+
 class SmallCircleLayer(PlaneLayer):
 
     """

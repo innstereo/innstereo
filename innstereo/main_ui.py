@@ -22,9 +22,11 @@ import csv
 
 #Internal imports
 from .dataview_classes import (PlaneDataView, LineDataView,
-                              FaultPlaneDataView, SmallCircleDataView)
+                              FaultPlaneDataView, SmallCircleDataView,
+                              EigenVectorView)
 from .layer_view import LayerTreeView
-from .layer_types import PlaneLayer, FaultPlaneLayer, LineLayer, SmallCircleLayer
+from .layer_types import (PlaneLayer, FaultPlaneLayer, LineLayer,
+                         SmallCircleLayer, EigenVectorLayer)
 from .dialog_windows import (AboutDialog, PrintDialog, StereonetProperties,
                             FileChooserParse, FileChooserExport)
 from .layer_properties import LayerProperties
@@ -157,31 +159,81 @@ class MainWindow(object):
         """
         Calculates the eigenvectors and eigenvalues of one or more layers.
 
-        __!!__Implemented in mplstereonet now, change this function!
+        Triggered when the user calls the calculation. It checks if all the
+        selected layers are either planes or linear-layers. If different
+        layers are selected the calculation is aborted. A successful
+        calculation adds a new eigenvector-layer.
         """
         selection = self.layer_view.get_selection()
         model, row_list = selection.get_selected_rows()
+        values = []
 
-        total_dipdir = []
-        total_dip = []
+        #Check if all selected layers are the same
+        layers_equal = True
+        layer_list = []
         for row in row_list:
             layer_obj = model[row][3]
-            dipdir, dip, sense = self.parse_lines(
-                                                layer_obj.get_data_treestore())
-            for x in dipdir:
-                total_dipdir.append(x)
-            for y in dip:
-                total_dip.append(y)
 
-        fit_strike1, fit_dip1 = mplstereonet.fit_girdle(total_dipdir, total_dip)
-        fit_strike2, fit_dip2 = mplstereonet.fit_pole(total_dipdir, total_dip)
-        fit_strike3, fit_dip3 = mplstereonet.analysis._sd_of_eigenvector(
-                                                   [total_dipdir, total_dip], 1)
+            if layer_obj is None:
+                return
+            else:
+                layer_list.append(layer_obj.get_layer_type())
+        for a in layer_list:
+            for b in layer_list:
+                if a is not b:
+                    layers_equal = False
 
-        store = self.add_layer_dataset("line")
-        self.add_linear_feature(store, fit_strike1 + 180, 90 - fit_dip1)
-        self.add_linear_feature(store, fit_strike2 + 180, 90 - fit_dip2)
-        self.add_linear_feature(store, fit_strike3 + 180, 90 - fit_dip3)
+        if layers_equal == False:
+            self.statbar.push(1, ("Please select only layers of the same type!"))
+            return
+
+        def evaluate_planes():
+            total_strike = []
+            total_dip = []
+            for row in row_list:
+                layer_obj = model[row][3]
+                strike, dipdir, dip = self.parse_planes(
+                                                    layer_obj.get_data_treestore())
+                for x in strike:
+                    total_strike.append(x)
+                for y in dip:
+                    total_dip.append(y)
+
+            dip, dipdir, values = mplstereonet.eigenvectors(total_strike, total_dip)
+            return dip, dipdir, values
+
+        def evaluate_lines():
+            total_dipdir = []
+            total_dip = []
+            for row in row_list:
+                layer_obj = model[row][3]
+                dipdir, dip, sense = self.parse_lines(
+                                                    layer_obj.get_data_treestore())
+                for x in dipdir:
+                    total_dipdir.append(x)
+                for y in dip:
+                    total_dip.append(y)
+
+            dip, dipdir, values = mplstereonet.eigenvectors(total_dipdir,
+                                                total_dip, measurement="lines")
+            return dip, dipdir, values
+
+        #Check how data should be interpreted:
+        if layer_list[0] == "plane":
+            dip, dipdir, values = evaluate_planes()
+        elif layer_list[0] == "line":
+            dip, dipdir, values = evaluate_lines()
+        else:
+            self.statbar.push(1, ("Please select only plane or line layers!"))
+            return
+
+        #Normalize to 1
+        values = values/np.sum(values)
+
+        store = self.add_layer_dataset("eigenvector")
+        self.add_eigenvector_feature(store, dipdir[0], dip[0], values[0])
+        self.add_eigenvector_feature(store, dipdir[1], dip[1], values[1])
+        self.add_eigenvector_feature(store, dipdir[2], dip[2], values[2])
         self.redraw_plot()
 
     def on_toolbutton_new_project_clicked(self, widget):
@@ -553,6 +605,10 @@ class MainWindow(object):
                 store = Gtk.ListStore(float, float, float)
                 view = SmallCircleDataView(store, self.redraw_plot)
                 layer_obj = SmallCircleLayer(store, view)
+            elif layer_type == "eigenvector":
+                store = Gtk.ListStore(float, float, float)
+                view = EigenVectorView(store, self.redraw_plot)
+                layer_obj = EigenVectorLayer(store, view)
 
             pixbuf = layer_obj.get_pixbuf()
             self.layer_store.append(itr,
@@ -606,7 +662,7 @@ class MainWindow(object):
     def on_toolbutton_create_small_circle_clicked(self, widget):
         # pylint: disable=unused-argument
         """
-        Creates a new small cirlce layer.
+        Creates a new small circle layer.
         """
         self.add_layer_dataset("smallcircle")
 
@@ -678,6 +734,24 @@ class MainWindow(object):
             sense.append(row[2])
         return line_dir, line_dip, sense
 
+    def parse_eigenvectors(self, treestore):
+        """
+        Parses a eigenvector layer and returns a list of each column
+
+        This method expect a TreeStore that stores the data of a layer. It
+        iterates over the rows and adds each column to a list. It returns 3
+        lists for line_dir, line_dip (the eigenvector) and values (the
+        eigenvalue)
+        """
+        line_dir = []
+        line_dip = []
+        values = []
+        for row in treestore:
+            line_dir.append(float(row[0]))
+            line_dip.append(float(row[1]))
+            values.append(float(row[2]))
+        return line_dir, line_dip, values
+
     def parse_smallcircles(self, treestore):
         """
         Parses small circle data. Data has 3 columns: Dip direction, dip and
@@ -714,6 +788,44 @@ class MainWindow(object):
                     markersize=layer_obj.get_marker_size(),
                     color=layer_obj.get_marker_fill(),
                     label=layer_obj.get_label(),
+                    markeredgewidth=layer_obj.get_marker_edge_width(),
+                    markeredgecolor=layer_obj.get_marker_edge_color(),
+                    alpha=layer_obj.get_marker_alpha(), clip_on=False)
+
+    def draw_eigenvector(self, layer_obj, dipdir, dip, values):
+        """
+        Draws the eigenvectors as lines and adds the eigenvalues to the legend.
+
+        This method is called from the redraw_plot method to draw a eigenvector
+        layer. It expects a layer object and arrays for dip-direction, dips and
+        values. The arrays are rounded and converted to strings for the legend.
+        """
+        dipdir = np.round(dipdir, 1).tolist()
+        dip = np.round(dip, 1).tolist()
+        values = np.round(values, 2).tolist()
+
+        dipdir_str = []
+        dip_str = []
+        values_str = []
+
+        for x in dipdir:
+            dipdir_str.append(str(x).rjust(5, "0"))
+
+        for y in dip:
+            dip_str.append(str(y).rjust(4, "0"))
+
+        for v in values:
+            values_str.append(str(v))
+
+        #ax.line takes dip first and then dipdir (as strike)
+        self.ax_stereo.line(dip, dipdir, marker=layer_obj.get_marker_style(),
+                    markersize=layer_obj.get_marker_size(),
+                    color=layer_obj.get_marker_fill(),
+                    label="{}   \n  {}/{}, {}\n  {}/{}, {}\n  {}/{}, {}".format(
+                           layer_obj.get_label(),
+                           dipdir_str[0], dip_str[0], values_str[0],
+                           dipdir_str[1], dip_str[1], values_str[1],
+                           dipdir_str[2], dip_str[2], values_str[2],),
                     markeredgewidth=layer_obj.get_marker_edge_width(),
                     markeredgecolor=layer_obj.get_marker_edge_color(),
                     alpha=layer_obj.get_marker_alpha(), clip_on=False)
@@ -1052,6 +1164,13 @@ class MainWindow(object):
                                      edgecolor = layer_obj.get_marker_edge_color(),
                                      bottom = layer_obj.get_rose_bottom())
 
+            if layer_type == "eigenvector":
+                dipdir, dip, values = self.parse_lines(
+                                         layer_obj.get_data_treestore())
+                if layer_obj.get_render_linears() == True:
+                    self.draw_eigenvector(layer_obj, dipdir, dip, values)
+                self.draw_contours(layer_obj, dip, dipdir, "lines")
+
             if layer_type == "smallcircle":
                 dipdir, dip, angle = self.parse_smallcircles(
                                         layer_obj.get_data_treestore())
@@ -1068,14 +1187,8 @@ class MainWindow(object):
                     newHandles.append(handle)
             if len(handles) is not 0:
                 self.ax_stereo.legend(newHandles, newLabels,
-                                      bbox_to_anchor=(1.3, 1.1))
+                                      bbox_to_anchor=(1.5, 1.1), borderpad=1)
         self.canvas.draw()
-
-            #print("Setting ticklabel")
-            #labels = self.ax_stereo.get_xticklabels().tolist()
-            #print(labels)
-            #labels[0] = "N"
-            #self.ax_stereo.set_xticklabels(labels)
 
     def on_toolbutton_create_group_layer_clicked(self, widget):
         """
@@ -1249,6 +1362,24 @@ class MainWindow(object):
             dip = dip + 90
 
         datastore.append([dip_direct, dip, sense])
+
+    def add_eigenvector_feature(self, datastore, dip_direct=0, dip=0, value=0):
+        """
+        Adds an eigenvector feature.
+
+        Checks if the values lie in the normal range of degrees. Then the
+        row is appended to the treestore that is passed to the method.
+        """
+        while dip_direct > 360:
+            dip_direct = dip_direct - 360
+        while dip_direct < 0:
+            dip_direct = dip_direct + 360
+        while dip > 90:
+            dip = dip - 90
+        while dip < 0:
+            dip = dip + 90
+
+        datastore.append([dip_direct, dip, value])
 
     def add_faultplane_feature(self, datastore, dip_direct = 0, dip = 0,
                                ldip_direct = 0, ldip = 0, sense = ""):

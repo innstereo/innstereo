@@ -432,3 +432,89 @@ class SmallCircleDataView(DataTreeView):
         """
         self.store[path][2] = float(new_string.replace(",", "."))
         self.redraw()
+
+
+class EigenVectorView(DataTreeView):
+
+    """
+    The EigenVectorView is used for EigenVectorLayer-class layers.
+
+    This class creates 3 columsn for the dip-direction and dip of the
+    eigenvector and the eigenvalues. The class inherits from the DataTreeView
+    class.
+    """
+
+    def __init__(self, store, redraw_plot):
+        """
+        Sets up 3 columns and connects their signals.
+
+        On init, the treestore-object and redraw_plto function are passed to
+        the DataTreeView class. 3 columns are set up and their signals for
+        being edited are connected.
+        """
+        DataTreeView.__init__(self, store, redraw_plot)
+
+        renderer_dir = Gtk.CellRendererText()
+        renderer_dir.set_property("editable", True)
+        column_dir = Gtk.TreeViewColumn("Dir", renderer_dir, text=0)
+        column_dir.set_alignment(0.5)
+        column_dir.set_expand(True)
+        column_dir.set_cell_data_func(renderer_dir, 
+                    lambda col, cell, model, iter, unused:
+                    cell.set_property("text",
+                    "{0}".format(self.truncate(model.get(iter, 0)[0]))))
+        self.append_column(column_dir)
+        
+        renderer_dip = Gtk.CellRendererText()
+        renderer_dip.set_property("editable", True)
+        column_dip = Gtk.TreeViewColumn("Dip", renderer_dip, text=1)
+        column_dip.set_alignment(0.5)
+        column_dip.set_expand(True)
+        column_dip.set_cell_data_func(renderer_dip, 
+                    lambda col, cell, model, iter, unused:
+                    cell.set_property("text",
+                    "{0}".format(self.truncate(model.get(iter, 1)[0]))))
+        self.append_column(column_dip)
+
+        renderer_value = Gtk.CellRendererText()
+        renderer_value.set_property("editable", True)
+        column_value = Gtk.TreeViewColumn("Eigenvalue", renderer_value, text=2)
+        column_value.set_alignment(0.5)
+        column_value.set_expand(True)
+        column_value.set_cell_data_func(renderer_value, 
+                    lambda col, cell, model, iter, unused:
+                    cell.set_property("text",
+                    "{0}".format(self.truncate(model.get(iter, 2)[0]))))
+        self.append_column(column_value)
+
+        renderer_dir.connect("edited", self.renderer_dir_edited)
+        renderer_dip.connect("edited", self.renderer_dip_edited)
+        renderer_value.connect("edited", self.renderer_value_edited)
+
+    def renderer_dir_edited(self, widget, path, new_string):
+        """
+        If the dip direction is edited, replace the existing value.
+        The function replaces a ","- with a "."-comma. Converts
+        the string value to a float.
+        """
+        self.store[path][0] = float(new_string.replace(",", "."))
+        self.redraw()
+
+    def renderer_dip_edited(self, widget, path, new_string):
+        """
+        If the dip angle is edited, replace the existing value.
+        The function replaces a ","- with a "."-comma. Converts
+        the string value to a float.
+        """
+        self.store[path][1] = float(new_string.replace(",", "."))
+        self.redraw()
+
+    def renderer_value_edited(self, widget, path, new_string):
+        """
+        Triggered when the value is edited.
+
+        The new value is converted to a float and commas are replaced by
+        dots. Then the new value is assigned to the cell.
+        """
+        self.store[path][2] = float(new_string.replace(",", "."))
+        self.redraw()
