@@ -847,7 +847,7 @@ class MainWindow(object):
                            layer_obj.get_label(),
                            dipdir_str[0], dip_str[0], values_str[0],
                            dipdir_str[1], dip_str[1], values_str[1],
-                           dipdir_str[2], dip_str[2], values_str[2],),
+                           dipdir_str[2], dip_str[2], values_str[2]),
                     markeredgewidth=layer_obj.get_marker_edge_width(),
                     markeredgecolor=layer_obj.get_marker_edge_color(),
                     alpha=layer_obj.get_marker_alpha(), clip_on=False)
