@@ -32,7 +32,6 @@ Calculations
 ------------
 
 - Inversion
-- Eigenvectors & Eigenvalues
 - Inversion
 - Rotate data around pole
 - Find axial planes
