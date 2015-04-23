@@ -793,8 +793,11 @@ class MainWindow(object):
         Function draws a great circle in the stereonet. It calls the formatting
         from the layer object.
         """
+        num_data = len(dipdir)
+        lbl = "{} ({})".format(layer_obj.get_label(), num_data)
+
         self.ax_stereo.plane(dipdir, dip, color=layer_obj.get_line_color(),
-                    label=layer_obj.get_label(),
+                    label=lbl,
                     linewidth=layer_obj.get_line_width(),
                     linestyle=layer_obj.get_line_style(),
                     dash_capstyle=layer_obj.get_capstyle(),
@@ -805,11 +808,14 @@ class MainWindow(object):
         Function draws a linear element in the stereonet. It calls the
         formatting from the layer object.
         """
+        num_data = len(dipdir)
+        lbl = "{} ({})".format(layer_obj.get_label(), num_data)
+
         #ax.line takes dip first and then dipdir (as strike)
         self.ax_stereo.line(dip, dipdir, marker=layer_obj.get_marker_style(),
                     markersize=layer_obj.get_marker_size(),
                     color=layer_obj.get_marker_fill(),
-                    label=layer_obj.get_label(),
+                    label=lbl,
                     markeredgewidth=layer_obj.get_marker_edge_width(),
                     markeredgecolor=layer_obj.get_marker_edge_color(),
                     alpha=layer_obj.get_marker_alpha(), clip_on=False)
@@ -839,15 +845,17 @@ class MainWindow(object):
         for v in values:
             values_str.append(str(v))
 
+        lbl = "{}   \n  {}/{}, {}\n  {}/{}, {}\n  {}/{}, {}".format(
+                           layer_obj.get_label(),
+                           dipdir_str[0], dip_str[0], values_str[0],
+                           dipdir_str[1], dip_str[1], values_str[1],
+                           dipdir_str[2], dip_str[2], values_str[2])
+
         #ax.line takes dip first and then dipdir (as strike)
         self.ax_stereo.line(dip, dipdir, marker=layer_obj.get_marker_style(),
                     markersize=layer_obj.get_marker_size(),
                     color=layer_obj.get_marker_fill(),
-                    label="{}   \n  {}/{}, {}\n  {}/{}, {}\n  {}/{}, {}".format(
-                           layer_obj.get_label(),
-                           dipdir_str[0], dip_str[0], values_str[0],
-                           dipdir_str[1], dip_str[1], values_str[1],
-                           dipdir_str[2], dip_str[2], values_str[2]),
+                    label=lbl,
                     markeredgewidth=layer_obj.get_marker_edge_width(),
                     markeredgecolor=layer_obj.get_marker_edge_color(),
                     alpha=layer_obj.get_marker_alpha(), clip_on=False)
@@ -871,10 +879,13 @@ class MainWindow(object):
         Function draws a plane pole in the stereonet. It calls the formatting
         from the layer object.
         """
+        num_data = len(dipdir)
+        lbl = "Poles of {} ({})".format(layer_obj.get_label(), num_data)
+
         self.ax_stereo.pole(dipdir, dip, marker=layer_obj.get_pole_style(),
                     markersize=layer_obj.get_pole_size(),
                     color=layer_obj.get_pole_fill(),
-                    label="Poles of {0}".format(layer_obj.get_label()),
+                    label=lbl,
                     markeredgewidth=layer_obj.get_pole_edge_width(),
                     markeredgecolor=layer_obj.get_pole_edge_color(),
                     alpha=layer_obj.get_pole_alpha(), clip_on=False)
