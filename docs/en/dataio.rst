@@ -11,7 +11,7 @@ Input
 The easiest way to add data to an existing layer is the file parse dialog. In order to use the file parser, one needs to create a dataset first (e.g. a plane dataset) and select it. The button opens a file chooser dialog, that one can use to locate the file on the hard-drive.
 
 .. figure:: ../_static/interface_file_parser_button.png
-    :width: 300px
+    :width: 400px
     :align: center
     :alt: screenshot with location of file parser button highlighted
 
@@ -52,11 +52,20 @@ t**             PT-Axis calculation output                            In Develop
 Output
 ------
 
-Data output is still under development.
+Datasets of individual layers can be exported in the CSV-format. This can be done by pressing on the button to the left of the data table. The user can then choose a directory and filename for the data. The button only works if only one layer is selected in the layer-tree.
 
+CSV-files can be openend by many programs including spread-sheet-calculation programs. Other export methods and database connections are planned for the future.
+
+.. figure:: ../_static/interface_file_export_button.png
+    :width: 400px
+    :align: center
+    :alt: screenshot of the position of the file export button
+
+    The button for data exporting is to the left of the data table.
 
 Further Reading
 ---------------
+
  - Description of `Comma-separated values <https://en.wikipedia.org/wiki/Comma-separated_values>`_ on Wikipedia
  - Ortner, H., Reiter, F. & Acs, P. (2002). *Easy handling of tectonic data: the programs TectonicVB for Mac and TectonicsFP for Windows.* Computers & Geosciences(28/10), 1193-1200 (`doi:10.1016/S0098-3004(02)00038-9 <http://dx.doi.org/10.1016/S0098-3004%2802%2900038-9>`_).
  - Reiter, F. & Acs, P., (1996-2011). *TectonicsFP 1.75 - Computer Software for Structural Geology: Operating Manual.* Bundled with the TectonicsFP installation.
