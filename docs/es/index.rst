@@ -26,11 +26,11 @@ Contents:
    stereonet
    datasets
    formatting
+   calculations
    views
    dataio
    screenshots
    changelog
-
 
 Indices and tables
 ==================
