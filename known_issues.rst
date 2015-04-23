@@ -32,7 +32,6 @@ Calculations
 ------------
 
 - Inversion
-- Inversion
 - Rotate data around pole
 - Find axial planes
 - Find conjugated planes

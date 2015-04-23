@@ -12,7 +12,7 @@ The latest documentation can be read on this page:
 * [English](http://innstereo.readthedocs.org/en/latest/)
 * [Español](http://innstereo.readthedocs.org/es/latest/)
 
-[![Documentation Status](https://readthedocs.org/projects/innsbruck-stereographic/badge/?version=latest)](https://readthedocs.org/projects/innstereo/?badge=latest)
+[![Documentation Status](https://readthedocs.org/projects/innstereo/badge/?version=latest)](https://readthedocs.org/projects/innstereo/?badge=latest)
 
 ## Installation
 
