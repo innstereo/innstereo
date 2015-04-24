@@ -147,8 +147,7 @@ class LayerProperties(object):
                         self.builder.get_object("spinbutton_edge_width")
         self.adjustment_marker_edge_width = \
                         self.builder.get_object("adjustment_edge_width")
-        self.checkbutton_render_linears.set_active(
-                        self.marker_style_dict[self.layer.get_pole_style()])
+        self.checkbutton_render_linears.set_active(self.layer.get_render_linears())
         self.combobox_marker_style.set_active(
                         self.marker_style_dict[self.layer.get_marker_style()])
         self.adjustment_marker_size.set_value(self.layer.get_marker_size())
