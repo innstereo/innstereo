@@ -15,7 +15,7 @@ from matplotlib.backends.backend_gtk3 import (NavigationToolbar2GTK3
                                               as NavigationToolbar)
 import mplstereonet
 import numpy as np
-import scipy
+import scipy.spatial as spatial
 import webbrowser
 import os
 import csv
@@ -968,7 +968,7 @@ class MainWindow(object):
             The pole lies on the pole-linear plane. The index that is closest to
             this point is returned and further used as the center of the arrow.
             """
-            tree = scipy.spatial.cKDTree(plane_stack)
+            tree = spatial.cKDTree(plane_stack)
             dist, index = tree.query(point)
             return index
 
