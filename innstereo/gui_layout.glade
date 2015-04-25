@@ -37,8 +37,8 @@ Author: Tobias Schönberg
     <property name="program_name">An open-source structural geology program based on mplstereonet</property>
     <property name="copyright" translatable="yes">How to cite:
 In Preperation (2015)</property>
-    <property name="website">https://github.com/tobias47n9e/innsbruck-stereographic</property>
-    <property name="website_label" translatable="yes">https://github.com/tobias47n9e/innsbruck-stereographic</property>
+    <property name="website">http://innstereo.github.io</property>
+    <property name="website_label" translatable="yes">http://innstereo.github.io</property>
     <property name="authors">Tobias Schönberg</property>
     <property name="logo">logo_about.svg</property>
     <property name="license_type">gpl-2-0</property>
