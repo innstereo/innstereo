@@ -5,6 +5,8 @@
 
 
 .. image:: ../_static/logo_about.png
+    :width: 400px
+
 
 
 ¡Bienvenido a la documentación de InnStereo!

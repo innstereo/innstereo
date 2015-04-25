@@ -5,6 +5,8 @@
 
 
 .. image:: ../_static/logo_about.png
+    :width: 400px
+
 
 
 Willkommen zur Dokumentation von Innstereo!
@@ -21,7 +23,16 @@ Contents:
 .. toctree::
    :numbered:
    :maxdepth: 2
-   
+
+   interface
+   stereonet
+   datasets
+   formatting
+   calculations
+   views
+   dataio
+   screenshots
+   changelog
 
 Index und Tabellen
 ==================
