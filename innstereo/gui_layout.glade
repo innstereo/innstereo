@@ -3307,6 +3307,7 @@ equatorial aspect</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">About</property>
                         <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_menuitem_about_activate" swapped="no"/>
                       </object>
                     </child>
                   </object>
