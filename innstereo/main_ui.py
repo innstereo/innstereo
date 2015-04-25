@@ -650,6 +650,7 @@ class MainWindow(object):
             selection_itr = model.get_iter(row_list[0])
             if layer_obj is None:
                 store = add_layer(selection_itr)
+                self.layer_view.expand_row(row, True)
             else:
                 parent_itr = model.iter_parent(selection_itr)
                 store = add_layer(parent_itr)
