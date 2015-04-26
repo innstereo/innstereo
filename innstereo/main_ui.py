@@ -899,14 +899,23 @@ class MainWindow(object):
         if len(dipdir) == 0:
             return None
 
+        if layer_obj.get_manual_range() == True:
+            lower = layer_obj.get_lower_limit()
+            upper = layer_obj.get_upper_limit()
+            steps = layer_obj.get_steps()
+            cont_interval = np.linspace(lower, upper, num=steps)
+        else:
+            cont_interval = None
+
         #Implement hatches = (['-', '+', 'x', '\\', '*', 'o', 'O', '.'])
         if layer_obj.get_draw_contour_fills() == True:
             cbar = self.ax_stereo.density_contourf(dipdir, dips,
                               measurement=measure_type,
-                              method = layer_obj.get_contour_method(),
-                              gridsize = layer_obj.get_contour_resolution(),
-                              cmap = layer_obj.get_colormap(),
-                              sigma = layer_obj.get_contour_sigma())
+                              method=layer_obj.get_contour_method(),
+                              gridsize=layer_obj.get_contour_resolution(),
+                              cmap=layer_obj.get_colormap(),
+                              sigma=layer_obj.get_contour_sigma(),
+                              levels=cont_interval)
         else:
             cbar = None
 
@@ -919,7 +928,8 @@ class MainWindow(object):
                                 sigma = layer_obj.get_contour_sigma(),
                                 colors = layer_obj.get_contour_line_color(),
                                 linewidths = layer_obj.get_contour_line_width(),
-                                linestyles = layer_obj.get_contour_line_style())
+                                linestyles = layer_obj.get_contour_line_style(),
+                                levels=cont_interval)
             else:
                 clines = self.ax_stereo.density_contour(dipdir, dips,
                                 measurement=measure_type,
@@ -928,7 +938,8 @@ class MainWindow(object):
                                 sigma = layer_obj.get_contour_sigma(),
                                 cmap = layer_obj.get_colormap(),
                                 linewidths = layer_obj.get_contour_line_width(),
-                                linestyles = layer_obj.get_contour_line_style())                
+                                linestyles = layer_obj.get_contour_line_style(),
+                                levels=cont_interval)                
 
         if layer_obj.get_draw_contour_labels() == True:
             if clines is not None:

@@ -88,6 +88,10 @@ class PlaneLayer(object):
         self.contour_line_width = 1
         self.contour_line_style = "-"
         self.contour_label_size = 12
+        self.manual_range = False
+        self.lower_limit = 1
+        self.upper_limit = 9
+        self.steps = 8
 
     def get_page(self):
         """
@@ -911,6 +915,55 @@ class PlaneLayer(object):
         is set. The function expects a boolean.
         """
         self.draw_lp_plane = new_state
+
+    def get_manual_range(self):
+        """
+        Returns if the a manual range should be used for contouring.
+
+        Called from the LayerProperties class to set the state of the switch
+        and from the MainWindow class to determine the drawing of contours.
+        Returns a boolean. Default is False.
+        """
+        return self.manual_range
+
+    def set_manual_range(self, new_state):
+        """
+        Sets whether a manual range should be used to draw contours.
+
+        Expects a boolean. Called from the LayerProperties class when a new
+        state is set for the button.
+        """
+        self.manual_range = new_state
+
+    def get_lower_limit(self):
+        """
+        """
+        return self.lower_limit
+
+    def set_lower_limit(self, new_lower):
+        """
+        """
+        self.lower_limit = new_lower
+
+    def get_upper_limit(self):
+        """
+        """
+        return self.upper_limit
+
+    def set_upper_limit(self, new_upper):
+        """
+        """
+        self.upper_limit = new_upper
+
+    def get_steps(self):
+        """
+        """
+        return self.steps
+
+    def set_steps(self, new_steps):
+        """
+        """
+        self.steps = new_steps
 
 
 class FaultPlaneLayer(PlaneLayer):

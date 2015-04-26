@@ -11,6 +11,7 @@ and FileChooserParse-class.
 from gi.repository import Gtk
 import matplotlib.colors as colors
 import os
+import numpy as np
 
 
 class LayerProperties(object):
@@ -40,7 +41,9 @@ class LayerProperties(object):
             "adjustment_pole_edge_width", "adjustment_rose_spacing",
             "adjustment_rose_bottom", "adjustment_contour_resolution",
             "liststore_colormaps", "liststore_contour_method",
-            "adjustment_contour_sigma", "adjustment_contour_label_size"))
+            "adjustment_contour_sigma", "adjustment_contour_label_size",
+            "adjustment_lower_limit", "adjustment_upper_limit",
+            "adjustment_steps"))
         self.layer = layer
         self.redraw = redraw_plot
         self.changes = []
@@ -69,6 +72,7 @@ class LayerProperties(object):
         self.load_contour_properties()
         self.load_rose_properties()
         self.hide_gui_elements()
+        self.set_contour_range_label()
         self.builder.connect_signals(self)
 
     def load_circle_properties(self):
@@ -210,6 +214,22 @@ class LayerProperties(object):
                         self.builder.get_object("radiobutton_use_colormap")
         self.colorbutton_contour_line_color = \
                         self.builder.get_object("colorbutton_contour_line_color")
+        self.switch_manual_range = \
+                        self.builder.get_object("switch_manual_range")
+        self.spinbutton_lower_limit = \
+                        self.builder.get_object("spinbutton_lower_limit")
+        self.spinbutton_upper_limit = \
+                        self.builder.get_object("spinbutton_upper_limit")
+        self.spinbutton_steps = \
+                        self.builder.get_object("spinbutton_steps")
+        self.adjustment_lower_limit = \
+                        self.builder.get_object("adjustment_lower_limit")
+        self.adjustment_upper_limit = \
+                        self.builder.get_object("adjustment_upper_limit")
+        self.adjustment_steps = \
+                        self.builder.get_object("adjustment_steps")
+        self.label_contour_steps = \
+                        self.builder.get_object("label_contour_steps")
         self.checkbutton_draw_contour_fills.set_active(
                                 self.layer.get_draw_contour_fills())
         self.checkbutton_draw_contour_lines.set_active(
@@ -240,6 +260,10 @@ class LayerProperties(object):
                       self.line_style_dict[self.layer.get_contour_line_style()])
         self.colorbutton_contour_line_color.set_color(
                                         self.layer.get_contour_line_rgba())
+        self.switch_manual_range.set_active(self.layer.get_manual_range())
+        self.adjustment_lower_limit.set_value(self.layer.get_lower_limit())
+        self.adjustment_upper_limit.set_value(self.layer.get_upper_limit())
+        self.adjustment_steps.set_value(self.layer.get_steps())
 
     def load_rose_properties(self):
         """
@@ -681,3 +705,36 @@ class LayerProperties(object):
         draw_hoeppener = checkbutton.get_active()
         self.changes.append(
             lambda: self.layer.set_draw_hoeppener(draw_hoeppener))
+
+    def on_switch_manual_range_state_set(self, switch, state):
+        """
+        Queues up the new state of the manual range for contours switch.
+
+        The new state, a boolean, is queued up in the list of changes, and is
+        only applied if the "Apply" button is pressed.
+        """
+        self.changes.append(lambda: self.layer.set_manual_range(state))
+
+    def set_contour_range_label(self):
+        lower = self.spinbutton_lower_limit.get_value()
+        upper = self.spinbutton_upper_limit.get_value()
+        steps = self.spinbutton_steps.get_value()
+        spacing = np.linspace(lower, upper, num=steps).round(2)
+        self.label_contour_steps.set_text(str(spacing))
+
+    def on_spinbutton_lower_limit_value_changed(self, spinbutton):
+        lower_limit = spinbutton.get_value()
+        self.changes.append(lambda: self.layer.set_lower_limit(lower_limit))
+        self.set_contour_range_label()
+
+    def on_spinbutton_upper_limit_value_changed(self, spinbutton):
+        upper_limit = spinbutton.get_value()
+        self.changes.append(lambda: self.layer.set_upper_limit(upper_limit))
+        self.set_contour_range_label()
+
+    def on_spinbutton_steps_value_changed(self, spinbutton):
+        steps = spinbutton.get_value()
+        self.changes.append(lambda: self.layer.set_steps(steps))
+        self.set_contour_range_label()
+
+
