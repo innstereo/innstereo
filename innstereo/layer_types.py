@@ -77,8 +77,6 @@ class PlaneLayer(object):
         self.draw_contour_fills = False
         self.draw_contour_lines = False
         self.draw_contour_labels = False
-        self.render_plane_contours = False
-        self.render_line_contours = True
         self.colormap = "Blues"
         self.contour_resolution = 40
         self.contour_method = "exponential_kamb"
@@ -90,8 +88,8 @@ class PlaneLayer(object):
         self.contour_label_size = 12
         self.manual_range = False
         self.lower_limit = 1
-        self.upper_limit = 9
-        self.steps = 8
+        self.upper_limit = 10
+        self.steps = 10
 
     def get_page(self):
         """
@@ -649,42 +647,6 @@ class PlaneLayer(object):
         dialog when a new value is set.
         """
         self.draw_contour_labels = new_state
-
-    def get_render_pole_contours(self):
-        """
-        Returns if contours should be drawn for the poles of this layer.
-
-        The returned value is a boolean. True means that the poles are
-        contoured. False means the lines are contoured. This is only used
-        for faultplane layers.
-        """
-        return self.render_plane_contours
-
-    def set_render_pole_contours(self, new_state):
-        """
-        Sets a new state for whether the pole contours should be drawn.
-
-        Expects a boolean. This method is called by the layer-properties dialog
-        when a new value is set.
-        """
-        self.render_plane_contours = new_state
-
-    def get_render_line_contours(self):
-        """
-        Returns if contours should be drawn for the linears of this layer.
-
-        The returned value is a boolean.
-        """
-        return self.render_line_contours
-
-    def set_render_line_contours(self, new_state):
-        """
-        Sets a new state for whether the line contours should be drawn.
-
-        Expects a boolean. This method is called by the layer-properties
-        dialog when a new value is set.
-        """
-        self.render_line_contours = new_state
 
     def get_rose_spacing(self):
         """
