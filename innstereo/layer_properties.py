@@ -91,14 +91,15 @@ class LayerProperties(object):
                         self.builder.get_object("adjustment_line_width")
         self.combobox_capstyle = \
                         self.builder.get_object("combobox_capstyle")
-        self.switch_render_gcircles.set_active(
-                              self.layer.get_render_gcircles())
         self.colorbutton_line.set_color(self.layer.get_rgba())
         self.adjustment_line_width.set_value(self.layer.get_line_width())
         self.combobox_line_style.set_active(
                               self.line_style_dict[self.layer.get_line_style()])
         self.combobox_capstyle.set_active(
                               self.capstyle_dict[self.layer.get_capstyle()])
+        switch_state = self.layer.get_render_gcircles()
+        self.switch_render_gcircles.set_active(switch_state)
+        self.set_gcircle_sensitivity(switch_state)
 
     def load_pole_properties(self):
         """
@@ -120,7 +121,6 @@ class LayerProperties(object):
                         self.builder.get_object("adjustment_pole_edge_width")
         self.combobox_pole_style = \
                         self.builder.get_object("combobox_pole_style")
-        self.switch_render_poles.set_active(self.layer.get_render_poles())
         self.colorbutton_pole_fill.set_color(self.layer.get_pole_rgba())
         self.colorbutton_pole_edge_color.set_color(
                             self.layer.get_pole_edge_rgba())
@@ -130,6 +130,9 @@ class LayerProperties(object):
                             self.layer.get_pole_edge_width())
         self.combobox_pole_style.set_active(
                             self.marker_style_dict[self.layer.get_pole_style()])
+        switch_state = self.layer.get_render_poles()
+        self.switch_render_poles.set_active(switch_state)
+        self.set_pole_sensitivity(switch_state)
 
     def load_linear_properties(self):
         """
@@ -151,7 +154,6 @@ class LayerProperties(object):
                         self.builder.get_object("spinbutton_edge_width")
         self.adjustment_marker_edge_width = \
                         self.builder.get_object("adjustment_edge_width")
-        self.switch_render_linears.set_active(self.layer.get_render_linears())
         self.combobox_marker_style.set_active(
                         self.marker_style_dict[self.layer.get_marker_style()])
         self.adjustment_marker_size.set_value(self.layer.get_marker_size())
@@ -160,6 +162,9 @@ class LayerProperties(object):
                                 self.layer.get_marker_edge_rgba())
         self.adjustment_marker_edge_width.set_value(
                                 self.layer.get_marker_edge_width())
+        switch_state = self.layer.get_render_linears()
+        self.switch_render_linears.set_active(switch_state)
+        self.set_linear_sensitivity(switch_state)
 
     def load_fault_properties(self):
         """
@@ -245,10 +250,14 @@ class LayerProperties(object):
                       self.line_style_dict[self.layer.get_contour_line_style()])
         self.colorbutton_contour_line_color.set_color(
                                         self.layer.get_contour_line_rgba())
-        self.switch_manual_range.set_active(self.layer.get_manual_range())
         self.adjustment_lower_limit.set_value(self.layer.get_lower_limit())
         self.adjustment_upper_limit.set_value(self.layer.get_upper_limit())
         self.adjustment_steps.set_value(self.layer.get_steps())
+        self.switch_draw_contour_fills.set_active(self.layer.get_draw_contour_fills())
+        self.set_contour_sensitivity()
+        manual_range_state = self.layer.get_manual_range()
+        self.switch_manual_range.set_active(manual_range_state)
+        self.set_manual_range_sensitivity(manual_range_state)        
 
     def load_rose_properties(self):
         """
@@ -297,6 +306,7 @@ class LayerProperties(object):
         called and queues up the new state in the the list of changes.
         """
         self.changes.append(lambda: self.layer.set_render_linears(state))
+        self.set_linear_sensitivity(state)
 
     def on_entry_layer_name_changed(self, entry):
         """
@@ -315,6 +325,91 @@ class LayerProperties(object):
         method is called and queues up the new state in the the list of changes.
         """
         self.changes.append(lambda: self.layer.set_render_gcircles(state))
+        self.set_gcircle_sensitivity(state)
+
+    def set_gcircle_sensitivity(self, state):
+        """
+        Sets widgets sensitivity according to the great circle switch.
+
+        When the switch is turned off, the widgets for line properties are
+        not nedded and the sensitivity turned off.
+        """
+        self.colorbutton_line.set_sensitive(state)
+        self.combobox_line_style.set_sensitive(state)
+        self.combobox_capstyle.set_sensitive(state)
+        self.spinbutton_line_width.set_sensitive(state)
+
+    def set_linear_sensitivity(self, state):
+        """
+        Sets widgets sensitivity according to the linear feature switch.
+
+        When the switch is turned off, the widgets for linears customization are
+        not nedded and the sensitivity turned off.
+        """
+        self.combobox_marker_style.set_sensitive(state)
+        self.spinbutton_marker_size.set_sensitive(state)
+        self.colorbutton_marker.set_sensitive(state)
+        self.colorbutton_marker_edge.set_sensitive(state)
+        self.spinbutton_edge_width.set_sensitive(state)
+
+    def set_pole_sensitivity(self, state):
+        """
+        Sets widgets sensitivity according to the pole-marker switch.
+
+        When the switch is turned off, the widgets for pole customization are
+        not nedded and the sensitivity turned off.
+        """
+        self.colorbutton_pole_fill.set_sensitive(state)
+        self.colorbutton_pole_edge_color.set_sensitive(state)
+        self.spinbutton_pole_size.set_sensitive(state)
+        self.spinbutton_pole_edge_width.set_sensitive(state)
+        self.combobox_pole_style.set_sensitive(state)
+
+    def set_manual_range_sensitivity(self, state):
+        """
+        Sets widgets sensitivity according to the manual range switch.
+
+        When the switch is turned off, the widgets for the range customization
+        are not nedded and the sensitivity turned off.
+        """
+        self.spinbutton_lower_limit.set_sensitive(state)
+        self.spinbutton_upper_limit.set_sensitive(state)
+        self.spinbutton_steps.set_sensitive(state)
+
+    def set_contour_sensitivity(self):
+        """
+        Turns sensitivity of widget in the contour page on or off.
+
+        Depending on which switches are on or off, widget that don't change
+        the plot are set unsensitive.
+        """
+        fill = self.switch_draw_contour_fills.get_active()
+        line = self.switch_contour_lines.get_active()
+        label = self.switch_contour_labels.get_active()
+        line_color = self.switch_use_line_color.get_active()
+        if line == True:
+            self.switch_contour_labels.set_sensitive(True)
+            if label == True:
+                self.spinbutton_contour_label_size.set_sensitive(True)
+            else:
+                self.spinbutton_contour_label_size.set_sensitive(False)
+            self.combobox_contour_line_style.set_sensitive(True)
+            self.switch_use_line_color.set_sensitive(True)
+            if line_color == True:
+                self.colorbutton_contour_line_color.set_sensitive(True)
+            else:
+                self.colorbutton_contour_line_color.set_sensitive(False)
+        else:
+            self.switch_contour_labels.set_sensitive(False)
+            self.spinbutton_contour_label_size.set_sensitive(False)
+            self.combobox_contour_line_style.set_sensitive(False)
+            self.switch_use_line_color.set_sensitive(False)
+            self.colorbutton_contour_line_color.set_sensitive(False)
+
+        if line == True or fill == True:
+            self.combobox_colormaps.set_sensitive(True)
+        else:
+            self.combobox_colormaps.set_sensitive(False)
 
     def on_switch_render_poles_state_set(self, switch, state):
         """
@@ -324,6 +419,7 @@ class LayerProperties(object):
         called and queues up the new state in the the list of changes.
         """
         self.changes.append(lambda: self.layer.set_render_poles(state))
+        self.set_pole_sensitivity(state)
 
     def on_colorbutton_choose_line_color_color_set(self, color_button):
         """
@@ -537,6 +633,7 @@ class LayerProperties(object):
         is toggled. Queues up the new state in the list of changes.
         """
         self.changes.append(lambda: self.layer.set_draw_contour_fills(state))
+        self.set_contour_sensitivity()
 
     def on_switch_contour_lines_state_set(self, checkbutton, state):
         """
@@ -544,6 +641,7 @@ class LayerProperties(object):
         is toggled. Queues up the new state in the list of changes.
         """
         self.changes.append(lambda: self.layer.set_draw_contour_lines(state))
+        self.set_contour_sensitivity()
 
     def on_combobox_contour_method_changed(self, combobox):
         """
@@ -608,6 +706,7 @@ class LayerProperties(object):
         Queues up the new state in the list of changes.
         """
         self.changes.append(lambda: self.layer.set_draw_contour_labels(state))
+        self.set_contour_sensitivity()
 
     def on_spinbutton_contour_label_size_value_changed(self, spinbutton):
         """
@@ -626,6 +725,7 @@ class LayerProperties(object):
         called and queues up the new state in the the list of changes.
         """
         self.changes.append(lambda: self.layer.set_use_line_color(state))
+        self.set_contour_sensitivity()
 
     def on_colorbutton_contour_line_color_color_set(self, colorbutton):
         """
@@ -670,6 +770,7 @@ class LayerProperties(object):
         """
         self.changes.append(lambda: self.layer.set_manual_range(state))
         self.set_contour_range_label()
+        self.set_manual_range_sensitivity(state)
 
     def set_contour_range_label(self):
         """
@@ -719,5 +820,4 @@ class LayerProperties(object):
         steps = spinbutton.get_value()
         self.changes.append(lambda: self.layer.set_steps(steps))
         self.set_contour_range_label()
-
 

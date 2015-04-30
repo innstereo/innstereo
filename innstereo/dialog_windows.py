@@ -167,18 +167,18 @@ class StereonetProperties(object):
                     self.builder.get_object("adjustment_pixel_density")
         self.radio_schmidt = self.builder.get_object("radiobutton_schmidt")
         self.radio_wulff = self.builder.get_object("radiobutton_wulff")
-        self.checkbutton_draw_grid = \
-                    self.builder.get_object("checkbutton_draw_grid")
-        self.checkbutton_draw_legend = \
-                    self.builder.get_object("checkbutton_draw_legend")
+        self.switch_draw_grid = \
+                    self.builder.get_object("switch_draw_grid")
+        self.switch_draw_legend = \
+                    self.builder.get_object("switch_draw_legend")
         self.colorbutton_canvas = \
                     self.builder.get_object("colorbutton_canvas")
         self.radio_north = \
                     self.builder.get_object("radiobutton_north")
         self.radio_degrees = \
                     self.builder.get_object("radiobutton_degrees")
-        self.checkbutton_cross = \
-                    self.builder.get_object("checkbutton_cross")
+        self.switch_show_cross = \
+                    self.builder.get_object("switch_show_cross")
         
         self.redraw = redraw_function
         self.changes = []
@@ -190,15 +190,15 @@ class StereonetProperties(object):
             self.radio_schmidt.set_active(True)
         else:
             self.radio_wulff.set_active(True)
-        self.checkbutton_draw_grid.\
+        self.switch_draw_grid.\
             set_active(self.settings.get_draw_grid_state())
-        self.checkbutton_draw_legend.\
+        self.switch_draw_legend.\
             set_active(self.settings.get_draw_legend())
         if self.settings.get_show_north() == True:
             self.radio_north.set_active(True)
         else:
             self.radio_degrees.set_active(True)
-        self.checkbutton_cross.set_active(self.settings.get_show_cross())
+        self.switch_show_cross.set_active(self.settings.get_show_cross())
         self.builder.connect_signals(self)
 
     def on_spinbutton_pixel_density_value_changed(self, spinbutton):
@@ -243,26 +243,24 @@ class StereonetProperties(object):
             state = False
         self.changes.append(lambda: self.settings.set_projection_state(state))
 
-    def on_checkbutton_draw_grid_toggled(self, checkbutton):
+    def on_switch_draw_grid_state_set(self, switch, state):
         # pylint: disable=unused-argument
         """
-        Queues up the new grid-drawing setting.
+        Queues up the new grid-drawing setting in the list of changes.
 
-        Triggered when the checkbutton for the grid drawing is toggled. Queues
+        Triggered when the switch for the grid drawing is toggled. Queues
         up the new state in the list of changes.
         """
-        state = checkbutton.get_active()
         self.changes.append(lambda: self.settings.set_draw_grid_state(state))
 
-    def on_checkbutton_draw_legend_toggled(self, checkbutton):
+    def on_switch_draw_legend_state_set(self, switch, state):
         # pylint: disable=unused-argument
         """
         Queues up the new legend-drawing setting.
 
-        Triggered when the checkbutton for the legend drawing is toggled. Queues
+        Triggered when the switch for the legend drawing is toggled. Queues
         up the new state in the list of changes.
         """
-        state = checkbutton.get_active()
         self.changes.append(lambda: self.settings.set_draw_legend(state))
 
     def run(self):
@@ -333,16 +331,15 @@ class StereonetProperties(object):
             state = False
         self.changes.append(lambda: self.settings.set_show_north(state))
 
-    def on_checkbutton_cross_toggled(self, checkbutton):
+    def on_switch_show_cross_state_set(self, switch, state):
         # pylint: disable=unused-argument
         """
         Queues up the new setting, if the center cross should be drawn
 
-        Triggered when the checkbutton for the center cross is toggled.
+        Triggered when the switch for the center cross is toggled.
         Queues up a boolean value. True means that the cross is drawn. False
         means it is not drawn.
         """
-        state = checkbutton.get_active()
         self.changes.append(lambda: self.settings.set_show_cross(state))
 
 
