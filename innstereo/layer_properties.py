@@ -23,7 +23,7 @@ class LayerProperties(object):
     applied.
     """
 
-    def __init__(self, layer, redraw_plot):
+    def __init__(self, layer, redraw_plot, main_window):
         """
         Initializes the Gtk.Builder and loads the about dialog from glade file.
         The builder creates and instance of the about dialog and connects
@@ -48,6 +48,7 @@ class LayerProperties(object):
         self.redraw = redraw_plot
         self.changes = []
         self.dialog = self.builder.get_object("dialog_layer_properties")
+        self.dialog.set_transient_for(main_window)
         self.marker_style_dict = {".": 0, ",": 1, "o": 2, "v": 3, "^": 4, "<": 5,
                              ">": 6, "s": 7, "8": 8, "p": 9, "*": 10, "h": 11,
                              "H": 12, "+": 13, "x": 14, "D": 15, "d": 16,

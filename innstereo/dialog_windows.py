@@ -23,7 +23,7 @@ class AboutDialog(object):
     that are declared in Glade.
     """
 
-    def __init__(self):
+    def __init__(self, main_window):
         """
         Initializes the AboutDialog.
 
@@ -37,6 +37,7 @@ class AboutDialog(object):
         self.builder.add_objects_from_file(abs_path,
             ("aboutdialog", ""))
         self.ab = self.builder.get_object("aboutdialog")
+        self.ab.set_transient_for(main_window)
         self.builder.connect_signals(self)
 
     def run(self):
@@ -146,7 +147,7 @@ class StereonetProperties(object):
     connects all the signals defined in the that file.
     """
 
-    def __init__(self, settings, redraw_function):
+    def __init__(self, settings, redraw_function, main_window):
         """
         Initializes the plot-properties dialog.        
 
@@ -161,6 +162,7 @@ class StereonetProperties(object):
         self.builder.add_objects_from_file(abs_path,
             ("stereonet_properties_dialog", "adjustment_pixel_density"))
         self.spd = self.builder.get_object("stereonet_properties_dialog")
+        self.spd.set_transient_for(main_window)
         self.spinbutton_pixel_density = \
                     self.builder.get_object("spinbutton_pixel_density")
         self.adjustment_pixel_density = \
@@ -352,7 +354,7 @@ class FileChooserParse(object):
     files for text parsing.
     """
 
-    def __init__(self, run_file_parser):
+    def __init__(self, run_file_parser, main_window):
         self.builder = Gtk.Builder()
         script_dir = os.path.dirname(__file__)
         rel_path = "gui_layout.glade"
@@ -360,6 +362,7 @@ class FileChooserParse(object):
         self.builder.add_objects_from_file(abs_path,
             ("filechooserdialog_parse", "filefilter_parse"))
         self.dialog = self.builder.get_object("filechooserdialog_parse")
+        self.dialog.set_transient_for(main_window)
         self.filefilters = self.builder.get_object("filefilter_parse")
         self.filefilters.set_name("Text Files")
         self.dialog.add_filter(self.filefilters)
@@ -434,7 +437,7 @@ class FileChooserExport(object):
     to export data.
     """
 
-    def __init__(self, export_data):
+    def __init__(self, export_data, main_window):
         self.builder = Gtk.Builder()
         self.export_data = export_data
         script_dir = os.path.dirname(__file__)
@@ -443,6 +446,7 @@ class FileChooserExport(object):
         self.builder.add_objects_from_file(abs_path,
             ("filechooserdialog_export", ""))
         self.dialog = self.builder.get_object("filechooserdialog_export")
+        self.dialog.set_transient_for(main_window)
         self.builder.connect_signals(self)
 
     def run(self):
@@ -503,7 +507,7 @@ class FileChooserExport(object):
         """
         self.filename = self.dialog.get_filename()
         if os.path.exists(self.filename) == True:
-            overwrite = OverwriteDialog(self.call_overwrite)
+            overwrite = OverwriteDialog(self.call_overwrite, self.dialog)
             overwrite.run()
         else:
             self.export_data(self.filename)
@@ -530,7 +534,7 @@ class OverwriteDialog(object):
     overwritten. This class handles all the signals of the dialog.
     """
 
-    def __init__(self, call_overwrite):
+    def __init__(self, call_overwrite, export_dialog):
         self.builder = Gtk.Builder()
         self.call_overwrite = call_overwrite
         script_dir = os.path.dirname(__file__)
@@ -539,6 +543,7 @@ class OverwriteDialog(object):
         self.builder.add_objects_from_file(abs_path,
             ("dialog_overwrite", ""))
         self.dialog = self.builder.get_object("dialog_overwrite")
+        self.dialog.set_transient_for(export_dialog)
         self.builder.connect_signals(self)
 
     def run(self):

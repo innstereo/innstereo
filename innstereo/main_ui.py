@@ -347,7 +347,8 @@ class MainWindow(object):
         Triggered when the toolbutton is pressed. Creates and instance of the
         StereonetProperties class, which is a Gtk DialogWindow and runs it.
         """
-        plot_properties = StereonetProperties(self.settings, self.redraw_plot)
+        plot_properties = StereonetProperties(self.settings, self.redraw_plot,
+                                              self.main_window)
         plot_properties.run()
 
     def on_toolbutton_print_figure_clicked(self, widget):
@@ -553,7 +554,7 @@ class MainWindow(object):
 
         row = row_list[0]
         layer_obj = self.layer_store[row][3]
-        layer_prop = LayerProperties(layer_obj, self.redraw_plot)
+        layer_prop = LayerProperties(layer_obj, self.redraw_plot, self.main_window)
         layer_prop.run()
 
     def layer_selection_changed(self, selection):
@@ -1311,7 +1312,7 @@ class MainWindow(object):
         of the AboutDialog class and calls the function "run" within that class
         to show the dialog.
         """
-        about = AboutDialog()
+        about = AboutDialog(self.main_window)
         about.run()
 
     def on_menuitem_quit_activate(self, widget):
@@ -1534,7 +1535,7 @@ class MainWindow(object):
         model, row_list = selection.get_selected_rows()
 
         if len(row_list) == 1:
-            fc = FileChooserParse(self.run_file_parser)
+            fc = FileChooserParse(self.run_file_parser, self.main_window)
             fc.run()
 
         elif len(row_list) == 0:
@@ -1577,7 +1578,7 @@ class MainWindow(object):
 
         if len(row_list) == 1:
             self.redraw_plot()
-            exportdialog = FileChooserExport(self.export_data)
+            exportdialog = FileChooserExport(self.export_data, self.main_window)
             exportdialog.run()
 
         elif len(row_list) == 0:
