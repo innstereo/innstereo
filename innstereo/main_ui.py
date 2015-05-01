@@ -33,6 +33,7 @@ from .layer_properties import LayerProperties
 from .plot_control import PlotSettings
 from .polar_axes import NorthPolarAxes
 from .file_parser import FileParseDialog
+from .rotation_dialog import RotationDialog
 
 
 class MainWindow(object):
@@ -235,6 +236,35 @@ class MainWindow(object):
         self.add_eigenvector_feature(store, dipdir[1], dip[1], values[1])
         self.add_eigenvector_feature(store, dipdir[2], dip[2], values[2])
         self.redraw_plot()
+
+    def on_toolbutton_rotate_layer_clicked(self, toolbutton):
+        # pylint: disable=unused-argument
+        """
+        Open the data rotation dialog.
+
+        If one or more layers are selected a instance of the data-rotation
+        dialog is initialized and the selected rows are passed to it.
+        """
+        selection = self.layer_view.get_selection()
+        model, row_list = selection.get_selected_rows()
+
+        if len(row_list) == 0:
+            self.statbar.push(1, ("Please select layers to rotate!"))
+            return
+
+        def parse_layers(model, path, itr, data, key):
+            line = model[path]
+            data[key][3].append([line[0], line[1], line[2]])
+
+        data_rows = []
+        for row in row_list:
+            layer_obj = model[row][3]
+            data_rows.append(layer_obj)
+
+        rotate_dialog = RotationDialog(self.main_window, self.settings,
+                                       data_rows, self.add_layer_dataset,
+                                       self.add_feature, self.redraw_plot)
+        rotate_dialog.run()
 
     def on_toolbutton_new_project_clicked(self, widget):
         # pylint: disable=unused-argument
@@ -1442,6 +1472,22 @@ class MainWindow(object):
         """
         datastore.append([dip_direct, dip, angle])
 
+    def add_feature(self, layer_type, store, *args):
+        """
+        Adds a feature to a layer.
+
+        Exepects a layer-type and a datastore. Additional arguments are passed
+        to the specific function (e.g. dipdirection or dip)
+        """
+        if layer_type == "plane":
+            self.add_planar_feature(store, *args)
+        if layer_type == "line":
+            self.add_linear_feature(store, *args)
+        if layer_type == "faultplane":
+            self.add_faultplane_feature(store, *args)
+        if layer_type == "smallcircle":
+            self.add_smallcircle_feature(store, *args)
+
     def on_toolbutton_add_feature_clicked(self, widget):
         """
         Adds an empty row to the currently selected data layer.
@@ -1708,7 +1754,7 @@ def startup():
          "image_new_line", "image_new_fold", "image_plane_intersect",
          "image_best_fitting_plane", "layer_right_click_menu",
          "image_create_small_circle", "menu_plot_views", "image_eigenvector",
-         "poles_to_lines", "image_linears_to_planes"))
+         "poles_to_lines", "image_linears_to_planes", "image_rotate"))
 
     gui_instance = MainWindow(builder)
     builder.connect_signals(gui_instance)
