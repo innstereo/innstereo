@@ -562,7 +562,7 @@ class MainWindow(object):
         """
         layer_obj = self.layer_store[path][3]
         if layer_obj is not None:
-            layer_prop = LayerProperties(layer_obj, self.redraw_plot)
+            layer_prop = LayerProperties(layer_obj, self.redraw_plot, self.main_window)
             layer_prop.run()
 
     def on_toolbutton_layer_properties_clicked(self, toolbutton):
