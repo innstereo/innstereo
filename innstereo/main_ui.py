@@ -231,7 +231,7 @@ class MainWindow(object):
         #Normalize to 1
         values = values/np.sum(values)
 
-        store = self.add_layer_dataset("eigenvector")
+        store, new_lyr_obj = self.add_layer_dataset("eigenvector")
         self.add_eigenvector_feature(store, dipdir[0], dip[0], values[0])
         self.add_eigenvector_feature(store, dipdir[1], dip[1], values[1])
         self.add_eigenvector_feature(store, dipdir[2], dip[2], values[2])
@@ -322,7 +322,7 @@ class MainWindow(object):
                 return
 
         #n = new datastore
-        n = self.add_layer_dataset("line")
+        n, new_lyr_obj = self.add_layer_dataset("line")
 
         for row in row_list:
             layer_obj = model[row][3]
@@ -464,7 +464,7 @@ class MainWindow(object):
         fit_strike, fit_dip = mplstereonet.fit_girdle(total_dip, total_dipdir,
                                 measurement="lines")
 
-        store = self.add_layer_dataset("plane")
+        store, new_lyr_obj = self.add_layer_dataset("plane")
         self.add_planar_feature(store, fit_strike + 90, fit_dip)
         self.redraw_plot()
 
@@ -510,7 +510,7 @@ class MainWindow(object):
         fit_strike, fit_dip = mplstereonet.fit_girdle(total_dip, total_dipdir,
                                 measurement="lines")
 
-        store = self.add_layer_dataset("line")
+        store, new_lyr_obj = self.add_layer_dataset("line")
         self.add_linear_feature(store, fit_strike + 270, 90 - fit_dip)
         self.redraw_plot()
 
@@ -541,7 +541,7 @@ class MainWindow(object):
         if only_lines is False:
             return
 
-        store = self.add_layer_dataset("plane")
+        store, new_lyr_obj = self.add_layer_dataset("plane")
 
         for row in row_list:
             layer_obj = model[row][3]
@@ -640,33 +640,34 @@ class MainWindow(object):
         same level as the selection.
         """
         store = None
+        layer_obj_new = None
 
         def add_layer(itr):
             if layer_type == "plane":
                 store = Gtk.ListStore(float, float, str)
                 view = PlaneDataView(store, self.redraw_plot)
-                layer_obj = PlaneLayer(store, view)
+                layer_obj_new = PlaneLayer(store, view)
             elif layer_type == "faultplane":
                 store = Gtk.ListStore(float, float, float, float, str)
                 view = FaultPlaneDataView(store, self.redraw_plot)
-                layer_obj = FaultPlaneLayer(store, view)
+                layer_obj_new = FaultPlaneLayer(store, view)
             elif layer_type == "line":
                 store = Gtk.ListStore(float, float, str)
                 view = LineDataView(store, self.redraw_plot)
-                layer_obj = LineLayer(store, view)
+                layer_obj_new = LineLayer(store, view)
             elif layer_type == "smallcircle":
                 store = Gtk.ListStore(float, float, float)
                 view = SmallCircleDataView(store, self.redraw_plot)
-                layer_obj = SmallCircleLayer(store, view)
+                layer_obj_new = SmallCircleLayer(store, view)
             elif layer_type == "eigenvector":
                 store = Gtk.ListStore(float, float, float)
                 view = EigenVectorView(store, self.redraw_plot)
-                layer_obj = EigenVectorLayer(store, view)
+                layer_obj_new = EigenVectorLayer(store, view)
 
-            pixbuf = layer_obj.get_pixbuf()
+            pixbuf = layer_obj_new.get_pixbuf()
             self.layer_store.append(itr,
-                [True, pixbuf, layer_obj.get_label(), layer_obj])
-            return store
+                [True, pixbuf, layer_obj_new.get_label(), layer_obj_new])
+            return store, layer_obj_new
 
         selection = self.layer_view.get_selection()
         model, row_list = selection.get_selected_rows()
@@ -680,13 +681,13 @@ class MainWindow(object):
             layer_obj = model[row][3]
             selection_itr = model.get_iter(row_list[0])
             if layer_obj is None:
-                store = add_layer(selection_itr)
+                store, layer_obj_new = add_layer(selection_itr)
                 self.layer_view.expand_row(row, True)
             else:
                 parent_itr = model.iter_parent(selection_itr)
-                store = add_layer(parent_itr)
+                store, layer_obj_new = add_layer(parent_itr)
 
-        return store
+        return store, layer_obj_new
 
     def on_toolbutton_create_plane_dataset_clicked(self, widget):
         # pylint: disable=unused-argument
@@ -1214,11 +1215,6 @@ class MainWindow(object):
                     self.draw_hoeppener(layer_obj, plane_dir, plane_dip,
                                         line_dir, line_dip, lp_plane_dir,
                                         lp_plane_dip, sense)
-
-                if layer_obj.get_render_pole_contours() == True:
-                    self.draw_contours(layer_obj, strike, plane_dip, "poles")
-                else:
-                    self.draw_contours(layer_obj, line_dip, line_dir, "lines")
 
             if layer_type == "line":
                 dipdir, dip, sense = self.parse_lines(

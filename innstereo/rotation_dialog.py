@@ -119,10 +119,11 @@ class RotationDialog(object):
         raxis_angle = self.spinbutton_rotation_angle.get_value()
 
         for lyr_obj in self.data:
-            key = 0
             dipdir_lst = []
             dips_lst = []
-            sense = []
+            third = []
+            fourth = []
+            fifth = []
             layer_type = lyr_obj.get_layer_type()
             layer_data = lyr_obj.get_data_treestore()
             for row in layer_data:
@@ -132,19 +133,78 @@ class RotationDialog(object):
                 else:
                     dipdir_lst.append(dipdir)
                 dips_lst.append(dip)
-                sense.append(row[2])
+                third.append(row[2])
+                if layer_type == "faultplane":
+                    fourth.append(row[3])
+                    fifth.append(row[4])
 
             if layer_type == "line":
-                store = self.add_layer_dataset("line")
-                for dipdir, dip in zip(dipdir_lst, dips_lst):
-                    self.add_feature("line", store, dipdir, dip, sense[key])
-                    key += 1
+                store, new_lyr_obj = self.add_layer_dataset("line")
+                for dipdir, dip, sense in zip(dipdir_lst, dips_lst, third):
+                    self.add_feature("line", store, dipdir, dip, sense)
                 
             if layer_type == "plane":
-                store = self.add_layer_dataset("plane")
-                for dipdir, dip in zip(dipdir_lst, dips_lst):
-                    self.add_feature("plane", store, dipdir, dip, sense[key])
-                    key += 1
+                store, new_lyr_obj = self.add_layer_dataset("plane")
+                for dipdir, dip, strat in zip(dipdir_lst, dips_lst, third):
+                    self.add_feature("plane", store, dipdir, dip, strat)
+
+            if layer_type == "smallcircle":
+                store, new_lyr_obj = self.add_layer_dataset("smallcircle")
+                for dipdir, dip, angle in zip(dipdir_lst, dips_lst, third):
+                    self.add_feature("smallcircle", store, dipdir, dip, angle)
+
+            if layer_type == "faultplane":
+                store, new_lyr_obj = self.add_layer_dataset("faultplane")
+                for dipdir, dip, ldipdir, ldip, sense in zip(dipdir_lst, dips_lst,
+                                                             third, fourth, fifth):
+                    self.add_feature("faultplane", store, dipdir, dip, ldipdir, ldip, sense)
+
+            new_lyr_obj.set_render_gcircles(lyr_obj.get_render_gcircles())
+            new_lyr_obj.set_line_color(lyr_obj.get_line_color())
+            new_lyr_obj.set_line_width(lyr_obj.get_line_width())
+            new_lyr_obj.set_line_style(lyr_obj.get_line_style())
+            new_lyr_obj.set_line_alpha(lyr_obj.get_line_alpha())
+            new_lyr_obj.set_capstyle(lyr_obj.get_capstyle())
+
+            new_lyr_obj.set_render_poles(lyr_obj.get_render_poles())
+            new_lyr_obj.set_pole_style(lyr_obj.get_pole_style())
+            new_lyr_obj.set_pole_size(lyr_obj.get_pole_size())
+            new_lyr_obj.set_pole_fill(lyr_obj.get_pole_fill())
+            new_lyr_obj.set_pole_edge_color(lyr_obj.get_pole_edge_color())
+            new_lyr_obj.set_pole_edge_width(lyr_obj.get_pole_edge_width())
+            new_lyr_obj.set_pole_alpha(lyr_obj.get_pole_alpha())
+
+            new_lyr_obj.set_render_linears(lyr_obj.get_render_linears())
+            new_lyr_obj.set_marker_style(lyr_obj.get_marker_style())
+            new_lyr_obj.set_marker_size(lyr_obj.get_marker_size())
+            new_lyr_obj.set_marker_fill(lyr_obj.get_marker_fill())
+            new_lyr_obj.set_marker_edge_color(lyr_obj.get_marker_edge_color())
+            new_lyr_obj.set_marker_edge_width(lyr_obj.get_marker_edge_width())
+            new_lyr_obj.set_marker_alpha(lyr_obj.get_marker_alpha())
+
+            new_lyr_obj.set_rose_spacing(lyr_obj.get_rose_spacing())
+            new_lyr_obj.set_rose_bottom(lyr_obj.get_rose_bottom())
+
+            new_lyr_obj.set_draw_hoeppener(lyr_obj.get_draw_hoeppener())
+            new_lyr_obj.set_draw_lp_plane(lyr_obj.get_draw_lp_plane())
+
+            #Contours
+            new_lyr_obj.set_draw_contour_fills(lyr_obj.get_draw_contour_fills())
+            new_lyr_obj.set_draw_contour_lines(lyr_obj.get_draw_contour_lines())
+            new_lyr_obj.set_draw_contour_labels(lyr_obj.get_draw_contour_labels())
+            new_lyr_obj.set_colormap(lyr_obj.get_colormap())
+            new_lyr_obj.set_contour_resolution(lyr_obj.get_contour_resolution())
+            new_lyr_obj.set_contour_method(lyr_obj.get_contour_method())
+            new_lyr_obj.set_contour_sigma(lyr_obj.get_contour_sigma())
+            new_lyr_obj.set_contour_line_color(lyr_obj.get_contour_line_color())
+            new_lyr_obj.set_use_line_color(lyr_obj.get_use_line_color())
+            new_lyr_obj.set_contour_line_width(lyr_obj.get_contour_line_width())
+            new_lyr_obj.set_contour_line_style(lyr_obj.get_contour_line_style())
+            new_lyr_obj.set_contour_label_size(lyr_obj.get_contour_label_size())
+            new_lyr_obj.set_manual_range(lyr_obj.get_manual_range())
+            new_lyr_obj.set_lower_limit(lyr_obj.get_lower_limit())
+            new_lyr_obj.set_upper_limit(lyr_obj.get_upper_limit())
+            new_lyr_obj.set_steps(lyr_obj.get_steps())
 
         self.dialog.hide()
         self.redraw_main()
@@ -300,20 +360,44 @@ class RotationDialog(object):
             dips_org = []
             dipdir_lst = []
             dips_lst = []
+            ldipdir_org = []
+            ldips_org = []
+            ldipdir_lst = []
+            ldips_lst = []
+
             layer_type = lyr_obj.get_layer_type()
             layer_data = lyr_obj.get_data_treestore()
+            third = []
+            fourth = []
             for row in layer_data:
-                if layer_type == "plane":
+                #List of original data
+                if layer_type == "plane" or layer_type == "faultplane":
                     dipdir_org.append(row[0] - 90)
                 else:
                     dipdir_org.append(row[0])
+
                 dips_org.append(row[1])
+
+                if layer_type == "faultplane":
+                    ldipdir_org.append(row[2])
+                    ldips_org.append(row[3])
+
+                #Rotate data
                 dipdir, dip = self.rotate_data(raxis, raxis_angle, row[0], row[1])
-                if layer_type == "plane":
+                if layer_type == "faultplane":
+                    ldipdir, ldip = self.rotate_data(raxis, raxis_angle, row[2], row[3])
+
+                #Add rotated data
+                if layer_type == "plane" or layer_type == "faultplane":
                     dipdir_lst.append(dipdir - 90)
                 else:
                     dipdir_lst.append(dipdir)
                 dips_lst.append(dip)
+                if layer_type == "smallcircle":
+                    third.append(row[2])
+                if layer_type == "faultplane":
+                    ldipdir_lst.append(ldipdir)
+                    ldips_lst.append(ldip)
 
             if layer_type == "line":
                 self.original_ax.line(dips_org, dipdir_org,
@@ -342,6 +426,45 @@ class RotationDialog(object):
                     linestyle=lyr_obj.get_line_style(),
                     dash_capstyle=lyr_obj.get_capstyle(),
                     alpha=lyr_obj.get_line_alpha(), clip_on=False)
+
+            if layer_type == "smallcircle":
+                self.original_ax.cone(dips_org, dipdir_org, third, facecolor="None",
+                            color=lyr_obj.get_line_color(),
+                            linewidth=lyr_obj.get_line_width(),
+                            label=lyr_obj.get_label(),
+                            linestyle=lyr_obj.get_line_style())
+                self.rotated_ax.cone(dips_lst, dipdir_lst, third, facecolor="None",
+                            color=lyr_obj.get_line_color(),
+                            linewidth=lyr_obj.get_line_width(),
+                            label=lyr_obj.get_label(),
+                            linestyle=lyr_obj.get_line_style())
+
+            if layer_type == "faultplane":
+                self.original_ax.plane(dipdir_org, dips_org, color=lyr_obj.get_line_color(),
+                                        linewidth=lyr_obj.get_line_width(),
+                                        linestyle=lyr_obj.get_line_style(),
+                                        dash_capstyle=lyr_obj.get_capstyle(),
+                                        alpha=lyr_obj.get_line_alpha(), clip_on=False)
+                self.rotated_ax.plane(dipdir_lst, dips_lst, color=lyr_obj.get_line_color(),
+                                        linewidth=lyr_obj.get_line_width(),
+                                        linestyle=lyr_obj.get_line_style(),
+                                        dash_capstyle=lyr_obj.get_capstyle(),
+                                        alpha=lyr_obj.get_line_alpha(), clip_on=False)
+
+                self.original_ax.line(ldips_org, ldipdir_org,
+                                    marker=lyr_obj.get_marker_style(),
+                                    markersize=lyr_obj.get_marker_size(),
+                                    color=lyr_obj.get_marker_fill(),
+                                    markeredgewidth=lyr_obj.get_marker_edge_width(),
+                                    markeredgecolor=lyr_obj.get_marker_edge_color(),
+                                    alpha=lyr_obj.get_marker_alpha(), clip_on=False)
+                self.rotated_ax.line(ldips_lst, ldipdir_lst,
+                                    marker=lyr_obj.get_marker_style(),
+                                    markersize=lyr_obj.get_marker_size(),
+                                    color=lyr_obj.get_marker_fill(),
+                                    markeredgewidth=lyr_obj.get_marker_edge_width(),
+                                    markeredgecolor=lyr_obj.get_marker_edge_color(),
+                                    alpha=lyr_obj.get_marker_alpha(), clip_on=False)
 
         #Plot rotation axis
         self.original_ax.line(raxis_dip, raxis_dipdir, marker="o",

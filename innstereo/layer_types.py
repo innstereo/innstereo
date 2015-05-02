@@ -412,6 +412,14 @@ class PlaneLayer(object):
         """
         return self.pole_alpha
 
+    def set_pole_alpha(self, new_alpha):
+        """
+        Sets a new transparency for the pole markers.
+
+        Expects a float value between 0 and 1.
+        """
+        self.pole_alpha = new_alpha
+
     def get_marker_style(self):
         """
         Returns the marker style set for this layer.
