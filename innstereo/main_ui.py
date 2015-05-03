@@ -674,7 +674,7 @@ class MainWindow(object):
 
         rows = len(row_list)
         if rows == 0 or rows > 1:
-            store = add_layer(None)
+            store, layer_obj_new = add_layer(None)
         else:
             #If selected item is group, add to group, else: add to level
             row = row_list[0]
