@@ -11,7 +11,6 @@ GUI
 - Data sorting dialog
 - Undo & Redo
 - Print dialog
-- Data rotation dialog
 
 Settings
 --------
@@ -32,6 +31,5 @@ Calculations
 ------------
 
 - Inversion
-- Rotate data around pole
 - Find axial planes
 - Find conjugated planes
