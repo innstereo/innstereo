@@ -5,6 +5,14 @@
 
 Momentan werden Versionsnummern nach dem folgenden Schema vergeben: Version 1.0 wird die erste stabile Version mit vollem Funktionsumfang sein. Alpha-Versionen geben frühe Einblicke in die Entwicklung. Beta-Versionen werden vergeben wenn das Programm weitgehend vollständig ist. Die jeweils aktuellste Version kann `auf dieser Seite <https://github.com/tobias47n9e/innstereo/releases>`_ heruntergeladen werden.
 
+InnStereo v1.0-alpha.5
+----------------------
+
+ - [Feature] Dialog für Datenrotationen um eine beliebige Achse wurde hinzugefügt.
+ - [Feature] Dialogfenster wurden überarbeitet (Struktur, Sensibilität, Schalter)
+ - [Bug] Der Schalter der das zeichnen von Linearen an- un ausschaltet wird jetzt mit der richtigen Einstellung geladen.
+ - `[Bug] <https://github.com/tobias47n9e/innstereo/issues/5>`_ Dialogfenster haben jetzt ein übergeordnetes Fenster.
+
 InnStereo v1.0-alpha.4
 ----------------------
 
