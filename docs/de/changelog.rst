@@ -8,7 +8,7 @@ Momentan werden Versionsnummern nach dem folgenden Schema vergeben: Version 1.0 
 InnStereo v1.0-alpha.5
 ----------------------
 
- - [Feature] Dialog für Datenrotationen um eine beliebige Achse wurde hinzugefügt.
+ - `[Feature] <https://github.com/tobias47n9e/innstereo/issues/13>`_ Dialog für Datenrotationen um eine beliebige Achse wurde hinzugefügt.
  - [Feature] Dialogfenster wurden überarbeitet (Struktur, Sensibilität, Schalter)
  - [Bug] Der Schalter der das zeichnen von Linearen an- un ausschaltet wird jetzt mit der richtigen Einstellung geladen.
  - `[Bug] <https://github.com/tobias47n9e/innstereo/issues/5>`_ Dialogfenster haben jetzt ein übergeordnetes Fenster.

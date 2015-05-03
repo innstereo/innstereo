@@ -8,7 +8,7 @@ Versioning will work this way. Alpha releases will be done, so people can test e
 InnStereo v1.0-alpha.5
 ----------------------
 
- - [Feature] Data-Rotation-Dialog implemented.
+ - `[Feature] <https://github.com/tobias47n9e/innstereo/issues/13>`_ Data-Rotation-Dialog implemented.
  - [Feature] Improved dialog structure (switches, sensitivity, layout).
  - [Bug] Fixed loading the setting of line drawing switch which was always on.
  - `[Bug] <https://github.com/tobias47n9e/innstereo/issues/5>`_ Fixed dialog windows not having a transient parent set.
