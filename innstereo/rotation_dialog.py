@@ -263,6 +263,12 @@ class RotationDialog(object):
                                                     alpha_deg * (-1))
         gamma = float(array[1])
         gamma_deg = 90 - np.degrees(gamma)
+
+        #If the longitude is larger or small than pi/2 the measurment lies
+        #on the upper hemisphere and needs to be corrected.
+        if lon > (np.pi / 2) or lon < (-np.pi / 2):
+            alpha_deg = alpha_deg + 180
+
         return alpha_deg, gamma_deg
 
     def rotate_data(self, raxis, raxis_angle, dipdir, dip):
@@ -382,17 +388,25 @@ class RotationDialog(object):
                     ldipdir_org.append(row[2])
                     ldips_org.append(row[3])
 
-                #Rotate data
-                dipdir, dip = self.rotate_data(raxis, raxis_angle, row[0], row[1])
+                #Rotate lines and smallcircles directly, and poles of planes and faultplanes
+                if layer_type == "line" or layer_type == "smallcircle":
+                    dipdir, dip = self.rotate_data(raxis, raxis_angle, row[0], row[1])
+                else:
+                    dipdir, dip = self.rotate_data(raxis, raxis_angle, row[0]+180, 90-row[1])
+
+                #Rotate the linear of faultplanes.
                 if layer_type == "faultplane":
                     ldipdir, ldip = self.rotate_data(raxis, raxis_angle, row[2], row[3])
 
                 #Add rotated data
                 if layer_type == "plane" or layer_type == "faultplane":
-                    dipdir_lst.append(dipdir - 90)
+                    #Convert to strike and dip for easier preview plotting
+                    dipdir_lst.append(dipdir + 90)
+                    dips_lst.append(90 - dip)
                 else:
                     dipdir_lst.append(dipdir)
-                dips_lst.append(dip)
+                    dips_lst.append(dip)
+
                 if layer_type == "smallcircle":
                     third.append(row[2])
                 if layer_type == "faultplane":
