@@ -5,6 +5,12 @@
 
 Momentan werden Versionsnummern nach dem folgenden Schema vergeben: Version 1.0 wird die erste stabile Version mit vollem Funktionsumfang sein. Alpha-Versionen geben frühe Einblicke in die Entwicklung. Beta-Versionen werden vergeben wenn das Programm weitgehend vollständig ist. Die jeweils aktuellste Version kann `auf dieser Seite <https://github.com/tobias47n9e/innstereo/releases>`_ heruntergeladen werden.
 
+InnStereo v1.0-alpha.6
+----------------------
+
+ - [Bug] Rotationen über den Rand des Stereonetzes geben jetzt die richtigen Resultate. In der letzten Version wurden diese Punkte auf der oberen Hemisphäre dargestellt. 
+ - [Bug] Flächen und Lineare rotieren jetzt in die gleiche Richtung.
+
 InnStereo v1.0-alpha.5
 ----------------------
 

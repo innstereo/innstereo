@@ -5,6 +5,12 @@ Changelog
 
 Versioning will work this way. Alpha releases will be done, so people can test early interface design decisions. Beta releases will done after the program is more mature. Eventually this will lead to the first 1.0 release. Download the most recent release from `this page <https://github.com/tobias47n9e/innstereo/releases>`_.
 
+InnStereo v1.0-alpha.6
+----------------------
+
+ - [Bug] Rotations across stereonet boundaries leading to false results fixed. Points were falsely plotted on the upper hemisphere.
+ - [Bug] Planes and linears now rotate in same direction.
+
 InnStereo v1.0-alpha.5
 ----------------------
 
