@@ -2,7 +2,7 @@ from distutils.core import setup
 
 setup(
     name = "innstereo",
-    version = "1.0-a5",
+    version = "1.0-a6",
     description = "Sterographic plotting for structural geology",
     author = "Tobias Schoenberg",
     author_email = "tobias47n9e@gmail.com",
