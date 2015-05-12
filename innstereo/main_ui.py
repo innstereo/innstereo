@@ -552,6 +552,175 @@ class MainWindow(object):
 
         self.redraw_plot()
 
+    def convert_lonlat_to_dipdir(self, lon, lat):
+        """
+        Converts lat-lon data to dip-direction and dip.
+
+        Expects a longitude and a latitude value. The measurment is forward
+        transformed into stereonet-space. Then the azimut (dip-direction) and
+        diping angle are calculated. Returns two values: dip-direction and dip.
+        """
+        #The longitude and latitude have to be forward-transformed to get
+        #the corect azimuth angle
+        xy = np.array([[lon, lat]])
+        xy_trans = self.trans.transform(xy)
+        x = float(xy_trans[0,0:1])
+        y = float(xy_trans[0,1:2])
+        alpha = np.arctan2(x, y)
+        alpha_deg = np.degrees(alpha)
+        if alpha_deg < 0:
+            alpha_deg += 360
+
+        #Longitude and Latitude don't need to be converted for rotation.
+        #The correct dip is the array[1] value once the vector has been
+        #rotated in north-south position.
+        array = mplstereonet.stereonet_math._rotate(np.degrees(lon),
+                                                    np.degrees(lat),
+                                                    alpha_deg * (-1))
+        gamma = float(array[1])
+        gamma_deg = 90 - np.degrees(gamma)
+
+        #If the longitude is larger or small than pi/2 the measurment lies
+        #on the upper hemisphere and needs to be corrected.
+        if lon > (np.pi / 2) or lon < (-np.pi / 2):
+            alpha_deg = alpha_deg + 180
+
+        return alpha_deg, gamma_deg
+
+    def rotate_data(self, raxis, raxis_angle, dipdir, dip):
+        """
+        Rotates a measurment around a rotation axis a set number of degrees.
+
+        Expects a rotation-axis, a rotation-angle, a dip-direction and a
+        dip angle. The measurement is converted to latlot and then passed
+        to the mplstereonet rotate function.
+        """
+        lonlat = mplstereonet.line(dip, dipdir)
+
+        #Rotation around x-axis until rotation-axis azimuth is east-west
+        rot1 = (90 - raxis[0])
+        lon1 = np.degrees(lonlat[0])
+        lat1 = np.degrees(lonlat[1])
+        lon_rot1, lat_rot1 = mplstereonet.stereonet_math._rotate(lon1, lat1,
+                                                      theta=rot1, axis="x")
+
+        #Rotation around z-axis until rotation-axis dip is east-west
+        rot2 = -(90 - raxis[1])
+        lon2 = np.degrees(lon_rot1)
+        lat2 = np.degrees(lat_rot1)
+        lon_rot2, lat_rot2 = mplstereonet.stereonet_math._rotate(lon2, lat2,
+                                                           theta=rot2, axis="z")
+            
+        #Rotate around the x-axis for the specified rotation:
+        rot3 = raxis_angle
+        lon3 = np.degrees(lon_rot2)
+        lat3 = np.degrees(lat_rot2)
+        lon_rot3, lat_rot3 = mplstereonet.stereonet_math._rotate(lon3, lat3,
+                                                           theta=rot3, axis="x")
+
+        #Undo the z-axis rotation
+        rot4 = -rot2
+        lon4 = np.degrees(lon_rot3)
+        lat4 = np.degrees(lat_rot3)
+        lon_rot4, lat_rot4 = mplstereonet.stereonet_math._rotate(lon4, lat4,
+                                                           theta=rot4, axis="z")
+
+        #Undo the x-axis rotation
+        rot5 = -rot1
+        lon5 = np.degrees(lon_rot4)
+        lat5 = np.degrees(lat_rot4)
+        lon_rot5, lat_rot5 = mplstereonet.stereonet_math._rotate(lon5, lat5,
+                                                           theta=rot5, axis="x")
+        dipdir5, dip5 = self.convert_lonlat_to_dipdir(lon_rot5, lat_rot5)
+        return dipdir5, dip5
+
+    def on_toolbutton_ptaxis_clicked(self, toolbutton):
+        """
+        Calculates the PT-Axis of a faultplane, and add adds them to the project
+
+        Triggered from the toolbar. One faultplane layer has to be selected.
+        Iterates over the rows and calculates the p-, t, and b-axis for each
+        of them.
+        """
+        selection = self.layer_view.get_selection()
+        model, row_list = selection.get_selected_rows()
+
+        if len(row_list) == 0:
+            return
+
+        if len(row_list) > 1:
+            return
+
+        row = row_list[0]
+        lyr_obj = model[row][3]
+        lyr_type = lyr_obj.get_layer_type()
+
+        if lyr_type != "faultplane":
+            return
+
+        def iterate_over_data(model, path, itr, pbt_store):
+            """
+            Iterates over the faultplane and adds the pt-axis for each row.
+
+            For each row the pole-linear-layer is calculated. The pole of
+            that layer is the rotation axis and the b-axis. The linear is
+            then rotated for the p-axis and t-axis.
+            """
+            drow = model[path]
+            p_store = pbt_store[0]
+            b_store = pbt_store[1]
+            t_store = pbt_store[2]
+
+            fit_strike, fit_dip = mplstereonet.fit_girdle(
+                                    [float(drow[3]), 90 - float(drow[1])],
+                                    [float(drow[2]), float(drow[0]) + 180],
+                                    measurement="lines")
+            #Plane between pole and linear
+            self.ax_stereo.plane(fit_strike, fit_dip)
+
+            #Rotation axis is pole of pole-linear-plane
+            raxis = [fit_strike - 90, 90 - fit_dip]
+
+            #B-Axis is rotation axis
+            self.add_linear_feature(b_store, raxis[0], raxis[1])
+
+            #Rotate 30° to P-axis
+            if drow[4] == "dn" or drow[4] == "dex":
+                rot = 30
+            else:
+                rot = -30
+            p_dipdir, p_dip = self.rotate_data(raxis, rot, drow[2], drow[3])
+            self.add_linear_feature(p_store, p_dipdir, p_dip)
+
+            #Rotate 30°+120=150 to T-axis
+            if drow[4] == "dn" or drow[4] == "dex":
+                rot = -60
+            else:
+                rot = 60
+            t_dipdir, t_dip = self.rotate_data(raxis, rot, drow[2], drow[3])
+            self.add_linear_feature(t_store, t_dipdir, t_dip)
+
+        p_store, p_lyr_obj = self.add_layer_dataset("line")
+        p_lyr_obj.set_marker_fill("#ff0000")
+        p_lyr_obj.set_marker_fill("#ff0000")
+        p_lyr_obj.set_label("P-Axis")
+
+        b_store, b_lyr_obj = self.add_layer_dataset("line")
+        b_lyr_obj.set_marker_fill("#ffffff")
+        b_lyr_obj.set_marker_style("s")
+        b_lyr_obj.set_label("B-Axis")
+
+        t_store, t_lyr_obj = self.add_layer_dataset("line")
+        t_lyr_obj.set_marker_fill("#0000ff")
+        t_lyr_obj.set_marker_style("^")
+        t_lyr_obj.set_label("T-Axis")
+
+        pbt_store = [p_store, b_store, t_store]
+
+        lyr_store = lyr_obj.get_data_treestore()
+        lyr_store.foreach(iterate_over_data, pbt_store)
+        self.redraw_plot()
+
     def layer_row_activated(self, treeview, path, column):
         """
         Double clicking a layer, opens the layer-property dialog.
@@ -1750,7 +1919,8 @@ def startup():
          "image_new_line", "image_new_fold", "image_plane_intersect",
          "image_best_fitting_plane", "layer_right_click_menu",
          "image_create_small_circle", "menu_plot_views", "image_eigenvector",
-         "poles_to_lines", "image_linears_to_planes", "image_rotate"))
+         "poles_to_lines", "image_linears_to_planes", "image_rotate",
+         "image_pt_axis"))
 
     gui_instance = MainWindow(builder)
     builder.connect_signals(gui_instance)

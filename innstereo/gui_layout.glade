@@ -1345,6 +1345,11 @@ equatorial aspect</property>
     <property name="can_focus">False</property>
     <property name="pixbuf">calculate_plane_intersect.svg</property>
   </object>
+  <object class="GtkImage" id="image_pt_axis">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">calculate_pt_axis.svg</property>
+  </object>
   <object class="GtkImage" id="image_rotate">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
@@ -4148,6 +4153,20 @@ equatorial aspect</property>
                 <property name="use_underline">True</property>
                 <property name="icon_widget">image_rotate</property>
                 <signal name="clicked" handler="on_toolbutton_rotate_layer_clicked" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="homogeneous">True</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkToolButton" id="toolbutton_ptaxis">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Calculate PT-Axis</property>
+                <property name="use_underline">True</property>
+                <property name="icon_widget">image_pt_axis</property>
+                <signal name="clicked" handler="on_toolbutton_ptaxis_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
