@@ -552,6 +552,51 @@ class MainWindow(object):
 
         self.redraw_plot()
 
+    def on_toolbutton_mean_vector_clicked(self, toolbutton):
+        """
+        Calculates the mean vector and adds it to the project.
+
+        Parses line-layers and adds up all the values. then the mean vector
+        is calculated and added to the project. The legend will show the
+        dip-direction/dip of the mean vector and the coefficient of
+        determination (r-value).
+        """
+        selection = self.layer_view.get_selection()
+        model, row_list = selection.get_selected_rows()
+
+        if len(row_list) == 0:
+            return
+
+        #Check if all selected layers are linear layers.
+        only_lines = True
+        for row in row_list:
+            layer_obj = model[row][3]
+            if layer_obj.get_layer_type() != "line":
+                only_lines = False
+
+        if only_lines is False:
+            return
+
+        total_dipdir = []
+        total_dip = []
+        for row in row_list:
+            layer_obj = model[row][3]
+            store = layer_obj.get_data_treestore()
+            dipdir, dip, sense = self.parse_lines(store)
+            for x, y in zip(dipdir, dip):
+                total_dipdir.append(x)
+                total_dip.append(y)
+
+        lon, lat = mplstereonet.line(total_dip, total_dipdir)
+        mean_vec, r_value = mplstereonet.stereonet_math.mean_vector(lon, lat)
+        dipdir, dip = self.convert_lonlat_to_dipdir(mean_vec[0], mean_vec[1])
+
+        new_store, new_lyr_obj = self.add_layer_dataset("eigenvector")
+        new_lyr_obj.set_label("Mean Vector")
+        self.add_linear_feature(new_store, dipdir, dip, r_value)
+
+        self.redraw_plot()
+
     def convert_lonlat_to_dipdir(self, lon, lat):
         """
         Converts lat-lon data to dip-direction and dip.
@@ -1047,11 +1092,11 @@ class MainWindow(object):
         for v in values:
             values_str.append(str(v))
 
-        lbl = "{}   \n  {}/{}, {}\n  {}/{}, {}\n  {}/{}, {}".format(
-                           layer_obj.get_label(),
-                           dipdir_str[0], dip_str[0], values_str[0],
-                           dipdir_str[1], dip_str[1], values_str[1],
-                           dipdir_str[2], dip_str[2], values_str[2])
+        lbl = "{}   \n".format(layer_obj.get_label())
+
+        for key, value in enumerate(dipdir):
+            lbl += "  {}/{}, {}\n".format(dipdir_str[key], dip_str[key],
+                                          values_str[key])
 
         #ax.line takes dip first and then dipdir (as strike)
         self.ax_stereo.line(dip, dipdir, marker=layer_obj.get_marker_style(),
@@ -1920,7 +1965,7 @@ def startup():
          "image_best_fitting_plane", "layer_right_click_menu",
          "image_create_small_circle", "menu_plot_views", "image_eigenvector",
          "poles_to_lines", "image_linears_to_planes", "image_rotate",
-         "image_pt_axis"))
+         "image_pt_axis", "image_mean_vector"))
 
     gui_instance = MainWindow(builder)
     builder.connect_signals(gui_instance)

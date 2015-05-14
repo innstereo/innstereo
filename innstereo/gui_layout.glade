@@ -1320,6 +1320,11 @@ equatorial aspect</property>
     <property name="can_focus">False</property>
     <property name="pixbuf">calculate_normal_plane.svg</property>
   </object>
+  <object class="GtkImage" id="image_mean_vector">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">calculate_mean_vector.svg</property>
+  </object>
   <object class="GtkImage" id="image_new_faultplane">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
@@ -4093,6 +4098,20 @@ equatorial aspect</property>
                 <property name="use_underline">True</property>
                 <property name="icon_widget">image_best_fitting_plane</property>
                 <signal name="clicked" handler="on_toolbutton_best_plane_clicked" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="homogeneous">True</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkToolButton" id="toolbutton_mean_vector">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">toolbutton1</property>
+                <property name="use_underline">True</property>
+                <property name="icon_widget">image_mean_vector</property>
+                <signal name="clicked" handler="on_toolbutton_mean_vector_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
