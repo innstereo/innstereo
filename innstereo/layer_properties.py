@@ -278,6 +278,14 @@ class LayerProperties(object):
     def hide_gui_elements(self):
         """
         Hides some elements of the GUI depending on the layer type
+
+        Pages:
+        0: Great and Small Circles
+        1: Poles
+        2: Lines
+        3: Fault Plots
+        4: Contours
+        5: Rose Diagram
         """
         self.notebook = \
                         self.builder.get_object("notebook1")
@@ -296,6 +304,11 @@ class LayerProperties(object):
             self.notebook.get_nth_page(4).hide()
             self.notebook.get_nth_page(5).hide()
         elif layertype == "faultplane":
+            self.notebook.get_nth_page(4).hide()
+        elif layertype == "eigenvector":
+            self.notebook.get_nth_page(0).hide()
+            self.notebook.get_nth_page(1).hide()
+            self.notebook.get_nth_page(3).hide()
             self.notebook.get_nth_page(4).hide()
         self.notebook.set_current_page(self.layer.get_page())
 
