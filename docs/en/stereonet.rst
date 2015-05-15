@@ -20,6 +20,23 @@ In most cases it is preferable to use a projection that optimises equal area, be
 
     Small circles (all 10° radius) make it easier to see that area is preserved reasonably well across all orientations. Angles are slightly distorted and make the circles appear as ellipses.
 
+The x-axis (horizontal) and y-axis (vertical) coordinates 
+
+  .. raw:: latex html
+
+    x = Rk \cos(\phi) \sin(\lambda - \lambda_{0}
+    y = Rk \sin(\phi)
+
+    \phi = Latitude
+    \lambda = Longitude
+    \lambda_{0} = Central Meridian (y-axis)
+
+With k equal to:
+
+  .. raw:: latex html
+
+    k = \frac{2 k_{0}}{1 + \cos(\phi) \cos(\lambda - \lambda_{0}}
+
 Equal angle projection
 ^^^^^^^^^^^^^^^^^^^^^^
 
