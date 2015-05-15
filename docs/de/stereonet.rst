@@ -20,22 +20,55 @@ Für die meisten Fragestellungen in der Geologie ist es von Vorteil eine räumli
 
     Diese Abbildung zeigt eine Reihe von Kleinkreisen mit einem Radius von 10°. Die Größe der Kreise bleibt über den gesamten Bereich relativ gut erhalten, während aufgrund der Winkelverzerrung die Kreise gegen den Rand hin zu Ellipsen verzerrt werden.
 
-Die x- und y-Koordinaten berechnen sich aus den Längen- und Breitengraden aus dieser Formel:
+Die X- und Y-Koordinaten berechnen sich aus den Längen- und Breitengraden aus dieser Formel:
 
 .. math::
 
-    x = Rk \cos(\phi) \sin(\lambda - \lambda_{0}
-    y = Rk \sin(\phi)
-
-    \phi = Breitengrad
-    \lambda = Längengrad
-    \lambda_{0} = Zentralmeridian (y-Achse)
+    x = Rk \cos(\phi) \sin(\lambda - \lambda_{0} \\
+    y = Rk \sin(\phi) \\
 
 Mit k gleich:
 
 .. math::
 
     k = \frac{2 k_{0}}{1 + \cos(\phi) \cos(\lambda - \lambda_{0}}
+
+Die Variablen stehen für:
+
+.. math::
+
+    R = Radius
+    \phi = Breitengrad \\
+    \lambda = Längengrad \\
+    \lambda_{0} = Zentralmeridian (y-Achse) \\
+    k_{0} = Skalierungsfaktor (normalerweise 1.0)
+
+Die inverse Transformation, berechnet aus den XY-Koordinaten die Längen- und Breitengrade:
+
+.. math::
+
+    \phi = \arcsin{[}\cos (c) \sin (\phi_{1}) + (\frac{y \sin(c) \cos(\phi_{1})} {\rho}) {]}
+
+Für den Längengrad wird abhängig vom Breitengrad eine dieser drei Formeln verwedent:
+
+Für Φ₁ gleich +90°:
+
+.. math::
+
+    \lambda = \lambda_{0} + \arctan{[} \frac{x}{-y} {]}
+
+Für Φ₁ gleich -90°:
+
+.. math::
+
+    \lambda = \lambda_{0} + \arctan{[} \frac{x}{y} {]}
+
+Für alle anderen Breitengrade verwendet man:
+
+.. math::
+
+    \lambda = \lambda_{0} + \arctan{[} \frac{x \sin(c)}{\rho \cos(\phi_{1}) \cos(c) - y \sin(\phi_{1}) \sin(c)} {]}
+
 
 Winkeltreue-Projektion
 ^^^^^^^^^^^^^^^^^^^^^^
