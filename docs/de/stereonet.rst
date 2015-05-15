@@ -11,12 +11,31 @@ Projektionen
 Flächentreue-Projektion
 ^^^^^^^^^^^^^^^^^^^^^^^
 
+Für die meisten Fragestellungen in der Geologie ist es von Vorteil eine räumlich gleichmäßige Datenverteilung zu betrachten. Die dafür geeignetste Projektion ist die *stereographische Projektion*. In der Geologie spricht man auch vom Schmidt'schen Netz (benannt nach Walter Schmidt).
+
 .. figure:: ../_static/equal_area_small_circles.png
     :width: 400px
     :align: center
     :alt: equal area stereonet with small circles showing consistent size
 
-    -
+    Diese Abbildung zeigt eine Reihe von Kleinkreisen mit einem Radius von 10°. Die Größe der Kreise bleibt über den gesamten Bereich relativ gut erhalten, während aufgrund der Winkelverzerrung die Kreise gegen den Rand hin zu Ellipsen verzerrt werden.
+
+Die x- und y-Koordinaten berechnen sich aus den Längen- und Breitengraden aus dieser Formel:
+
+.. math::
+
+    x = Rk \cos(\phi) \sin(\lambda - \lambda_{0}
+    y = Rk \sin(\phi)
+
+    \phi = Breitengrad
+    \lambda = Längengrad
+    \lambda_{0} = Zentralmeridian (y-Achse)
+
+Mit k gleich:
+
+.. math::
+
+    k = \frac{2 k_{0}}{1 + \cos(\phi) \cos(\lambda - \lambda_{0}}
 
 Winkeltreue-Projektion
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -32,8 +51,8 @@ Literatur
 ---------
 
  - John P. Snyder (1987): `Map Projections - A Working Manual <http://pubs.er.usgs.gov/publication/pp1395>`_
- - `Stereographische Projektion <http://en.wikipedia.org/wiki/Stereographic_projection>`_ auf Wikipedia
- - `Schmidt'sches Netz <http://en.wikipedia.org/wiki/Schmidt_net>`_ auf Wikipedia
+ - `Flächentreue Azimutalprojektion <https://de.wikipedia.org/wiki/Fl%C3%A4chentreue_Azimutalprojektion>`_ auf Wikipedia
+ - `Schmidt'sches Netz <https://de.wikipedia.org/wiki/Schmidtsches_Netz>`_ auf Wikipedia
  - `Wulff'sches Netz <http://de.wikipedia.org/wiki/Wulffsches_Netz>`_ auf Wikipedia
  - `Georgij Viktorovich Wulff <https://www.wikidata.org/wiki/Q907171>`_  auf Wikidata 
  - `Walter Schmidt <https://www.wikidata.org/wiki/Q15979728>`_ auf Wikidata
