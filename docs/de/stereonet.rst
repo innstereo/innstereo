@@ -24,30 +24,31 @@ Die X- und Y-Koordinaten berechnen sich aus den Längen- und Breitengraden aus d
 
 .. math::
 
-    x = Rk \cos(\phi) \sin(\lambda - \lambda_{0} \\
-    y = Rk \sin(\phi) \\
+    x = Rk \cos(\phi) \sin(\lambda - \lambda_{0}
+
+.. math::
+
+    y = Rk \sin(\phi)
 
 Mit k gleich:
 
 .. math::
 
-    k = \frac{2 k_{0}}{1 + \cos(\phi) \cos(\lambda - \lambda_{0}}
+    k = \frac{2 k_{0}}{1 + \cos(\phi) \cos(\lambda - \lambda_{0})}
 
 Die Variablen stehen für:
 
-.. math::
-
-    R = Radius
-    \phi = Breitengrad \\
-    \lambda = Längengrad \\
-    \lambda_{0} = Zentralmeridian (y-Achse) \\
-    k_{0} = Skalierungsfaktor (normalerweise 1.0)
+ * R . . . Radius
+ * phi . . . Breitengrad
+ * λ . . . Längengrad
+ * λ₀ . . . Zentralmeridian (y-Achse)
+ * k₀ . . . Skalierungsfaktor (normalerweise 1.0)
 
 Die inverse Transformation, berechnet aus den XY-Koordinaten die Längen- und Breitengrade:
 
 .. math::
 
-    \phi = \arcsin{[}\cos (c) \sin (\phi_{1}) + (\frac{y \sin(c) \cos(\phi_{1})} {\rho}) {]}
+    \phi = \arcsin \left[ \cos (c) \sin (\phi_{1}) + \left(\frac{y \sin(c) \cos(\phi_{1})} {\rho}\right) \right]
 
 Für den Längengrad wird abhängig vom Breitengrad eine dieser drei Formeln verwedent:
 
@@ -68,6 +69,16 @@ Für alle anderen Breitengrade verwendet man:
 .. math::
 
     \lambda = \lambda_{0} + \arctan{[} \frac{x \sin(c)}{\rho \cos(\phi_{1}) \cos(c) - y \sin(\phi_{1}) \sin(c)} {]}
+
+Dabei gilt:
+
+.. math::
+
+    \rho = \sqrt{x^{2} + y^{2}}
+
+.. math::
+
+    c = 2 \arctan \left[ \frac{\rho}{2 R k_{0}} \right]
 
 
 Winkeltreue-Projektion
