@@ -1473,7 +1473,8 @@ class MainWindow(object):
                     newHandles.append(handle)
             if len(handles) is not 0:
                 self.ax_stereo.legend(newHandles, newLabels,
-                                      bbox_to_anchor=(1.5, 1.1), borderpad=1)
+                                      bbox_to_anchor=(1.5, 1.1), borderpad=1,
+                                      numpoints=1)
         self.canvas.draw()
 
     def on_toolbutton_create_group_layer_clicked(self, widget):
