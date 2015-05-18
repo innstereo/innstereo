@@ -19,6 +19,7 @@ import scipy.spatial as spatial
 import webbrowser
 import os
 import csv
+from matplotlib.lines import Line2D
 
 #Internal imports
 from .dataview_classes import (PlaneDataView, LineDataView,
@@ -1114,12 +1115,21 @@ class MainWindow(object):
         """
         #ax.cone takes dip first and then dipdir!
         #facecolor needs to be "None" because there is a bug with which side to fill
-        #Is not added to the legend yet. Matplotlib bug?
         self.ax_stereo.cone(dip, dipdir, angle, facecolor="None",
                     color=layer_obj.get_line_color(),
                     linewidth=layer_obj.get_line_width(),
                     label=layer_obj.get_label(),
                     linestyle=layer_obj.get_line_style())
+
+        num_data = len(dipdir)
+        lbl = "{} ({})".format(layer_obj.get_label(), num_data)
+
+        handler = Line2D([], [], color=layer_obj.get_line_color(),
+                    linewidth=layer_obj.get_line_width(),
+                    linestyle=layer_obj.get_line_style(),
+                    dash_capstyle=layer_obj.get_capstyle(),
+                    alpha=layer_obj.get_line_alpha())
+        return handler, lbl
 
     def draw_poles(self, layer_obj, dipdir, dip):
         """
@@ -1460,8 +1470,13 @@ class MainWindow(object):
             if layer_type == "smallcircle":
                 dipdir, dip, angle = self.parse_smallcircles(
                                         layer_obj.get_data_treestore())
-                self.draw_smallcircles(layer_obj, dipdir, dip, angle)
+                handler, label = self.draw_smallcircles(layer_obj, dipdir,
+                                                        dip, angle)
+                self.sc_labels.append(label)
+                self.sc_handlers.append(handler)
 
+        self.sc_labels = []
+        self.sc_handlers = []
         self.layer_store.foreach(iterate_over_rows)
 
         if self.settings.get_draw_legend() == True:
@@ -1471,7 +1486,13 @@ class MainWindow(object):
                 if label not in newLabels:
                     newLabels.append(label)
                     newHandles.append(handle)
-            if len(handles) is not 0:
+
+            for handle, label in zip(self.sc_handlers, self.sc_labels):
+                if label not in newLabels:
+                    newLabels.append(label)
+                    newHandles.append(handle)
+
+            if len(newHandles) is not 0:
                 self.ax_stereo.legend(newHandles, newLabels,
                                       bbox_to_anchor=(1.5, 1.1), borderpad=1,
                                       numpoints=1)
