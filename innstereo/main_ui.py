@@ -209,15 +209,16 @@ class MainWindow(object):
             total_dip = []
             for row in row_list:
                 layer_obj = model[row][3]
-                dipdir, dip, sense = self.parse_lines(
-                                                    layer_obj.get_data_treestore())
+                dipdir, dip, sense = \
+                                self.parse_lines(layer_obj.get_data_treestore())
                 for x in dipdir:
                     total_dipdir.append(x)
                 for y in dip:
                     total_dip.append(y)
 
-            dip, dipdir, values = mplstereonet.eigenvectors(total_dipdir,
-                                                total_dip, measurement="lines")
+            dip, dipdir, values = mplstereonet.eigenvectors(total_dip,
+                                                            total_dipdir,
+                                                            measurement="lines")
             return dip, dipdir, values
 
         #Check how data should be interpreted:
