@@ -861,25 +861,26 @@ class MainWindow(object):
         def add_layer(itr):
             if layer_type == "plane":
                 store = Gtk.ListStore(float, float, str)
-                view = PlaneDataView(store, self.redraw_plot)
+                view = PlaneDataView(store, self.redraw_plot, self.add_feature)
                 layer_obj_new = PlaneLayer(store, view)
             elif layer_type == "faultplane":
                 store = Gtk.ListStore(float, float, float, float, str)
-                view = FaultPlaneDataView(store, self.redraw_plot)
+                view = FaultPlaneDataView(store, self.redraw_plot, self.add_feature)
                 layer_obj_new = FaultPlaneLayer(store, view)
             elif layer_type == "line":
                 store = Gtk.ListStore(float, float, str)
-                view = LineDataView(store, self.redraw_plot)
+                view = LineDataView(store, self.redraw_plot, self.add_feature)
                 layer_obj_new = LineLayer(store, view)
             elif layer_type == "smallcircle":
                 store = Gtk.ListStore(float, float, float)
-                view = SmallCircleDataView(store, self.redraw_plot)
+                view = SmallCircleDataView(store, self.redraw_plot, self.add_feature)
                 layer_obj_new = SmallCircleLayer(store, view)
             elif layer_type == "eigenvector":
                 store = Gtk.ListStore(float, float, float)
-                view = EigenVectorView(store, self.redraw_plot)
+                view = EigenVectorView(store, self.redraw_plot, self.add_feature)
                 layer_obj_new = EigenVectorLayer(store, view)
 
+            view.set_layer_object(layer_obj_new)
             pixbuf = layer_obj_new.get_pixbuf()
             self.layer_store.append(itr,
                 [True, pixbuf, layer_obj_new.get_label(), layer_obj_new])
