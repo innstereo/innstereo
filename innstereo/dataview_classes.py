@@ -30,7 +30,7 @@ class DataTreeView(Gtk.TreeView):
         """
         Initializes the treeview. Requires a model and the main window
         redraw-function. Sets selection mode to MULTIPLE. Connect the
-        key-pres event.
+        key-press event.
         """
         Gtk.TreeView.__init__(self, model=store)
         self.store = store
@@ -55,20 +55,20 @@ class DataTreeView(Gtk.TreeView):
         is saved and the cursor jumps to the next cell and makes it editable.
         """
         keyname = Gdk.keyval_name(event.keyval)
-        path, col = treeview.get_cursor() 
-        columns = [c for c in treeview.get_columns() if c.get_visible()] 
-        colnum = columns.index(col)     
+        path, col = treeview.get_cursor()
+        columns = [c for c in treeview.get_columns() if c.get_visible()]
+        colnum = columns.index(col)
 
         if keyname == "Tab" or keyname == "Esc":
-            if colnum + 1 < len(columns): 
-                next_column = columns[colnum + 1]               
-            else: 
-                tmodel = treeview.get_model() 
-                titer = tmodel.iter_next(tmodel.get_iter(path)) 
-                if titer is None: 
-                    titer = tmodel.get_iter_first() 
-                path = tmodel.get_path(titer) 
-                next_column = columns[0] 
+            if colnum + 1 < len(columns):
+                next_column = columns[colnum + 1]
+            else:
+                tmodel = treeview.get_model()
+                titer = tmodel.iter_next(tmodel.get_iter(path))
+                if titer is None:
+                    titer = tmodel.get_iter_first()
+                path = tmodel.get_path(titer)
+                next_column = columns[0]
 
             if keyname == "Tab":
                 GLib.timeout_add(50,
