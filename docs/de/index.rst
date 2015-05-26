@@ -12,7 +12,7 @@
 Willkommen zur Dokumentation von Innstereo!
 ===========================================
 
-InnStereo (abgeleitet von Innsbruck Stereographic) ist ein quelloffenes und frei verwendbares Programm für die stereographische Projektionen von geologischen und strukturgeologischen Daten. Das Programm orientiert sich in Funktionsumfang und Bedienung an TectonticsFP. InnStereo's offizielle Seite ist `www.innstereo.com <http://www.innstereo.com>`_.
+InnStereo (abgeleitet von Innsbruck Stereographic) ist ein quelloffenes und frei verwendbares Programm für die stereographische Projektionen von geologischen und strukturgeologischen Daten. Das Programm orientiert sich in Funktionsumfang und Bedienung an TectonticsFP. Die offizielle Seite ist `innstereo.github.io <http://innstereo.github.io>`_.
 
 Momentan befindet sich das Programm noch in der Entwicklung. Alpha-Versionen sind aber bereits für `Linux und Windows verfügbar <https://github.com/tobias47n9e/innsbruck-stereographic/releases>`_. An der Entwicklung kann sich jeder beteiligen. Der Quellcode wird auf `Github verwaltet <https://github.com/tobias47n9e/innstereo>`_.
 
