@@ -1616,8 +1616,6 @@ class MainWindow(object):
                 itr = data_model.get_iter(p)
                 data_treestore.remove(itr)
 
-            data_selection.unselect_all()
-
         self.redraw_plot()
 
     def convert_xy_to_dirdip(self, event):
