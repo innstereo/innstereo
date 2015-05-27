@@ -814,21 +814,24 @@ class MainWindow(object):
         #If one row is selected show the data view, else don't show it
         if len(row_list) == 1:
             row = row_list[0]
-            layer_object = model[row][3]
+            lyr_obj = model[row][3]
             child = self.sw_data.get_child()
-            if layer_object is None:
+            if lyr_obj is None:
                 #If it has a child remove it
                 if child is not None:
                     self.sw_data.remove(child)
             #Else: not a group layer
             else:
                 #Get the treeview
-                treeview_object = layer_object.get_data_treeview()
+                treeview_object = lyr_obj.get_data_treeview()
                 #If there is a child remove it
                 if child is not None:
                     self.sw_data.remove(child)
                 #Add new treeview
                 self.sw_data.add(treeview_object)
+                data_treeview = lyr_obj.get_data_treeview()
+                data_selection = data_treeview.get_selection()
+                data_selection.unselect_all()
                 self.main_window.show_all()
         else:
             child = self.sw_data.get_child()
