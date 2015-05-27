@@ -1655,7 +1655,8 @@ class MainWindow(object):
         while dip < 0:
             dip = dip + 90
             
-        datastore.append([dip_direct, dip, sense])
+        itr = datastore.append([dip_direct, dip, sense])
+        return itr
 
     def add_linear_feature(self, datastore, dip_direct=0, dip=0, sense=""):
         """
@@ -1671,7 +1672,8 @@ class MainWindow(object):
         while dip < 0:
             dip = dip + 90
 
-        datastore.append([dip_direct, dip, sense])
+        itr = datastore.append([dip_direct, dip, sense])
+        return itr
 
     def add_eigenvector_feature(self, datastore, dip_direct=0, dip=0, value=0):
         """
@@ -1689,14 +1691,16 @@ class MainWindow(object):
         while dip < 0:
             dip = dip + 90
 
-        datastore.append([dip_direct, dip, value])
+        itr = datastore.append([dip_direct, dip, value])
+        return itr
 
     def add_faultplane_feature(self, datastore, dip_direct = 0, dip = 0,
                                ldip_direct = 0, ldip = 0, sense = ""):
         """
         Adds a faultplane feature at the 
         """
-        datastore.append([dip_direct, dip, ldip_direct, ldip, sense])
+        itr = datastore.append([dip_direct, dip, ldip_direct, ldip, sense])
+        return itr
 
     def add_smallcircle_feature(self, datastore, dip_direct=0, dip=0,
                                 angle=10):
@@ -1704,7 +1708,8 @@ class MainWindow(object):
         Adds a small circle feature row. Defaults to an empty row unless a dip
         direction and dip are given.
         """
-        datastore.append([dip_direct, dip, angle])
+        itr = datastore.append([dip_direct, dip, angle])
+        return itr
 
     def add_feature(self, layer_type, store, *args):
         """
@@ -1714,17 +1719,19 @@ class MainWindow(object):
         to the specific function (e.g. dipdirection or dip)
         """
         if layer_type == "plane":
-            self.add_planar_feature(store, *args)
+            itr = self.add_planar_feature(store, *args)
         if layer_type == "line":
-            self.add_linear_feature(store, *args)
+            itr = self.add_linear_feature(store, *args)
         if layer_type == "faultplane":
-            self.add_faultplane_feature(store, *args)
+            itr = self.add_faultplane_feature(store, *args)
         if layer_type == "smallcircle":
-            self.add_smallcircle_feature(store, *args)
+            itr = self.add_smallcircle_feature(store, *args)
 
     def on_toolbutton_add_feature_clicked(self, widget):
         """
         Adds an empty row to the currently selected data layer.
+
+        The newly created is selected for easier editing.
         """
         selection = self.layer_view.get_selection()
         model, row_list = selection.get_selected_rows()
@@ -1736,13 +1743,18 @@ class MainWindow(object):
             if data_treestore is not None:
                 layer_type = current.get_layer_type()
                 if layer_type == "plane":
-                    self.add_planar_feature(data_treestore)
+                    itr = self.add_planar_feature(data_treestore)
                 if layer_type == "line":
-                    self.add_linear_feature(data_treestore)
+                    itr = self.add_linear_feature(data_treestore)
                 if layer_type == "faultplane":
-                    self.add_faultplane_feature(data_treestore)
+                    itr = self.add_faultplane_feature(data_treestore)
                 if layer_type == "smallcircle":
-                    self.add_smallcircle_feature(data_treestore)
+                    itr = self.add_smallcircle_feature(data_treestore)
+
+            data_treeview = model[layer][3].get_data_treeview()
+            data_selection = data_treeview.get_selection()
+            data_selection.unselect_all()
+            data_selection.select_iter(itr)
 
     def mpl_canvas_clicked(self, event):
         """
