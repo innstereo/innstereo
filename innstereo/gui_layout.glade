@@ -3677,6 +3677,7 @@ equatorial aspect</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">New Project</property>
                         <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_menuitem_new_window_activate" swapped="no"/>
                       </object>
                     </child>
                     <child>
