@@ -119,45 +119,45 @@ class RotationDialog(object):
         raxis_angle = self.spinbutton_rotation_angle.get_value()
 
         for lyr_obj in self.data:
-            dipdir_lst = []
-            dips_lst = []
-            third = []
-            fourth = []
-            fifth = []
-            layer_type = lyr_obj.get_layer_type()
-            layer_data = lyr_obj.get_data_treestore()
-            for row in layer_data:
-                dipdir, dip = self.rotate_data(raxis, raxis_angle, row[0], row[1])
-                if layer_type == "plane":
-                    dipdir_lst.append(dipdir)
-                else:
-                    dipdir_lst.append(dipdir)
-                dips_lst.append(dip)
-                third.append(row[2])
-                if layer_type == "faultplane":
-                    fourth.append(row[3])
-                    fifth.append(row[4])
+            lyr_type = lyr_obj.get_layer_type()
+            lyr_store = lyr_obj.get_data_treestore()
 
-            if layer_type == "line":
-                store, new_lyr_obj = self.add_layer_dataset("line")
-                for dipdir, dip, sense in zip(dipdir_lst, dips_lst, third):
-                    self.add_feature("line", store, dipdir, dip, sense)
-                
-            if layer_type == "plane":
+            if lyr_type == "plane":
+                dipdir_org, dips_org, dipdir_lst, dips_lst, strat, dipdir_az = \
+                    self.parse_plane(lyr_store, raxis, raxis_angle)
+
                 store, new_lyr_obj = self.add_layer_dataset("plane")
-                for dipdir, dip, strat in zip(dipdir_lst, dips_lst, third):
-                    self.add_feature("plane", store, dipdir, dip, strat)
+                for dipdir, dip, strt in zip(dipdir_az, dips_lst, strat):
+                    self.add_feature("plane", store, dipdir, dip, strt)
 
-            if layer_type == "smallcircle":
+            elif lyr_type == "line":
+                ldipdir_org, ldips_org, ldipdir_lst, ldips_lst, sense = \
+                    self.parse_line(lyr_store, raxis, raxis_angle)
+
+                store, new_lyr_obj = self.add_layer_dataset("line")
+
+                for dipdir, dip, sns in zip(ldipdir_lst, ldips_lst, sense):
+                    self.add_feature("line", store, dipdir, dip, sns)
+
+            elif lyr_type == "smallcircle":
+                ldipdir_org, ldips_org, ldipdir_lst, ldips_lst, angle = \
+                    self.parse_line(lyr_store, raxis, raxis_angle)
+
                 store, new_lyr_obj = self.add_layer_dataset("smallcircle")
-                for dipdir, dip, angle in zip(dipdir_lst, dips_lst, third):
-                    self.add_feature("smallcircle", store, dipdir, dip, angle)
+                for dipdir, dip, ang in zip(ldipdir_lst, ldips_lst, angle):
+                    self.add_feature("smallcircle", store, dipdir, dip, ang)
 
-            if layer_type == "faultplane":
+            elif lyr_type == "faultplane":
+                rtrn = self.parse_faultplane(lyr_store, raxis, raxis_angle)
+                dipdir_org, dips_org, dipdir_lst, dips_lst, ldipdir_org, \
+                ldips_org, ldipdir_lst, ldips_lst, sense, dipdir_az = rtrn[0], \
+                rtrn[1], rtrn[2], rtrn[3], rtrn[4], rtrn[5], rtrn[6], rtrn[7], \
+                rtrn[8], rtrn[9]
+
                 store, new_lyr_obj = self.add_layer_dataset("faultplane")
-                for dipdir, dip, ldipdir, ldip, sense in zip(dipdir_lst, dips_lst,
-                                                             third, fourth, fifth):
-                    self.add_feature("faultplane", store, dipdir, dip, ldipdir, ldip, sense)
+                for dipdir, dip, ldipdir, ldip, sns in zip(dipdir_az, dips_lst,
+                                                             ldipdir_lst, ldips_lst, sense):
+                    self.add_feature("faultplane", store, dipdir, dip, ldipdir, ldip, sns)
 
             new_lyr_obj.set_render_gcircles(lyr_obj.get_render_gcircles())
             new_lyr_obj.set_line_color(lyr_obj.get_line_color())
@@ -318,6 +318,94 @@ class RotationDialog(object):
         dipdir5, dip5 = self.convert_lonlat_to_dipdir(lon_rot5, lat_rot5)
         return dipdir5, dip5
 
+    def parse_plane(self, lyr_store, raxis, raxis_angle):
+        """
+        Parses and rotates data of a plane layer.
+
+        Expects a TreeStore of a layer, the rotation axis and the
+        angle of rotation. The method returns each column unrotated and rotated.        
+        """
+        dipdir_org = []
+        dips_org = []
+        dipdir_lst = []
+        dips_lst = []
+        dipdir_az = []
+        strat = []
+
+        for row in lyr_store:
+            dipdir_org.append(row[0] - 90)
+            dips_org.append(row[1])
+            #Planes and faultplanes are rotated using their poles
+            dipdir, dip = self.rotate_data(raxis, raxis_angle, row[0] + 180,
+                                           90 - row[1])
+            dipdir_lst.append(dipdir + 90)
+            dipdir_az.append(dipdir + 180)
+            dips_lst.append(90 - dip)
+            strat.append(row[2])
+
+        return dipdir_org, dips_org, dipdir_lst, dips_lst, strat, dipdir_az
+
+    def parse_line(self, lyr_store, raxis, raxis_angle):
+        """
+        Parses and rotates data of a linear or smallcircle layer.
+
+        Expects a TreeStore of a layer, the rotation axis and the
+        angle of rotation. The method returns each column unrotated and rotated.        
+        """
+        ldipdir_org = []
+        ldips_org = []
+        ldipdir_lst = []
+        ldips_lst = []
+        third_col = []
+
+        for row in lyr_store:
+            ldipdir_org.append(row[0])
+            ldips_org.append(row[1])
+            ldipdir, ldip = self.rotate_data(raxis, raxis_angle, row[0], row[1])
+            ldipdir_lst.append(ldipdir)
+            ldips_lst.append(ldip)
+            third_col.append(row[2])
+
+        return ldipdir_org, ldips_org, ldipdir_lst, ldips_lst, third_col
+
+    def parse_faultplane(self, lyr_store, raxis, raxis_angle):
+        """
+        Parses and rotates data of a faultplane layer.
+
+        Expects a TreeStore of a faultplane layer, the rotation axis and the
+        angle of rotation. The method returns each column unrotated and rotated.        
+        """
+        dipdir_org = []
+        dips_org = []
+        dipdir_lst = []
+        dips_lst = []
+        ldipdir_org = []
+        ldips_org = []
+        ldipdir_lst = []
+        ldips_lst = []
+        dipdir_az = []
+        sense = []
+
+        for row in lyr_store:
+            dipdir_org.append(row[0] - 90)
+            dips_org.append(row[1])
+            #Planes and faultplanes are rotated using their poles
+            dipdir, dip = self.rotate_data(raxis, raxis_angle, row[0] + 180,
+                                           90 - row[1])
+            dipdir_lst.append(dipdir + 90)
+            dipdir_az.append(dipdir + 270)
+            dips_lst.append(90 - dip)
+
+            ldipdir_org.append(row[2])
+            ldips_org.append(row[3])
+            ldipdir, ldip = self.rotate_data(raxis, raxis_angle, row[2], row[3])
+            ldipdir_lst.append(ldipdir)
+            ldips_lst.append(ldip)
+            sense.append(row[4])
+
+        return (dipdir_org, dips_org, dipdir_lst, dips_lst, ldipdir_org,
+                ldips_org, ldipdir_lst, ldips_lst, sense, dipdir_az)
+       
     def redraw_plot(self):
         """
         Redraws the plot using the current settings of the dialog's spinbuttons.
@@ -362,74 +450,13 @@ class RotationDialog(object):
         raxis_angle = self.spinbutton_rotation_angle.get_value()
 
         for lyr_obj in self.data:
-            dipdir_org = []
-            dips_org = []
-            dipdir_lst = []
-            dips_lst = []
-            ldipdir_org = []
-            ldips_org = []
-            ldipdir_lst = []
-            ldips_lst = []
+            lyr_type = lyr_obj.get_layer_type()
+            lyr_store = lyr_obj.get_data_treestore()
 
-            layer_type = lyr_obj.get_layer_type()
-            layer_data = lyr_obj.get_data_treestore()
-            third = []
-            fourth = []
-            for row in layer_data:
-                #List of original data
-                if layer_type == "plane" or layer_type == "faultplane":
-                    dipdir_org.append(row[0] - 90)
-                else:
-                    dipdir_org.append(row[0])
+            if lyr_type == "plane":
+                dipdir_org, dips_org, dipdir_lst, dips_lst, strat, dipdir_az = \
+                    self.parse_plane(lyr_store, raxis, raxis_angle)
 
-                dips_org.append(row[1])
-
-                if layer_type == "faultplane":
-                    ldipdir_org.append(row[2])
-                    ldips_org.append(row[3])
-
-                #Rotate lines and smallcircles directly, and poles of planes and faultplanes
-                if layer_type == "line" or layer_type == "smallcircle":
-                    dipdir, dip = self.rotate_data(raxis, raxis_angle, row[0], row[1])
-                else:
-                    dipdir, dip = self.rotate_data(raxis, raxis_angle, row[0]+180, 90-row[1])
-
-                #Rotate the linear of faultplanes.
-                if layer_type == "faultplane":
-                    ldipdir, ldip = self.rotate_data(raxis, raxis_angle, row[2], row[3])
-
-                #Add rotated data
-                if layer_type == "plane" or layer_type == "faultplane":
-                    #Convert to strike and dip for easier preview plotting
-                    dipdir_lst.append(dipdir + 90)
-                    dips_lst.append(90 - dip)
-                else:
-                    dipdir_lst.append(dipdir)
-                    dips_lst.append(dip)
-
-                if layer_type == "smallcircle":
-                    third.append(row[2])
-                if layer_type == "faultplane":
-                    ldipdir_lst.append(ldipdir)
-                    ldips_lst.append(ldip)
-
-            if layer_type == "line":
-                self.original_ax.line(dips_org, dipdir_org,
-                    marker=lyr_obj.get_marker_style(),
-                    markersize=lyr_obj.get_marker_size(),
-                    color=lyr_obj.get_marker_fill(),
-                    markeredgewidth=lyr_obj.get_marker_edge_width(),
-                    markeredgecolor=lyr_obj.get_marker_edge_color(),
-                    alpha=lyr_obj.get_marker_alpha(), clip_on=False)
-                self.rotated_ax.line(dips_lst, dipdir_lst,
-                    marker=lyr_obj.get_marker_style(),
-                    markersize=lyr_obj.get_marker_size(),
-                    color=lyr_obj.get_marker_fill(),
-                    markeredgewidth=lyr_obj.get_marker_edge_width(),
-                    markeredgecolor=lyr_obj.get_marker_edge_color(),
-                    alpha=lyr_obj.get_marker_alpha(), clip_on=False)
-
-            if layer_type == "plane":
                 self.original_ax.plane(dipdir_org, dips_org, color=lyr_obj.get_line_color(),
                     linewidth=lyr_obj.get_line_width(),
                     linestyle=lyr_obj.get_line_style(),
@@ -441,19 +468,46 @@ class RotationDialog(object):
                     dash_capstyle=lyr_obj.get_capstyle(),
                     alpha=lyr_obj.get_line_alpha(), clip_on=False)
 
-            if layer_type == "smallcircle":
-                self.original_ax.cone(dips_org, dipdir_org, third, facecolor="None",
+            elif lyr_type == "line":
+                ldipdir_org, ldips_org, ldipdir_lst, ldips_lst, sense = \
+                    self.parse_line(lyr_store, raxis, raxis_angle)
+
+                self.original_ax.line(ldips_org, ldipdir_org,
+                    marker=lyr_obj.get_marker_style(),
+                    markersize=lyr_obj.get_marker_size(),
+                    color=lyr_obj.get_marker_fill(),
+                    markeredgewidth=lyr_obj.get_marker_edge_width(),
+                    markeredgecolor=lyr_obj.get_marker_edge_color(),
+                    alpha=lyr_obj.get_marker_alpha(), clip_on=False)
+                self.rotated_ax.line(ldips_lst, ldipdir_lst,
+                    marker=lyr_obj.get_marker_style(),
+                    markersize=lyr_obj.get_marker_size(),
+                    color=lyr_obj.get_marker_fill(),
+                    markeredgewidth=lyr_obj.get_marker_edge_width(),
+                    markeredgecolor=lyr_obj.get_marker_edge_color(),
+                    alpha=lyr_obj.get_marker_alpha(), clip_on=False)
+
+            elif lyr_type == "smallcircle":
+                ldipdir_org, ldips_org, ldipdir_lst, ldips_lst, angle = \
+                    self.parse_line(lyr_store, raxis, raxis_angle)
+
+                self.original_ax.cone(ldips_org, ldipdir_org, angle, facecolor="None",
                             color=lyr_obj.get_line_color(),
                             linewidth=lyr_obj.get_line_width(),
                             label=lyr_obj.get_label(),
                             linestyle=lyr_obj.get_line_style())
-                self.rotated_ax.cone(dips_lst, dipdir_lst, third, facecolor="None",
+                self.rotated_ax.cone(ldips_lst, ldipdir_lst, angle, facecolor="None",
                             color=lyr_obj.get_line_color(),
                             linewidth=lyr_obj.get_line_width(),
                             label=lyr_obj.get_label(),
                             linestyle=lyr_obj.get_line_style())
 
-            if layer_type == "faultplane":
+            elif lyr_type == "faultplane":
+                rtrn = self.parse_faultplane(lyr_store, raxis, raxis_angle)
+                dipdir_org, dips_org, dipdir_lst, dips_lst, ldipdir_org, \
+                ldips_org, ldipdir_lst, ldips_lst, sense = rtrn[0], rtrn[1], \
+                rtrn[2], rtrn[3], rtrn[4], rtrn[5], rtrn[6], rtrn[7], rtrn[8]
+
                 self.original_ax.plane(dipdir_org, dips_org, color=lyr_obj.get_line_color(),
                                         linewidth=lyr_obj.get_line_width(),
                                         linestyle=lyr_obj.get_line_style(),

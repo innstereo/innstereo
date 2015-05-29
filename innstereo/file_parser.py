@@ -24,7 +24,7 @@ class FileParseDialog(object):
     """
 
     def __init__(self, text_file, layer_obj, redraw_plot,
-                 append_plane, append_line, append_faultplane):
+                 append_plane, append_line, append_faultplane, main_window):
         """
         Initializes the file parser dialog and connects the signals.
 
@@ -44,6 +44,8 @@ class FileParseDialog(object):
              "adjustment_parse_start_line"))
         self.tfpl_dic = {"0": "ukn", "1": "up", "2": "dn", "3": "dex",
                          "4": "sin"}
+        self.dialog = self.builder.get_object("file_parse_dialog")
+        self.dialog.set_transient_for(main_window)
         self.redraw_plot = redraw_plot
         self.layer_obj = layer_obj
         self.append_plane = append_plane
@@ -64,7 +66,6 @@ class FileParseDialog(object):
         to control the parsing and the import of the data. These elments
         are loaded with the builder.
         """
-        self.dialog = self.builder.get_object("file_parse_dialog")
         self.combobox_plane_dipdir = self.builder.\
                                         get_object("combobox_plane_dipdir")
         self.combobox_plane_dip = self.builder.get_object("combobox_plane_dip")

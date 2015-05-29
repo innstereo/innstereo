@@ -1606,8 +1606,9 @@ class MainWindow(object):
 
         if len(row_list) == 1:
             row = row_list[0]
-            data_treeview = model[row][3].get_data_treeview()
-            data_treestore = model[row][3].get_data_treestore()
+            lyr_obj = model[row][3]
+            data_treeview = lyr_obj.get_data_treeview()
+            data_treestore = lyr_obj.get_data_treestore()
             data_selection = data_treeview.get_selection()
             data_model, data_row_list = data_selection.get_selected_rows()
             treeiter_list = []
@@ -1745,12 +1746,14 @@ class MainWindow(object):
                 layer_type = current.get_layer_type()
                 if layer_type == "plane":
                     itr = self.add_planar_feature(data_treestore)
-                if layer_type == "line":
+                elif layer_type == "line":
                     itr = self.add_linear_feature(data_treestore)
-                if layer_type == "faultplane":
+                elif layer_type == "faultplane":
                     itr = self.add_faultplane_feature(data_treestore)
-                if layer_type == "smallcircle":
+                elif layer_type == "smallcircle":
                     itr = self.add_smallcircle_feature(data_treestore)
+                elif layer_type == "eigenvector":
+                    itr = self.add_eigenvector_feature(data_treestore)
 
             data_treeview = model[layer][3].get_data_treeview()
             data_selection = data_treeview.get_selection()
@@ -1854,7 +1857,7 @@ class MainWindow(object):
             fp = FileParseDialog(text_file, layer_obj, self.redraw_plot,
                                  self.add_planar_feature,
                                  self.add_linear_feature,
-                                 self.add_faultplane_feature)
+                                 self.add_faultplane_feature, self.main_window)
             fp.run()
 
     def on_toolbutton_export_clicked(self, toolbutton):
