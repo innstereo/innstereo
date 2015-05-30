@@ -3,7 +3,19 @@
 Changelog
 =========
 
-Versioning will work this way. Alpha releases will be done, so people can test early interface design decisions. Beta releases will done after the program is more mature. Eventually this will lead to the first 1.0 release. Download the most recent release from `this page <https://github.com/tobias47n9e/innstereo/releases>`_.
+Versioning will work this way. Alpha releases will be done, so people can test early interface design decisions. Beta releases will done after the program is more mature. Eventually this will lead to the first 1.0 release. Download the most recent release from `this page <http://innstereo.github.io/>`_.
+
+InnStereo v1.0-alpha.7
+----------------------
+
+ - '[Feature] <https://github.com/tobias47n9e/innstereo/issues/18>`_ Pressing tab in the last column of the last feature creates a new row. This increases the speed at which data can be entered by hand. In addition the behaviour of the selection was improved. New rows are automatically selected and deleting rows now moves the selection up the list.
+ - [Feature] Added a function that calculates the PT-Axis for a faultplane layer.
+ - [Feature] A new toolbutton allows to calculate the mean vector (or mean direction) of a set of linears.
+ - [Bug] Fixed the bug where rotated layers were displayed correctly in the preview, but were incorrectly added to the project.
+ - [Bug] Fixed unresponsive "New Project" menuitem.
+ - [Bug] Markers of poles and linears are now only shown once in the legend.
+ - [Bug] Small circle layer are now shown in the layers.
+ - [Bug] Fixed eigenvector function for linear layers.
 
 InnStereo v1.0-alpha.6
 ----------------------
