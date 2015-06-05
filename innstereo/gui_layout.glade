@@ -4109,7 +4109,8 @@ equatorial aspect</property>
               <object class="GtkToolButton" id="toolbutton_mean_vector">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">toolbutton1</property>
+                <property name="tooltip_text" translatable="yes">Finds the mean vector of a set of linears. At least one linear layer has to be selected.</property>
+                <property name="label" translatable="yes">Mean Vector</property>
                 <property name="use_underline">True</property>
                 <property name="icon_widget">image_mean_vector</property>
                 <signal name="clicked" handler="on_toolbutton_mean_vector_clicked" swapped="no"/>
@@ -4183,6 +4184,7 @@ equatorial aspect</property>
               <object class="GtkToolButton" id="toolbutton_ptaxis">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="tooltip_text" translatable="yes">Calculates the P, T, and B axis of each row in a fault plane layer.</property>
                 <property name="label" translatable="yes">Calculate PT-Axis</property>
                 <property name="use_underline">True</property>
                 <property name="icon_widget">image_pt_axis</property>
