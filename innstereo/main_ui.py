@@ -20,6 +20,7 @@ import webbrowser
 import os
 import csv
 from matplotlib.lines import Line2D
+import json
 
 #Internal imports
 from .dataview_classes import (PlaneDataView, LineDataView,
@@ -29,7 +30,8 @@ from .layer_view import LayerTreeView
 from .layer_types import (PlaneLayer, FaultPlaneLayer, LineLayer,
                          SmallCircleLayer, EigenVectorLayer)
 from .dialog_windows import (AboutDialog, PrintDialog, StereonetProperties,
-                            FileChooserParse, FileChooserExport)
+                            FileChooserParse, FileChooserExport,
+                            FileChooserSave, FileChooserOpen)
 from .layer_properties import LayerProperties
 from .plot_control import PlotSettings
 from .polar_axes import NorthPolarAxes
@@ -338,9 +340,58 @@ class MainWindow(object):
         """
         Triggered from the GUI. Saves the project.
 
-        __!!__ Save function is not implemented yet.
+        Iterates over all layers and stores the data in a dictionary. Passes
+        the dictionary to the FileChooserSave dialog, which handles writing
+        the file to the harddisk.
         """
-        pass
+        copy = {}
+        copy["filetype"] = "InnStereo data file 1.0"
+        copy["layers"] = []
+        for row in self.layer_store:
+            lyr_obj = row[3]
+            properties = lyr_obj.return_properties()
+            data = lyr_obj.return_data()
+            copy["layers"].append([properties, data])
+        dump = json.dumps(copy)
+        dlg = FileChooserSave(self.main_window, dump)
+        dlg.run()
+
+    def on_toolbutton_open_clicked(self, toolbutton):
+        # pylint: disable=unused-argument
+        """
+        Triggered from the GUI. Opens a saved project.
+
+        Runs the FileChooserOpen dialog. The dialog calls the open_project
+        function if a file is opened.
+        """
+        dlg = FileChooserOpen(self.main_window, self.open_project)
+        dlg.run()
+
+    def open_project(self, project_file):
+        """
+        Opens a saved project. Adds all the saved layers to the current window
+
+        The opened file is passed from the FileChooserOpen dialog. The file
+        is read and then the json is parsed. The function then checks if
+        the file is valid. Then each layer is added to the project. For each
+        layer the saved properties are set and all the data rows are loaded.
+        """
+        with open(project_file, "r") as prj_file:
+            read_data = prj_file.read()
+        parse = json.loads(read_data)
+        if parse["filetype"] != "InnStereo data file 1.0":
+            print("Not a valid InnStereo data file")
+
+        for layer in parse["layers"]:
+            props = layer[0]
+            data = layer[1]
+            lyr_type = props["type"]
+            store, new_lyr_obj = self.add_layer_dataset(lyr_type)
+            for row in data:
+                self.add_feature(lyr_type, store, row[0], row[1], row[2])
+
+            new_lyr_obj.set_properties(props)
+        self.redraw_plot()
 
     def on_toolbutton_show_table_clicked(self, widget):
         # pylint: disable=unused-argument

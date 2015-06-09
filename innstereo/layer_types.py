@@ -935,6 +935,127 @@ class PlaneLayer(object):
         """
         self.steps = new_steps
 
+    def return_data(self):
+        """
+        Returns the data in stored for this layer as a list.
+
+        Iterates over the treestore associated with this layer and copies all
+        data into a list of rows. Returns the list.
+        """
+        store_data = []
+        def iterate_over_data(model, path, itr):
+            row = model[path]
+            store_data.append([row[0], row[1], row[2]])
+
+        self.data_treestore.foreach(iterate_over_data)
+        return store_data
+
+    def return_properties(self):
+        """
+        Returns a dictionary containing all the properties of the layer.
+
+        The returned dictionary contains all colors, labels, etc. set by the
+        user. This method is used for saving layers, or passing a layer to
+        the copy-paste-function or the drag-and-drop function.
+        """
+        props = {}
+        props["type"] = self.type
+        props["label"] = self.label
+        props["page"] = self.page
+        props["render_gcircles"] = self.render_gcircles
+        props["line_color"] = self.line_color
+        props["line_width"] = self.line_width
+        props["line_style"] = self.line_style
+        props["line_alpha"] = self.line_alpha
+        props["line_capstyle"] = self.capstyle
+        props["render_poles"] = self.render_poles
+        props["pole_style"] = self.pole_style
+        props["pole_size"] = self.pole_size
+        props["pole_fill"] = self.pole_fill
+        props["pole_edge_color"] = self.pole_edge_color
+        props["pole_edge_width"] = self.pole_edge_width
+        props["pole_alpha"] = self.pole_alpha
+        props["render_linears"] = self.render_linears
+        props["marker_style"] = self.marker_style
+        props["marker_size"] = self.marker_size
+        props["marker_fill"] = self.marker_fill
+        props["marker_edge_color"] = self.marker_edge_color
+        props["marker_edge_width"] = self.marker_edge_width
+        props["marker_alpha"] = self.marker_alpha
+        props["rose_spacing"] = self.rose_spacing
+        props["rose_bottom"] = self.rose_bottom
+        props["draw_hoeppener"] = self.draw_hoeppener
+        props["draw_lp_plane"] = self.draw_lp_plane
+        props["draw_contour_fills"] = self.draw_contour_fills
+        props["draw_contour_lines"] = self.draw_contour_lines
+        props["draw_contour_labels"] = self.draw_contour_labels
+        props["colormap"] = self.colormap
+        props["contour_resolution"] = self.contour_resolution
+        props["contour_method"] = self.contour_method
+        props["contour_sigma"] = self.contour_sigma
+        props["contour_line_color"] = self.contour_line_color
+        props["contour_use_line_color"] = self.contour_use_line_color
+        props["contour_line_width"] = self.contour_line_width
+        props["contour_line_style"] = self.contour_line_style
+        props["contour_label_size"] = self.contour_label_size
+        props["manual_range"] = self.manual_range
+        props["lower_limit"] = self.lower_limit
+        props["upper_limit"] = self.upper_limit
+        props["steps"] = self.steps
+        return props
+
+    def set_properties(self, props):
+        """
+        Sets all layer properties to the values of the passed dictionary.
+
+        Expects a dictionary of all layer properties (excluding the layer
+        type, which is set during creation of the layer). This method is
+        called when a project is loaded or when a layer is pasted, or
+        received through drag-and-drop.
+        """
+        self.label = props["label"]
+        self.page = props["page"]
+        self.render_gcircles = props["render_gcircles"]
+        self.line_color = props["line_color"]
+        self.line_width = props["line_width"]
+        self.line_style = props["line_style"]
+        self.line_alpha = props["line_alpha"]
+        self.capstyle = props["line_capstyle"]
+        self.render_poles = props["render_poles"]
+        self.pole_style = props["pole_style"]
+        self.pole_size = props["pole_size"]
+        self.pole_fill = props["pole_fill"]
+        self.pole_edge_color = props["pole_edge_color"]
+        self.pole_edge_width = props["pole_edge_width"]
+        self.pole_alpha = props["pole_alpha"]
+        self.render_linears = props["render_linears"]
+        self.marker_style = props["marker_style"]
+        self.marker_size = props["marker_size"]
+        self.marker_fill = props["marker_fill"]
+        self.marker_edge_color = props["marker_edge_color"]
+        self.marker_edge_width = props["marker_edge_width"]
+        self.marker_alpha = props["marker_alpha"]
+        self.rose_spacing = props["rose_spacing"]
+        self.rose_bottom = props["rose_bottom"]
+        self.draw_hoeppener = props["draw_hoeppener"]
+        self.draw_lp_plane = props["draw_lp_plane"]
+        self.draw_contour_fills = props["draw_contour_fills"]
+        self.draw_contour_lines = props["draw_contour_lines"]
+        self.draw_contour_labels = props["draw_contour_labels"]
+        self.colormap = props["colormap"]
+        self.contour_resolution = props["contour_resolution"]
+        self.contour_method = props["contour_method"]
+        self.contour_sigma = props["contour_sigma"]
+        self.contour_line_color = props["contour_line_color"]
+        self.contour_use_line_color = props["contour_use_line_color"]
+        self.contour_line_width = props["contour_line_width"]
+        self.contour_line_style = props["contour_line_style"]
+        self.contour_label_size = props["contour_label_size"]
+        self.manual_range = props["manual_range"]
+        self.lower_limit = props["lower_limit"]
+        self.upper_limit = props["upper_limit"]
+        self.steps = props["steps"]
+
 
 class FaultPlaneLayer(PlaneLayer):
 

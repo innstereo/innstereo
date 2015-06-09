@@ -577,3 +577,176 @@ class OverwriteDialog(object):
         self.call_overwrite()
         self.dialog.hide()
 
+class FileChooserSave(object):
+
+    """
+    Sets up and handles the signals of the FileChooser for saving the project.
+
+    This class handles the actions of the filechooserdialog that is used
+    to save the project.
+    """
+
+    def __init__(self, main_window, data):
+        self.builder = Gtk.Builder()
+        self.data = data
+        script_dir = os.path.dirname(__file__)
+        rel_path = "gui_layout.glade"
+        abs_path = os.path.join(script_dir, rel_path)
+        self.builder.add_objects_from_file(abs_path,
+            ("filechooserdialog_save", ""))
+        self.dialog = self.builder.get_object("filechooserdialog_save")
+        self.dialog.set_transient_for(main_window)
+        self.builder.connect_signals(self)
+
+    def run(self):
+        """
+        Runs the dialog.
+
+        This function is run when the filechooserdialog for saving is called
+        from the main window.
+        """
+        self.dialog.run()
+
+    def on_filechooserdialog_save_close(self, widget):
+        # pylint: disable=unused-argument
+        """
+        Hides the FileChooserSave dialog.
+
+        Triggered when the FileChooserSave dialog is closed. Hides the dialog.
+        """
+        self.dialog.hide()
+
+    def on_filechooserdialog_save_response(self, widget, response):
+        # pylint: disable=unused-argument
+        """
+        Hides the FileChooserSave dialog.
+
+        Triggered when the FileChooserSave dialog sends a response.
+        """
+        if response == -4:
+            self.dialog.hide()
+
+    def on_filechooserdialog_save_destroy(self, widget):
+        # pylint: disable=unused-argument
+        """
+        Hides the FileChooserSave dialog.
+
+        This function is run when the FileChooserSave dialog is destroyed.
+        Hides the dialog.
+        """
+        self.dialog.hide()
+
+    def on_button_cancel_save_clicked(self, button):
+        # pylint: disable=unused-argument
+        """
+        Hides the FileChooserSave dialog.
+
+        Triggered when "cancel" is clicked. Hides the dialog.
+        """
+        self.dialog.hide()
+
+    def on_button_confirm_save_clicked(self, button):
+        # pylint: disable=unused-argument
+        """
+        Saves the project.
+
+        If the file already exists a dialog will confirm the overwrite.
+        """
+        self.filename = self.dialog.get_filename()
+        if os.path.exists(self.filename) == True:
+            overwrite = OverwriteDialog(self.write_data, self.dialog)
+            overwrite.run()
+        else:
+            self.write_data()
+            self.dialog.hide()
+
+    def write_data(self):
+        """
+        Writes the data to the file.
+
+        Opens the file the user has inputted and writes the data to that file.
+        """
+        with open(self.filename, "w") as new_file:
+            new_file.write(self.data)
+        self.dialog.hide()
+
+
+class FileChooserOpen(object):
+
+    """
+    Sets up and handles all the signals of the FileChooser for opening a project
+
+    This class handles the actions of the filechooserdialog that selects a
+    project file and returns the file to the main window.
+    """
+
+    def __init__(self, main_window, open_project):
+        self.builder = Gtk.Builder()
+        script_dir = os.path.dirname(__file__)
+        rel_path = "gui_layout.glade"
+        abs_path = os.path.join(script_dir, rel_path)
+        self.builder.add_objects_from_file(abs_path,
+            ("filechooserdialog_open", ""))
+        self.dialog = self.builder.get_object("filechooserdialog_open")
+        self.dialog.set_transient_for(main_window)
+        self.open_project = open_project
+        self.builder.connect_signals(self)
+
+    def run(self):
+        """
+        Runs the dialog.
+
+        This function is run when the filechooserdialog for opening a project
+        is called from the main window.
+        """
+        self.dialog.run()
+
+    def on_filechooserdialog_open_destroy(self, widget):
+        # pylint: disable=unused-argument
+        """
+        Hides the dialog.
+
+        This function is run when the filechooserdialog is destroyed.
+        """
+        self.dialog.hide()
+
+    def on_filechooserdialog_open_close(self, widget):
+        # pylint: disable=unused-argument
+        """
+        Hides the dialog.
+
+        Triggered when the filechooserdialog is closed.
+        """
+        self.dialog.hide()
+
+    def on_filechooserdialog_open_response(self, widget, response):
+        # pylint: disable=unused-argument
+        """
+        Hides the dialog.
+
+        Triggered when the filechooserdialog sends a response.
+        """
+        if response == -4:
+            self.dialog.hide()
+
+    def on_button_confirm_open_clicked(self, widget):
+        # pylint: disable=unused-argument
+        """
+        Opens a file and passes the file location back to the main window.
+
+        Triggered when "open" is clicked. The file name is passed to the
+        open_project method of the MainWindow class. Then the dialog is hidden.
+        """
+        json_file = self.dialog.get_filename()
+        self.dialog.hide()
+        self.open_project(json_file)
+
+    def on_button_cancel_open_clicked(self, widget):
+        # pylint: disable=unused-argument
+        """
+        Hides the dialog.
+
+        Triggered when "cancel" is clicked. Hides the dialog.
+        """
+        self.dialog.hide()
+
