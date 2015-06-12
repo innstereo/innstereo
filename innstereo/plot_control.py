@@ -40,20 +40,21 @@ class PlotSettings(object):
         """
         self.folder_icon = Gtk.IconTheme.get_default().load_icon(
             "folder", 16, 0)
-        self.draw_grid = True
-        self.equal_area_projection = True
-        self.minor_grid_spacing = 2
-        self.major_grid_spacing = 10
-        self.grid_cutoff_lat = 80
-        self.show_north = True
-        self.show_cross = True
-        self.pixel_density = 75
-        self.grid_linestyle = "--"
-        self.grid_color = "#787878"
-        self.grid_width = 0.4
-        self.fig = Figure(dpi=self.pixel_density)
-        self.draw_legend = True
-        self.canvas_color = "#bfbfbf"
+        self.props = {"draw_grid": True,
+                      "equal_area_projection": True,
+                      "minor_grid_spacing": 2,
+                      "major_grid_spacing": 10,
+                      "grid_cutoff_lat": 80,
+                      "show_north": True,
+                      "show_cross": True,
+                      "pixel_density": 75,
+                      "grid_linestyle": "--",
+                      "grid_color": "#787878",
+                      "grid_width": 0.4,
+                      "draw_legend": True,
+                      "canvas_color": "#bfbfbf",
+                      }
+        self.fig = Figure(dpi=self.props["pixel_density"])
 
     def get_fig(self):
         """
@@ -73,12 +74,14 @@ class PlotSettings(object):
         InvertedLambertTransform- or else the
         InvertedSterreographicTransform-class.
         """
-        if self.equal_area_projection is True:
+        if self.props["equal_area_projection"] is True:
             return mplstereonet.stereonet_transforms.\
-                        InvertedLambertTransform(0, 0, self.pixel_density)
+                        InvertedLambertTransform(0, 0,
+                        self.props["pixel_density"])
         else:
             return mplstereonet.stereonet_transforms.\
-                        InvertedStereographicTransform(0, 0, self.pixel_density)
+                        InvertedStereographicTransform(0, 0,
+                        self.props["pixel_density"])
 
     def get_transform(self):
         """
@@ -87,12 +90,14 @@ class PlotSettings(object):
         If the projection is equal are (True) the function returns the
         LambertTransform- or else the SterreographicTransform-class.
         """
-        if self.equal_area_projection is True:
+        if self.props["equal_area_projection"] is True:
             return mplstereonet.stereonet_transforms.\
-                        LambertTransform(0, 0, self.pixel_density)
+                        LambertTransform(0, 0,
+                        self.props["pixel_density"])
         else:
             return mplstereonet.stereonet_transforms.\
-                        StereographicTransform(0, 0, self.pixel_density)
+                        StereographicTransform(0, 0,
+                        self.props["pixel_density"])
 
     def get_draw_grid_state(self):
         """
@@ -102,7 +107,7 @@ class PlotSettings(object):
         that no grid should be drawn. This method is called by the MainWindow-
         redraw_plot-method.
         """
-        return self.draw_grid
+        return self.props["draw_grid"]
 
     def set_draw_grid_state(self, new_state):
         """
@@ -112,7 +117,7 @@ class PlotSettings(object):
         that no grid should be drawn. This method is called by the
         LayerProperties-dialog when the setting is changed.
         """
-        self.draw_grid = new_state
+        self.props["draw_grid"] = new_state
 
     def get_folder_icon(self):
         """
@@ -133,7 +138,7 @@ class PlotSettings(object):
         is called by the LayerProperties-dialog so it can display the current
         value.
         """
-        return self.pixel_density
+        return self.props["pixel_density"]
 
     def set_pixel_density(self, new_pixel_density):
         """
@@ -143,7 +148,7 @@ class PlotSettings(object):
         The new value will be used when the plot redraws when the settings
         in the dialog are applied.
         """
-        self.pixel_density = new_pixel_density
+        self.props["pixel_density"] = new_pixel_density
 
     def get_projection(self):
         """
@@ -153,7 +158,7 @@ class PlotSettings(object):
         between the equal-area and equal-angle projection. This method is only
         called from this class when the view is switched.
         """
-        if self.equal_area_projection is True:
+        if self.props["equal_area_projection"] is True:
             return "equal_area_stereonet"
         else:
             return "equal_angle_stereonet"
@@ -166,7 +171,7 @@ class PlotSettings(object):
         with equal-area. False mean equal-angle. This method is called by the
         StereonetProperties-dialog to load the current setting.
         """
-        return self.equal_area_projection
+        return self.props["equal_area_projection"]
 
     def set_projection_state(self, new_state):
         """
@@ -177,7 +182,7 @@ class PlotSettings(object):
         StereonetProperties-dialog when a new setting for the projection is
         applied.
         """
-        self.equal_area_projection = new_state
+        self.props["equal_area_projection"] = new_state
 
     def get_grid_linestyle(self):
         """
@@ -186,7 +191,7 @@ class PlotSettings(object):
         The linestyle is returned as a string. Default is "--" (dashed). This
         method is called by the MainWindow "redraw_plot"-method.
         """
-        return self.grid_linestyle
+        return self.props["grid_linestyle"]
 
     def get_grid_color(self):
         """
@@ -195,7 +200,7 @@ class PlotSettings(object):
         Returns the color as a hex-triplet. The default is "#787878". This
         method is called by the MainWindow "redraw_plot"-method.
         """
-        return self.grid_color
+        return self.props["grid_color"]
 
     def get_grid_width(self):
         """
@@ -204,7 +209,7 @@ class PlotSettings(object):
         The width of the grid lines is returned as a float or int. The default
         is "0.4". This method is called by the MainWindow "redraw_plot"-method.
         """
-        return self.grid_width
+        return self.props["grid_width"]
 
     def get_draw_legend(self):
         """
@@ -214,7 +219,7 @@ class PlotSettings(object):
         if no legend should be drawn. This method is called by the MainWindow
         "redraw_plot"-method and the StereonetProperties-dialog.
         """
-        return self.draw_legend
+        return self.props["draw_legend"]
 
     def set_draw_legend(self, new_state):
         """
@@ -224,7 +229,7 @@ class PlotSettings(object):
         means that no legend should be drawn. This method is called by the
         StereonetProperties-dialog when a new setting is applied.
         """
-        self.draw_legend = new_state
+        self.props["draw_legend"] = new_state
 
     def get_canvas_rgba(self):
         """
@@ -234,7 +239,7 @@ class PlotSettings(object):
         current canvas color to the ColorButton.
         """
         rgba = Gdk.RGBA()
-        rgba.parse(self.canvas_color)
+        rgba.parse(self.props["canvas_color"])
         return rgba.to_color()
 
     def set_canvas_color(self, new_color):
@@ -245,7 +250,7 @@ class PlotSettings(object):
         by the StereonetProperties-dialog when a new color is applied to the
         canvas.
         """
-        self.canvas_color = new_color
+        self.props["canvas_color"] = new_color
 
     def get_stereonet(self):
         """
@@ -257,8 +262,8 @@ class PlotSettings(object):
         MainWindow "__init__"-method and the "redraw_plot"-method. 
         """
         self.fig.clf()
-        self.fig.patch.set_facecolor(self.canvas_color)
-        self.fig.set_dpi(self.pixel_density)
+        self.fig.patch.set_facecolor(self.props["canvas_color"])
+        self.fig.set_dpi(self.props["pixel_density"])
         gridspec = GridSpec(1, 1)
         sp_stereo = gridspec.new_subplotspec((0, 0))
         ax_stereo = self.fig.add_subplot(sp_stereo,
@@ -276,8 +281,8 @@ class PlotSettings(object):
         called by the MainWindow "redraw_plot"-method.
         """
         self.fig.clf()
-        self.fig.patch.set_facecolor(self.canvas_color)
-        self.fig.set_dpi(self.pixel_density)
+        self.fig.patch.set_facecolor(self.props["canvas_color"])
+        self.fig.set_dpi(self.props["pixel_density"])
         gridspec = GridSpec(1, 2)
         sp_stereo = gridspec.new_subplotspec((0, 0),
                                              rowspan=1, colspan=1)
@@ -298,8 +303,8 @@ class PlotSettings(object):
         returned. This method is called by the MainWindow "redraw_plot"-method.
         """
         self.fig.clf()
-        self.fig.patch.set_facecolor(self.canvas_color)
-        self.fig.set_dpi(self.pixel_density)
+        self.fig.patch.set_facecolor(self.props["canvas_color"])
+        self.fig.set_dpi(self.props["pixel_density"])
         gridspec = GridSpec(1, 1)
         sp_rose = gridspec.new_subplotspec((0, 0))
         ax_rose = self.fig.add_subplot(sp_rose, projection="northpolar")
@@ -315,8 +320,8 @@ class PlotSettings(object):
         MainWindow "redraw_plot"-method when the view has been changed.
         """
         self.fig.clf()
-        self.fig.patch.set_facecolor(self.canvas_color)
-        self.fig.set_dpi(self.pixel_density)
+        self.fig.patch.set_facecolor(self.props["canvas_color"])
+        self.fig.set_dpi(self.props["pixel_density"])
         gridspec = GridSpec(2, 5)
         sp_stereo = gridspec.new_subplotspec((0, 0), colspan=3, rowspan=2)
         sp_fluc = gridspec.new_subplotspec((0, 3), colspan=2)
@@ -334,7 +339,7 @@ class PlotSettings(object):
         Returns True if the North symbol should be drawn (the default value),
         or False in which case numbers will be drawn for different degrees.
         """
-        return self.show_north
+        return self.props["show_north"]
 
     def set_show_north(self, new_state):
         """
@@ -343,7 +348,7 @@ class PlotSettings(object):
         Expects a boolean. True means the North symbol will be drawn. False
         means that the stereonet will show different degrees along the outside.
         """
-        self.show_north = new_state
+        self.props["show_north"] = new_state
 
     def get_show_cross(self):
         """
@@ -352,7 +357,7 @@ class PlotSettings(object):
         Returns True if the cross should be drawn (the default value) or False
         if the cross should not be drawn.
         """
-        return self.show_cross
+        return self.props["show_cross"]
 
     def set_show_cross(self, new_state):
         """
@@ -361,4 +366,4 @@ class PlotSettings(object):
         Expects a boolean. True means the center cross will be drawn. False
         means it will not be drawn.
         """
-        self.show_cross = new_state
+        self.props["show_cross"] = new_state
