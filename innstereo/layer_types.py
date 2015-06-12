@@ -35,61 +35,57 @@ class PlaneLayer(object):
         """
         self.data_treestore = treestore
         self.data_treeview = treeview
-        self.type = "plane"
-        self.label = "Plane layer"
-        self.page = 0
 
-        #Great circle / Small circle properties
-        self.render_gcircles = True
-        self.line_color = "#0000ff"
-        self.line_width = 1.0
-        self.line_style = "-"
-        self.line_alpha = 1.0
-        self.capstyle = "butt"
-
-        #Pole properties
-        self.render_poles = False
-        self.pole_style = "^"
-        self.pole_size = 8.0
-        self.pole_fill = "#1abd00"
-        self.pole_edge_color = "#000000"
-        self.pole_edge_width = 1.0
-        self.pole_alpha = 1.0
-
-        #Linear properties
-        self.render_linears = True
-        self.marker_style = "o"
-        self.marker_size = 8.0
-        self.marker_fill = "#ff7a00"
-        self.marker_edge_color = "#000000"
-        self.marker_edge_width = 1.0
-        self.marker_alpha = 1.0
-
-        #Rose diagram properties
-        self.rose_spacing = 10
-        self.rose_bottom = 0
-
-        #Faulplane properties
-        self.draw_hoeppener = False
-        self.draw_lp_plane = False
-
-        #Contours
-        self.draw_contour_fills = False
-        self.draw_contour_lines = False
-        self.draw_contour_labels = False
-        self.colormap = "Blues"
-        self.contour_resolution = 40
-        self.contour_method = "exponential_kamb"
-        self.contour_sigma = 2
-        self.contour_line_color = "#000000"
-        self.contour_use_line_color = True
-        self.contour_line_width = 1
-        self.contour_line_style = "-"
-        self.contour_label_size = 12
-        self.manual_range = False
-        self.lower_limit = 1
-        self.upper_limit = 10
-        self.steps = 10
+        self.props = {"type": "plane",
+                      "label": "Plane layer",
+                      "page": 0,
+                      #Great circle / Small circle properties
+                      "draw_gcircles": True,
+                      "line_color": "#0000ff",
+                      "line_width": 1.0,
+                      "line_style": "-",
+                      "line_alpha": 1.0,
+                      "capstyle": "butt",
+                      #Pole properties
+                      "draw_poles": False,
+                      "pole_style": "^",
+                      "pole_size": 8.0,
+                      "pole_fill": "#1abd00",
+                      "pole_edge_color": "#000000",
+                      "pole_edge_width": 1.0,
+                      "pole_alpha": 1.0,
+                      #Linear properties
+                      "draw_linears": True,
+                      "marker_style": "o",
+                      "marker_size": 8.0,
+                      "marker_fill": "#ff7a00",
+                      "marker_edge_color": "#000000",
+                      "marker_edge_width": 1.0,
+                      "marker_alpha": 1.0,
+                      #Rose diagram properties
+                      "rose_spacing": 10,
+                      "rose_bottom": 0,
+                      #Faultplane properties
+                      "draw_hoeppener": False,
+                      "draw_lp_plane": False,
+                      #Contours
+                      "draw_contour_fills": False,
+                      "draw_contour_lines": False,
+                      "draw_contour_labels": False,
+                      "colormap": "Blues",
+                      "contour_resolution": 40,
+                      "contour_method": "exponential_kamb",
+                      "contour_sigma": 2,
+                      "contour_line_color": "#000000",
+                      "contour_use_line_color": True,
+                      "contour_line_width": 1,
+                      "contour_line_style": "-",
+                      "contour_label_size": 12,
+                      "manual_range": False,
+                      "lower_limit": 1,
+                      "upper_limit": 10,
+                      "steps": 10
+                      }
 
     def get_page(self):
         """
@@ -99,7 +95,7 @@ class PlaneLayer(object):
         for each layer. The integer value corresponds to the
         value of the Gtk Notebook.
         """
-        return self.page
+        return self.props["page"]
 
     def set_page(self, new_page):
         """
@@ -108,7 +104,7 @@ class PlaneLayer(object):
         Expects an integer that corresponds to the Gtk-Notebook page,
         that was last viewed for this layer.
         """
-        self.page = new_page
+        self.props["page"] = new_page
 
     def get_pixbuf(self):
         """
@@ -120,10 +116,10 @@ class PlaneLayer(object):
         method is called by the main window to create the colored squares for
         the layer view.
         """
-        line_color_alpha = int("0x{0}ff".format(
-            self.line_color[1:]), base=16)
-        pixbuf_color = GdkPixbuf.Pixbuf.new(
-            GdkPixbuf.Colorspace.RGB, True, 8, 16, 16)
+        line_color_alpha = int("0x{0}ff".format(self.props["line_color"][1:]),
+                               base=16)
+        pixbuf_color = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB,
+                                            True, 8, 16, 16)
         pixbuf_color.fill(line_color_alpha)
         return pixbuf_color
 
@@ -139,7 +135,7 @@ class PlaneLayer(object):
         __!!__ Does not return alpha yet!
         """
         rgba = Gdk.RGBA()
-        rgba.parse(self.line_color)
+        rgba.parse(self.props["line_color"])
         return rgba.to_color()
 
     def get_marker_rgba(self):
@@ -154,7 +150,7 @@ class PlaneLayer(object):
         __!!__ Does not return alpha yet!
         """
         rgba = Gdk.RGBA()
-        rgba.parse(self.marker_fill)
+        rgba.parse(self.props["marker_fill"])
         return rgba.to_color()
 
     def get_pole_rgba(self):
@@ -169,7 +165,7 @@ class PlaneLayer(object):
         __!!__ Does not return alpha yet!
         """
         rgba = Gdk.RGBA()
-        rgba.parse(self.pole_fill)
+        rgba.parse(self.props["pole_fill"])
         return rgba.to_color()
 
     def get_pole_edge_rgba(self):
@@ -183,7 +179,7 @@ class PlaneLayer(object):
         __!!__ Does not return alpha yet!
         """
         rgba = Gdk.RGBA()
-        rgba.parse(self.pole_edge_color)
+        rgba.parse(self.props["pole_edge_color"])
         return rgba.to_color()
 
     def get_marker_edge_rgba(self):
@@ -197,7 +193,7 @@ class PlaneLayer(object):
         __!!__ Does not return alpha yet!
         """
         rgba = Gdk.RGBA()
-        rgba.parse(self.marker_edge_color)
+        rgba.parse(self.props["marker_edge_color"])
         return rgba.to_color()
 
     def get_data_treestore(self):
@@ -226,7 +222,7 @@ class PlaneLayer(object):
         The layer type is a string. Either "plane", "faultplane", "line", or
         "smallcircle".
         """
-        return self.type
+        return self.props["type"]
 
     def get_line_color(self):
         """
@@ -236,7 +232,7 @@ class PlaneLayer(object):
         great circles for planes and faultplanes and the color of the small
         circles.
         """
-        return self.line_color
+        return self.props["line_color"]
 
     def set_line_color(self, new_color):
         """
@@ -244,7 +240,7 @@ class PlaneLayer(object):
 
         Expects a string in hex-triplet format.
         """
-        self.line_color = new_color
+        self.props["line_color"] = new_color
 
     def get_label(self):
         """
@@ -253,7 +249,7 @@ class PlaneLayer(object):
         The label is returned as a string. After a new layer is created this
         is a default hardcoded value. The user can change this string.
         """
-        return self.label
+        return self.props["label"]
 
     def set_label(self, new_label):
         """
@@ -262,7 +258,7 @@ class PlaneLayer(object):
         Expects a string. This method is called when the user changes the
         name of a layer by editing the column in the layer-view.
         """
-        self.label = new_label
+        self.props["label"] = new_label
 
     def get_line_width(self):
         """
@@ -271,7 +267,7 @@ class PlaneLayer(object):
         The line width is returned as int or float. It is the width or weight
         of the great circles or small circles.
         """
-        return self.line_width
+        return self.props["line_width"]
 
     def set_line_width(self, new_line_width):
         """
@@ -280,7 +276,7 @@ class PlaneLayer(object):
         Expects a int or float. This method is called by the layer-properties
         dialog when a new value has been set.
         """
-        self.line_width = new_line_width
+        self.props["line_width"] = new_line_width
 
     def get_line_style(self):
         """
@@ -289,7 +285,7 @@ class PlaneLayer(object):
         Returns the line value as a string. The default is a solid line
         (which corresponds to "-").
         """
-        return self.line_style
+        return self.props["line_style"]
 
     def set_line_style(self, new_line_style):
         """
@@ -299,7 +295,7 @@ class PlaneLayer(object):
         by the layer properties dialog when a new value for this has been
         set.
         """
-        self.line_style = new_line_style
+        self.props["line_style"] = new_line_style
 
     def get_capstyle(self):
         """
@@ -308,7 +304,7 @@ class PlaneLayer(object):
         The line capstyle is returned as a string. The default is "butt" and
         is only used when the line is dashed or dash-dotted.
         """
-        return self.capstyle
+        return self.props["capstyle"]
 
     def set_capstyle(self, new_capstyle):
         """
@@ -316,7 +312,7 @@ class PlaneLayer(object):
 
         Expects a string (e.g. "round").
         """
-        self.capstyle = new_capstyle
+        self.props["capstyle"] = new_capstyle
 
     def get_pole_style(self):
         """
@@ -325,7 +321,7 @@ class PlaneLayer(object):
         The style of the marker used for poles is returned as a string. The
         default is "o".
         """
-        return self.pole_style
+        return self.props["pole_style"]
 
     def set_pole_style(self, new_pole_style):
         """
@@ -334,7 +330,7 @@ class PlaneLayer(object):
         Expects a string. This method is called by the layer-properties dialog
         when a new style is set.
         """
-        self.pole_style = new_pole_style
+        self.props["pole_style"] = new_pole_style
 
     def get_pole_size(self):
         """
@@ -342,7 +338,7 @@ class PlaneLayer(object):
 
         The pole size is returned as int or float.
         """
-        return self.pole_size
+        return self.props["pole_size"]
 
     def set_pole_size(self, new_pole_size):
         """
@@ -351,7 +347,7 @@ class PlaneLayer(object):
         Expects an int or float. This method is called by layer-properties
         dialog when a new value is set.
         """
-        self.pole_size = new_pole_size
+        self.props["pole_size"] = new_pole_size
 
     def get_pole_fill(self):
         """
@@ -359,7 +355,7 @@ class PlaneLayer(object):
 
         The fill of the pole markers is returned as a hex-triplet.
         """
-        return self.pole_fill
+        return self.props["pole_fill"]
 
     def set_pole_fill(self, new_pole_fill):
         """
@@ -368,7 +364,7 @@ class PlaneLayer(object):
         Expects a string in hex-triplet format. This method is called by the
         layer-properties dialog when a new color is set.
         """
-        self.pole_fill = new_pole_fill
+        self.props["pole_fill"] = new_pole_fill
 
     def get_pole_edge_color(self):
         """
@@ -376,7 +372,7 @@ class PlaneLayer(object):
 
         The pole edge color is returned as a hex-triplet.
         """
-        return self.pole_edge_color
+        return self.props["pole_edge_color"]
 
     def set_pole_edge_color(self, new_pole_edge_color):
         """
@@ -385,7 +381,7 @@ class PlaneLayer(object):
         Expects a string in hex-triplet format. This method is called by
         the layer-properties dialog when a new edge color is set.
         """
-        self.pole_edge_color = new_pole_edge_color
+        self.props["pole_edge_color"] = new_pole_edge_color
 
     def get_pole_edge_width(self):
         """
@@ -393,7 +389,7 @@ class PlaneLayer(object):
 
         The pole edge width is returned as an int or float.
         """
-        return self.pole_edge_width
+        return self.props["pole_edge_width"]
 
     def set_pole_edge_width(self, new_pole_edge_width):
         """
@@ -402,7 +398,7 @@ class PlaneLayer(object):
         Expects an int or float. This method is called by the layer-properties
         dialog when a new value is set.
         """
-        self.pole_edge_width = new_pole_edge_width
+        self.props["pole_edge_width"] = new_pole_edge_width
 
     def get_pole_alpha(self):
         """
@@ -410,7 +406,7 @@ class PlaneLayer(object):
 
         The transparency is returned as a float between 0 and 1.
         """
-        return self.pole_alpha
+        return self.props["pole_alpha"]
 
     def set_pole_alpha(self, new_alpha):
         """
@@ -418,7 +414,7 @@ class PlaneLayer(object):
 
         Expects a float value between 0 and 1.
         """
-        self.pole_alpha = new_alpha
+        self.props["pole_alpha"] = new_alpha
 
     def get_marker_style(self):
         """
@@ -428,7 +424,7 @@ class PlaneLayer(object):
         is "o". This method is called by the main windoweach time the plot is
         redrawn.
         """
-        return self.marker_style
+        return self.props["marker_style"]
 
     def set_marker_style(self, new_marker_style):
         """
@@ -437,7 +433,7 @@ class PlaneLayer(object):
         Expects a string. This method is called by the layer-properties dialog
         when a new value is set for this layer.
         """
-        self.marker_style = new_marker_style
+        self.props["marker_style"] = new_marker_style
 
     def get_marker_size(self):
         """
@@ -446,7 +442,7 @@ class PlaneLayer(object):
         The marker size is returned as an int or float. This method is called
         by the main window each time the plot is redrawn.
         """
-        return self.marker_size
+        return self.props["marker_size"]
 
     def set_marker_size(self, new_marker_size):
         """
@@ -455,7 +451,7 @@ class PlaneLayer(object):
         Expects an int or float. This method is called by the layer-properties
         dialog when a new value is set.
         """
-        self.marker_size = new_marker_size
+        self.props["marker_size"] = new_marker_size
 
     def get_marker_fill(self):
         """
@@ -465,7 +461,7 @@ class PlaneLayer(object):
         method is called by the redraw_plot-method of the MainWindow and the
         layer-properties dialog.
         """
-        return self.marker_fill
+        return self.props["marker_fill"]
 
     def set_marker_fill(self, new_marker_fill):
         """
@@ -474,7 +470,7 @@ class PlaneLayer(object):
         Expects a string in hex-triplet format. This method is called by the
         layer-properties dialog when a new value is set.
         """
-        self.marker_fill = new_marker_fill
+        self.props["marker_fill"] = new_marker_fill
 
     def get_marker_edge_width(self):
         """
@@ -484,7 +480,7 @@ class PlaneLayer(object):
         the redraw_plot-method of the MainWindow-class and the layer-properties
         dialog.
         """
-        return self.marker_edge_width
+        return self.props["marker_edge_width"]
 
     def set_marker_edge_width(self, new_marker_edge_width):
         """
@@ -493,7 +489,7 @@ class PlaneLayer(object):
         Expects an int or float. This method is called by the layer-properties
         dialog when a new value is set.
         """
-        self.marker_edge_width = new_marker_edge_width
+        self.props["marker_edge_width"] = new_marker_edge_width
 
     def get_marker_edge_color(self):
         """
@@ -503,7 +499,7 @@ class PlaneLayer(object):
         is called by the redraw_plot-method of the MainWindow-class and the
         layer-properties dialog.
         """
-        return self.marker_edge_color
+        return self.props["marker_edge_color"]
 
     def set_marker_edge_color(self, new_marker_edge_color):
         """
@@ -512,7 +508,7 @@ class PlaneLayer(object):
         Expects a string in hex-triplet format. This method is called
         by the layer-properties dialog when a new value is set.
         """
-        self.marker_edge_color = new_marker_edge_color
+        self.props["marker_edge_color"] = new_marker_edge_color
 
     def get_line_alpha(self):
         """
@@ -520,7 +516,7 @@ class PlaneLayer(object):
 
         The transparency is returned as a float between 0 and 1.
         """
-        return self.line_alpha
+        return self.props["line_alpha"]
 
     def set_line_alpha(self, new_line_alpha):
         """
@@ -529,7 +525,7 @@ class PlaneLayer(object):
         Expects a float between 0 and 1. This method is called by the
         layer-properties dialog when a new value is set.
         """
-        self.line_alpha = new_line_alpha
+        self.props["line_alpha"] = new_line_alpha
 
     def get_marker_alpha(self):
         """
@@ -537,7 +533,7 @@ class PlaneLayer(object):
 
         The transparency is returned as a float between 0 and 1.
         """
-        return self.marker_alpha
+        return self.props["marker_alpha"]
 
     def set_marker_alpha(self, new_marker_alpha):
         """
@@ -546,61 +542,61 @@ class PlaneLayer(object):
         Expects a float between 0 and 1. This method is called by the
         layer-properties dialog when a new value has been set.
         """
-        self.marker_alpha = new_marker_alpha
+        self.props["marker_alpha"] = new_marker_alpha
 
-    def get_render_gcircles(self):
+    def get_draw_gcircles(self):
         """
         Returns if great circles should be rendered for this layer.
 
         The returned value is a bool. True mean that circles are rendered.
         False mean they are not rendered.
         """
-        return self.render_gcircles
+        return self.props["draw_gcircles"]
 
-    def set_render_gcircles(self, new_render_gcircles_state):
+    def set_draw_gcircles(self, new_draw_gcircles_state):
         """
         Sets if great circles should be drawn for this layer.
 
         Expects a boolean. This method is called by the layer-properties
         dialog when a new value is set.
         """
-        self.render_gcircles = new_render_gcircles_state
+        self.pros["draw_gcircles"] = new_draw_gcircles_state
 
-    def get_render_poles(self):
+    def get_draw_poles(self):
         """
         Returns if poles should be rendered for this layer.
 
         The returned value is a boolean. True means that poles are rendered.
         False means that they are not rendered.
         """
-        return self.render_poles
+        return self.props["draw_poles"]
 
-    def set_render_poles(self, new_render_poles_state):
+    def set_draw_poles(self, new_draw_poles_state):
         """
         Sets if poles should be rendered for this layer.
 
         Expects a boolean. This method is called by the layer-properties
         dialog when a new value is set.
         """
-        self.render_poles = new_render_poles_state
+        self.props["draw_poles"] = new_draw_poles_state
 
-    def get_render_linears(self):
+    def get_draw_linears(self):
         """
         Returns if linears should be rendered for this layer.
 
         Returns a boolean. True means that linears are drawn. False means
         that they are not drawn.
         """
-        return self.render_linears
+        return self.props["draw_linears"]
 
-    def set_render_linears(self, new_render_linears_state):
+    def set_draw_linears(self, new_draw_linears_state):
         """
         Sets if linears should be rendered for this layer.
 
         Expects a boolean. This method is called by the layer-properties
         dialog when a new value is set.
         """
-        self.render_linears = new_render_linears_state
+        self.props["draw_linears"] = new_draw_linears_state
 
     def get_draw_contour_fills(self):
         """
@@ -609,7 +605,7 @@ class PlaneLayer(object):
         Returns a boolean. Default is False. True mean that contour fills are
         drawn. False means they are not drawn.
         """
-        return self.draw_contour_fills
+        return self.props["draw_contour_fills"]
 
     def set_draw_contour_fills(self, new_state):
         """
@@ -618,7 +614,7 @@ class PlaneLayer(object):
         Expects a boolean. This method is called by the layer-properties
         dialog when a new value is set.
         """
-        self.draw_contour_fills = new_state
+        self.props["draw_contour_fills"] = new_state
 
     def get_draw_contour_lines(self):
         """
@@ -627,7 +623,7 @@ class PlaneLayer(object):
         Returns a boolean. Default is False. True means that contour-lines
         are drawn. False mean they are not drawn.
         """
-        return self.draw_contour_lines
+        return self.props["draw_contour_lines"]
 
     def set_draw_contour_lines(self, new_state):
         """
@@ -636,7 +632,7 @@ class PlaneLayer(object):
         Expects a boolean. This method is called by the layer-properties
         dialog when a new value is set.
         """
-        self.draw_contour_lines = new_state
+        self.props["draw_contour_lines"] = new_state
 
     def get_draw_contour_labels(self):
         """
@@ -645,7 +641,7 @@ class PlaneLayer(object):
         Returns a boolean. Default is False. True mean that contour labels
         are drawn. False means they are not drawn.
         """
-        return self.draw_contour_labels
+        return self.props["draw_contour_labels"]
 
     def set_draw_contour_labels(self, new_state):
         """
@@ -654,7 +650,7 @@ class PlaneLayer(object):
         Expects a boolean. This method is called by the layer-properties
         dialog when a new value is set.
         """
-        self.draw_contour_labels = new_state
+        self.props["draw_contour_labels"] = new_state
 
     def get_rose_spacing(self):
         """
@@ -662,7 +658,7 @@ class PlaneLayer(object):
 
         The returned value is an int or float.
         """
-        return self.rose_spacing
+        return self.props["rose_spacing"]
 
     def set_rose_spacing(self, new_spacing):
         """
@@ -671,7 +667,7 @@ class PlaneLayer(object):
         Expects an int or float. This method is called by the layer-properties
         dialog when a new value is set.
         """
-        self.rose_spacing = new_spacing
+        self.props["rose_spacing"] = new_spacing
 
     def get_rose_bottom(self):
         """
@@ -679,7 +675,7 @@ class PlaneLayer(object):
 
         The returned value is an int of float.
         """
-        return self.rose_bottom
+        return self.props["rose_bottom"]
 
     def set_rose_bottom(self, new_bottom):
         """
@@ -688,7 +684,7 @@ class PlaneLayer(object):
         Expects an int or float. This method is called by the layer-properties
         dialog when a new value is set.        
         """
-        self.rose_bottom = new_bottom
+        self.props["rose_bottom"] = new_bottom
 
     def get_colormap(self):
         """
@@ -696,7 +692,7 @@ class PlaneLayer(object):
 
         Default is "Blues".
         """
-        return self.colormap
+        return self.props["colormap"]
 
     def set_colormap(self, new_colormap):
         """
@@ -704,7 +700,7 @@ class PlaneLayer(object):
 
         Expects a string (e.g. "Blues")
         """
-        self.colormap = new_colormap
+        self.props["colormap"] = new_colormap
 
     def get_contour_resolution(self):
         """
@@ -712,7 +708,7 @@ class PlaneLayer(object):
 
         Default is 100.
         """
-        return self.contour_resolution
+        return self.props["contour_resolution"]
 
     def set_contour_resolution(self, new_resolution):
         """
@@ -720,7 +716,7 @@ class PlaneLayer(object):
 
         Expects an integer.
         """
-        self.contour_resolution = new_resolution
+        self.props["contour_resolution"] = new_resolution
 
     def get_contour_method(self):
         """
@@ -728,7 +724,7 @@ class PlaneLayer(object):
 
         Default: "exponential_kamb"
         """
-        return self.contour_method
+        return self.props["contour_method"]
 
     def set_contour_method(self, new_method):
         """
@@ -736,7 +732,7 @@ class PlaneLayer(object):
 
         Expects an string.
         """
-        self.contour_method = new_method
+        self.props["contour_method"] = new_method
 
     def get_contour_line_width(self):
         """
@@ -744,7 +740,7 @@ class PlaneLayer(object):
 
         Default is 1.
         """
-        return self.contour_line_width
+        return self.props["contour_line_width"]
 
     def set_contour_line_width(self, new_width):
         """
@@ -752,7 +748,7 @@ class PlaneLayer(object):
 
         Expects an int or float.
         """
-        self.contour_line_width = new_width
+        self.props["contour_line_width"] = new_width
 
     def get_contour_line_color(self):
         """
@@ -760,7 +756,7 @@ class PlaneLayer(object):
 
         Default is "#000000".
         """
-        return self.contour_line_color
+        return self.props["contour_line_color"]
 
     def set_contour_line_color(self, new_color):
         """
@@ -768,7 +764,7 @@ class PlaneLayer(object):
 
         Expects a hex triplet in the form of e.g. "#ab00ab".
         """
-        self.contour_line_color = new_color
+        self.props["contour_line_color"] = new_color
 
     def get_contour_line_rgba(self):
         """
@@ -778,7 +774,7 @@ class PlaneLayer(object):
         __!!__ does not return alpha yet
         """
         rgba = Gdk.RGBA()
-        rgba.parse(self.contour_line_color)
+        rgba.parse(self.props["contour_line_color"])
         return rgba.to_color()
 
     def get_contour_sigma(self):
@@ -787,7 +783,7 @@ class PlaneLayer(object):
 
         Returned value can be int or float. The default is 3.
         """
-        return self.contour_sigma
+        return self.props["contour_sigma"]
 
     def set_contour_sigma(self, new_sigma):
         """
@@ -795,7 +791,7 @@ class PlaneLayer(object):
 
         Expects an int or float.
         """
-        self.contour_sigma = new_sigma
+        self.props["contour_sigma"] = new_sigma
 
     def get_contour_line_style(self):
         """
@@ -803,7 +799,7 @@ class PlaneLayer(object):
 
         Default is a solid line as "-".
         """
-        return self.contour_line_style
+        return self.props["contour_line_style"]
 
     def set_contour_line_style(self, new_style):
         """
@@ -811,7 +807,7 @@ class PlaneLayer(object):
 
         Expects a string (Example "--").
         """
-        self.contour_line_style = new_style
+        self.props["contour_line_style"] = new_style
 
     def get_contour_label_size(self):
         """
@@ -819,7 +815,7 @@ class PlaneLayer(object):
 
         This method expects an int or float. The default is 12.
         """
-        return self.contour_label_size
+        return self.props["contour_label_size"]
 
     def set_contour_label_size(self, new_size):
         """
@@ -827,7 +823,7 @@ class PlaneLayer(object):
 
         This method expects an int or float.
         """
-        self.contour_label_size = new_size
+        self.props["contour_label_size"] = new_size
 
     def get_use_line_color(self):
         """
@@ -837,7 +833,7 @@ class PlaneLayer(object):
         contour lines as a boolean. Default is True.
         True = Use color, False = Use colormap
         """
-        return self.contour_use_line_color
+        return self.props["contour_use_line_color"]
 
     def set_use_line_color(self, new_state):
         """
@@ -847,7 +843,7 @@ class PlaneLayer(object):
         for the contour lines. Expects a boolean.
         True = Use color, False = Use colormap
         """
-        self.contour_use_line_color = new_state
+        self.props["contour_use_line_color"] = new_state
 
     def get_draw_hoeppener(self):
         """
@@ -857,7 +853,7 @@ class PlaneLayer(object):
         check if the arrows should be drawn. It is also called by the
         LayerProperties-dialog to update the interface to the current settings.
         """
-        return self.draw_hoeppener
+        return self.props["draw_hoeppener"]
 
     def set_draw_hoeppener(self, new_state):
         """
@@ -866,7 +862,7 @@ class PlaneLayer(object):
         Function is called by the layer-properties dialog when a new state
         is set. The function expects a boolean.
         """
-        self.draw_hoeppener = new_state
+        self.props["draw_hoeppener"] = new_state
 
     def get_draw_lp_plane(self):
         """
@@ -875,7 +871,7 @@ class PlaneLayer(object):
         Function is called by the MainWindow by the redraw_plot function to
         check if the linear-pole-plane should be drawn.
         """
-        return self.draw_lp_plane
+        return self.props["draw_lp_plane"]
 
     def set_draw_lp_plane(self, new_state):
         """
@@ -884,7 +880,7 @@ class PlaneLayer(object):
         Function is called by the layer-properties dialog when a new state
         is set. The function expects a boolean.
         """
-        self.draw_lp_plane = new_state
+        self.props["draw_lp_plane"] = new_state
 
     def get_manual_range(self):
         """
@@ -894,7 +890,7 @@ class PlaneLayer(object):
         and from the MainWindow class to determine the drawing of contours.
         Returns a boolean. Default is False.
         """
-        return self.manual_range
+        return self.props["manual_range"]
 
     def set_manual_range(self, new_state):
         """
@@ -903,37 +899,37 @@ class PlaneLayer(object):
         Expects a boolean. Called from the LayerProperties class when a new
         state is set for the button.
         """
-        self.manual_range = new_state
+        self.props["manual_range"] = new_state
 
     def get_lower_limit(self):
         """
         """
-        return self.lower_limit
+        return self.props["lower_limit"]
 
     def set_lower_limit(self, new_lower):
         """
         """
-        self.lower_limit = new_lower
+        self.props["lower_limit"] = new_lower
 
     def get_upper_limit(self):
         """
         """
-        return self.upper_limit
+        return self.props["upper_limit"]
 
     def set_upper_limit(self, new_upper):
         """
         """
-        self.upper_limit = new_upper
+        self.props["upper_limit"] = new_upper
 
     def get_steps(self):
         """
         """
-        return self.steps
+        return self.props["steps"]
 
     def set_steps(self, new_steps):
         """
         """
-        self.steps = new_steps
+        self.props["steps"] = new_steps
 
     def return_data(self):
         """
@@ -950,7 +946,7 @@ class PlaneLayer(object):
         self.data_treestore.foreach(iterate_over_data)
         return store_data
 
-    def return_properties(self):
+    def get_properties(self):
         """
         Returns a dictionary containing all the properties of the layer.
 
@@ -958,51 +954,7 @@ class PlaneLayer(object):
         user. This method is used for saving layers, or passing a layer to
         the copy-paste-function or the drag-and-drop function.
         """
-        props = {}
-        props["type"] = self.type
-        props["label"] = self.label
-        props["page"] = self.page
-        props["render_gcircles"] = self.render_gcircles
-        props["line_color"] = self.line_color
-        props["line_width"] = self.line_width
-        props["line_style"] = self.line_style
-        props["line_alpha"] = self.line_alpha
-        props["line_capstyle"] = self.capstyle
-        props["render_poles"] = self.render_poles
-        props["pole_style"] = self.pole_style
-        props["pole_size"] = self.pole_size
-        props["pole_fill"] = self.pole_fill
-        props["pole_edge_color"] = self.pole_edge_color
-        props["pole_edge_width"] = self.pole_edge_width
-        props["pole_alpha"] = self.pole_alpha
-        props["render_linears"] = self.render_linears
-        props["marker_style"] = self.marker_style
-        props["marker_size"] = self.marker_size
-        props["marker_fill"] = self.marker_fill
-        props["marker_edge_color"] = self.marker_edge_color
-        props["marker_edge_width"] = self.marker_edge_width
-        props["marker_alpha"] = self.marker_alpha
-        props["rose_spacing"] = self.rose_spacing
-        props["rose_bottom"] = self.rose_bottom
-        props["draw_hoeppener"] = self.draw_hoeppener
-        props["draw_lp_plane"] = self.draw_lp_plane
-        props["draw_contour_fills"] = self.draw_contour_fills
-        props["draw_contour_lines"] = self.draw_contour_lines
-        props["draw_contour_labels"] = self.draw_contour_labels
-        props["colormap"] = self.colormap
-        props["contour_resolution"] = self.contour_resolution
-        props["contour_method"] = self.contour_method
-        props["contour_sigma"] = self.contour_sigma
-        props["contour_line_color"] = self.contour_line_color
-        props["contour_use_line_color"] = self.contour_use_line_color
-        props["contour_line_width"] = self.contour_line_width
-        props["contour_line_style"] = self.contour_line_style
-        props["contour_label_size"] = self.contour_label_size
-        props["manual_range"] = self.manual_range
-        props["lower_limit"] = self.lower_limit
-        props["upper_limit"] = self.upper_limit
-        props["steps"] = self.steps
-        return props
+        return self.props
 
     def set_properties(self, props):
         """
@@ -1013,48 +965,7 @@ class PlaneLayer(object):
         called when a project is loaded or when a layer is pasted, or
         received through drag-and-drop.
         """
-        self.label = props["label"]
-        self.page = props["page"]
-        self.render_gcircles = props["render_gcircles"]
-        self.line_color = props["line_color"]
-        self.line_width = props["line_width"]
-        self.line_style = props["line_style"]
-        self.line_alpha = props["line_alpha"]
-        self.capstyle = props["line_capstyle"]
-        self.render_poles = props["render_poles"]
-        self.pole_style = props["pole_style"]
-        self.pole_size = props["pole_size"]
-        self.pole_fill = props["pole_fill"]
-        self.pole_edge_color = props["pole_edge_color"]
-        self.pole_edge_width = props["pole_edge_width"]
-        self.pole_alpha = props["pole_alpha"]
-        self.render_linears = props["render_linears"]
-        self.marker_style = props["marker_style"]
-        self.marker_size = props["marker_size"]
-        self.marker_fill = props["marker_fill"]
-        self.marker_edge_color = props["marker_edge_color"]
-        self.marker_edge_width = props["marker_edge_width"]
-        self.marker_alpha = props["marker_alpha"]
-        self.rose_spacing = props["rose_spacing"]
-        self.rose_bottom = props["rose_bottom"]
-        self.draw_hoeppener = props["draw_hoeppener"]
-        self.draw_lp_plane = props["draw_lp_plane"]
-        self.draw_contour_fills = props["draw_contour_fills"]
-        self.draw_contour_lines = props["draw_contour_lines"]
-        self.draw_contour_labels = props["draw_contour_labels"]
-        self.colormap = props["colormap"]
-        self.contour_resolution = props["contour_resolution"]
-        self.contour_method = props["contour_method"]
-        self.contour_sigma = props["contour_sigma"]
-        self.contour_line_color = props["contour_line_color"]
-        self.contour_use_line_color = props["contour_use_line_color"]
-        self.contour_line_width = props["contour_line_width"]
-        self.contour_line_style = props["contour_line_style"]
-        self.contour_label_size = props["contour_label_size"]
-        self.manual_range = props["manual_range"]
-        self.lower_limit = props["lower_limit"]
-        self.upper_limit = props["upper_limit"]
-        self.steps = props["steps"]
+        self.props = props
 
 
 class FaultPlaneLayer(PlaneLayer):
@@ -1088,7 +999,7 @@ class LineLayer(PlaneLayer):
     "Linear layer". For initialization it needs a treestore and treeview which
     are passed to the PlaneLayer class. The class also overrides the get_pixbuf
     method, because the colored square from the layer-view should reflect the
-    fill of the marker.   
+    fill of the marker.
     """
 
     def __init__(self, treestore, treeview):
@@ -1100,9 +1011,9 @@ class LineLayer(PlaneLayer):
         layer-type is set to line and the label to "Linear layer".
         """
         PlaneLayer.__init__(self, treestore, treeview)
-        self.type = "line"
-        self.label = "Linear layer"
-        self.page = 1
+        self.props["type"] = "line"
+        self.props["label"] = "Linear layer"
+        self.props["page"] = 1
 
     def get_pixbuf(self):
         """
@@ -1114,7 +1025,7 @@ class LineLayer(PlaneLayer):
         stereonet.
         """
         marker_color_alpha = int("0x{0}ff".format(
-            self.marker_fill[1:]), base=16)
+            self.props["marker_fill"][1:]), base=16)
         pixbuf_color = GdkPixbuf.Pixbuf.new(
             GdkPixbuf.Colorspace.RGB, True, 8, 16, 16)
         pixbuf_color.fill(marker_color_alpha)
@@ -1139,9 +1050,9 @@ class EigenVectorLayer(PlaneLayer):
         class. Overrides the self.type and self.label of the PlaneLayer class.
         """
         PlaneLayer.__init__(self, treestore, treeview)
-        self.type = "eigenvector"
-        self.label = "Eigenvector layer"
-        self.page = 1
+        self.props["type"] = "eigenvector"
+        self.props["label"] = "Eigenvector layer"
+        self.props["page"] = 1
 
     def get_pixbuf(self):
         """
@@ -1151,7 +1062,7 @@ class EigenVectorLayer(PlaneLayer):
         returns it.
         """
         marker_color_alpha = int("0x{0}ff".format(
-            self.marker_fill[1:]), base=16)
+            self.props["marker_fill"][1:]), base=16)
         pixbuf_color = GdkPixbuf.Pixbuf.new(
             GdkPixbuf.Colorspace.RGB, True, 8, 16, 16)
         pixbuf_color.fill(marker_color_alpha)
@@ -1177,5 +1088,6 @@ class SmallCircleLayer(PlaneLayer):
         to "Small circle layer".
         """
         PlaneLayer.__init__(self, treestore, treeview)
-        self.type = "smallcircle"
-        self.label = "Small circle layer"
+        self.props["type"] = "smallcircle"
+        self.props["label"] = "Small circle layer"
+        

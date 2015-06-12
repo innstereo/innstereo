@@ -159,52 +159,7 @@ class RotationDialog(object):
                                                              ldipdir_lst, ldips_lst, sense):
                     self.add_feature("faultplane", store, dipdir, dip, ldipdir, ldip, sns)
 
-            new_lyr_obj.set_render_gcircles(lyr_obj.get_render_gcircles())
-            new_lyr_obj.set_line_color(lyr_obj.get_line_color())
-            new_lyr_obj.set_line_width(lyr_obj.get_line_width())
-            new_lyr_obj.set_line_style(lyr_obj.get_line_style())
-            new_lyr_obj.set_line_alpha(lyr_obj.get_line_alpha())
-            new_lyr_obj.set_capstyle(lyr_obj.get_capstyle())
-
-            new_lyr_obj.set_render_poles(lyr_obj.get_render_poles())
-            new_lyr_obj.set_pole_style(lyr_obj.get_pole_style())
-            new_lyr_obj.set_pole_size(lyr_obj.get_pole_size())
-            new_lyr_obj.set_pole_fill(lyr_obj.get_pole_fill())
-            new_lyr_obj.set_pole_edge_color(lyr_obj.get_pole_edge_color())
-            new_lyr_obj.set_pole_edge_width(lyr_obj.get_pole_edge_width())
-            new_lyr_obj.set_pole_alpha(lyr_obj.get_pole_alpha())
-
-            new_lyr_obj.set_render_linears(lyr_obj.get_render_linears())
-            new_lyr_obj.set_marker_style(lyr_obj.get_marker_style())
-            new_lyr_obj.set_marker_size(lyr_obj.get_marker_size())
-            new_lyr_obj.set_marker_fill(lyr_obj.get_marker_fill())
-            new_lyr_obj.set_marker_edge_color(lyr_obj.get_marker_edge_color())
-            new_lyr_obj.set_marker_edge_width(lyr_obj.get_marker_edge_width())
-            new_lyr_obj.set_marker_alpha(lyr_obj.get_marker_alpha())
-
-            new_lyr_obj.set_rose_spacing(lyr_obj.get_rose_spacing())
-            new_lyr_obj.set_rose_bottom(lyr_obj.get_rose_bottom())
-
-            new_lyr_obj.set_draw_hoeppener(lyr_obj.get_draw_hoeppener())
-            new_lyr_obj.set_draw_lp_plane(lyr_obj.get_draw_lp_plane())
-
-            #Contours
-            new_lyr_obj.set_draw_contour_fills(lyr_obj.get_draw_contour_fills())
-            new_lyr_obj.set_draw_contour_lines(lyr_obj.get_draw_contour_lines())
-            new_lyr_obj.set_draw_contour_labels(lyr_obj.get_draw_contour_labels())
-            new_lyr_obj.set_colormap(lyr_obj.get_colormap())
-            new_lyr_obj.set_contour_resolution(lyr_obj.get_contour_resolution())
-            new_lyr_obj.set_contour_method(lyr_obj.get_contour_method())
-            new_lyr_obj.set_contour_sigma(lyr_obj.get_contour_sigma())
-            new_lyr_obj.set_contour_line_color(lyr_obj.get_contour_line_color())
-            new_lyr_obj.set_use_line_color(lyr_obj.get_use_line_color())
-            new_lyr_obj.set_contour_line_width(lyr_obj.get_contour_line_width())
-            new_lyr_obj.set_contour_line_style(lyr_obj.get_contour_line_style())
-            new_lyr_obj.set_contour_label_size(lyr_obj.get_contour_label_size())
-            new_lyr_obj.set_manual_range(lyr_obj.get_manual_range())
-            new_lyr_obj.set_lower_limit(lyr_obj.get_lower_limit())
-            new_lyr_obj.set_upper_limit(lyr_obj.get_upper_limit())
-            new_lyr_obj.set_steps(lyr_obj.get_steps())
+            new_lyr_obj.set_properties(lyr_obj.get_properties())
 
         self.dialog.hide()
         self.redraw_main()

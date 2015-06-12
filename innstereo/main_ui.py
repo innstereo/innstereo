@@ -349,7 +349,7 @@ class MainWindow(object):
         copy["layers"] = []
         for row in self.layer_store:
             lyr_obj = row[3]
-            properties = lyr_obj.return_properties()
+            properties = lyr_obj.get_properties()
             data = lyr_obj.return_data()
             copy["layers"].append([properties, data])
         dump = json.dumps(copy)
@@ -1456,9 +1456,9 @@ class MainWindow(object):
             if layer_type == "plane":
                 strike, dipdir, dip = self.parse_planes(
                                             layer_obj.get_data_treestore())
-                if layer_obj.get_render_gcircles() == True:
+                if layer_obj.get_draw_gcircles() == True:
                     self.draw_plane(layer_obj, strike, dip)
-                if layer_obj.get_render_poles() == True:
+                if layer_obj.get_draw_poles() == True:
                     self.draw_poles(layer_obj, strike, dip)
                 self.draw_contours(layer_obj, strike, dip, "poles")
 
@@ -1481,11 +1481,11 @@ class MainWindow(object):
                     lp_plane_dir, lp_plane_dip = (
                         self.parse_faultplanes(layer_obj.get_data_treestore()))
 
-                if layer_obj.get_render_gcircles() == True:
+                if layer_obj.get_draw_gcircles() == True:
                     self.draw_plane(layer_obj, strike, plane_dip)
-                if layer_obj.get_render_poles() == True:
+                if layer_obj.get_draw_poles() == True:
                     self.draw_poles(layer_obj, strike, plane_dip)
-                if layer_obj.get_render_linears() == True:
+                if layer_obj.get_draw_linears() == True:
                     self.draw_line(layer_obj, line_dir, line_dip)
                 if layer_obj.get_draw_lp_plane() == True:
                     self.ax_stereo.plane(lp_plane_dir, lp_plane_dip,
@@ -1499,7 +1499,7 @@ class MainWindow(object):
             if layer_type == "line":
                 dipdir, dip, sense = self.parse_lines(
                                          layer_obj.get_data_treestore())
-                if layer_obj.get_render_linears() == True:
+                if layer_obj.get_draw_linears() == True:
                     self.draw_line(layer_obj, dipdir, dip)
                 self.draw_contours(layer_obj, dip, dipdir, "lines")
 
@@ -1519,7 +1519,7 @@ class MainWindow(object):
             if layer_type == "eigenvector":
                 dipdir, dip, values = self.parse_lines(
                                          layer_obj.get_data_treestore())
-                if layer_obj.get_render_linears() == True:
+                if layer_obj.get_draw_linears() == True:
                     self.draw_eigenvector(layer_obj, dipdir, dip, values)
                 self.draw_contours(layer_obj, dip, dipdir, "lines")
 

@@ -98,7 +98,7 @@ class LayerProperties(object):
                               self.line_style_dict[self.layer.get_line_style()])
         self.combobox_capstyle.set_active(
                               self.capstyle_dict[self.layer.get_capstyle()])
-        switch_state = self.layer.get_render_gcircles()
+        switch_state = self.layer.get_draw_gcircles()
         self.switch_render_gcircles.set_active(switch_state)
         self.set_gcircle_sensitivity(switch_state)
 
@@ -131,7 +131,7 @@ class LayerProperties(object):
                             self.layer.get_pole_edge_width())
         self.combobox_pole_style.set_active(
                             self.marker_style_dict[self.layer.get_pole_style()])
-        switch_state = self.layer.get_render_poles()
+        switch_state = self.layer.get_draw_poles()
         self.switch_render_poles.set_active(switch_state)
         self.set_pole_sensitivity(switch_state)
 
@@ -163,7 +163,7 @@ class LayerProperties(object):
                                 self.layer.get_marker_edge_rgba())
         self.adjustment_marker_edge_width.set_value(
                                 self.layer.get_marker_edge_width())
-        switch_state = self.layer.get_render_linears()
+        switch_state = self.layer.get_draw_linears()
         self.switch_render_linears.set_active(switch_state)
         self.set_linear_sensitivity(switch_state)
 
@@ -319,7 +319,7 @@ class LayerProperties(object):
         When the state of the render linears switch is changed this method is
         called and queues up the new state in the the list of changes.
         """
-        self.changes.append(lambda: self.layer.set_render_linears(state))
+        self.changes.append(lambda: self.layer.set_draw_linears(state))
         self.set_linear_sensitivity(state)
 
     def on_entry_layer_name_changed(self, entry):
@@ -338,7 +338,7 @@ class LayerProperties(object):
         When the state of the great and samll circle switch is changed this
         method is called and queues up the new state in the the list of changes.
         """
-        self.changes.append(lambda: self.layer.set_render_gcircles(state))
+        self.changes.append(lambda: self.layer.set_draw_gcircles(state))
         self.set_gcircle_sensitivity(state)
 
     def set_gcircle_sensitivity(self, state):
@@ -432,7 +432,7 @@ class LayerProperties(object):
         When the state of the render poles switch is changed this method is
         called and queues up the new state in the the list of changes.
         """
-        self.changes.append(lambda: self.layer.set_render_poles(state))
+        self.changes.append(lambda: self.layer.set_draw_poles(state))
         self.set_pole_sensitivity(state)
 
     def on_colorbutton_choose_line_color_color_set(self, color_button):
