@@ -367,3 +367,22 @@ class PlotSettings(object):
         means it will not be drawn.
         """
         self.props["show_cross"] = new_state
+
+    def get_properties(self):
+        """
+        Returns the current plot properties in a dictionary.
+
+        The plot properties are stored in a dictionary. For loading and saving
+        the dict is requested by the main window.
+        """
+        return self.props
+
+    def set_properties(self, new_props):
+        """
+        Sets the properties to those passed in a dictionary.
+
+        Loading a file will also set the plot properties to the saved state.
+        The properties are appllied to this plot.
+        """
+        self.props = new_props
+

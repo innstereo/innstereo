@@ -346,6 +346,7 @@ class MainWindow(object):
         """
         copy = {}
         copy["filetype"] = "InnStereo data file 1.0"
+        copy["settings"] = self.settings.get_properties()
         copy["layers"] = []
         for row in self.layer_store:
             lyr_obj = row[3]
@@ -382,6 +383,7 @@ class MainWindow(object):
         if parse["filetype"] != "InnStereo data file 1.0":
             print("Not a valid InnStereo data file")
 
+        self.settings.set_properties(parse["settings"])
         for layer in parse["layers"]:
             props = layer[0]
             data = layer[1]
