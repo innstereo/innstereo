@@ -986,8 +986,8 @@ class FaultPlaneLayer(PlaneLayer):
         layer". Requires a treestore and treeview to initialize.
         """
         PlaneLayer.__init__(self, treestore, treeview)
-        self.type = "faultplane"
-        self.label = "Faultplane layer"
+        self.props["type"] = "faultplane"
+        self.props["label"] = "Faultplane layer"
 
 
 class LineLayer(PlaneLayer):
