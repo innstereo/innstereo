@@ -62,7 +62,7 @@ class RotationDialog(object):
 
         self.scrolledwindow_rotate = self.builder.get_object("scrolledwindow_rotate")
 
-        self.fig = Figure(dpi=self.settings.pixel_density)
+        self.fig = Figure(dpi=self.settings.get_pixel_density())
         self.canvas = FigureCanvas(self.fig)
         self.scrolledwindow_rotate.add_with_viewport(self.canvas)
 
