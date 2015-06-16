@@ -55,6 +55,7 @@ class PlotSettings(object):
                       "canvas_color": "#bfbfbf",
                       "highlight": False
                       }
+        self.night_mode = False
         self.fig = Figure(dpi=self.props["pixel_density"])
 
     def get_fig(self):
@@ -402,4 +403,20 @@ class PlotSettings(object):
         Expects a boolean.
         """
         self.props["highlight"] = new_state
+
+    def get_night_mode(self):
+        """
+        Gets the state of the night mode.
+
+        Default is False, which is usually a lighter interface color.
+        """
+        return self.night_mode
+
+    def set_night_mode(self, new_state):
+        """
+        Sets a new state for the night mode.
+
+        Expects a boolean.
+        """
+        self.night_mode = new_state
 

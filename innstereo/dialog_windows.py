@@ -147,7 +147,7 @@ class StereonetProperties(object):
     connects all the signals defined in the that file.
     """
 
-    def __init__(self, settings, redraw_function, main_window):
+    def __init__(self, settings, redraw_function, main_window, change_night_mode):
         """
         Initializes the plot-properties dialog.        
 
@@ -167,8 +167,7 @@ class StereonetProperties(object):
                     self.builder.get_object("spinbutton_pixel_density")
         self.adjustment_pixel_density = \
                     self.builder.get_object("adjustment_pixel_density")
-        self.radio_schmidt = self.builder.get_object("radiobutton_schmidt")
-        self.radio_wulff = self.builder.get_object("radiobutton_wulff")
+        self.switch_equal_area = self.builder.get_object("switch_equal_area")
         self.switch_draw_grid = \
                     self.builder.get_object("switch_draw_grid")
         self.switch_draw_legend = \
@@ -182,17 +181,16 @@ class StereonetProperties(object):
         self.switch_show_cross = \
                     self.builder.get_object("switch_show_cross")
         self.switch_highlight = self.builder.get_object("switch_highlight")
+        self.switch_night_mode = self.builder.get_object("switch_night_mode")
         
         self.redraw = redraw_function
+        self.change_night_mode = change_night_mode
         self.changes = []
         self.settings = settings
+        self.switch_equal_area.set_active(self.settings.get_projection_state())
         self.adjustment_pixel_density.\
             set_value(self.settings.get_pixel_density())
         self.colorbutton_canvas.set_color(self.settings.get_canvas_rgba())
-        if self.settings.get_projection_state() == True:
-            self.radio_schmidt.set_active(True)
-        else:
-            self.radio_wulff.set_active(True)
         self.switch_draw_grid.\
             set_active(self.settings.get_draw_grid_state())
         self.switch_draw_legend.\
@@ -203,6 +201,7 @@ class StereonetProperties(object):
             self.radio_degrees.set_active(True)
         self.switch_show_cross.set_active(self.settings.get_show_cross())
         self.switch_highlight.set_active(self.settings.get_highlight())
+        self.switch_night_mode.set_active(self.settings.get_night_mode())
         self.builder.connect_signals(self)
 
     def on_spinbutton_pixel_density_value_changed(self, spinbutton):
@@ -231,20 +230,15 @@ class StereonetProperties(object):
         self.spd.hide()
         self.redraw(checkout_canvas = True)
 
-    def on_radiobutton_schmidt_toggled(self, button):
+    def on_switch_equal_area_state_set(self, switch, state):
         # pylint: disable=unused-argument
         """
         Queues up the new projection-setting of the stereonet.
 
-        Triggered when the radiobutton for equal area projections is toggled
-        on or off. Because there are only 2 radiobuttons, a "False" implies
-        that the equal angle button was selected. The function queues up a
-        lambda function in the "changes"-list.
+        Triggered when the equal-area switch is toggled. True means that
+        the projection is equal area. False means the projection is equal
+        angle.
         """
-        if button.get_active():
-            state = True
-        else:
-            state = False
         self.changes.append(lambda: self.settings.set_projection_state(state))
 
     def on_switch_draw_grid_state_set(self, switch, state):
@@ -356,6 +350,18 @@ class StereonetProperties(object):
         means it is off.
         """
         self.changes.append(lambda: self.settings.set_highlight(state))
+
+    def on_switch_night_mode_state_set(self, switch, state):
+        # pylint: disable=unused-argument
+        """
+        Queues up the new setting, if night mode should be used.
+
+        Triggered when the switch for night mode is toggled.
+        Queues up a boolean value. True means that the interface will
+        appear dark. False means it will be the systems default.
+        """
+        self.changes.append(lambda: self.settings.set_night_mode(state))
+        self.changes.append(lambda: self.change_night_mode())
 
 
 class FileChooserParse(object):

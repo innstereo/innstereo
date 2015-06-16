@@ -158,6 +158,16 @@ class MainWindow(object):
             self.view_mode = "pt"
             self.redraw_plot()
 
+    def change_night_mode(self):
+        """
+        Changes the night mode.
+
+        Gets the current setting and applies it to the window.
+        """
+        state = self.settings.get_night_mode()
+        Gtk.Settings.get_default().set_property("gtk-application-prefer-dark-theme", state)
+        self.main_window.show_all()
+
     def on_toolbutton_eigenvector_clicked(self, widget):
         # pylint: disable=unused-argument
         """
@@ -433,7 +443,8 @@ class MainWindow(object):
         StereonetProperties class, which is a Gtk DialogWindow and runs it.
         """
         plot_properties = StereonetProperties(self.settings, self.redraw_plot,
-                                              self.main_window)
+                                              self.main_window,
+                                              self.change_night_mode)
         plot_properties.run()
 
     def on_toolbutton_print_figure_clicked(self, widget):
