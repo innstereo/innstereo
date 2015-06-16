@@ -53,6 +53,7 @@ class PlotSettings(object):
                       "grid_width": 0.4,
                       "draw_legend": True,
                       "canvas_color": "#bfbfbf",
+                      "highlight": False
                       }
         self.fig = Figure(dpi=self.props["pixel_density"])
 
@@ -385,4 +386,20 @@ class PlotSettings(object):
         The properties are appllied to this plot.
         """
         self.props = new_props
+
+    def get_highlight(self):
+        """
+        Gets the state of selection highlighting.
+
+        Default is False.
+        """
+        return self.props["highlight"]
+
+    def set_highlight(self, new_state):
+        """
+        Sets a new state for highlighting.
+
+        Expects a boolean.
+        """
+        self.props["highlight"] = new_state
 

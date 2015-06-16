@@ -176,12 +176,12 @@ class MainWindow(object):
         layers_equal = True
         layer_list = []
         for row in row_list:
-            layer_obj = model[row][3]
+            lyr_obj = model[row][3]
 
-            if layer_obj is None:
+            if lyr_obj is None:
                 return
             else:
-                layer_list.append(layer_obj.get_layer_type())
+                layer_list.append(lyr_obj.get_layer_type())
         for a in layer_list:
             for b in layer_list:
                 if a is not b:
@@ -195,9 +195,9 @@ class MainWindow(object):
             total_strike = []
             total_dip = []
             for row in row_list:
-                layer_obj = model[row][3]
+                lyr_obj = model[row][3]
                 strike, dipdir, dip = self.parse_planes(
-                                                    layer_obj.get_data_treestore())
+                                                    lyr_obj.get_data_treestore())
                 for x in strike:
                     total_strike.append(x)
                 for y in dip:
@@ -210,9 +210,9 @@ class MainWindow(object):
             total_dipdir = []
             total_dip = []
             for row in row_list:
-                layer_obj = model[row][3]
+                lyr_obj = model[row][3]
                 dipdir, dip, sense = \
-                                self.parse_lines(layer_obj.get_data_treestore())
+                                self.parse_lines(lyr_obj.get_data_treestore())
                 for x in dipdir:
                     total_dipdir.append(x)
                 for y in dip:
@@ -262,8 +262,8 @@ class MainWindow(object):
 
         data_rows = []
         for row in row_list:
-            layer_obj = model[row][3]
-            data_rows.append(layer_obj)
+            lyr_obj = model[row][3]
+            data_rows.append(lyr_obj)
 
         rotate_dialog = RotationDialog(self.main_window, self.settings,
                                        data_rows, self.add_layer_dataset,
@@ -315,12 +315,12 @@ class MainWindow(object):
             self.add_linear_feature(n, 180 + r[0], 90 - r[1])
 
         for row in row_list:
-            layer_obj = model[row][3]
+            lyr_obj = model[row][3]
 
-            if layer_obj is None:
+            if lyr_obj is None:
                 return
             else:
-                layer_type = layer_obj.get_layer_type()
+                layer_type = lyr_obj.get_layer_type()
 
             if layer_type == "line":
                 return
@@ -329,8 +329,8 @@ class MainWindow(object):
         n, new_lyr_obj = self.add_layer_dataset("line")
 
         for row in row_list:
-            layer_obj = model[row][3]
-            datastore = layer_obj.get_data_treestore()
+            lyr_obj = model[row][3]
+            datastore = lyr_obj.get_data_treestore()
             datastore.foreach(iterate_over_data, n)
 
         self.redraw_plot()
@@ -498,8 +498,8 @@ class MainWindow(object):
         #Check if all selected layers are planes or faultplanes.
         only_linears = True
         for row in row_list:
-            layer_obj = model[row][3]
-            if layer_obj.get_layer_type() == "plane":
+            lyr_obj = model[row][3]
+            if lyr_obj.get_layer_type() == "plane":
                 only_linears = False
 
         if only_linears is False:
@@ -508,9 +508,9 @@ class MainWindow(object):
         total_dipdir = []
         total_dip = []
         for row in row_list:
-            layer_obj = model[row][3]
+            lyr_obj = model[row][3]
             dipdir, dip, sense = self.parse_lines(
-                                            layer_obj.get_data_treestore())
+                                            lyr_obj.get_data_treestore())
             for x in dipdir:
                 total_dipdir.append(x)
             for y in dip:
@@ -541,8 +541,8 @@ class MainWindow(object):
         #Check if all selected layers are planes or faultplanes.
         only_planes = True
         for row in row_list:
-            layer_obj = model[row][3]
-            if layer_obj.get_layer_type() == "line":
+            lyr_obj = model[row][3]
+            if lyr_obj.get_layer_type() == "line":
                 only_planes = False
 
         if only_planes is False:
@@ -553,9 +553,9 @@ class MainWindow(object):
 
         #Iterate over layers and rows, gather poles
         for row in row_list:
-            layer_obj = model[row][3]
+            lyr_obj = model[row][3]
             strike, dipdir, dip = self.parse_planes(
-                                            layer_obj.get_data_treestore())
+                                            lyr_obj.get_data_treestore())
             for x in strike:
                 total_dipdir.append(270 + x)
             for y in dip:
@@ -587,10 +587,10 @@ class MainWindow(object):
         #Check if all selected layers are linear layers.
         only_lines = True
         for row in row_list:
-            layer_obj = model[row][3]
-            if layer_obj.get_layer_type() == "plane":
+            lyr_obj = model[row][3]
+            if lyr_obj.get_layer_type() == "plane":
                 only_lines = False
-            elif layer_obj.get_layer_type() == "faultplane":
+            elif lyr_obj.get_layer_type() == "faultplane":
                 only_lines = False
 
         if only_lines is False:
@@ -599,9 +599,9 @@ class MainWindow(object):
         store, new_lyr_obj = self.add_layer_dataset("plane")
 
         for row in row_list:
-            layer_obj = model[row][3]
+            lyr_obj = model[row][3]
             strike, dipdir, sense = self.parse_lines(
-                                            layer_obj.get_data_treestore())
+                                            lyr_obj.get_data_treestore())
             for strike, dipdir in zip(strike, dipdir):
                 self.add_linear_feature(store, strike + 180, 90 - dipdir)
 
@@ -625,8 +625,8 @@ class MainWindow(object):
         #Check if all selected layers are linear layers.
         only_lines = True
         for row in row_list:
-            layer_obj = model[row][3]
-            if layer_obj.get_layer_type() != "line":
+            lyr_obj = model[row][3]
+            if lyr_obj.get_layer_type() != "line":
                 only_lines = False
 
         if only_lines is False:
@@ -635,8 +635,8 @@ class MainWindow(object):
         total_dipdir = []
         total_dip = []
         for row in row_list:
-            layer_obj = model[row][3]
-            store = layer_obj.get_data_treestore()
+            lyr_obj = model[row][3]
+            store = lyr_obj.get_data_treestore()
             dipdir, dip, sense = self.parse_lines(store)
             for x, y in zip(dipdir, dip):
                 total_dipdir.append(x)
@@ -829,9 +829,9 @@ class MainWindow(object):
         treeview-object, the path (or row) as an integer and the
         TreeViewColumn-object to this function.
         """
-        layer_obj = self.layer_store[path][3]
-        if layer_obj is not None:
-            layer_prop = LayerProperties(layer_obj, self.redraw_plot, self.main_window)
+        lyr_obj = self.layer_store[path][3]
+        if lyr_obj is not None:
+            layer_prop = LayerProperties(lyr_obj, self.redraw_plot, self.main_window)
             layer_prop.run()
 
     def on_toolbutton_layer_properties_clicked(self, toolbutton):
@@ -852,8 +852,8 @@ class MainWindow(object):
             return
 
         row = row_list[0]
-        layer_obj = self.layer_store[row][3]
-        layer_prop = LayerProperties(layer_obj, self.redraw_plot, self.main_window)
+        lyr_obj = self.layer_store[row][3]
+        layer_prop = LayerProperties(lyr_obj, self.redraw_plot, self.main_window)
         layer_prop.run()
 
     def layer_selection_changed(self, selection):
@@ -894,11 +894,16 @@ class MainWindow(object):
             #Add new treeview
             self.main_window.show_all()
 
+        if self.settings.get_highlight() is True:
+            self.redraw_plot()
+
     def on_layer_toggled(self, widget, path):
         # pylint: disable=unused-argument
         """
+        Toggles the layer and redraws the plot.
+
         If the layer is toggled the bool field is switched between
-        True (visible) and False (invisible).
+        True (visible) and False (invisible). Then the plot is redrawn.
         """
         self.layer_store[path][0] = not self.layer_store[path][0]
         self.redraw_plot()
@@ -912,55 +917,60 @@ class MainWindow(object):
         same level as the selection.
         """
         store = None
-        layer_obj_new = None
+        lyr_obj_new = None
 
         def add_layer(itr):
             if layer_type == "plane":
                 store = Gtk.ListStore(float, float, str)
-                view = PlaneDataView(store, self.redraw_plot, self.add_feature)
-                layer_obj_new = PlaneLayer(store, view)
+                view = PlaneDataView(store, self.redraw_plot, self.add_feature,
+                                     self.settings)
+                lyr_obj_new = PlaneLayer(store, view)
             elif layer_type == "faultplane":
                 store = Gtk.ListStore(float, float, float, float, str)
-                view = FaultPlaneDataView(store, self.redraw_plot, self.add_feature)
-                layer_obj_new = FaultPlaneLayer(store, view)
+                view = FaultPlaneDataView(store, self.redraw_plot, self.add_feature,
+                                     self.settings)
+                lyr_obj_new = FaultPlaneLayer(store, view)
             elif layer_type == "line":
                 store = Gtk.ListStore(float, float, str)
-                view = LineDataView(store, self.redraw_plot, self.add_feature)
-                layer_obj_new = LineLayer(store, view)
+                view = LineDataView(store, self.redraw_plot, self.add_feature,
+                                     self.settings)
+                lyr_obj_new = LineLayer(store, view)
             elif layer_type == "smallcircle":
                 store = Gtk.ListStore(float, float, float)
-                view = SmallCircleDataView(store, self.redraw_plot, self.add_feature)
-                layer_obj_new = SmallCircleLayer(store, view)
+                view = SmallCircleDataView(store, self.redraw_plot, self.add_feature,
+                                     self.settings)
+                lyr_obj_new = SmallCircleLayer(store, view)
             elif layer_type == "eigenvector":
                 store = Gtk.ListStore(float, float, float)
-                view = EigenVectorView(store, self.redraw_plot, self.add_feature)
-                layer_obj_new = EigenVectorLayer(store, view)
+                view = EigenVectorView(store, self.redraw_plot, self.add_feature,
+                                     self.settings)
+                lyr_obj_new = EigenVectorLayer(store, view)
 
-            view.set_layer_object(layer_obj_new)
-            pixbuf = layer_obj_new.get_pixbuf()
+            view.set_layer_object(lyr_obj_new)
+            pixbuf = lyr_obj_new.get_pixbuf()
             self.layer_store.append(itr,
-                [True, pixbuf, layer_obj_new.get_label(), layer_obj_new])
-            return store, layer_obj_new
+                [True, pixbuf, lyr_obj_new.get_label(), lyr_obj_new])
+            return store, lyr_obj_new
 
         selection = self.layer_view.get_selection()
         model, row_list = selection.get_selected_rows()
 
         rows = len(row_list)
         if rows == 0 or rows > 1:
-            store, layer_obj_new = add_layer(None)
+            store, lyr_obj_new = add_layer(None)
         else:
             #If selected item is group, add to group, else: add to level
             row = row_list[0]
-            layer_obj = model[row][3]
+            lyr_obj = model[row][3]
             selection_itr = model.get_iter(row_list[0])
-            if layer_obj is None:
-                store, layer_obj_new = add_layer(selection_itr)
+            if lyr_obj is None:
+                store, lyr_obj_new = add_layer(selection_itr)
                 self.layer_view.expand_row(row, True)
             else:
                 parent_itr = model.iter_parent(selection_itr)
-                store, layer_obj_new = add_layer(parent_itr)
+                store, lyr_obj_new = add_layer(parent_itr)
 
-        return store, layer_obj_new
+        return store, lyr_obj_new
 
     def on_toolbutton_create_plane_dataset_clicked(self, widget):
         # pylint: disable=unused-argument
@@ -994,7 +1004,7 @@ class MainWindow(object):
         """
         self.add_layer_dataset("smallcircle")
 
-    def parse_planes(self, treestore):
+    def parse_planes(self, treestore, subset=None):
         """
         Parses planes and returns a list of strikes, dipdirs and dips.
 
@@ -1003,13 +1013,15 @@ class MainWindow(object):
         strike = []
         dipdir = []
         dip = []
-        for row in treestore:
+        for key, row in enumerate(treestore):
+            if subset is not None and key not in subset:
+                continue
             strike.append(float(row[0]) - 90)
             dipdir.append(float(row[0]))
             dip.append(float(row[1]))
         return strike, dipdir, dip
 
-    def parse_faultplanes(self, treestore):
+    def parse_faultplanes(self, treestore, subset=None):
         """
         Parses a faultplane treestore. Converts planes from dip-direction to
         strikes so they can be plotted.
@@ -1026,7 +1038,9 @@ class MainWindow(object):
         line_sense_dip = []
         lp_plane_dir = []
         lp_plane_dip = []
-        for row in treestore:
+        for key, row in enumerate(treestore):
+            if subset is not None and key not in subset:
+                continue
             strike.append(float(row[0] - 90))
             plane_dir.append(float(row[0]))
             plane_dip.append(float(row[1]))
@@ -1048,7 +1062,7 @@ class MainWindow(object):
         return strike, plane_dir, plane_dip, line_dir, line_dip, sense, \
                line_sense_dir, line_sense_dip, lp_plane_dir, lp_plane_dip
 
-    def parse_lines(self, treestore):
+    def parse_lines(self, treestore, subset=None):
         """
         Parses linear data with the 3 columns dip direction, dip and sense.
         Returns a python-list for each column.
@@ -1056,13 +1070,15 @@ class MainWindow(object):
         line_dir = []
         line_dip = []
         sense = []
-        for row in treestore:
+        for key, row in enumerate(treestore):
+            if subset is not None and key not in subset:
+                continue
             line_dir.append(float(row[0]))
             line_dip.append(float(row[1]))
             sense.append(row[2])
         return line_dir, line_dip, sense
 
-    def parse_eigenvectors(self, treestore):
+    def parse_eigenvectors(self, treestore, subset=None):
         """
         Parses a eigenvector layer and returns a list of each column
 
@@ -1074,13 +1090,15 @@ class MainWindow(object):
         line_dir = []
         line_dip = []
         values = []
-        for row in treestore:
+        for key, row in enumerate(treestore):
+            if subset is not None and key not in subset:
+                continue
             line_dir.append(float(row[0]))
             line_dip.append(float(row[1]))
             values.append(float(row[2]))
         return line_dir, line_dip, values
 
-    def parse_smallcircles(self, treestore):
+    def parse_smallcircles(self, treestore, subset=None):
         """
         Parses small circle data. Data has 3 columns: Dip direction, dip and
         opening angle.
@@ -1088,45 +1106,62 @@ class MainWindow(object):
         line_dir = []
         line_dip = []
         angle = []
-        for row in treestore:
+        for key, row in enumerate(treestore):
+            if subset is not None and key not in subset:
+                continue
             line_dir.append(float(row[0]))
             line_dip.append(float(row[1]))
             angle.append(float(row[2]))
         return line_dir, line_dip, angle
 
-    def draw_plane(self, layer_obj, dipdir, dip):
+    def draw_plane(self, lyr_obj, dipdir, dip, highlight=False):
         """
         Function draws a great circle in the stereonet. It calls the formatting
         from the layer object.
         """
         num_data = len(dipdir)
-        lbl = "{} ({})".format(layer_obj.get_label(), num_data)
+        lbl = "{} ({})".format(lyr_obj.get_label(), num_data)
 
-        self.ax_stereo.plane(dipdir, dip, color=layer_obj.get_line_color(),
+        if highlight is False:
+            self.ax_stereo.plane(dipdir, dip, color=lyr_obj.get_line_color(),
                     label=lbl,
-                    linewidth=layer_obj.get_line_width(),
-                    linestyle=layer_obj.get_line_style(),
-                    dash_capstyle=layer_obj.get_capstyle(),
-                    alpha=layer_obj.get_line_alpha(), clip_on=False)
+                    linewidth=lyr_obj.get_line_width(),
+                    linestyle=lyr_obj.get_line_style(),
+                    dash_capstyle=lyr_obj.get_capstyle(),
+                    alpha=lyr_obj.get_line_alpha(), clip_on=False)
+        else:
+            self.ax_stereo.plane(dipdir, dip, color=lyr_obj.get_line_color(),
+                    linewidth=lyr_obj.get_line_width() + 2,
+                    linestyle=lyr_obj.get_line_style(),
+                    dash_capstyle=lyr_obj.get_capstyle(),
+                    alpha=lyr_obj.get_line_alpha(), clip_on=False)
 
-    def draw_line(self, layer_obj, dipdir, dip):
+    def draw_line(self, lyr_obj, dipdir, dip, highlight=False):
         """
         Function draws a linear element in the stereonet. It calls the
         formatting from the layer object.
         """
         num_data = len(dipdir)
-        lbl = "{} ({})".format(layer_obj.get_label(), num_data)
+        lbl = "{} ({})".format(lyr_obj.get_label(), num_data)
 
+        if highlight is False:
         #ax.line takes dip first and then dipdir (as strike)
-        self.ax_stereo.line(dip, dipdir, marker=layer_obj.get_marker_style(),
-                    markersize=layer_obj.get_marker_size(),
-                    color=layer_obj.get_marker_fill(),
+            self.ax_stereo.line(dip, dipdir, marker=lyr_obj.get_marker_style(),
+                    markersize=lyr_obj.get_marker_size(),
+                    color=lyr_obj.get_marker_fill(),
                     label=lbl,
-                    markeredgewidth=layer_obj.get_marker_edge_width(),
-                    markeredgecolor=layer_obj.get_marker_edge_color(),
-                    alpha=layer_obj.get_marker_alpha(), clip_on=False)
+                    markeredgewidth=lyr_obj.get_marker_edge_width(),
+                    markeredgecolor=lyr_obj.get_marker_edge_color(),
+                    alpha=lyr_obj.get_marker_alpha(), clip_on=False)
+        else:
+            self.ax_stereo.line(dip, dipdir, marker=lyr_obj.get_marker_style(),
+                    markersize=lyr_obj.get_marker_size(),
+                    color=lyr_obj.get_marker_fill(),
+                    markeredgewidth=lyr_obj.get_marker_edge_width() + 2,
+                    markeredgecolor=lyr_obj.get_marker_edge_color(),
+                    alpha=lyr_obj.get_marker_alpha(), clip_on=False)
 
-    def draw_eigenvector(self, layer_obj, dipdir, dip, values):
+    def draw_eigenvector(self, lyr_obj, dipdir, dip, values, highlight=False):
         """
         Draws the eigenvectors as lines and adds the eigenvalues to the legend.
 
@@ -1151,61 +1186,84 @@ class MainWindow(object):
         for v in values:
             values_str.append(str(v))
 
-        lbl = "{}   \n".format(layer_obj.get_label())
+        lbl = "{}   \n".format(lyr_obj.get_label())
 
         for key, value in enumerate(dipdir):
             lbl += "  {}/{}, {}\n".format(dipdir_str[key], dip_str[key],
                                           values_str[key])
 
-        #ax.line takes dip first and then dipdir (as strike)
-        self.ax_stereo.line(dip, dipdir, marker=layer_obj.get_marker_style(),
-                    markersize=layer_obj.get_marker_size(),
-                    color=layer_obj.get_marker_fill(),
+        if highlight is False:
+            #ax.line takes dip first and then dipdir (as strike)
+            self.ax_stereo.line(dip, dipdir, marker=lyr_obj.get_marker_style(),
+                    markersize=lyr_obj.get_marker_size(),
+                    color=lyr_obj.get_marker_fill(),
                     label=lbl,
-                    markeredgewidth=layer_obj.get_marker_edge_width(),
-                    markeredgecolor=layer_obj.get_marker_edge_color(),
-                    alpha=layer_obj.get_marker_alpha(), clip_on=False)
+                    markeredgewidth=lyr_obj.get_marker_edge_width(),
+                    markeredgecolor=lyr_obj.get_marker_edge_color(),
+                    alpha=lyr_obj.get_marker_alpha(), clip_on=False)
+        else:
+            self.ax_stereo.line(dip, dipdir, marker=lyr_obj.get_marker_style(),
+                    markersize=lyr_obj.get_marker_size() + 2,
+                    color=lyr_obj.get_marker_fill(),
+                    markeredgewidth=lyr_obj.get_marker_edge_width(),
+                    markeredgecolor=lyr_obj.get_marker_edge_color(),
+                    alpha=lyr_obj.get_marker_alpha(), clip_on=False)
 
-    def draw_smallcircles(self, layer_obj, dipdir, dip, angle):
+    def draw_smallcircles(self, lyr_obj, dipdir, dip, angle, highlight=False):
         """
         Function draws small circles in the stereonet. It calls the formatting
         from the layer object.
         """
+        if highlight is False:
         #ax.cone takes dip first and then dipdir!
         #facecolor needs to be "None" because there is a bug with which side to fill
-        self.ax_stereo.cone(dip, dipdir, angle, facecolor="None",
-                    color=layer_obj.get_line_color(),
-                    linewidth=layer_obj.get_line_width(),
-                    label=layer_obj.get_label(),
-                    linestyle=layer_obj.get_line_style())
+            self.ax_stereo.cone(dip, dipdir, angle, facecolor="None",
+                    color=lyr_obj.get_line_color(),
+                    linewidth=lyr_obj.get_line_width(),
+                    label=lyr_obj.get_label(),
+                    linestyle=lyr_obj.get_line_style())
+        else:
+            self.ax_stereo.cone(dip, dipdir, angle, facecolor="None",
+                    color=lyr_obj.get_line_color(),
+                    linewidth=lyr_obj.get_line_width() + 2,
+                    label=lyr_obj.get_label(),
+                    linestyle=lyr_obj.get_line_style())
 
         num_data = len(dipdir)
-        lbl = "{} ({})".format(layer_obj.get_label(), num_data)
+        lbl = "{} ({})".format(lyr_obj.get_label(), num_data)
 
-        handler = Line2D([], [], color=layer_obj.get_line_color(),
-                    linewidth=layer_obj.get_line_width(),
-                    linestyle=layer_obj.get_line_style(),
-                    dash_capstyle=layer_obj.get_capstyle(),
-                    alpha=layer_obj.get_line_alpha())
+        handler = Line2D([], [], color=lyr_obj.get_line_color(),
+                    linewidth=lyr_obj.get_line_width(),
+                    linestyle=lyr_obj.get_line_style(),
+                    dash_capstyle=lyr_obj.get_capstyle(),
+                    alpha=lyr_obj.get_line_alpha())
         return handler, lbl
 
-    def draw_poles(self, layer_obj, dipdir, dip):
+    def draw_poles(self, lyr_obj, dipdir, dip, highlight=False):
         """
         Function draws a plane pole in the stereonet. It calls the formatting
         from the layer object.
         """
         num_data = len(dipdir)
-        lbl = "Poles of {} ({})".format(layer_obj.get_label(), num_data)
+        lbl = "Poles of {} ({})".format(lyr_obj.get_label(), num_data)
 
-        self.ax_stereo.pole(dipdir, dip, marker=layer_obj.get_pole_style(),
-                    markersize=layer_obj.get_pole_size(),
-                    color=layer_obj.get_pole_fill(),
+        if highlight is False:
+            self.ax_stereo.pole(dipdir, dip, marker=lyr_obj.get_pole_style(),
+                    markersize=lyr_obj.get_pole_size(),
+                    color=lyr_obj.get_pole_fill(),
                     label=lbl,
-                    markeredgewidth=layer_obj.get_pole_edge_width(),
-                    markeredgecolor=layer_obj.get_pole_edge_color(),
-                    alpha=layer_obj.get_pole_alpha(), clip_on=False)
+                    markeredgewidth=lyr_obj.get_pole_edge_width(),
+                    markeredgecolor=lyr_obj.get_pole_edge_color(),
+                    alpha=lyr_obj.get_pole_alpha(), clip_on=False)
+        else:
+            self.ax_stereo.pole(dipdir, dip, marker=lyr_obj.get_pole_style(),
+                    markersize=lyr_obj.get_pole_size() + 2,
+                    color=lyr_obj.get_pole_fill(),
+                    markeredgewidth=lyr_obj.get_pole_edge_width(),
+                    markeredgecolor=lyr_obj.get_pole_edge_color(),
+                    alpha=lyr_obj.get_pole_alpha(), clip_on=False)
 
-    def draw_contours(self, layer_obj, dipdir, dips, measure_type):
+    def draw_contours(self, lyr_obj, dipdir, dips, measure_type):
         """
         MplStereonet accepts measurements as "poles" for planes and
         "lines" for linear measurements.
@@ -1213,56 +1271,56 @@ class MainWindow(object):
         if len(dipdir) == 0:
             return None
 
-        if layer_obj.get_manual_range() == True:
-            lower = layer_obj.get_lower_limit()
-            upper = layer_obj.get_upper_limit()
-            steps = layer_obj.get_steps()
+        if lyr_obj.get_manual_range() == True:
+            lower = lyr_obj.get_lower_limit()
+            upper = lyr_obj.get_upper_limit()
+            steps = lyr_obj.get_steps()
             cont_interval = np.linspace(lower, upper, num=steps)
         else:
             cont_interval = None
 
         #Implement hatches = (['-', '+', 'x', '\\', '*', 'o', 'O', '.'])
-        if layer_obj.get_draw_contour_fills() == True:
+        if lyr_obj.get_draw_contour_fills() == True:
             cbar = self.ax_stereo.density_contourf(dipdir, dips,
                               measurement=measure_type,
-                              method=layer_obj.get_contour_method(),
-                              gridsize=layer_obj.get_contour_resolution(),
-                              cmap=layer_obj.get_colormap(),
-                              sigma=layer_obj.get_contour_sigma(),
+                              method=lyr_obj.get_contour_method(),
+                              gridsize=lyr_obj.get_contour_resolution(),
+                              cmap=lyr_obj.get_colormap(),
+                              sigma=lyr_obj.get_contour_sigma(),
                               levels=cont_interval)
         else:
             cbar = None
 
-        if layer_obj.get_draw_contour_lines() == True:
-            if layer_obj.get_use_line_color() == True:
+        if lyr_obj.get_draw_contour_lines() == True:
+            if lyr_obj.get_use_line_color() == True:
                 clines = self.ax_stereo.density_contour(dipdir, dips,
                                 measurement=measure_type,
-                                method = layer_obj.get_contour_method(),
-                                gridsize = layer_obj.get_contour_resolution(),
-                                sigma = layer_obj.get_contour_sigma(),
-                                colors = layer_obj.get_contour_line_color(),
-                                linewidths = layer_obj.get_contour_line_width(),
-                                linestyles = layer_obj.get_contour_line_style(),
+                                method = lyr_obj.get_contour_method(),
+                                gridsize = lyr_obj.get_contour_resolution(),
+                                sigma = lyr_obj.get_contour_sigma(),
+                                colors = lyr_obj.get_contour_line_color(),
+                                linewidths = lyr_obj.get_contour_line_width(),
+                                linestyles = lyr_obj.get_contour_line_style(),
                                 levels=cont_interval)
             else:
                 clines = self.ax_stereo.density_contour(dipdir, dips,
                                 measurement=measure_type,
-                                method = layer_obj.get_contour_method(),
-                                gridsize = layer_obj.get_contour_resolution(),
-                                sigma = layer_obj.get_contour_sigma(),
-                                cmap = layer_obj.get_colormap(),
-                                linewidths = layer_obj.get_contour_line_width(),
-                                linestyles = layer_obj.get_contour_line_style(),
+                                method = lyr_obj.get_contour_method(),
+                                gridsize = lyr_obj.get_contour_resolution(),
+                                sigma = lyr_obj.get_contour_sigma(),
+                                cmap = lyr_obj.get_colormap(),
+                                linewidths = lyr_obj.get_contour_line_width(),
+                                linestyles = lyr_obj.get_contour_line_style(),
                                 levels=cont_interval)                
 
-        if layer_obj.get_draw_contour_labels() == True:
+        if lyr_obj.get_draw_contour_labels() == True:
             if clines is not None:
                 self.ax_stereo.clabel(clines,
-                                fontsize = layer_obj.get_contour_label_size())
+                                fontsize = lyr_obj.get_contour_label_size())
 
         return cbar
 
-    def draw_hoeppener(self, layer_obj, plane_dir, plane_dip, line_dir,
+    def draw_hoeppener(self, lyr_obj, plane_dir, plane_dip, line_dir,
                         line_dip, lp_plane_dir, lp_plane_dip, sense):
         """
         Receives data from a faultplane and draws a Hoeppener arrow.
@@ -1379,6 +1437,140 @@ class MainWindow(object):
                                         arrowprops = dict(arrowstyle = "->",
                                                       connectionstyle = "arc3"))
 
+    def plot_layer(self, lyr_obj, subset=None, highlight=False):
+        """
+        Plots a certain layer or subset of layer.
+
+        The method expect a layer-object which should be plotted. If only a
+        subset should be plotted, a list containing the row number sof the
+        subset has to be passed additionally. If the layer or subset should be
+        highlighted the method additionally expect a boolean keyword argument:
+        highlight = True. Each layer and subset is parsed and then passed to
+        the respective drawing functions.
+        """
+        lyr_type = lyr_obj.get_layer_type()
+        store = lyr_obj.get_data_treestore()
+
+        if lyr_type == "plane":
+            strike, dipdir, dip = self.parse_planes(store, subset)
+
+            if lyr_obj.get_draw_gcircles() == True:
+                self.draw_plane(lyr_obj, strike, dip, highlight=highlight)
+
+            if lyr_obj.get_draw_poles() == True:
+                self.draw_poles(lyr_obj, strike, dip, highlight=highlight)
+
+            self.draw_contours(lyr_obj, strike, dip, "poles")
+
+            if self.ax_rose is not None:
+                num_bins = 360 / lyr_obj.get_rose_spacing()
+                bin_width = 2 * np.pi / num_bins
+                dipdir = np.radians(dipdir)
+                values, bin_edges = np.histogram(dipdir, num_bins,
+                                                 range = (0, 2 * np.pi))
+                self.ax_rose.bar(left = bin_edges[:-1], height = values,
+                                     width = bin_width, alpha=0.5,
+                                     color = lyr_obj.get_line_color(),
+                                     edgecolor = lyr_obj.get_pole_edge_color(),
+                                     bottom = lyr_obj.get_rose_bottom())
+
+        elif lyr_type == "line":
+            dipdir, dip, sense = self.parse_lines(store, subset)
+
+            if lyr_obj.get_draw_linears() == True:
+                self.draw_line(lyr_obj, dipdir, dip, highlight=highlight)
+
+            self.draw_contours(lyr_obj, dip, dipdir, "lines")
+
+            if self.ax_rose is not None:
+                num_bins = 360 / lyr_obj.get_rose_spacing()
+                bin_width = 2 * np.pi / num_bins
+                dipdir = np.radians(dipdir)
+                values, bin_edges = np.histogram(dipdir, num_bins,
+                                                 range = (0, 2 * np.pi))
+
+                self.ax_rose.bar(left = bin_edges[:-1], height = values,
+                                     width = bin_width, alpha=0.5,
+                                     color = lyr_obj.get_marker_fill(),
+                                     edgecolor = lyr_obj.get_marker_edge_color(),
+                                     bottom = lyr_obj.get_rose_bottom())
+
+        elif lyr_type == "faultplane":
+            strike, plane_dir, plane_dip, line_dir, line_dip, \
+                sense, line_sense_dir, line_sense_dip, \
+                lp_plane_dir, lp_plane_dip = (
+                self.parse_faultplanes(store, subset))
+
+            if lyr_obj.get_draw_gcircles() == True:
+                self.draw_plane(lyr_obj, strike, plane_dip, highlight=highlight)
+            if lyr_obj.get_draw_poles() == True:
+                self.draw_poles(lyr_obj, strike, plane_dip, highlight=highlight)
+            if lyr_obj.get_draw_linears() == True:
+                self.draw_line(lyr_obj, line_dir, line_dip, highlight=highlight)
+            if lyr_obj.get_draw_lp_plane() == True:
+                self.ax_stereo.plane(lp_plane_dir, lp_plane_dip,
+                                     linestyle="dotted",
+                                     color="#000000", highlight=highlight)
+            if lyr_obj.get_draw_hoeppener() == True:
+               self.draw_hoeppener(lyr_obj, plane_dir, plane_dip,
+                                   line_dir, line_dip, lp_plane_dir,
+                                   lp_plane_dip, sense)
+
+
+        elif lyr_type == "smallcircle":
+            dipdir, dip, angle = self.parse_smallcircles(store, subset)
+            handler, label = self.draw_smallcircles(lyr_obj, dipdir,
+                                                    dip, angle,
+                                                    highlight=highlight)
+            self.sc_labels.append(label)
+            self.sc_handlers.append(handler)
+
+        elif lyr_type == "eigenvector":
+            dipdir, dip, values = self.parse_lines(store, subset)
+            if lyr_obj.get_draw_linears() == True:
+                self.draw_eigenvector(lyr_obj, dipdir, dip, values,
+                                      highlight=highlight)
+
+            self.draw_contours(lyr_obj, dip, dipdir, "lines")
+
+    def highlight_selection(self):
+        """
+        Gets the current selection and highlights it in the plot.
+
+        If only a layer is selected the layer is passed to the redrawing
+        function. If one or more data-rows are selected the row-numbers are
+        stored in a subset list and passed with the layer to the redrawing
+        function.
+        """
+        selection = self.layer_view.get_selection()
+        model, row_list = selection.get_selected_rows()
+
+        def highlight_layers():
+            for row in row_list:
+                lyr_obj = model[row][3]
+                self.plot_layer(lyr_obj, highlight=True)
+
+        def highlight_rows(lyr_obj, data_row_list):
+            row_list_ints = []
+            for row in data_row_list:
+                row_list_ints.append(row.get_indices()[0])
+            self.plot_layer(lyr_obj, row_list_ints, highlight=True)
+
+        if len(row_list) == 1:
+            row = row_list[0]
+            lyr_obj = model[row][3]
+            data_view = lyr_obj.get_data_treeview()
+            data_selection = data_view.get_selection()
+            data_model, data_row_list = data_selection.get_selected_rows()
+            if len(data_row_list) > 0:
+                highlight_rows(lyr_obj, data_row_list)
+            else:
+                highlight_layers()
+        elif len(row_list) == 0:
+            return
+        else:
+            highlight_layers()
+
     def redraw_plot(self, checkout_canvas = False):
         """
         This function is called after any changes to the datasets or when
@@ -1433,13 +1625,16 @@ class MainWindow(object):
         if self.settings.get_show_north() == True:
             self.ax_stereo.set_azimuth_ticks([0], labels=['N'])
 
+        if self.settings.get_highlight() is True:
+            self.highlight_selection()
+
         deselected = []
         def iterate_over_rows(model, path, itr):
-            layer_obj = model[path][3]
-            if layer_obj is not None:
-                layer_type = layer_obj.get_layer_type()
-                model[path][2] = layer_obj.get_label()
-                model[path][1] = layer_obj.get_pixbuf()
+            lyr_obj = model[path][3]
+            if lyr_obj is not None:
+                layer_type = lyr_obj.get_layer_type()
+                model[path][2] = lyr_obj.get_label()
+                model[path][1] = lyr_obj.get_pixbuf()
             else:
                 layer_type = "group"
 
@@ -1455,83 +1650,7 @@ class MainWindow(object):
             if draw == False:
                 return
 
-            if layer_type == "plane":
-                strike, dipdir, dip = self.parse_planes(
-                                            layer_obj.get_data_treestore())
-                if layer_obj.get_draw_gcircles() == True:
-                    self.draw_plane(layer_obj, strike, dip)
-                if layer_obj.get_draw_poles() == True:
-                    self.draw_poles(layer_obj, strike, dip)
-                self.draw_contours(layer_obj, strike, dip, "poles")
-
-                num_bins = 360 / layer_obj.get_rose_spacing()
-                bin_width = 2 * np.pi / num_bins
-                dipdir = np.radians(dipdir)
-                values, bin_edges = np.histogram(dipdir, num_bins,
-                                                     range = (0, 2 * np.pi))
-
-                if self.ax_rose is not None:
-                    self.ax_rose.bar(left = bin_edges[:-1], height = values,
-                                     width = bin_width, alpha = 0.5,
-                                     color = layer_obj.get_line_color(),
-                                     edgecolor = layer_obj.get_pole_edge_color(),
-                                     bottom = layer_obj.get_rose_bottom())
-
-            if layer_type == "faultplane":
-                strike, plane_dir, plane_dip, line_dir, line_dip, \
-                    sense, line_sense_dir, line_sense_dip, \
-                    lp_plane_dir, lp_plane_dip = (
-                        self.parse_faultplanes(layer_obj.get_data_treestore()))
-
-                if layer_obj.get_draw_gcircles() == True:
-                    self.draw_plane(layer_obj, strike, plane_dip)
-                if layer_obj.get_draw_poles() == True:
-                    self.draw_poles(layer_obj, strike, plane_dip)
-                if layer_obj.get_draw_linears() == True:
-                    self.draw_line(layer_obj, line_dir, line_dip)
-                if layer_obj.get_draw_lp_plane() == True:
-                    self.ax_stereo.plane(lp_plane_dir, lp_plane_dip,
-                                         linestyle = "dotted",
-                                         color = "#000000")
-                if layer_obj.get_draw_hoeppener() == True:
-                    self.draw_hoeppener(layer_obj, plane_dir, plane_dip,
-                                        line_dir, line_dip, lp_plane_dir,
-                                        lp_plane_dip, sense)
-
-            if layer_type == "line":
-                dipdir, dip, sense = self.parse_lines(
-                                         layer_obj.get_data_treestore())
-                if layer_obj.get_draw_linears() == True:
-                    self.draw_line(layer_obj, dipdir, dip)
-                self.draw_contours(layer_obj, dip, dipdir, "lines")
-
-                num_bins = 360 / layer_obj.get_rose_spacing()
-                bin_width = 2 * np.pi / num_bins
-                dipdir = np.radians(dipdir)
-                values, bin_edges = np.histogram(dipdir, num_bins,
-                                                     range = (0, 2 * np.pi))
-
-                if self.ax_rose is not None:
-                    self.ax_rose.bar(left = bin_edges[:-1], height = values,
-                                     width = bin_width, alpha = 0.5,
-                                     color = layer_obj.get_marker_fill(),
-                                     edgecolor = layer_obj.get_marker_edge_color(),
-                                     bottom = layer_obj.get_rose_bottom())
-
-            if layer_type == "eigenvector":
-                dipdir, dip, values = self.parse_lines(
-                                         layer_obj.get_data_treestore())
-                if layer_obj.get_draw_linears() == True:
-                    self.draw_eigenvector(layer_obj, dipdir, dip, values)
-                self.draw_contours(layer_obj, dip, dipdir, "lines")
-
-            if layer_type == "smallcircle":
-                dipdir, dip, angle = self.parse_smallcircles(
-                                        layer_obj.get_data_treestore())
-                handler, label = self.draw_smallcircles(layer_obj, dipdir,
-                                                        dip, angle)
-                self.sc_labels.append(label)
-                self.sc_handlers.append(handler)
+            self.plot_layer(lyr_obj)
 
         self.sc_labels = []
         self.sc_handlers = []
@@ -1587,7 +1706,7 @@ class MainWindow(object):
 
         def move_rows(parent_itr, itr):
             """
-            Adds each row to the parent iter. First call is new group and 
+            Adds each row to the parent iter. First call is new group and
             first row that was selected.
             Checks if it has children. If yes, it start a recursive loop.
             """
@@ -1619,10 +1738,10 @@ class MainWindow(object):
         TreeStore along with the correct path.
         """
         self.layer_store[path][2] = new_label
-        layer_obj = self.layer_store[path][3]
+        lyr_obj = self.layer_store[path][3]
 
-        if layer_obj is not None:
-            layer_obj.set_label(new_label)
+        if lyr_obj is not None:
+            lyr_obj.set_label(new_label)
 
         self.redraw_plot()
 
@@ -1906,8 +2025,8 @@ class MainWindow(object):
 
         if len(row_list) == 1:
             row = row_list[0]
-            layer_obj = model[row][3]
-            fp = FileParseDialog(text_file, layer_obj, self.redraw_plot,
+            lyr_obj = model[row][3]
+            fp = FileParseDialog(text_file, lyr_obj, self.redraw_plot,
                                  self.add_planar_feature,
                                  self.add_linear_feature,
                                  self.add_faultplane_feature, self.main_window)

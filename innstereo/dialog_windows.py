@@ -181,6 +181,7 @@ class StereonetProperties(object):
                     self.builder.get_object("radiobutton_degrees")
         self.switch_show_cross = \
                     self.builder.get_object("switch_show_cross")
+        self.switch_highlight = self.builder.get_object("switch_highlight")
         
         self.redraw = redraw_function
         self.changes = []
@@ -201,6 +202,7 @@ class StereonetProperties(object):
         else:
             self.radio_degrees.set_active(True)
         self.switch_show_cross.set_active(self.settings.get_show_cross())
+        self.switch_highlight.set_active(self.settings.get_highlight())
         self.builder.connect_signals(self)
 
     def on_spinbutton_pixel_density_value_changed(self, spinbutton):
@@ -343,6 +345,17 @@ class StereonetProperties(object):
         means it is not drawn.
         """
         self.changes.append(lambda: self.settings.set_show_cross(state))
+
+    def on_switch_highlight_state_set(self, switch, state):
+        # pylint: disable=unused-argument
+        """
+        Queues up the new setting, if selection should be highlighted.
+
+        Triggered when the switch for selection highlighting is toggled.
+        Queues up a boolean value. True means that highlighting is on. False
+        means it is off.
+        """
+        self.changes.append(lambda: self.settings.set_highlight(state))
 
 
 class FileChooserParse(object):

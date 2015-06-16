@@ -26,7 +26,7 @@ class DataTreeView(Gtk.TreeView):
     treeview. All other data-views inherit from this class.
     """
 
-    def __init__(self, store, redraw_plot, add_feature):
+    def __init__(self, store, redraw_plot, add_feature, settings):
         """
         Initializes the treeview. Requires a model and the main window
         redraw-function. Sets selection mode to MULTIPLE. Connect the
@@ -37,9 +37,11 @@ class DataTreeView(Gtk.TreeView):
         self.lyr_obj = None
         self.redraw = redraw_plot
         self.add_feature = add_feature
+        self.settings = settings
         self.select = self.get_selection()
         self.select.set_mode(Gtk.SelectionMode.MULTIPLE)
         self.connect("key-press-event", self.on_key_pressed)
+        self.select.connect("changed", self.data_selection_changed)
 
     def truncate(self, number):
         """
@@ -91,6 +93,16 @@ class DataTreeView(Gtk.TreeView):
             elif keyname == "Escape":
                 pass
 
+    def data_selection_changed(self, selection):
+        """
+        If the data selection is changed in highlight mode the plot is redrawn.
+
+        Checks whether the highlight mode is turned on in the settings. If that
+        is True, each change in selection triggers the plot to be redrawn.
+        """
+        if self.settings.get_highlight() is True:
+            self.redraw()
+
 class PlaneDataView(DataTreeView):
 
     """
@@ -98,7 +110,7 @@ class PlaneDataView(DataTreeView):
     and stratigraphic orientation.
     """
 
-    def __init__(self, store, redraw_plot, add_feature):
+    def __init__(self, store, redraw_plot, add_feature, settings):
         """
         Passes store and redraw_plot to the parent DataTreeView-class.
         Initializes 3 columns and connects their edited-signals. The columns:
@@ -106,7 +118,7 @@ class PlaneDataView(DataTreeView):
         1: Dip angle (Float)
         2: Stratigraphy (String)
         """
-        DataTreeView.__init__(self, store, redraw_plot, add_feature)
+        DataTreeView.__init__(self, store, redraw_plot, add_feature, settings)
 
         renderer_dir = Gtk.CellRendererText()
         renderer_dir.set_property("editable", True)
@@ -174,7 +186,7 @@ class FaultPlaneDataView(DataTreeView):
     and tab-through function from the DataTreeView class.
     """
 
-    def __init__(self, store, redraw_plot, add_feature):
+    def __init__(self, store, redraw_plot, add_feature, settings):
         """
         Initializes a new faultplane view. 5 columns are created and their
         respective edited-signals are connected. The columns are:
@@ -184,7 +196,7 @@ class FaultPlaneDataView(DataTreeView):
         3: Lineation dip (Float)
         4: Lineation sense of movement (String)
         """
-        DataTreeView.__init__(self, store, redraw_plot, add_feature)
+        DataTreeView.__init__(self, store, redraw_plot, add_feature, settings)
 
         renderer_dir = Gtk.CellRendererText()
         renderer_dir.set_property("editable", True)
@@ -295,7 +307,7 @@ class LineDataView(DataTreeView):
     for dip direction, dip and linear direction sense.
     """
 
-    def __init__(self, store, redraw_plot, add_feature):
+    def __init__(self, store, redraw_plot, add_feature, settings):
         """
         Initalizes the LineDataView class. Passes 2 arguments to the
         DataTreeView class and creates 3 TreeViewColumns and connects their
@@ -304,7 +316,7 @@ class LineDataView(DataTreeView):
         1: Dip (Float)
         2: Sense of direction/movement (String)
         """
-        DataTreeView.__init__(self, store, redraw_plot, add_feature)
+        DataTreeView.__init__(self, store, redraw_plot, add_feature, settings)
 
         renderer_dir = Gtk.CellRendererText()
         renderer_dir.set_property("editable", True)
@@ -372,7 +384,7 @@ class SmallCircleDataView(DataTreeView):
     It creates 3 columns for dip direction, dip and opening angle.
     """
 
-    def __init__(self, store, redraw_plot, add_feature):
+    def __init__(self, store, redraw_plot, add_feature, settings):
         """
         Initalizes the SmallCircleDataView class. Passes 2 arguments to the
         DataTreeView class and creates 3 TreeViewColumns and connects their
@@ -381,7 +393,7 @@ class SmallCircleDataView(DataTreeView):
         1: Dip (Float)
         2: Opening angle (Float)
         """
-        DataTreeView.__init__(self, store, redraw_plot, add_feature)
+        DataTreeView.__init__(self, store, redraw_plot, add_feature, settings)
 
         renderer_dir = Gtk.CellRendererText()
         renderer_dir.set_property("editable", True)
@@ -458,7 +470,7 @@ class EigenVectorView(DataTreeView):
     class.
     """
 
-    def __init__(self, store, redraw_plot, add_feature):
+    def __init__(self, store, redraw_plot, add_feature, settings):
         """
         Sets up 3 columns and connects their signals.
 
@@ -466,7 +478,7 @@ class EigenVectorView(DataTreeView):
         the DataTreeView class. 3 columns are set up and their signals for
         being edited are connected.
         """
-        DataTreeView.__init__(self, store, redraw_plot, add_feature)
+        DataTreeView.__init__(self, store, redraw_plot, add_feature, settings)
 
         renderer_dir = Gtk.CellRendererText()
         renderer_dir.set_property("editable", True)
