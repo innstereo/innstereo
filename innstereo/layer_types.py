@@ -954,7 +954,7 @@ class PlaneLayer(object):
         user. This method is used for saving layers, or passing a layer to
         the copy-paste-function or the drag-and-drop function.
         """
-        return self.props
+        return self.props.copy()
 
     def set_properties(self, props):
         """
