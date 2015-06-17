@@ -590,18 +590,6 @@ customizable grid.</property>
                 <child>
                   <placeholder/>
                 </child>
-                <child>
-                  <placeholder/>
-                </child>
-                <child>
-                  <placeholder/>
-                </child>
-                <child>
-                  <placeholder/>
-                </child>
-                <child>
-                  <placeholder/>
-                </child>
               </object>
               <packing>
                 <property name="left_attach">1</property>
@@ -3759,7 +3747,7 @@ customizable grid.</property>
                       </object>
                     </child>
                     <child>
-                      <object class="GtkMenuItem" id="imagemenuitem2">
+                      <object class="GtkMenuItem" id="menuitem_open">
                         <property name="visible">True</property>
                         <property name="sensitive">False</property>
                         <property name="can_focus">False</property>
@@ -3768,7 +3756,7 @@ customizable grid.</property>
                       </object>
                     </child>
                     <child>
-                      <object class="GtkMenuItem" id="imagemenuitem3">
+                      <object class="GtkMenuItem" id="menuitem_save">
                         <property name="visible">True</property>
                         <property name="sensitive">False</property>
                         <property name="can_focus">False</property>
@@ -3777,7 +3765,7 @@ customizable grid.</property>
                       </object>
                     </child>
                     <child>
-                      <object class="GtkMenuItem" id="imagemenuitem4">
+                      <object class="GtkMenuItem" id="menuitem_save_as">
                         <property name="visible">True</property>
                         <property name="sensitive">False</property>
                         <property name="can_focus">False</property>
@@ -3797,6 +3785,7 @@ customizable grid.</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">Quit</property>
                         <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_menuitem_quit_activate" swapped="no"/>
                       </object>
                     </child>
                   </object>
