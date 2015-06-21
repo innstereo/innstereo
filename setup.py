@@ -2,12 +2,12 @@ from distutils.core import setup
 
 setup(
     name = "innstereo",
-    version = "1.0-a7",
+    version = "1.0-b1",
     description = "Sterographic plotting for structural geology",
     author = "Tobias Schoenberg",
     author_email = "tobias47n9e@gmail.com",
     license = "GPL2",
-    url = "https://github.com/tobias47n9e/innsbruck-stereographic",
+    url = "https://github.com/tobias47n9e/innstereo",
     keywords = ["geology", "stereonet", "structural geology"],
     classifiers = [
         "Programming Language :: Python",
