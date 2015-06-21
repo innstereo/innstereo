@@ -672,6 +672,8 @@ class FileChooserSave(object):
         If the file already exists a dialog will confirm the overwrite.
         """
         self.filename = self.dialog.get_filename()
+        if self.filename[-5:] is not ".json":
+            self.filename = self.filename + ".json"
         if os.path.exists(self.filename) == True:
             overwrite = OverwriteDialog(self.write_data, self.dialog)
             overwrite.run()
