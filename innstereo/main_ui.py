@@ -692,15 +692,6 @@ class MainWindow(object):
                 else:
                     self.add_feature(lyr_dict["type"], lyr_store, f[0], f[1], f[2])
 
-        #for layer in parse["layers"]:
-        #    props = layer[0]
-        #    data = layer[1]
-        #    lyr_type = props["type"]
-        #    store, new_lyr_obj = self.add_layer_dataset(lyr_type)
-        #    for row in data:
-        #        self.add_feature(lyr_type, store, row[0], row[1], row[2])
-
-        #   new_lyr_obj.set_properties(props)
         self.redraw_plot()
 
     def on_toolbutton_show_table_clicked(self, widget):
@@ -2002,7 +1993,6 @@ class MainWindow(object):
         When the toolbutton "toolbutton_create_layer" is pressed this function
         calls the "add_layer"-function of the TreeStore. The called function
         creates a new layer-group at the end of the view.
-        __!!__ Always adds to the top level.
         """
         selection = self.layer_view.get_selection()
         model, row_list = selection.get_selected_rows()
@@ -2010,6 +2000,10 @@ class MainWindow(object):
 
         def check_same_depth(rows):
             return rows[1:] == rows[:-1]
+
+        if len(row_list) > 0:
+            first_path = row_list[0]
+            first_itr = model.get_iter(first_path)
 
         #If no row is selected then the group is added to the end of the view
         if len(row_list) == 0:
@@ -2034,25 +2028,30 @@ class MainWindow(object):
             """
             #ov = old values
             ov = model[itr]
-            new = model.append(parent_itr, [ov[0], ov[1], ov[2], ov[3]])
+            new_itr = model.append(parent_itr, [ov[0], ov[1], ov[2], ov[3]])
             children_left = model.iter_has_child(itr)
             while children_left == True:
                 child = model.iter_children(itr)
-                move_rows(new, child)
+                move_rows(new_itr, child)
                 model.remove(child)
                 children_left = model.iter_has_child(itr)
 
         if same_depth == True and len(row_list) > 0:
             selection_itr = model.get_iter(row_list[0])
             parent_itr = model.iter_parent(selection_itr)
-            new_group_itr = model.append(parent_itr,
+            new_group_itr = model.insert_before(parent_itr, selection_itr,
                          [True, self.settings.get_folder_icon(),
                          "Layer group", None])
+            selection = self.layer_view.get_selection()
+            model, row_list = selection.get_selected_rows()
             for row in reversed(row_list):
                 k = model[row]
                 itr = model.get_iter(row)
                 move_rows(new_group_itr, itr)
                 model.remove(itr)
+
+        new_path = model.get_path(new_group_itr)
+        self.layer_view.expand_row(new_path, True)
 
     def layer_name_edited(self, widget, path, new_label):
         """
