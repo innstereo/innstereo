@@ -8,7 +8,7 @@ appearance of the layer-view which is in the upper left side of the GUI. The
 class inherits from Gtk.TreeView and requires a Gtk.TreeStore to initialize.
 """
 
-from gi.repository import Gtk
+from gi.repository import Gtk, Gdk
 
 
 class LayerTreeView(Gtk.TreeView):
@@ -37,10 +37,11 @@ class LayerTreeView(Gtk.TreeView):
         self.select.set_mode(Gtk.SelectionMode.MULTIPLE)
         self.set_property("can-focus", True)
 
-        #targets = [("text/uri-list", 0, 0)]
-        #self.enable_model_drag_source(Gdk.ModifierType.BUTTON1_MASK,
-        #    targets, Gdk.DragAction.DEFAULT|Gdk.DragAction.MOVE)
-        #self.enable_model_drag_dest(targets, Gdk.DragAction.DEFAULT)
+        targets = [("text/plain", 0, 0)]
+        self.enable_model_drag_source(Gdk.ModifierType.BUTTON1_MASK,
+                                      targets,
+                                      Gdk.DragAction.MOVE)
+        self.enable_model_drag_dest(targets, Gdk.DragAction.MOVE)
 
         self.renderer_activate_layer = Gtk.CellRendererToggle()
         self.column_activate_layer = Gtk.TreeViewColumn("",

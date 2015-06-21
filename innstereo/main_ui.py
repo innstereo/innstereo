@@ -8,7 +8,7 @@ modules and clases are controlled from this class. The startup-function creates
 the first instance of the GUI when the program starts.
 """
 
-from gi.repository import Gtk, GdkPixbuf
+from gi.repository import Gtk, Gdk, GdkPixbuf
 from matplotlib.backends.backend_gtk3cairo import (FigureCanvasGTK3Cairo
                                                    as FigureCanvas)
 from matplotlib.backends.backend_gtk3 import (NavigationToolbar2GTK3 
@@ -86,6 +86,12 @@ class MainWindow(object):
         self.select = self.layer_view.get_selection()
         self.select.connect("changed", self.layer_selection_changed)
         self.draw_features = False
+        self.layer_view.connect("drag-begin", self.drag_begin)
+        self.layer_view.connect("drag-data-get", self.drag_data_get)
+        self.layer_view.connect("drag-drop", self.drag_drop)
+        self.layer_view.connect("drag-data-delete", self.drag_data_delete)
+        self.layer_view.connect("drag-data-received", self.drag_data_received)
+        self.layer_view.connect("drag-end", self.drag_end)
 
         #Set up the plot
         self.fig = self.settings.get_fig()
@@ -105,6 +111,231 @@ class MainWindow(object):
             self.mpl_canvas_clicked)
         self.redraw_plot()
         self.main_window.show_all()
+
+    def drag_begin(self, treeview, context):
+        """
+        Drag begin signal of the layer view. Currently does nothing.
+
+        This signal could be used to set up a e.g. drag icon.
+        """
+        pass
+
+    def drag_data_get(self, treeview, context, selection, info, time):
+        """
+        Gets the data from the drag source. Serializes the data to JSON.
+
+        Iterates over the draged layer and all its children. Serializes the
+        path, properties and data. Encodes into JSON and sens it to the
+        drag destinations.
+        """
+        tree_selection = treeview.get_selection()
+        store, itr = tree_selection.get_selected_rows()
+        model = self.layer_view.get_model()
+        path = itr[0]
+        path_str = str(path)
+        itr = store.get_iter(path)
+
+        copy = {}
+        copy["filetype"] = "InnStereo layer 1.0"
+        copy["layers"] = []
+
+        def append_layer(store, itr, path_str):
+            """
+            Appends a layer to the serialization dictionary.
+
+            Receives a store, iter and path_str. Appends the path, properties
+            and data to the 'layers' list of the dictionary. For folders it
+            appends the path, the folder-properties and an empty list (So that
+            the destination can use iterators also for folders).
+            """
+            row = store[itr]
+            lyr_obj = row[3]
+
+            #The layer includes the layer and children as
+            #[[path, properties, data],...]
+            if lyr_obj is None:
+                #No lyr_obj means that this is a folder
+                folder_props = {"type": "folder", "label": row[2]}
+                copy["layers"].append([path_str, folder_props, []])
+            else:
+                properties = lyr_obj.get_properties()
+                data = lyr_obj.return_data()
+                copy["layers"].append([path_str, properties, data])
+
+        def iterate_over_store(model, path, itr, start_path):
+            """
+            Iterates over the whole TreeStore and appends all draged layers.
+
+            The function iterates over the whole TreeStore, but uses the
+            path to identify the dragged layer and its children. Calls the
+            append function on each these layers.
+            """
+            path_str = str(path)
+            if path_str.startswith(start_path) == True:
+                append_layer(model, itr, path_str)
+
+        self.layer_store.foreach(iterate_over_store, path_str)
+        data = json.dumps(copy)
+        selection.set(selection.get_target(), 8, data.encode())
+
+    def drag_drop(self, treeview, context, selection, info, time):
+        """
+        Signal emitted when a layer is droped. Does nothing at the moment.
+        """
+        pass
+
+    def drag_data_received(self, treeview, context, x, y, selection, info, time):
+        """
+        Called when data is received at the drop location. Moves the data.
+
+        The received JSON is decoded and the validity checked. Then the layers
+        are recreated and inserted at the drop location.
+        """
+        drop_info = self.layer_view.get_dest_row_at_pos(x, y)
+        data = selection.get_data().decode()
+        decoded = json.loads(data)
+
+        filetype = decoded["filetype"]
+
+        if filetype != "InnStereo layer 1.0":
+            print("Not a valid layer")
+            return
+
+        def drop_layer(lyr_obj_new, lyr_dict, drop_iter, drop_position):
+            if lyr_obj_new == None:
+                lyr_pixbuf = self.settings.get_folder_icon()
+                lyr_label = lyr_dict["label"]
+            else:
+                lyr_obj_new.set_properties(lyr_dict)
+                lyr_pixbuf = lyr_obj_new.get_pixbuf()
+                lyr_label = lyr_obj_new.get_label()
+
+            if drop_lyr_obj is None:
+                #0=Before, 1=After, 2=INTO_OR_BEFORE, 3=INTO_OR_AFTER
+                if drop_position == Gtk.TreeViewDropPosition.BEFORE:
+                    ins_itr = self.layer_store.insert_before(None, drop_iter,
+                        [True, lyr_pixbuf, lyr_label, lyr_obj_new])
+                elif drop_position == Gtk.TreeViewDropPosition.AFTER:
+                    ins_itr = self.layer_store.insert_after(None, drop_iter,
+                        [True, lyr_pixbuf, lyr_label, lyr_obj_new])
+                else:
+                    ins_itr = self.layer_store.insert_after(drop_iter, None,
+                        [True, lyr_pixbuf, lyr_label, lyr_obj_new])
+            else:
+                if drop_position == Gtk.TreeViewDropPosition.BEFORE:
+                    ins_itr = self.layer_store.insert_before(None, drop_iter,
+                        [True, lyr_pixbuf, lyr_label, lyr_obj_new])
+                else:
+                    ins_itr = self.layer_store.insert_after(None, drop_iter,
+                        [True, lyr_pixbuf, lyr_label, lyr_obj_new])
+            return ins_itr
+
+        def insert_layer(lyr_obj_new, lyr_dict, ins_iter):
+            if lyr_obj_new == None:
+                lyr_pixbuf = self.settings.get_folder_icon()
+                lyr_label = lyr_dict["label"]
+            else:
+                lyr_obj_new.set_properties(lyr_dict)
+                lyr_pixbuf = lyr_obj_new.get_pixbuf()
+                lyr_label = lyr_obj_new.get_label()
+
+            ins_itr = self.layer_store.insert_before(ins_iter, None,
+                                    [True, lyr_pixbuf, lyr_label, lyr_obj_new])
+            return ins_itr
+
+        if drop_info is not None:
+            drop_path, drop_position = drop_info[0], drop_info[1]
+            print("Drop Path: {}".format(drop_path))
+            print("Drop Position: {}".format(drop_position))
+            drop_iter = self.layer_store.get_iter(drop_path)
+            print("Drop Iter: {}".format(drop_iter))
+            drop_row = self.layer_store[drop_iter]
+            drop_lyr_obj = drop_row[3]
+
+            #Add the first row:
+            first_row = decoded["layers"][0]
+            lyr_dict = first_row[1]
+            lyr_obj_new, lyr_store, lyr_view = self.create_layer(lyr_dict["type"])
+            ins_itr = drop_layer(lyr_obj_new, lyr_dict, drop_iter, drop_position)
+            ins_path = self.layer_store.get_path(ins_itr)
+            features = first_row[2]
+            for f in features:
+                if lyr_dict["type"] == "faultplane":
+                    #Passing a list or tuple to the add feature function would be better.
+                    self.add_feature(lyr_dict["type"], lyr_store, f[0], f[1], f[2], f[3], f[4])
+                else:
+                    self.add_feature(lyr_dict["type"], lyr_store, f[0], f[1], f[2])
+
+            #Now all other child-layer are appended in the original order.
+            cutoff = len(first_row[0].split(":"))
+
+            def create_and_insert(path_list, ins_itr, lyr_dict):
+                if len(path_list) == 0:
+                    return
+
+                lyr_obj_new, lyr_store, lyr_view = create_layer(lyr_dict["type"])
+                ins_itr = insert_layer(lyr_obj_new, lyr_dict, ins_itr)
+                return ins_itr, lyr_store
+
+            iter_dict = {0: ins_itr}
+            for layer in decoded["layers"][1:]:
+                split_path = layer[0].split(":")
+                lyr_dict = layer[1]
+                features = layer[2]
+                new_path = split_path[cutoff:]
+                path_len = len(new_path)
+                if path_len == 0:
+                    break
+
+                lyr_dict = layer[1]
+
+                #The last path length is assigned to the dictionary
+                #If the next layer has a longer path it will use the
+                #previous entry as parent. It is not overwritten, which
+                #produces a depth-first iteration.
+                ins_itr = iter_dict[path_len-1]
+                itr, lyr_store = create_and_insert(new_path, ins_itr, lyr_dict)
+                iter_dict[path_len] = itr
+
+                for f in features:
+                    if lyr_dict["type"] == "faultplane":
+                        #Passing a list or tuple to the add feature function would be better.
+                        self.add_feature(lyr_dict["type"], lyr_store, f[0], f[1], f[2], f[3], f[4])
+                    else:
+                        self.add_feature(lyr_dict["type"], lyr_store, f[0], f[1], f[2])
+
+        else:
+            #Add the first row:
+            first_row = decoded["layers"][0]
+            lyr_dict = first_row[1]
+            lyr_label = lyr_dict["label"]
+            lyr_obj_new, lyr_store, lyr_view = create_layer(lyr_dict["type"])
+            lyr_obj_new.set_properties(lyr_dict)
+            lyr_pixbuf = lyr_obj_new.get_pixbuf()
+            ins_itr = self.layer_store.append(None, [True, lyr_pixbuf, lyr_label, lyr_obj_new])
+            ins_path = self.layer_store.get_path(ins_itr)
+            features = first_row[2]
+            for f in features:
+                if lyr_dict["type"] == "faultplane":
+                    #Passing a list or tuple to the add feature function would be better.
+                    self.add_feature(lyr_dict["type"], lyr_store, f[0], f[1], f[2], f[3], f[4])
+                else:
+                    self.add_feature(lyr_dict["type"], lyr_store, f[0], f[1], f[2])
+            self.redraw_plot() #Redraws the window that received the data
+
+        context.finish(True, True, time)
+
+    def drag_end(self, treeview, context):
+        """
+        Signal when drag of a layer is complete. Redraws the plot.
+        """
+        self.redraw_plot()
+
+    def drag_data_delete(self, treeview, context):
+        """
+        Signal is emitted when data is deleted. Does nothing at the moment.
+        """
+        pass
 
     def on_menuitem_stereo_activate(self, widget):
         # pylint: disable=unused-argument
@@ -919,6 +1150,41 @@ class MainWindow(object):
         self.layer_store[path][0] = not self.layer_store[path][0]
         self.redraw_plot()
 
+    def create_layer(self, lyr_type):
+        """
+        """
+        if lyr_type == "plane":
+            store = Gtk.ListStore(float, float, str)
+            view = PlaneDataView(store, self.redraw_plot, self.add_feature,
+                                 self.settings)
+            lyr_obj_new = PlaneLayer(store, view)
+        elif lyr_type == "faultplane":
+            store = Gtk.ListStore(float, float, float, float, str)
+            view = FaultPlaneDataView(store, self.redraw_plot, self.add_feature,
+                                      self.settings)
+            lyr_obj_new = FaultPlaneLayer(store, view)
+        elif lyr_type == "line":
+            store = Gtk.ListStore(float, float, str)
+            view = LineDataView(store, self.redraw_plot, self.add_feature,
+                                self.settings)
+            lyr_obj_new = LineLayer(store, view)
+        elif lyr_type == "smallcircle":
+            store = Gtk.ListStore(float, float, float)
+            view = SmallCircleDataView(store, self.redraw_plot, self.add_feature,
+                                       self.settings)
+            lyr_obj_new = SmallCircleLayer(store, view)
+        elif lyr_type == "eigenvector":
+            store = Gtk.ListStore(float, float, float)
+            view = EigenVectorView(store, self.redraw_plot, self.add_feature,
+                                   self.settings)
+            lyr_obj_new = EigenVectorLayer(store, view)
+        elif lyr_type == "folder":
+            store = None
+            view = None
+            lyr_obj_new = None
+
+        return lyr_obj_new, store, view
+
     def add_layer_dataset(self, layer_type):
         """
         Is called by the different "new layer" toolbuttons. If the number of
@@ -930,33 +1196,8 @@ class MainWindow(object):
         store = None
         lyr_obj_new = None
 
-        def add_layer(itr):
-            if layer_type == "plane":
-                store = Gtk.ListStore(float, float, str)
-                view = PlaneDataView(store, self.redraw_plot, self.add_feature,
-                                     self.settings)
-                lyr_obj_new = PlaneLayer(store, view)
-            elif layer_type == "faultplane":
-                store = Gtk.ListStore(float, float, float, float, str)
-                view = FaultPlaneDataView(store, self.redraw_plot, self.add_feature,
-                                     self.settings)
-                lyr_obj_new = FaultPlaneLayer(store, view)
-            elif layer_type == "line":
-                store = Gtk.ListStore(float, float, str)
-                view = LineDataView(store, self.redraw_plot, self.add_feature,
-                                     self.settings)
-                lyr_obj_new = LineLayer(store, view)
-            elif layer_type == "smallcircle":
-                store = Gtk.ListStore(float, float, float)
-                view = SmallCircleDataView(store, self.redraw_plot, self.add_feature,
-                                     self.settings)
-                lyr_obj_new = SmallCircleLayer(store, view)
-            elif layer_type == "eigenvector":
-                store = Gtk.ListStore(float, float, float)
-                view = EigenVectorView(store, self.redraw_plot, self.add_feature,
-                                     self.settings)
-                lyr_obj_new = EigenVectorLayer(store, view)
-
+        def add_layer(itr, layer_type):
+            lyr_obj_new, store, view = self.create_layer(layer_type)
             view.set_layer_object(lyr_obj_new)
             pixbuf = lyr_obj_new.get_pixbuf()
             self.layer_store.append(itr,
@@ -968,18 +1209,18 @@ class MainWindow(object):
 
         rows = len(row_list)
         if rows == 0 or rows > 1:
-            store, lyr_obj_new = add_layer(None)
+            store, lyr_obj_new = add_layer(None, layer_type)
         else:
             #If selected item is group, add to group, else: add to level
             row = row_list[0]
             lyr_obj = model[row][3]
             selection_itr = model.get_iter(row_list[0])
             if lyr_obj is None:
-                store, lyr_obj_new = add_layer(selection_itr)
+                store, lyr_obj_new = add_layer(selection_itr, layer_type)
                 self.layer_view.expand_row(row, True)
             else:
                 parent_itr = model.iter_parent(selection_itr)
-                store, lyr_obj_new = add_layer(parent_itr)
+                store, lyr_obj_new = add_layer(parent_itr, layer_type)
 
         return store, lyr_obj_new
 
@@ -1459,8 +1700,11 @@ class MainWindow(object):
         highlight = True. Each layer and subset is parsed and then passed to
         the respective drawing functions.
         """
-        lyr_type = lyr_obj.get_layer_type()
-        store = lyr_obj.get_data_treestore()
+        if lyr_obj == None:
+            lyr_type = "group"
+        else:
+            lyr_type = lyr_obj.get_layer_type()
+            store = lyr_obj.get_data_treestore()
 
         if lyr_type == "plane":
             strike, dipdir, dip = self.parse_planes(store, subset)
