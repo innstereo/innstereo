@@ -1210,6 +1210,11 @@ class MainWindow(object):
 
     def create_layer(self, lyr_type):
         """
+        Creates a layer according to the passed layer type.
+
+        Depending on the layer-type a different TreeStore, TreeView and layer
+        object is created. For folders all of them are None. Returns the new
+        layer object, a TreeStore and a TreeView.
         """
         if lyr_type == "plane":
             store = Gtk.ListStore(float, float, str)
