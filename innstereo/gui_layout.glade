@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated with glade 3.19.0 
 
-Innsbruck Stereographic - An open source stereographic projection program used for geology
+InnStereo - An open source stereographic projection program used for geology
 Copyright (C) 
 
 This program is free software; you can redistribute it and/or
@@ -24,7 +24,7 @@ Author: Tobias Schönberg
 <interface>
   <requires lib="gtk+" version="3.14"/>
   <!-- interface-license-type gplv2 -->
-  <!-- interface-name Innsbruck Stereographic -->
+  <!-- interface-name InnStereo -->
   <!-- interface-description An open source stereographic projection program used for geology -->
   <!-- interface-authors Tobias Sch\303\266nberg -->
   <object class="GtkAboutDialog" id="aboutdialog">
