@@ -139,7 +139,7 @@ class MainWindow(object):
         copy["filetype"] = "InnStereo layer 1.0"
         copy["layers"] = []
 
-        def append_layer(store, itr, path_str):
+        def append_layer(lyr_obj, path_str, label):
             """
             Appends a layer to the serialization dictionary.
 
@@ -148,14 +148,11 @@ class MainWindow(object):
             appends the path, the folder-properties and an empty list (So that
             the destination can use iterators also for folders).
             """
-            row = store[itr]
-            lyr_obj = row[3]
-
             #The layer includes the layer and children as
             #[[path, properties, data],...]
             if lyr_obj is None:
                 #No lyr_obj means that this is a folder
-                folder_props = {"type": "folder", "label": row[2]}
+                folder_props = {"type": "folder", "label": label}
                 copy["layers"].append([path_str, folder_props, []])
             else:
                 properties = lyr_obj.get_properties()
@@ -171,8 +168,10 @@ class MainWindow(object):
             append function on each these layers.
             """
             path_str = str(path)
+            lyr_obj = store[itr][3]
+            label = store[itr][2]
             if path_str.startswith(start_path) == True:
-                append_layer(model, itr, path_str)
+                append_layer(lyr_obj, path_str, label)
 
         self.layer_store.foreach(iterate_over_store, path_str)
         data = json.dumps(copy)
@@ -245,10 +244,7 @@ class MainWindow(object):
 
         if drop_info is not None:
             drop_path, drop_position = drop_info[0], drop_info[1]
-            print("Drop Path: {}".format(drop_path))
-            print("Drop Position: {}".format(drop_position))
             drop_iter = self.layer_store.get_iter(drop_path)
-            print("Drop Iter: {}".format(drop_iter))
             drop_row = self.layer_store[drop_iter]
             drop_lyr_obj = drop_row[3]
 
@@ -273,8 +269,10 @@ class MainWindow(object):
                 if len(path_list) == 0:
                     return
 
-                lyr_obj_new, lyr_store, lyr_view = create_layer(lyr_dict["type"])
+                lyr_obj_new, lyr_store, lyr_view = self.create_layer(lyr_dict["type"])
                 ins_itr = insert_layer(lyr_obj_new, lyr_dict, ins_itr)
+                if lyr_obj_new is not None:
+                    lyr_obj_new.set_properties(lyr_dict)
                 return ins_itr, lyr_store
 
             iter_dict = {0: ins_itr}
@@ -286,8 +284,6 @@ class MainWindow(object):
                 path_len = len(new_path)
                 if path_len == 0:
                     break
-
-                lyr_dict = layer[1]
 
                 #The last path length is assigned to the dictionary
                 #If the next layer has a longer path it will use the
@@ -309,7 +305,7 @@ class MainWindow(object):
             first_row = decoded["layers"][0]
             lyr_dict = first_row[1]
             lyr_label = lyr_dict["label"]
-            lyr_obj_new, lyr_store, lyr_view = create_layer(lyr_dict["type"])
+            lyr_obj_new, lyr_store, lyr_view = self.create_layer(lyr_dict["type"])
             lyr_obj_new.set_properties(lyr_dict)
             lyr_pixbuf = lyr_obj_new.get_pixbuf()
             ins_itr = self.layer_store.append(None, [True, lyr_pixbuf, lyr_label, lyr_obj_new])
@@ -589,11 +585,40 @@ class MainWindow(object):
         copy["filetype"] = "InnStereo data file 1.0"
         copy["settings"] = self.settings.get_properties()
         copy["layers"] = []
-        for row in self.layer_store:
-            lyr_obj = row[3]
-            properties = lyr_obj.get_properties()
-            data = lyr_obj.return_data()
-            copy["layers"].append([properties, data])
+
+        def append_layer(lyr_obj, path_str, label):
+            """
+            Appends a layer to the serialization dictionary.
+
+            Receives a store, iter and path_str. Appends the path, properties
+            and data to the 'layers' list of the dictionary. For folders it
+            appends the path, the folder-properties and an empty list (So that
+            the destination can use iterators also for folders).
+            """
+            #The layer includes the layer and children as
+            #[[path, properties, data],...]
+            if lyr_obj is None:
+                #No lyr_obj means that this is a folder
+                folder_props = {"type": "folder", "label": label}
+                copy["layers"].append([path_str, folder_props, []])
+            else:
+                properties = lyr_obj.get_properties()
+                data = lyr_obj.return_data()
+                copy["layers"].append([path_str, properties, data])
+
+        def iterate_over_store(model, path, itr):
+            """
+            Iterates over the whole TreeStore and appends all layers.
+
+            The function iterates over the whole TreeStore and calls the append
+            function on each layer.
+            """
+            path_str = str(path)
+            lyr_obj = model[itr][3]
+            label = model[itr][2]
+            append_layer(lyr_obj, path_str, label)
+
+        self.layer_store.foreach(iterate_over_store)
         dump = json.dumps(copy)
         dlg = FileChooserSave(self.main_window, dump)
         dlg.run()
@@ -625,15 +650,57 @@ class MainWindow(object):
             print("Not a valid InnStereo data file")
 
         self.settings.set_properties(parse["settings"])
-        for layer in parse["layers"]:
-            props = layer[0]
-            data = layer[1]
-            lyr_type = props["type"]
-            store, new_lyr_obj = self.add_layer_dataset(lyr_type)
-            for row in data:
-                self.add_feature(lyr_type, store, row[0], row[1], row[2])
 
-            new_lyr_obj.set_properties(props)
+        def insert_layer(lyr_obj_new, lyr_dict, ins_iter):
+            if lyr_obj_new == None:
+                lyr_pixbuf = self.settings.get_folder_icon()
+                lyr_label = lyr_dict["label"]
+            else:
+                lyr_obj_new.set_properties(lyr_dict)
+                lyr_pixbuf = lyr_obj_new.get_pixbuf()
+                lyr_label = lyr_obj_new.get_label()
+
+            ins_itr = self.layer_store.insert_before(ins_iter, None,
+                                    [True, lyr_pixbuf, lyr_label, lyr_obj_new])
+            return ins_itr
+
+        def create_and_insert(ins_itr, lyr_dict):
+            lyr_obj_new, lyr_store, lyr_view = self.create_layer(lyr_dict["type"])
+            ins_itr = insert_layer(lyr_obj_new, lyr_dict, ins_itr)
+            if lyr_obj_new is not None:
+                lyr_obj_new.set_properties(lyr_dict)
+            return ins_itr, lyr_store
+
+        iter_dict = {0: None}
+        for layer in parse["layers"]:
+            split_path = layer[0].split(":")
+            path_len = len(split_path)
+            lyr_dict = layer[1]
+            features = layer[2]
+            #The last path length is assigned to the dictionary
+            #If the next layer has a longer path it will use the
+            #previous entry as parent. It is not overwritten, which
+            #produces a depth-first iteration.
+            ins_itr = iter_dict[path_len-1]
+            itr, lyr_store = create_and_insert(ins_itr, lyr_dict)
+            iter_dict[path_len] = itr
+
+            for f in features:
+                if lyr_dict["type"] == "faultplane":
+                #Passing a list or tuple to the add feature function would be better.
+                    self.add_feature(lyr_dict["type"], lyr_store, f[0], f[1], f[2], f[3], f[4])
+                else:
+                    self.add_feature(lyr_dict["type"], lyr_store, f[0], f[1], f[2])
+
+        #for layer in parse["layers"]:
+        #    props = layer[0]
+        #    data = layer[1]
+        #    lyr_type = props["type"]
+        #    store, new_lyr_obj = self.add_layer_dataset(lyr_type)
+        #    for row in data:
+        #        self.add_feature(lyr_type, store, row[0], row[1], row[2])
+
+        #   new_lyr_obj.set_properties(props)
         self.redraw_plot()
 
     def on_toolbutton_show_table_clicked(self, widget):
