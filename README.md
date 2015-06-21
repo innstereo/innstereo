@@ -58,6 +58,7 @@ InnStereo is based on the following open-source projects:
 * [NumPy](http://www.numpy.org/)
 * [SciPy](http://www.scipy.org/)
 * [Pynsist](https://github.com/takluyver/pynsist)
+* [Builder](https://wiki.gnome.org/Apps/Builder)
 
 ## Code Metrics
 The code quality is constantly monitored using Landscape. Software-testing will be implemented as soon as possible.
