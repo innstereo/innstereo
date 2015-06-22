@@ -1,16 +1,17 @@
 Known Issues
 ============
 
+This is a list of known issues and missing features. It is not complete.
+
 GUI
 ---
 
-- Drag & Drop for Layer View
 - Drag & Drop for Data View
 - Copy & Paste functionality
-- Saving and Loading projects
 - Data sorting dialog
 - Undo & Redo
-- Print dialog
+- Print dialog (?)
+- Translations
 
 Settings
 --------
@@ -26,10 +27,11 @@ Plot
     - PT-Axis
     - Mohr Circle
 - Fold datasets
+- Histograms (as opposed to Rose-Histograms)
 
 Calculations
 ------------
 
 - Inversion
 - Find axial planes
-- Find conjugated planes
+- Find conjugated planes (Riedel and similar planes)
