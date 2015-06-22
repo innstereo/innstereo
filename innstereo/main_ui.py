@@ -2258,11 +2258,14 @@ class MainWindow(object):
                 return
             
             layer = row_list[0]
-            current = model[layer][3]
-            data_treestore = current.get_data_treestore()
+            lyr_obj = model[layer][3]
+            if lyr_obj == None:
+                #Layer is a layer-group
+                return
+            data_treestore = lyr_obj.get_data_treestore()
 
             if data_treestore is not None:
-                layer_type = current.get_layer_type()
+                layer_type = lyr_obj.get_layer_type()
                 if layer_type == "plane":
                     self.add_planar_feature(data_treestore, alpha_deg,
                                             gamma_deg)
