@@ -5,10 +5,20 @@
 
 Momentan werden Versionsnummern nach dem folgenden Schema vergeben: Version 1.0 wird die erste stabile Version mit vollem Funktionsumfang sein. Alpha-Versionen geben frühe Einblicke in die Entwicklung. Beta-Versionen werden vergeben wenn das Programm weitgehend vollständig ist. Die jeweils aktuellste Version kann `auf dieser Seite <http://innstereo.github.io/>`_ heruntergeladen werden.
 
+InnStereo v1.0-beta.1
+---------------------
+
+ - [Feature] Projekte können jetzt als JSON-Dateien gespeichert und geladen werden.
+ - [Feature] Das Programm hat jetzt einen Nachtmodus, in dem die Benutzeroberfläche in dunkelgrau dargestellt wird.
+ - [Feature] Ein optionaler Hervorhebungsmodus erlaubt es Ebenen oder einzelne Objekte hervorzuheben.
+ - [Feature] Ebenen können jetzt durch Ziehen und Ablegen mit der Maus verschoben werden. Das funktioniert auch zwischen mehreren Fenstern.
+ - `[Bug] <https://github.com/tobias47n9e/innstereo/issues/20>`_ Zwei fehlende Mausschwebetexte hinzugefügt.
+ - `[Bug] <https://github.com/tobias47n9e/innstereo/issues/24>`_ Ebenen-Gruppen werden jetzt über der ersten selektieren Eben hinzugefügt und automatisch ausgeklappt.
+
 InnStereo v1.0-alpha.7
 ----------------------
 
- - '[Feature] <https://github.com/tobias47n9e/innstereo/issues/18>`_ Editiert man jetzt die letzte Spalte der letzten Zeile der Datenansicht, kann man mit drücken der Tabulator-Taste eine neue Zeile erstellen. Dies beschleunigt die Dateneingabe.
+ - `[Feature] <https://github.com/tobias47n9e/innstereo/issues/18>`_ Editiert man jetzt die letzte Spalte der letzten Zeile der Datenansicht, kann man mit drücken der Tabulator-Taste eine neue Zeile erstellen. Dies beschleunigt die Dateneingabe.
  - [Feature] Eine neue Funktion erlaubt es, die PT-Achsen von Störungs-Datensätzen zu berechnen.
  - [Feature] Die durschnittliche Richtung einer Gruppe von Linearen lässt sich jetzt berechnen.
  - [Bug] In der letzten Version wurden rotierte Datensätze in der Vorschau korrekt angezeigt, dem Projokt jedoch verdreht hinzugefügt. Dies sollte jetzt behoben sein.
