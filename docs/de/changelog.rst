@@ -3,7 +3,7 @@
 Änderungsprotokoll
 ==================
 
-Momentan werden Versionsnummern nach dem folgenden Schema vergeben: Version 1.0 wird die erste stabile Version mit vollem Funktionsumfang sein. Alpha-Versionen geben frühe Einblicke in die Entwicklung. Beta-Versionen werden vergeben wenn das Programm weitgehend vollständig ist. Die jeweils aktuellste Version kann `auf dieser Seite <http://innstereo.github.io/>`_ heruntergeladen werden.
+Momentan werden Versionsnummern nach dem folgenden Schema vergeben: Version 1.0 wird die erste stabile Version mit vollem Funktionsumfang sein. Alpha-Versionen geben frühe Einblicke in die Entwicklung. Beta-Versionen werden vergeben wenn das Programm weiter fortgeschritten ist. Die jeweils aktuellste Version kann `auf dieser Seite <http://innstereo.github.io/>`_ heruntergeladen werden.
 
 InnStereo v1.0-beta.1
 ---------------------
