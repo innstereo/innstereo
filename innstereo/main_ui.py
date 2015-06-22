@@ -2055,8 +2055,8 @@ class MainWindow(object):
                 move_rows(new_group_itr, itr)
                 model.remove(itr)
 
-        new_path = model.get_path(new_group_itr)
-        self.layer_view.expand_row(new_path, True)
+            new_path = model.get_path(new_group_itr)
+            self.layer_view.expand_row(new_path, True)
 
     def layer_name_edited(self, widget, path, new_label):
         """
