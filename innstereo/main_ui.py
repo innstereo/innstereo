@@ -243,81 +243,57 @@ class MainWindow(object):
             return ins_itr
 
         if drop_info is not None:
+            #Insert the row at the drop position
+            insert_rows = True
             drop_path, drop_position = drop_info[0], drop_info[1]
             drop_iter = self.layer_store.get_iter(drop_path)
             drop_row = self.layer_store[drop_iter]
             drop_lyr_obj = drop_row[3]
 
-            #Add the first row:
-            first_row = decoded["layers"][0]
-            lyr_dict = first_row[1]
+        else:
+            #Append the row to the TreeStore
+            insert_rows = False
+
+        for key, layer in enumerate(decoded["layers"]):
+            split_path = layer[0].split(":")
+            lyr_dict = layer[1]
+            lyr_data = layer[2]
             lyr_obj_new, lyr_store, lyr_view = self.create_layer(lyr_dict["type"])
-            ins_itr = drop_layer(lyr_obj_new, lyr_dict, drop_iter, drop_position)
-            ins_path = self.layer_store.get_path(ins_itr)
-            features = first_row[2]
-            for f in features:
-                if lyr_dict["type"] == "faultplane":
-                    #Passing a list or tuple to the add feature function would be better.
-                    self.add_feature(lyr_dict["type"], lyr_store, f[0], f[1], f[2], f[3], f[4])
-                else:
-                    self.add_feature(lyr_dict["type"], lyr_store, f[0], f[1], f[2])
 
-            #Now all other child-layer are appended in the original order.
-            cutoff = len(first_row[0].split(":"))
+            if lyr_obj_new is not None:
+                lyr_obj_new.set_properties(lyr_dict)
+                lyr_pixbuf = lyr_obj_new.get_pixbuf()
+                lyr_label = lyr_obj_new.get_label()
+            else:
+                lyr_pixbuf = self.settings.get_folder_icon()
+                lyr_label = lyr_dict["label"]
 
-            def create_and_insert(path_list, ins_itr, lyr_dict):
-                if len(path_list) == 0:
-                    return
+            if key == 0 and insert_rows == True:
+                cutoff = len(layer[0].split(":"))
+                ins_itr = drop_layer(lyr_obj_new, lyr_dict, drop_iter, drop_position)
+                iter_dict = {0: ins_itr}
+            elif key == 0 and insert_rows == False:
 
-                lyr_obj_new, lyr_store, lyr_view = self.create_layer(lyr_dict["type"])
-                ins_itr = insert_layer(lyr_obj_new, lyr_dict, ins_itr)
-                if lyr_obj_new is not None:
-                    lyr_obj_new.set_properties(lyr_dict)
-                return ins_itr, lyr_store
 
-            iter_dict = {0: ins_itr}
-            for layer in decoded["layers"][1:]:
-                split_path = layer[0].split(":")
-                lyr_dict = layer[1]
-                features = layer[2]
+                cutoff = len(layer[0].split(":"))
+                ins_itr = self.layer_store.append(None, [True, lyr_pixbuf, lyr_label, lyr_obj_new])
+                iter_dict = {0: ins_itr}
+            else:
                 new_path = split_path[cutoff:]
                 path_len = len(new_path)
-                if path_len == 0:
-                    break
-
-                #The last path length is assigned to the dictionary
-                #If the next layer has a longer path it will use the
-                #previous entry as parent. It is not overwritten, which
-                #produces a depth-first iteration.
                 ins_itr = iter_dict[path_len-1]
-                itr, lyr_store = create_and_insert(new_path, ins_itr, lyr_dict)
+                itr = insert_layer(lyr_obj_new, lyr_dict, ins_itr)
                 iter_dict[path_len] = itr
 
-                for f in features:
-                    if lyr_dict["type"] == "faultplane":
-                        #Passing a list or tuple to the add feature function would be better.
-                        self.add_feature(lyr_dict["type"], lyr_store, f[0], f[1], f[2], f[3], f[4])
-                    else:
-                        self.add_feature(lyr_dict["type"], lyr_store, f[0], f[1], f[2])
-
-        else:
-            #Add the first row:
-            first_row = decoded["layers"][0]
-            lyr_dict = first_row[1]
-            lyr_label = lyr_dict["label"]
-            lyr_obj_new, lyr_store, lyr_view = self.create_layer(lyr_dict["type"])
-            lyr_obj_new.set_properties(lyr_dict)
-            lyr_pixbuf = lyr_obj_new.get_pixbuf()
-            ins_itr = self.layer_store.append(None, [True, lyr_pixbuf, lyr_label, lyr_obj_new])
-            ins_path = self.layer_store.get_path(ins_itr)
-            features = first_row[2]
-            for f in features:
+            for f in lyr_data:
                 if lyr_dict["type"] == "faultplane":
                     #Passing a list or tuple to the add feature function would be better.
                     self.add_feature(lyr_dict["type"], lyr_store, f[0], f[1], f[2], f[3], f[4])
                 else:
                     self.add_feature(lyr_dict["type"], lyr_store, f[0], f[1], f[2])
-            self.redraw_plot() #Redraws the window that received the data
+
+            if insert_rows == False:
+                self.redraw_plot()
 
         context.finish(True, True, time)
 
