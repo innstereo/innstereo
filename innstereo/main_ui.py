@@ -8,7 +8,7 @@ modules and clases are controlled from this class. The startup-function creates
 the first instance of the GUI when the program starts.
 """
 
-from gi.repository import Gtk, Gdk, GdkPixbuf
+from gi.repository import Gtk, Gdk, GdkPixbuf, Gio
 from matplotlib.backends.backend_gtk3cairo import (FigureCanvasGTK3Cairo
                                                    as FigureCanvas)
 from matplotlib.backends.backend_gtk3 import (NavigationToolbar2GTK3 
@@ -66,9 +66,7 @@ class MainWindow(object):
         self.tb1 = builder.get_object("toolbar1")
         self.statbar = builder.get_object("statusbar1")
         self.plot_menu = builder.get_object("menu_plot_views")
-
-        context = self.tb1.get_style_context()
-        context.add_class(Gtk.STYLE_CLASS_PRIMARY_TOOLBAR)
+        self.builder = builder
 
         #Set up default options class
         self.settings = PlotSettings()
@@ -104,6 +102,9 @@ class MainWindow(object):
         self.view_changed = False
         self.ax_rose = None
 
+        #Set up the headerbar
+        self.headerbar_setup()
+
         #Set up event-handlers
         self.canvas.mpl_connect('motion_notify_event', 
             self.update_cursor_position)
@@ -111,6 +112,77 @@ class MainWindow(object):
             self.mpl_canvas_clicked)
         self.redraw_plot()
         self.main_window.show_all()
+
+    def headerbar_setup(self):
+        """
+        Sets up the HeaderBar and the PopoverMenus.
+
+        The Headerbar is set up in Pyton, while the PopoverMenus are parsed
+        from XML files. Each PopoverMenu is connected to the appropriate button,
+        and show/hide of the menu is set up.
+        """
+        self.hb = Gtk.HeaderBar()
+        self.hb.set_show_close_button(True)
+        self.hb.props.title = "InnStereo"
+        self.main_window.set_titlebar(self.hb)
+
+        def toggle_popover(button, popovermenu):
+            """
+            Toggles the respective popovermenu.
+            """
+            if popovermenu.get_visible():
+                popovermenu.hide()
+            else:
+                popovermenu.show_all()
+
+        #HeaderBar: Pack Start
+        #######################################################################
+        #Project: PopoverMenu
+        button_project = Gtk.Button("Project")
+        pom_project = self.builder.get_object("pom_project")
+        pom_project.set_relative_to(button_project)
+        button_project.connect("clicked", toggle_popover, pom_project)
+        self.hb.pack_start(button_project)
+
+        #Save: Button
+        button_save = Gtk.Button("Save Image")
+        button_save.connect("clicked", self.on_toolbutton_save_figure_clicked)
+        self.hb.pack_start(button_save)
+
+        #HeaderBar: Pack End
+        #######################################################################
+        button_settings = Gtk.Button()
+        icon = Gio.ThemedIcon(name="format-justify-fill-symbolic")
+        image = Gtk.Image.new_from_gicon(icon, Gtk.IconSize.BUTTON)
+        button_settings.add(image)
+        self.hb.pack_end(button_settings)
+
+        #Plot Properties: Button
+        button_props = Gtk.Button()
+        icon = Gio.ThemedIcon(name="document-properties-symbolic")
+        image = Gtk.Image.new_from_gicon(icon, Gtk.IconSize.BUTTON)
+        button_props.add(image)
+        button_props.connect("clicked", self.on_toolbutton_plot_properties_clicked)
+        self.hb.pack_end(button_props)
+
+        #View: PopoverMenu
+        button_view = Gtk.Button("View")
+        pom_view = self.builder.get_object("pom_view")
+        pom_view.set_relative_to(button_view)
+        button_view.connect("clicked", toggle_popover, pom_view)
+        self.hb.pack_end(button_view)
+
+        #Calculations: PopoverMenu
+        button_calc = Gtk.Button("Calculate")
+        pom_calc = self.builder.get_object("pom_calc")
+        pom_calc.set_relative_to(button_calc)
+        button_calc.connect("clicked", toggle_popover, pom_calc)
+        self.hb.pack_end(button_calc)
+
+        #Layer Style: Button
+        button_style = Gtk.Button("Layer Style")
+        button_style.connect("clicked", self.on_toolbutton_layer_properties_clicked)
+        self.hb.pack_end(button_style)
 
     def drag_begin(self, treeview, context):
         """
@@ -309,7 +381,7 @@ class MainWindow(object):
         """
         pass
 
-    def on_menuitem_stereo_activate(self, widget):
+    def on_menuitem_stereo_activate(self, widget, *args):
         # pylint: disable=unused-argument
         """
         Switches to the stereonet-only view.
@@ -322,7 +394,7 @@ class MainWindow(object):
             self.view_mode = "stereonet"
             self.redraw_plot()
 
-    def on_menuitem_stereo_rose_activate(self, widget):
+    def on_menuitem_stereo_rose_activate(self, widget, *args):
         # pylint: disable=unused-argument
         """
         Switches to the stereonet and rose-diagram view.
@@ -335,7 +407,7 @@ class MainWindow(object):
             self.view_mode = "stereo_rose"
             self.redraw_plot()
 
-    def on_menuitem_rose_view_activate(self, widget):
+    def on_menuitem_rose_view_activate(self, widget, *args):
         # pylint: disable=unused-argument
         """
         Switches to the rose-diagram-only view.
@@ -348,7 +420,7 @@ class MainWindow(object):
             self.view_mode = "rose"
             self.redraw_plot()
 
-    def on_menuitem_pt_view_activate(self, widget):
+    def on_menuitem_pt_view_activate(self, widget, *args):
         # pylint: disable=unused-argument
         """
         Switches to the paleostress view.
@@ -371,7 +443,7 @@ class MainWindow(object):
         Gtk.Settings.get_default().set_property("gtk-application-prefer-dark-theme", state)
         self.main_window.show_all()
 
-    def on_toolbutton_eigenvector_clicked(self, widget):
+    def on_toolbutton_eigenvector_clicked(self, widget, *args):
         # pylint: disable=unused-argument
         """
         Calculates the eigenvectors and eigenvalues of one or more layers.
@@ -454,7 +526,7 @@ class MainWindow(object):
         self.add_eigenvector_feature(store, dipdir[2], dip[2], values[2])
         self.redraw_plot()
 
-    def on_toolbutton_rotate_layer_clicked(self, toolbutton):
+    def on_toolbutton_rotate_layer_clicked(self, toolbutton, *args):
         # pylint: disable=unused-argument
         """
         Open the data rotation dialog.
@@ -483,7 +555,7 @@ class MainWindow(object):
                                        self.add_feature, self.redraw_plot)
         rotate_dialog.run()
 
-    def on_toolbutton_new_project_clicked(self, widget):
+    def on_toolbutton_new_project_clicked(self, widget, *args):
         # pylint: disable=unused-argument
         """
         Opens a new and indenpendent window of the GUI.
@@ -504,7 +576,7 @@ class MainWindow(object):
         """
         startup()
 
-    def on_toolbutton_poles_to_lines_clicked(self, widget):
+    def on_toolbutton_poles_to_lines_clicked(self, widget, *args):
         # pylint: disable=unused-argument
         """
         Copies the poles of a plane-layer into a new line-layer.
@@ -548,7 +620,7 @@ class MainWindow(object):
 
         self.redraw_plot()
 
-    def on_toolbutton_save_clicked(self, widget):
+    def on_toolbutton_save_clicked(self, widget, *args):
         # pylint: disable=unused-argument
         """
         Triggered from the GUI. Saves the project.
@@ -599,7 +671,7 @@ class MainWindow(object):
         dlg = FileChooserSave(self.main_window, dump)
         dlg.run()
 
-    def on_toolbutton_open_clicked(self, toolbutton):
+    def on_toolbutton_open_clicked(self, toolbutton, *args):
         # pylint: disable=unused-argument
         """
         Triggered from the GUI. Opens a saved project.
@@ -724,7 +796,7 @@ class MainWindow(object):
         #print_dialog = PrintDialog()
         #print_dialog.run()
 
-    def on_toolbutton_save_figure_clicked(self, widget):
+    def on_toolbutton_save_figure_clicked(self, widget, *args):
         # pylint: disable=unused-argument
         """
         Opens a dialog to save the figure specified location and file-format.
@@ -760,7 +832,7 @@ class MainWindow(object):
         else:
             self.draw_features = False
 
-    def on_toolbutton_best_plane_clicked(self, widget):
+    def on_toolbutton_best_plane_clicked(self, widget, *args):
         # pylint: disable=unused-argument
         """
         Finds the optimal plane for a set of linears.
@@ -799,7 +871,7 @@ class MainWindow(object):
         self.add_planar_feature(store, fit_strike + 90, fit_dip)
         self.redraw_plot()
 
-    def on_toolbutton_plane_intersect_clicked(self, widget):
+    def on_toolbutton_plane_intersect_clicked(self, widget, *args):
         # pylint: disable=unused-argument
         """
         Calculates the best fitting intersect for the selected planes.
@@ -845,7 +917,7 @@ class MainWindow(object):
         self.add_linear_feature(store, fit_strike + 270, 90 - fit_dip)
         self.redraw_plot()
 
-    def on_toolbutton_linears_to_planes_clicked(self, toolbutton):
+    def on_toolbutton_linears_to_planes_clicked(self, toolbutton, *args):
         # pylint: disable=unused-argument
         """
         Finds the plane normal to the selected linears and adds them as planes.
@@ -883,7 +955,7 @@ class MainWindow(object):
 
         self.redraw_plot()
 
-    def on_toolbutton_mean_vector_clicked(self, toolbutton):
+    def on_toolbutton_mean_vector_clicked(self, toolbutton, *args):
         """
         Calculates the mean vector and adds it to the project.
 
@@ -1010,7 +1082,7 @@ class MainWindow(object):
         dipdir5, dip5 = self.convert_lonlat_to_dipdir(lon_rot5, lat_rot5)
         return dipdir5, dip5
 
-    def on_toolbutton_ptaxis_clicked(self, toolbutton):
+    def on_toolbutton_ptaxis_clicked(self, toolbutton, *args):
         """
         Calculates the PT-Axis of a faultplane, and add adds them to the project
 
@@ -1964,9 +2036,10 @@ class MainWindow(object):
                     newHandles.append(handle)
 
             if len(newHandles) is not 0:
-                self.ax_stereo.legend(newHandles, newLabels,
+                leg = self.ax_stereo.legend(newHandles, newLabels,
                                       bbox_to_anchor=(1.5, 1.1), borderpad=1,
                                       numpoints=1)
+                leg.draggable(state=True)
         self.canvas.draw()
 
     def on_toolbutton_create_group_layer_clicked(self, widget):
@@ -2056,7 +2129,7 @@ class MainWindow(object):
         about = AboutDialog(self.main_window)
         about.run()
 
-    def on_menuitem_quit_activate(self, widget):
+    def on_menuitem_quit_activate(self, widget, *args):
         """
         Triggered when the main window is closed from the menu. Terminates the
         Gtk main loop.
@@ -2483,6 +2556,15 @@ def startup():
          "image_create_small_circle", "menu_plot_views", "image_eigenvector",
          "poles_to_lines", "image_linears_to_planes", "image_rotate",
          "image_pt_axis", "image_mean_vector"))
+
+    abs_path_ui1 =  os.path.join(script_dir, "ui/popovermenu_project.xml")
+    objects = builder.add_from_file(abs_path_ui1)
+
+    abs_path_ui2 =  os.path.join(script_dir, "ui/popovermenu_calc.xml")
+    objects = builder.add_from_file(abs_path_ui2)
+
+    abs_path_ui3 =  os.path.join(script_dir, "ui/popovermenu_view.xml")
+    objects = builder.add_from_file(abs_path_ui3)
 
     gui_instance = MainWindow(builder)
     builder.connect_signals(gui_instance)

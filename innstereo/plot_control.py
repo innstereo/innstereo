@@ -39,7 +39,7 @@ class PlotSettings(object):
         matplotlib-figure, a folder-icon for the group-layers of the layer-view.
         """
         self.folder_icon = Gtk.IconTheme.get_default().load_icon(
-            "folder", 16, 0)
+            "folder-symbolic", 16, 0)
         self.props = {"draw_grid": True,
                       "equal_area_projection": True,
                       "minor_grid_spacing": 2,

@@ -1,0 +1,55 @@
+<interface>
+  <object class="GtkPopoverMenu" id ="pom_view">
+    <child>
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <property name="margin">10</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkModelButton" id ="mb_view_stereonet">
+            <property name="visible">True</property>
+            <property name="text" translatable="yes">Stereonet</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="margin-top">0</property>
+            <property name="margin-bottom">0</property>
+            <signal name="button-press-event" handler="on_menuitem_stereo_activate" swapped="no"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkModelButton" id ="mb_view_stereo_rose">
+            <property name="visible">True</property>
+            <property name="text" translatable="yes">Stereonet and Rose</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="margin-top">0</property>
+            <property name="margin-bottom">0</property>
+            <signal name="button-press-event" handler="on_menuitem_stereo_rose_activate" swapped="no"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkModelButton" id ="mb_view_rose">
+            <property name="visible">True</property>
+            <property name="text" translatable="yes">Rose Diagram</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="margin-top">0</property>
+            <property name="margin-bottom">0</property>
+            <signal name="button-press-event" handler="on_menuitem_rose_view_activate" swapped="no"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkModelButton" id ="mb_view_paleostress">
+            <property name="visible">True</property>
+            <property name="text" translatable="yes">Paleostress</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="margin-top">0</property>
+            <property name="margin-bottom">0</property>
+            <signal name="button-press-event" handler="on_menuitem_pt_view_activate" swapped="no"/>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>

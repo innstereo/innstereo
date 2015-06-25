@@ -1,0 +1,99 @@
+<interface>
+  <object class="GtkPopoverMenu" id ="pom_calc">
+    <child>
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <property name="margin">10</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkModelButton" id ="mb_plane_intersect">
+            <property name="visible">True</property>
+            <property name="text" translatable="yes">Plane Intersection</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="margin-top">0</property>
+            <property name="margin-bottom">0</property>
+            <signal name="button-press-event" handler="on_toolbutton_plane_intersect_clicked" swapped="no"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkModelButton" id ="mb_best_fit_plane">
+            <property name="visible">True</property>
+            <property name="text" translatable="yes">Best-Fitting Great Circle</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="margin-top">0</property>
+            <property name="margin-bottom">0</property>
+            <signal name="button-press-event" handler="on_toolbutton_best_plane_clicked" swapped="no"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkModelButton" id ="mb_mean_direction">
+            <property name="visible">True</property>
+            <property name="text" translatable="yes">Mean Direction</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="margin-top">0</property>
+            <property name="margin-bottom">0</property>
+            <signal name="button-press-event" handler="on_toolbutton_mean_vector_clicked" swapped="no"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkModelButton" id ="mb_poles_to_line">
+            <property name="visible">True</property>
+            <property name="text" translatable="yes">Copy Poles to Linear Layer</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="margin-top">0</property>
+            <property name="margin-bottom">0</property>
+            <signal name="button-press-event" handler="on_toolbutton_poles_to_lines_clicked" swapped="no"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkModelButton" id ="mb_lines_to_planes">
+            <property name="visible">True</property>
+            <property name="text" translatable="yes">Find Planes of Poles</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="margin-top">0</property>
+            <property name="margin-bottom">0</property>
+            <signal name="button-press-event" handler="on_toolbutton_linears_to_planes_clicked" swapped="no"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkModelButton" id ="mb_eigenvector">
+            <property name="visible">True</property>
+            <property name="text" translatable="yes">Eigenvectors and Eigenvalues</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="margin-top">0</property>
+            <property name="margin-bottom">0</property>
+            <signal name="button-press-event" handler="on_toolbutton_eigenvector_clicked" swapped="no"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkModelButton" id ="mb_rotate">
+            <property name="visible">True</property>
+            <property name="text" translatable="yes">Rotate Layer</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="margin-top">0</property>
+            <property name="margin-bottom">0</property>
+            <signal name="button-press-event" handler="on_toolbutton_rotate_layer_clicked" swapped="no"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkModelButton" id ="mb_pt_axis">
+            <property name="visible">True</property>
+            <property name="text" translatable="yes">PT-Axis</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="margin-top">0</property>
+            <property name="margin-bottom">0</property>
+            <signal name="button-press-event" handler="on_toolbutton_ptaxis_clicked" swapped="no"/>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>
