@@ -244,6 +244,7 @@ class FaultPlaneDataView(DataTreeView):
 
         renderer_sense = Gtk.CellRendererText()
         renderer_sense.set_property("editable", True)
+        renderer_sense.set_property("placeholder-text", "up/dn/sin/dex/uk")
         column_sense = Gtk.TreeViewColumn("Sense", renderer_sense, text=4)
         column_sense.set_alignment(0.5)
         column_sense.set_expand(True)
@@ -342,6 +343,7 @@ class LineDataView(DataTreeView):
 
         renderer_sense = Gtk.CellRendererText()
         renderer_sense.set_property("editable", True)
+        renderer_sense.set_property("placeholder-text", "up/dn/sin/dex/uk")
         column_sense = Gtk.TreeViewColumn("Sense", renderer_sense, text=2)
         column_sense.set_alignment(0.5)
         column_sense.set_expand(True)
