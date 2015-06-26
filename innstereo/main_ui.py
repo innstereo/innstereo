@@ -60,9 +60,9 @@ class MainWindow(object):
         """
         global startup
         self.main_window = builder.get_object("main_window")
-        self.sw_plot = builder.get_object("scrolledwindow1")
-        self.sw_layer = builder.get_object("scrolledwindow2")
-        self.sw_data = builder.get_object("scrolledwindow3")
+        self.sw_plot = builder.get_object("sw_plot")
+        self.sw_layer = builder.get_object("sw_layerview")
+        self.sw_data = builder.get_object("sw_dataview")
         self.tb1 = builder.get_object("toolbar1")
         self.statbar = builder.get_object("statusbar1")
         self.plot_menu = builder.get_object("menu_plot_views")
