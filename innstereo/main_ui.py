@@ -2293,6 +2293,9 @@ class MainWindow(object):
                     self.add_smallcircle_feature(data_treestore, alpha_deg,
                                             gamma_deg)
                 self.redraw_plot()
+        else:
+            if self.draw_features == False:
+                selection.unselect_all()
 
     def update_cursor_position(self, event):
         """
