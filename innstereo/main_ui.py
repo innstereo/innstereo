@@ -1827,7 +1827,7 @@ class MainWindow(object):
 
             self.draw_contours(lyr_obj, dip, dipdir, "lines")
 
-    def highlight_selection(self):
+    def highlight_selection(self, deselected):
         """
         Gets the current selection and highlights it in the plot.
 
@@ -1839,9 +1839,21 @@ class MainWindow(object):
         selection = self.layer_view.get_selection()
         model, row_list = selection.get_selected_rows()
 
-        def highlight_layers():
+        def highlight_layers(deselected):
             for row in row_list:
                 lyr_obj = model[row][3]
+                if lyr_obj == None:
+                    continue
+
+                path = str(row)
+                draw = True
+                for d in deselected:
+                    if path.startswith(d) == True:
+                        draw = False
+
+                if draw == False:
+                    continue
+
                 self.plot_layer(lyr_obj, highlight=True)
 
         def highlight_rows(lyr_obj, data_row_list):
@@ -1853,17 +1865,19 @@ class MainWindow(object):
         if len(row_list) == 1:
             row = row_list[0]
             lyr_obj = model[row][3]
+            if lyr_obj == None:
+                return
             data_view = lyr_obj.get_data_treeview()
             data_selection = data_view.get_selection()
             data_model, data_row_list = data_selection.get_selected_rows()
             if len(data_row_list) > 0:
                 highlight_rows(lyr_obj, data_row_list)
             else:
-                highlight_layers()
+                highlight_layers(deselected)
         elif len(row_list) == 0:
             return
         else:
-            highlight_layers()
+            highlight_layers(deselected)
 
     def redraw_plot(self, checkout_canvas = False):
         """
@@ -1919,10 +1933,7 @@ class MainWindow(object):
         if self.settings.get_show_north() == True:
             self.ax_stereo.set_azimuth_ticks([0], labels=['N'])
 
-        if self.settings.get_highlight() is True:
-            self.highlight_selection()
-
-        deselected = []
+        self.deselected = []
         def iterate_over_rows(model, path, itr):
             lyr_obj = model[path][3]
             if lyr_obj is not None:
@@ -1933,11 +1944,11 @@ class MainWindow(object):
                 layer_type = "group"
 
             if model[path][0] == False:
-                deselected.append(str(path))
+                self.deselected.append(str(path))
                 return
             
             draw = True
-            for d in deselected:
+            for d in self.deselected:
                 if str(path).startswith(d) == True:
                     draw = False
 
@@ -1949,6 +1960,9 @@ class MainWindow(object):
         self.sc_labels = []
         self.sc_handlers = []
         self.layer_store.foreach(iterate_over_rows)
+
+        if self.settings.get_highlight() is True:
+            self.highlight_selection(self.deselected)
 
         if self.settings.get_draw_legend() == True:
             handles, labels = self.ax_stereo.get_legend_handles_labels()
