@@ -710,6 +710,14 @@ class FileChooserOpen(object):
             ("filechooserdialog_open", ""))
         self.dialog = self.builder.get_object("filechooserdialog_open")
         self.dialog.set_transient_for(main_window)
+        filter_json = Gtk.FileFilter()
+        filter_json.add_pattern("*.json")
+        filter_json.set_name("JSON")
+        self.dialog.add_filter(filter_json)
+        filter_all = Gtk.FileFilter()
+        filter_all.add_pattern("*")
+        filter_all.set_name("All Files")
+        self.dialog.add_filter(filter_all)
         self.open_project = open_project
         self.builder.connect_signals(self)
 
