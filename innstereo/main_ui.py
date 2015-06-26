@@ -2444,6 +2444,20 @@ class MainWindow(object):
                 writer.writeheader()
                 data_obj.foreach(iterate_over_smallcircles)
 
+    def on_eb_lbl_layerview_button_press_event(self, eventbox, eventbutton):
+        """
+        Clicking on the layerview label deselects all layers.
+        """
+        selection = self.layer_view.get_selection()
+        selection.unselect_all()
+
+    def on_eb_lbl_dataview_button_press_event(self, eventbox, eventbutton):
+        """
+        Clicking on the dataview label deselects all layers.
+        """
+        selection = self.layer_view.get_selection()
+        selection.unselect_all()
+
     def on_menuitem_online_help_activate(self, menuitem):
         # pylint: disable=unused-argument
         """

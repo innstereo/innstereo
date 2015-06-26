@@ -4293,16 +4293,23 @@ customizable grid.</property>
                 <property name="margin_right">3</property>
                 <property name="orientation">vertical</property>
                 <child>
-                  <object class="GtkLabel" id="label1">
+                  <object class="GtkEventBox" id="eb_lbl_layerview">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="halign">center</property>
-                    <property name="margin_top">4</property>
-                    <property name="margin_bottom">4</property>
-                    <property name="label" translatable="yes">Layers</property>
-                    <attributes>
-                      <attribute name="weight" value="ultralight"/>
-                    </attributes>
+                    <signal name="button-press-event" handler="on_eb_lbl_layerview_button_press_event" swapped="no"/>
+                    <child>
+                      <object class="GtkLabel" id="label_layerview">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="halign">center</property>
+                        <property name="margin_top">4</property>
+                        <property name="margin_bottom">4</property>
+                        <property name="label" translatable="yes">Layers</property>
+                        <attributes>
+                          <attribute name="weight" value="ultralight"/>
+                        </attributes>
+                      </object>
+                    </child>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -4472,16 +4479,23 @@ customizable grid.</property>
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkLabel" id="lablel2">
+                  <object class="GtkEventBox" id="eb_lbl_dataview">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="halign">center</property>
-                    <property name="margin_top">4</property>
-                    <property name="margin_bottom">4</property>
-                    <property name="label" translatable="yes">Data</property>
-                    <attributes>
-                      <attribute name="weight" value="ultralight"/>
-                    </attributes>
+                    <signal name="button-press-event" handler="on_eb_lbl_dataview_button_press_event" swapped="no"/>
+                    <child>
+                      <object class="GtkLabel" id="lablel2">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="halign">center</property>
+                        <property name="margin_top">4</property>
+                        <property name="margin_bottom">4</property>
+                        <property name="label" translatable="yes">Data</property>
+                        <attributes>
+                          <attribute name="weight" value="ultralight"/>
+                        </attributes>
+                      </object>
+                    </child>
                   </object>
                   <packing>
                     <property name="expand">False</property>
