@@ -1644,21 +1644,6 @@ customizable grid.</property>
                         <property name="orientation">vertical</property>
                         <property name="toolbar_style">icons</property>
                         <child>
-                          <object class="GtkToggleToolButton" id="toolbutton_draw_features">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="tooltip_text" translatable="yes">When turned on, features can be added to the currently selected layer by clicking on the stereonet.</property>
-                            <property name="label" translatable="yes">Draw Features</property>
-                            <property name="use_underline">True</property>
-                            <property name="icon_name">text-editor-symbolic</property>
-                            <signal name="toggled" handler="on_toolbutton_draw_features_toggled" swapped="no"/>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="homogeneous">True</property>
-                          </packing>
-                        </child>
-                        <child>
                           <object class="GtkToolButton" id="toolbutton_add_feature">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>

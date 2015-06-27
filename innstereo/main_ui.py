@@ -165,6 +165,14 @@ class MainWindow(object):
         button_props.connect("clicked", self.on_toolbutton_plot_properties_clicked)
         self.hb.pack_end(button_props)
 
+        #Draw mode: ToggleButton
+        button_draw = Gtk.ToggleButton()
+        icon = Gio.ThemedIcon(name="text-editor-symbolic")
+        image = Gtk.Image.new_from_gicon(icon, Gtk.IconSize.BUTTON)
+        button_draw.add(image)
+        button_draw.connect("toggled", self.on_toolbutton_draw_features_toggled)
+        self.hb.pack_end(button_draw)
+
         #View: PopoverMenu
         button_view = Gtk.Button("View")
         pom_view = self.builder.get_object("pom_view")
