@@ -759,6 +759,7 @@ class MainWindow(object):
             self.draw_features = True
         else:
             self.draw_features = False
+        self.update_cursor_position(None)
 
     def on_toolbutton_best_plane_clicked(self, widget):
         # pylint: disable=unused-argument
@@ -2300,21 +2301,34 @@ class MainWindow(object):
     def update_cursor_position(self, event):
         """
         When the mouse cursor hovers inside the plot, the position of the
-        event is pushed to the statusbar at the bottom of the GUI.
+        event is pushed to the statusbar at the bottom of the GUI. Also
+        called by a few buttons, to push messages to the statusbar.
         """
-        if event.inaxes is not None:
-            alpha_deg, gamma_deg = self.convert_xy_to_dirdip(event)
+        def push_drawing_message():
+            self.statbar.push(1, "Left click inside the plot to draw a feature.")
 
-            alpha_deg = int(alpha_deg)
-            gamma_deg = int(gamma_deg)
+        if event is not None:
+            if event.inaxes is not None:
+                alpha_deg, gamma_deg = self.convert_xy_to_dirdip(event)
 
-            #Ensure 000/00 formatting
-            alpha_deg = str(alpha_deg).rjust(3, "0")
-            gamma_deg = str(gamma_deg).rjust(2, "0")
+                alpha_deg = int(alpha_deg)
+                gamma_deg = int(gamma_deg)
 
-            self.statbar.push(1, ("{0} / {1}".format(alpha_deg, gamma_deg)))
+                #Ensure 000/00 formatting
+                alpha_deg = str(alpha_deg).rjust(3, "0")
+                gamma_deg = str(gamma_deg).rjust(2, "0")
+
+                self.statbar.push(1, ("{0} / {1}".format(alpha_deg, gamma_deg)))
+            else:
+                if self.draw_features == True:
+                    push_drawing_message()
+                else:
+                    self.statbar.push(1, (""))
         else:
-            self.statbar.push(1, (""))
+            if self.draw_features == True:
+                push_drawing_message()
+            else:
+                self.statbar.push(1, (""))
 
     def on_toolbutton_file_parse_clicked(self, toolbutton):
         """
