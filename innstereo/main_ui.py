@@ -64,7 +64,7 @@ class MainWindow(object):
         self.sw_layer = builder.get_object("sw_layerview")
         self.sw_data = builder.get_object("sw_dataview")
         self.tb1 = builder.get_object("toolbar1")
-        self.statbar = builder.get_object("statusbar1")
+        self.statbar = builder.get_object("statusbar")
         self.plot_menu = builder.get_object("menu_plot_views")
 
         context = self.tb1.get_style_context()
@@ -106,7 +106,7 @@ class MainWindow(object):
 
         #Set up event-handlers
         self.canvas.mpl_connect('motion_notify_event', 
-            self.update_cursor_position)
+            self.mpl_motion_event)
         self.canvas.mpl_connect('button_press_event',
             self.mpl_canvas_clicked)
         self.redraw_plot()
@@ -759,7 +759,7 @@ class MainWindow(object):
             self.draw_features = True
         else:
             self.draw_features = False
-        self.update_cursor_position(None)
+        self.update_statusbar()
 
     def on_toolbutton_best_plane_clicked(self, widget):
         # pylint: disable=unused-argument
@@ -2298,18 +2298,66 @@ class MainWindow(object):
             if self.draw_features == False:
                 selection.unselect_all()
 
-    def update_cursor_position(self, event):
+    def mpl_motion_event(self, mpl_event):
+        """
+        Catches motion events on the mpl canvas and plots.
+
+        Updates the StatusBar.
+        """
+        self.update_statusbar(mpl_event)
+
+    def eventbox_motion(self, widget, event):
+        """
+        Catches motion events and calls the updating of the StatusBar.
+
+        Triggered by many areas of the UI. Receives a widget (EventBox,
+        ScrolledWindow, Toolbar) and the event itself (Gdk.EventMotion,
+        Gdk.EventCrossing, ...).
+        Calls the update_statusbar function to push helpful messages to the
+        StatusBar.
+        """
+        self.update_statusbar()
+
+    def update_statusbar(self, mpl_event=None, *args, **kwargs):
         """
         When the mouse cursor hovers inside the plot, the position of the
-        event is pushed to the statusbar at the bottom of the GUI. Also
+        mpl_event is pushed to the statusbar at the bottom of the GUI. Also
         called by a few buttons, to push messages to the statusbar.
         """
+        selection = self.layer_view.get_selection()
+        model, row_list = selection.get_selected_rows()
+
         def push_drawing_message():
             self.statbar.push(1, "Left click inside the plot to draw a feature.")
 
-        if event is not None:
-            if event.inaxes is not None:
-                alpha_deg, gamma_deg = self.convert_xy_to_dirdip(event)
+        def push_select_layer_message():
+            self.statbar.push(1, "Select the layer that you want to edit.")
+
+        def push_one_layer_message():
+            self.statbar.push(1, "Select only one layer to edit it.")
+
+        def push_group_layer_message():
+            self.statbar.push(1, "Group layers cannot hold features. Select a data-layer for editing.")
+
+        def push_messages():
+            if self.draw_features == True:
+                if len(row_list) == 1:
+                    row = row_list[0]
+                    lyr_obj = model[row][3]
+                    if lyr_obj == None:
+                        push_group_layer_message()
+                    else:
+                        push_drawing_message()
+                elif len(row_list) > 1:
+                    push_one_layer_message()
+                else:
+                    push_select_layer_message()
+            else:
+                self.statbar.push(1, (""))
+
+        if mpl_event is not None:
+            if mpl_event.inaxes is not None:
+                alpha_deg, gamma_deg = self.convert_xy_to_dirdip(mpl_event)
 
                 alpha_deg = int(alpha_deg)
                 gamma_deg = int(gamma_deg)
@@ -2320,15 +2368,9 @@ class MainWindow(object):
 
                 self.statbar.push(1, ("{0} / {1}".format(alpha_deg, gamma_deg)))
             else:
-                if self.draw_features == True:
-                    push_drawing_message()
-                else:
-                    self.statbar.push(1, (""))
+                push_messages()
         else:
-            if self.draw_features == True:
-                push_drawing_message()
-            else:
-                self.statbar.push(1, (""))
+            push_messages()
 
     def on_toolbutton_file_parse_clicked(self, toolbutton):
         """

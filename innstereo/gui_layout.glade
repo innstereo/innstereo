@@ -3727,6 +3727,7 @@ customizable grid.</property>
           <object class="GtkMenuBar" id="menubar1">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <signal name="enter-notify-event" handler="eventbox_motion" swapped="no"/>
             <child>
               <object class="GtkMenuItem" id="menuitem_file">
                 <property name="visible">True</property>
@@ -3954,6 +3955,7 @@ customizable grid.</property>
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="toolbar_style">icons</property>
+            <signal name="enter-notify-event" handler="eventbox_motion" swapped="no"/>
             <child>
               <object class="GtkToolButton" id="toolbutton_new_project">
                 <property name="visible">True</property>
@@ -4297,6 +4299,7 @@ customizable grid.</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <signal name="button-press-event" handler="on_eb_lbl_layerview_button_press_event" swapped="no"/>
+                    <signal name="enter-notify-event" handler="eventbox_motion" swapped="no"/>
                     <child>
                       <object class="GtkLabel" id="label_layerview">
                         <property name="visible">True</property>
@@ -4329,6 +4332,7 @@ customizable grid.</property>
                         <property name="can_focus">False</property>
                         <property name="orientation">vertical</property>
                         <property name="toolbar_style">icons</property>
+                        <signal name="enter-notify-event" handler="eventbox_motion" swapped="no"/>
                         <child>
                           <object class="GtkToolButton" id="toolbutton_create_group_layer">
                             <property name="visible">True</property>
@@ -4461,6 +4465,8 @@ customizable grid.</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="shadow_type">in</property>
+                        <signal name="enter-notify-event" handler="eventbox_motion" swapped="no"/>
+                        <signal name="motion-notify-event" handler="eventbox_motion" swapped="no"/>
                         <child>
                           <placeholder/>
                         </child>
@@ -4483,6 +4489,7 @@ customizable grid.</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <signal name="button-press-event" handler="on_eb_lbl_dataview_button_press_event" swapped="no"/>
+                    <signal name="enter-notify-event" handler="eventbox_motion" swapped="no"/>
                     <child>
                       <object class="GtkLabel" id="lablel2">
                         <property name="visible">True</property>
@@ -4515,6 +4522,7 @@ customizable grid.</property>
                         <property name="can_focus">False</property>
                         <property name="orientation">vertical</property>
                         <property name="toolbar_style">icons</property>
+                        <signal name="enter-notify-event" handler="eventbox_motion" swapped="no"/>
                         <child>
                           <object class="GtkToggleToolButton" id="toolbutton_draw_features">
                             <property name="visible">True</property>
@@ -4603,6 +4611,8 @@ customizable grid.</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="shadow_type">in</property>
+                        <signal name="enter-notify-event" handler="eventbox_motion" swapped="no"/>
+                        <signal name="motion-notify-event" handler="eventbox_motion" swapped="no"/>
                         <child>
                           <placeholder/>
                         </child>
@@ -4648,13 +4658,20 @@ customizable grid.</property>
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkStatusbar" id="statusbar1">
+                  <object class="GtkEventBox" id="eventbox_statusbar">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="margin_top">6</property>
-                    <property name="margin_bottom">6</property>
-                    <property name="orientation">vertical</property>
-                    <property name="spacing">2</property>
+                    <signal name="enter-notify-event" handler="eventbox_motion" swapped="no"/>
+                    <child>
+                      <object class="GtkStatusbar" id="statusbar">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="margin_top">6</property>
+                        <property name="margin_bottom">6</property>
+                        <property name="orientation">vertical</property>
+                        <property name="spacing">2</property>
+                      </object>
+                    </child>
                   </object>
                   <packing>
                     <property name="expand">False</property>
