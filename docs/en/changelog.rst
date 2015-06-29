@@ -5,6 +5,16 @@ Changelog
 
 Versioning will work this way. Alpha releases will be done, so people can test early interface design decisions. Beta releases will done after the program is more mature. Eventually this will lead to the first 1.0 release. Download the most recent release from `this page <http://innstereo.github.io/>`_.
 
+InnStereo v1.0-beta.2
+---------------------
+
+ - `[Feature] <https://github.com/tobias47n9e/innstereo/issues/25>`_ When opening project files can be filtered for JSON-files.
+ - `[Feature] <https://github.com/tobias47n9e/innstereo/issues/21>`_ The cells for sense-of-movement now show a placeholder text with the options.
+ - [Feature] Statusbar gives helpful messages in editing mode.
+ - `[Feature] <https://github.com/tobias47n9e/innstereo/issues/28>`_ Improved the selecting and unselecting behaviour.
+ - `[Bug] <https://github.com/tobias47n9e/innstereo/issues/26>`_ Fixed an issue with layers staying highlighted.
+ - `[Bug] <https://github.com/tobias47n9e/innstereo/issues/27>`_ Fixed highlighted layers being drawn although their parents are unchecked.
+
 InnStereo v1.0-beta.1
 ---------------------
 

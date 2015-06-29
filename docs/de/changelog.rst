@@ -5,6 +5,16 @@
 
 Momentan werden Versionsnummern nach dem folgenden Schema vergeben: Version 1.0 wird die erste stabile Version mit vollem Funktionsumfang sein. Alpha-Versionen geben frühe Einblicke in die Entwicklung. Beta-Versionen werden vergeben wenn das Programm weiter fortgeschritten ist. Die jeweils aktuellste Version kann `auf dieser Seite <http://innstereo.github.io/>`_ heruntergeladen werden.
 
+InnStereo v1.0-beta.2
+---------------------
+
+ - `[Feature] <https://github.com/tobias47n9e/innstereo/issues/25>`_ Beim öffnen von Projekten werden jetzt standardmäßig JSON-Dateien gefiltert.
+ - `[Feature] <https://github.com/tobias47n9e/innstereo/issues/21>`_ Die Zellen für Bewegungsrichtungen enthalten jetzt einen Platzhaltertext, der die möglichen Werte anzeigt.
+ - [Feature] Im Zeichnen-Modus werden jetzt hilfreiche Meldungen in der Statusleiste angezeigt.
+ - `[Feature] <https://github.com/tobias47n9e/innstereo/issues/28>`_ Das Selektionsverhalten wurde verbessert.
+ - `[Bug] <https://github.com/tobias47n9e/innstereo/issues/26>`_ Hervorgehobene Ebenen werden beim deselektieren jetzt wieder normal gezeichnet.
+ - `[Bug] <https://github.com/tobias47n9e/innstereo/issues/27>`_ Im Hervorhebungsmodus werden jetzt Ebenen, deren Eltern inaktiv sind, nicht gezeichnet.
+
 InnStereo v1.0-beta.1
 ---------------------
 
