@@ -70,6 +70,9 @@ class MainWindow(object):
         context = self.tb1.get_style_context()
         context.add_class(Gtk.STYLE_CLASS_PRIMARY_TOOLBAR)
 
+        #Clipboard
+        self.clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
+
         #Set up default options class
         self.settings = PlotSettings()
 
@@ -112,23 +115,14 @@ class MainWindow(object):
         self.redraw_plot()
         self.main_window.show_all()
 
-    def drag_begin(self, treeview, context):
+    def copy_layer(self):
         """
-        Drag begin signal of the layer view. Currently does nothing.
+        Copies the contents of a layer and all its children.
 
-        This signal could be used to set up a e.g. drag icon.
+        This method is called by the drag-and-drop and copy-paste functions.
+        It returns the data as JSON.
         """
-        pass
-
-    def drag_data_get(self, treeview, context, selection, info, time):
-        """
-        Gets the data from the drag source. Serializes the data to JSON.
-
-        Iterates over the draged layer and all its children. Serializes the
-        path, properties and data. Encodes into JSON and sens it to the
-        drag destinations.
-        """
-        tree_selection = treeview.get_selection()
+        tree_selection = self.layer_view.get_selection()
         store, itr = tree_selection.get_selected_rows()
         model = self.layer_view.get_model()
         path = itr[0]
@@ -175,6 +169,25 @@ class MainWindow(object):
 
         self.layer_store.foreach(iterate_over_store, path_str)
         data = json.dumps(copy)
+        return data
+
+    def drag_begin(self, treeview, context):
+        """
+        Drag begin signal of the layer view. Currently does nothing.
+
+        This signal could be used to set up a e.g. drag icon.
+        """
+        pass
+
+    def drag_data_get(self, treeview, context, selection, info, time):
+        """
+        Gets the data from the drag source. Serializes the data to JSON.
+
+        Iterates over the draged layer and all its children. Serializes the
+        path, properties and data. Encodes into JSON and sens it to the
+        drag destinations.
+        """
+        data = self.copy_layer()
         selection.set(selection.get_target(), 8, data.encode())
 
     def drag_drop(self, treeview, context, selection, info, time):
@@ -308,6 +321,22 @@ class MainWindow(object):
         Signal is emitted when data is deleted. Does nothing at the moment.
         """
         pass
+
+    def on_toolbutton_copy_clicked(self, toolbutton):
+        """
+        Copies the selected layer data into the Gdk.Clipboard.
+
+        The data is returned by the copy_layer method. It is returned as
+        JSON data.
+        """
+        selection = self.layer_view.get_selection()
+        model, row_list = selection.get_selected_rows()
+
+        if len(row_list) == 0:
+            return
+
+        data = self.copy_layer()
+        self.clipboard.set_text(data, -1)
 
     def on_menuitem_stereo_activate(self, widget):
         # pylint: disable=unused-argument

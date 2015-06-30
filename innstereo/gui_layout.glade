@@ -4037,9 +4037,8 @@ customizable grid.</property>
               </packing>
             </child>
             <child>
-              <object class="GtkToolButton" id="toolbutton8">
+              <object class="GtkToolButton" id="toolbutton_cut">
                 <property name="visible">True</property>
-                <property name="sensitive">False</property>
                 <property name="can_focus">False</property>
                 <property name="label" translatable="yes">Cut</property>
                 <property name="use_underline">True</property>
@@ -4053,7 +4052,6 @@ customizable grid.</property>
             <child>
               <object class="GtkToolButton" id="toolbutton_copy">
                 <property name="visible">True</property>
-                <property name="sensitive">False</property>
                 <property name="can_focus">False</property>
                 <property name="label" translatable="yes">Copy</property>
                 <property name="use_underline">True</property>
@@ -4066,9 +4064,8 @@ customizable grid.</property>
               </packing>
             </child>
             <child>
-              <object class="GtkToolButton" id="toolbutton10">
+              <object class="GtkToolButton" id="toolbutton_paste">
                 <property name="visible">True</property>
-                <property name="sensitive">False</property>
                 <property name="can_focus">False</property>
                 <property name="label" translatable="yes">Paste</property>
                 <property name="use_underline">True</property>
