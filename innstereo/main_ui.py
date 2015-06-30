@@ -102,6 +102,7 @@ class MainWindow(object):
         self.sw_plot.add_with_viewport(self.canvas)
         self.ax_stereo = self.settings.get_stereonet()
         self.inv = self.settings.get_inverse_transform()
+        self.inv_rose = NorthPolarAxes.InvertedNorthPolarTransform()
         self.trans = self.settings.get_transform()
         self.view_mode = "stereonet"
         self.view_changed = False
@@ -382,7 +383,7 @@ class MainWindow(object):
         """
         if self.view_mode is not "stereo-rose":
             self.view_changed = True
-            self.view_mode = "stereo_rose"
+            self.view_mode = "stereo-rose"
             self.redraw_plot()
 
     def on_menuitem_rose_view_activate(self, widget):
@@ -1930,39 +1931,64 @@ class MainWindow(object):
         else:
             highlight_layers(deselected)
 
-    def redraw_plot(self, checkout_canvas = False):
+    def redraw_plot(self, checkout_canvas=False):
         """
         This function is called after any changes to the datasets or when
         adding or deleting layer. The plot is cleared and then redrawn.
         layer[3] = layer object
         """
+        def inverted_transform_stereonet():
+            """
+            The inverted transform of the stereonet depends on the projection.
+
+            Equal area and equal angle projections have different tranformation
+            functions. The appropriate on has be set.
+            """
+            self.inv = self.settings.get_inverse_transform()
+
         if self.view_changed == True or checkout_canvas == True:
             self.view_changed = False
             if self.view_mode == "stereonet":
-                self.inv = self.settings.get_inverse_transform()
                 self.ax_stereo = self.settings.get_stereonet()
-            elif self.view_mode == "stereo_rose":
-                self.inv = self.settings.get_inverse_transform()
+                inverted_transform_stereonet()
+            elif self.view_mode == "stereo-rose":
                 self.ax_stereo, self.ax_rose = self.settings.get_stereo_rose()
+                inverted_transform_stereonet()
             elif self.view_mode == "rose":
-                self.inv = self.settings.get_inverse_transform()
                 self.ax_rose = self.settings.get_rose_diagram()
             elif self.view_mode == "pt":
                 self.inv = self.settings.get_inverse_transform()
                 self.ax_stereo, self.ax_fluc, self.ax_mohr = (
                                             self.settings.get_pt_view())
+                inverted_transform_stereonet()
+
+        def clear_stereo():
+            self.ax_stereo.cla()
+            self.ax_stereo.set_title("ax_stereo", visible=False)
+
+        def clear_rose():
+            self.ax_rose.cla()
+            self.ax_rose.set_title("ax_rose", visible=False)
+
+        def clear_fluc():
+            self.ax_fluc.cla()
+            self.ax_fluc.set_title("ax_fluc", visible=False)
+
+        def clear_mohr():
+            self.ax_mohr.cla()
+            self.ax_mohr.set_title("ax_mohr", visible=False)
 
         if self.view_mode == "stereonet":
-            self.ax_stereo.cla()
-        elif self.view_mode == "stereo_rose":
-            self.ax_rose.cla()
-            self.ax_stereo.cla()
+            clear_stereo()
+        elif self.view_mode == "stereo-rose":
+            clear_stereo()
+            clear_rose()
         elif self.view_mode == "rose":
-            self.ax_rose.cla()
+            clear_rose()
         elif self.view_mode == "pt":
-            self.ax_stereo.cla()
-            self.ax_fluc.cla()
-            self.ax_mohr.cla()
+            clear_stereo()
+            clear_fluc()
+            clear_mohr()
 
         if self.settings.get_draw_grid_state() == True:
             self.ax_stereo.grid(linestyle = self.settings.get_grid_linestyle(),
@@ -2405,18 +2431,34 @@ class MainWindow(object):
             else:
                 self.statbar.push(1, (""))
 
+        def push_stereo_coordinates(mpl_event):
+            alpha_deg, gamma_deg = self.convert_xy_to_dirdip(mpl_event)
+            alpha_deg = int(alpha_deg)
+            gamma_deg = int(gamma_deg)
+            #Ensure 000/00 formatting
+            alpha_deg = str(alpha_deg).rjust(3, "0")
+            gamma_deg = str(gamma_deg).rjust(2, "0")
+            self.statbar.push(1, ("{0} / {1}".format(alpha_deg, gamma_deg)))
+
+        def push_rose_coordinates(mpl_event):
+            self.statbar.push(1, ("Rose Diagram"))
+
+        def push_mpl_event(mpl_event):
+            title = mpl_event.inaxes.get_title()
+            if title == "ax_stereo":
+                push_stereo_coordinates(mpl_event)
+            elif title == "ax_rose":
+                push_rose_coordinates(mpl_event)
+            elif title == "ax_fluc":
+                self.statbar.push(1, ("Fluctuation Histogram"))
+            elif title == "ax_mohr":
+                self.statbar.push(1, ("Mohr Circle"))
+            else:
+                pass
+
         if mpl_event is not None:
             if mpl_event.inaxes is not None:
-                alpha_deg, gamma_deg = self.convert_xy_to_dirdip(mpl_event)
-
-                alpha_deg = int(alpha_deg)
-                gamma_deg = int(gamma_deg)
-
-                #Ensure 000/00 formatting
-                alpha_deg = str(alpha_deg).rjust(3, "0")
-                gamma_deg = str(gamma_deg).rjust(2, "0")
-
-                self.statbar.push(1, ("{0} / {1}".format(alpha_deg, gamma_deg)))
+                push_mpl_event(mpl_event)
             else:
                 push_messages()
         else:
