@@ -228,7 +228,7 @@ class StereonetProperties(object):
         for change in self.changes:
             change()
         self.spd.hide()
-        self.redraw(checkout_canvas = True)
+        self.redraw(checkout_canvas=True)
 
     def on_switch_equal_area_state_set(self, switch, state):
         # pylint: disable=unused-argument
