@@ -171,48 +171,9 @@ class MainWindow(object):
         data = json.dumps(copy)
         return data
 
-    def drag_begin(self, treeview, context):
+    def insert_layer_data(self, data_dict, drop_info=None):
         """
-        Drag begin signal of the layer view. Currently does nothing.
-
-        This signal could be used to set up a e.g. drag icon.
         """
-        pass
-
-    def drag_data_get(self, treeview, context, selection, info, time):
-        """
-        Gets the data from the drag source. Serializes the data to JSON.
-
-        Iterates over the draged layer and all its children. Serializes the
-        path, properties and data. Encodes into JSON and sens it to the
-        drag destinations.
-        """
-        data = self.copy_layer()
-        selection.set(selection.get_target(), 8, data.encode())
-
-    def drag_drop(self, treeview, context, selection, info, time):
-        """
-        Signal emitted when a layer is droped. Does nothing at the moment.
-        """
-        pass
-
-    def drag_data_received(self, treeview, context, x, y, selection, info, time):
-        """
-        Called when data is received at the drop location. Moves the data.
-
-        The received JSON is decoded and the validity checked. Then the layers
-        are recreated and inserted at the drop location.
-        """
-        drop_info = self.layer_view.get_dest_row_at_pos(x, y)
-        data = selection.get_data().decode()
-        decoded = json.loads(data)
-
-        filetype = decoded["filetype"]
-
-        if filetype != "InnStereo layer 1.0":
-            print("Not a valid layer")
-            return
-
         def drop_layer(lyr_obj_new, lyr_dict, drop_iter, drop_position):
             if lyr_obj_new == None:
                 lyr_pixbuf = self.settings.get_folder_icon()
@@ -267,7 +228,7 @@ class MainWindow(object):
             #Append the row to the TreeStore
             insert_rows = False
 
-        for key, layer in enumerate(decoded["layers"]):
+        for key, layer in enumerate(data_dict["layers"]):
             split_path = layer[0].split(":")
             lyr_dict = layer[1]
             lyr_data = layer[2]
@@ -286,8 +247,6 @@ class MainWindow(object):
                 ins_itr = drop_layer(lyr_obj_new, lyr_dict, drop_iter, drop_position)
                 iter_dict = {0: ins_itr}
             elif key == 0 and insert_rows == False:
-
-
                 cutoff = len(layer[0].split(":"))
                 ins_itr = self.layer_store.append(None, [True, lyr_pixbuf, lyr_label, lyr_obj_new])
                 iter_dict = {0: ins_itr}
@@ -307,6 +266,50 @@ class MainWindow(object):
 
             if insert_rows == False:
                 self.redraw_plot()
+
+    def drag_begin(self, treeview, context):
+        """
+        Drag begin signal of the layer view. Currently does nothing.
+
+        This signal could be used to set up a e.g. drag icon.
+        """
+        pass
+
+    def drag_data_get(self, treeview, context, selection, info, time):
+        """
+        Gets the data from the drag source. Serializes the data to JSON.
+
+        Iterates over the draged layer and all its children. Serializes the
+        path, properties and data. Encodes into JSON and sens it to the
+        drag destinations.
+        """
+        data = self.copy_layer()
+        selection.set(selection.get_target(), 8, data.encode())
+
+    def drag_drop(self, treeview, context, selection, info, time):
+        """
+        Signal emitted when a layer is droped. Does nothing at the moment.
+        """
+        pass
+
+    def drag_data_received(self, treeview, context, x, y, selection, info, time):
+        """
+        Called when data is received at the drop location. Moves the data.
+
+        The received JSON is decoded and the validity checked. Then the layers
+        are recreated and inserted at the drop location.
+        """
+        drop_info = self.layer_view.get_dest_row_at_pos(x, y)
+        data = selection.get_data().decode()
+        decoded = json.loads(data)
+
+        filetype = decoded["filetype"]
+
+        if filetype != "InnStereo layer 1.0":
+            print("Not a valid layer")
+            return
+
+        self.insert_layer_data(decoded, drop_info)
 
         context.finish(True, True, time)
 
@@ -337,6 +340,24 @@ class MainWindow(object):
 
         data = self.copy_layer()
         self.clipboard.set_text(data, -1)
+
+    def on_toolbutton_paste_clicked(self, toolbutton):
+        """
+        Pastes the layer-data.
+
+        Copies the data from the clipboard. Checks whether it is valid JSON.
+        Checks whether it is a valid layer and then adds it to the project.
+        """
+        data = self.clipboard.wait_for_text()
+        try:
+            parse = json.loads(data)
+        except:
+            return
+
+        if parse["filetype"] != "InnStereo layer 1.0":
+            return
+        else:
+            self.insert_layer_data(parse, drop_info=None)
 
     def on_menuitem_stereo_activate(self, widget):
         # pylint: disable=unused-argument
