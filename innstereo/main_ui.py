@@ -39,6 +39,17 @@ from .file_parser import FileParseDialog
 from .rotation_dialog import RotationDialog
 
 
+class MainApplication(Gtk.Application):
+
+    def __init__(self, builder):
+        Gtk.Application.__init__(self,
+                                 application_id="innstereo.main",
+                                 flags=Gio.ApplicationFlags.FLAGS_NONE)
+        #https://developer.gnome.org/gio/unstable/GApplication.html#g-application-id-is-valid
+        gui_instance = MainWindow(builder)
+        builder.connect_signals(gui_instance)
+        self.connect("activate", gui_instance.show_window)
+
 class MainWindow(object):
 
     """
@@ -111,6 +122,8 @@ class MainWindow(object):
         self.canvas.mpl_connect('button_press_event',
             self.mpl_canvas_clicked)
         self.redraw_plot()
+
+    def show_window(self, app):
         self.main_window.show_all()
 
     def headerbar_setup(self):
@@ -2144,7 +2157,7 @@ class MainWindow(object):
         """
         Gtk.main_quit()
 
-    def on_main_window_destroy(self, widget):
+    def on_main_window_destroy(self, widget=None):
         """
         Triggered when the main window is closed with the x-Button.
         Terminates the Gtk main loop
@@ -2574,8 +2587,10 @@ def startup():
     abs_path_ui3 =  os.path.join(script_dir, "ui/popovermenu_view.xml")
     objects = builder.add_from_file(abs_path_ui3)
 
-    gui_instance = MainWindow(builder)
-    builder.connect_signals(gui_instance)
+    #gui_instance = MainWindow(builder)
+    #builder.connect_signals(gui_instance)
+    main_app = MainApplication(builder)
+    main_app.run()
     Gtk.main()
 
 if __name__ == "__main__":
