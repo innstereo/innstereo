@@ -326,6 +326,24 @@ class MainWindow(object):
         """
         pass
 
+    def on_toolbutton_cut_clicked(self, toolbutton):
+        """
+        Cuts the selected layer.
+
+        The data is copied into the Gdk.Clipboard and then removed from the
+        TreeStore.
+        """
+        selection = self.layer_view.get_selection()
+        model, row_list = selection.get_selected_rows()
+
+        if len(row_list) == 0:
+            return
+
+        data = self.copy_layer()
+        self.clipboard.set_text(data, -1)
+
+        self.delete_layer(model, row_list)
+
     def on_toolbutton_copy_clicked(self, toolbutton):
         """
         Copies the selected layer data into the Gdk.Clipboard.
@@ -731,6 +749,22 @@ class MainWindow(object):
         """
         pass
 
+    def delete_layer(self, model, row_list):
+        """
+        Deletes all the passed layers and their children.
+
+        Expects a model and list of rows. Deletes the rows and all their
+        children.
+        __!!__ Currently has no warning message. What happens to data?
+        """
+        for row in reversed(row_list):
+            itr = model.get_iter(row)
+            model.remove(itr)
+
+        selection = self.layer_view.get_selection()
+        selection.unselect_all()
+        self.redraw_plot()
+
     def on_toolbutton_delete_layer_clicked(self, widget):
         # pylint: disable=unused-argument
         """
@@ -738,17 +772,11 @@ class MainWindow(object):
 
         Triggered when the "remove layers" toolbutton is pressed. Deletes all
         selected layers.
-        __!!__ Currently has no warning message. What happens to data?
         """
         selection = self.layer_view.get_selection()
         model, row_list = selection.get_selected_rows()
 
-        for row in reversed(row_list):
-            itr = model.get_iter(row)
-            model.remove(itr)
-
-        selection.unselect_all()
-        self.redraw_plot()
+        self.delete_layer(model, row_list)
 
     def on_toolbutton_plot_properties_clicked(self, widget):
         # pylint: disable=unused-argument

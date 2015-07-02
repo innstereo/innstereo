@@ -4043,6 +4043,7 @@ customizable grid.</property>
                 <property name="label" translatable="yes">Cut</property>
                 <property name="use_underline">True</property>
                 <property name="stock_id">gtk-cut</property>
+                <signal name="clicked" handler="on_toolbutton_cut_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
