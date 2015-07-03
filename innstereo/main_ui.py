@@ -13,6 +13,7 @@ from matplotlib.backends.backend_gtk3cairo import (FigureCanvasGTK3Cairo
                                                    as FigureCanvas)
 from matplotlib.backends.backend_gtk3 import (NavigationToolbar2GTK3 
                                               as NavigationToolbar)
+from matplotlib.colorbar import ColorbarBase
 import mplstereonet
 import numpy as np
 import scipy.spatial as spatial
@@ -100,7 +101,8 @@ class MainWindow(object):
         self.fig = self.settings.get_fig()
         self.canvas = FigureCanvas(self.fig)
         self.sw_plot.add_with_viewport(self.canvas)
-        self.ax_stereo = self.settings.get_stereonet()
+        self.ax_stereo, self.ax_cbar = self.settings.get_stereonet()
+        self.cbar = None
         self.inv = self.settings.get_inverse_transform()
         self.inv_rose = NorthPolarAxes.InvertedNorthPolarTransform()
         self.trans = self.settings.get_transform()
@@ -1689,7 +1691,7 @@ class MainWindow(object):
                 self.ax_stereo.clabel(clines,
                                 fontsize = lyr_obj.get_contour_label_size())
 
-        return cbar
+        self.cbar.append(cbar)
 
     def draw_hoeppener(self, lyr_obj, plane_dir, plane_dip, line_dir,
                         line_dip, lp_plane_dir, lp_plane_dip, sense):
@@ -1965,6 +1967,7 @@ class MainWindow(object):
         adding or deleting layer. The plot is cleared and then redrawn.
         layer[3] = layer object
         """
+        self.cbar = []
         def inverted_transform_stereonet():
             """
             The inverted transform of the stereonet depends on the projection.
@@ -1977,10 +1980,10 @@ class MainWindow(object):
         if self.view_changed == True or checkout_canvas == True:
             self.view_changed = False
             if self.view_mode == "stereonet":
-                self.ax_stereo = self.settings.get_stereonet()
+                self.ax_stereo, self.ax_cbar = self.settings.get_stereonet()
                 inverted_transform_stereonet()
             elif self.view_mode == "stereo-rose":
-                self.ax_stereo, self.ax_rose = self.settings.get_stereo_rose()
+                self.ax_stereo, self.ax_rose, self.ax_cbar = self.settings.get_stereo_rose()
                 inverted_transform_stereonet()
             elif self.view_mode == "rose":
                 self.ax_rose = self.settings.get_rose_diagram()
@@ -2065,6 +2068,18 @@ class MainWindow(object):
         self.sc_labels = []
         self.sc_handlers = []
         self.layer_store.foreach(iterate_over_rows)
+
+        one_cbar = False
+        for cbar in self.cbar:
+            if cbar is not None:
+                self.ax_cbar.axis("on")
+                cb = self.fig.colorbar(cbar, cax=self.ax_cbar)
+                one_cbar = True
+                break
+
+        if one_cbar == False:
+            self.ax_cbar.cla()
+            self.ax_cbar.axis("off")
 
         if self.settings.get_highlight() is True:
             self.highlight_selection(self.deselected)

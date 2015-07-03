@@ -266,11 +266,15 @@ class PlotSettings(object):
         self.fig.clf()
         self.fig.patch.set_facecolor(self.props["canvas_color"])
         self.fig.set_dpi(self.props["pixel_density"])
-        gridspec = GridSpec(1, 1)
-        sp_stereo = gridspec.new_subplotspec((0, 0))
+        gridspec = GridSpec(2, 3)
+        sp_stereo = gridspec.new_subplotspec((0, 0), rowspan=2, colspan=2)
+        sp_cbar = gridspec.new_subplotspec((1, 2), rowspan=1, colspan=1)
         ax_stereo = self.fig.add_subplot(sp_stereo,
                                          projection=self.get_projection())
-        return ax_stereo
+        ax_cbar = self.fig.add_subplot(sp_cbar)
+        ax_cbar.axis("off")
+        ax_cbar.set_aspect(8)
+        return ax_stereo, ax_cbar
 
     def get_stereo_rose(self):
         """
@@ -285,15 +289,20 @@ class PlotSettings(object):
         self.fig.clf()
         self.fig.patch.set_facecolor(self.props["canvas_color"])
         self.fig.set_dpi(self.props["pixel_density"])
-        gridspec = GridSpec(1, 2)
+        gridspec = GridSpec(2, 5)
         sp_stereo = gridspec.new_subplotspec((0, 0),
-                                             rowspan=1, colspan=1)
-        sp_rose = gridspec.new_subplotspec((0, 1),
-                                           rowspan=1, colspan=1)
+                                             rowspan=2, colspan=2)
+        sp_cbar = gridspec.new_subplotspec((1, 2), rowspan=1, colspan=1)
+        sp_rose = gridspec.new_subplotspec((0, 3),
+                                           rowspan=2, colspan=2)
         ax_stereo = self.fig.add_subplot(sp_stereo,
                                          projection=self.get_projection())
         ax_rose = self.fig.add_subplot(sp_rose, projection="northpolar")
-        return ax_stereo, ax_rose
+
+        ax_cbar = self.fig.add_subplot(sp_cbar)
+        ax_cbar.axis("off")
+        ax_cbar.set_aspect(8)
+        return ax_stereo, ax_rose, ax_cbar
 
     def get_rose_diagram(self):
         """
