@@ -43,7 +43,7 @@ class LayerProperties(object):
             "liststore_colormaps", "liststore_contour_method",
             "adjustment_contour_sigma", "adjustment_contour_label_size",
             "adjustment_lower_limit", "adjustment_upper_limit",
-            "adjustment_steps"))
+            "adjustment_steps", "adjustment_fisher_conf"))
         self.layer = layer
         self.redraw = redraw_plot
         self.changes = []
@@ -155,6 +155,14 @@ class LayerProperties(object):
                         self.builder.get_object("spinbutton_edge_width")
         self.adjustment_marker_edge_width = \
                         self.builder.get_object("adjustment_edge_width")
+        self.switch_mean_vector = \
+                        self.builder.get_object("switch_mean_vector")
+        self.switch_fisher_sc = \
+                        self.builder.get_object("switch_fisher_sc")
+        self.spinbutton_fisher_conf = \
+                        self.builder.get_object("spinbutton_fisher_conf")
+        self.adjustment_fisher_conf = \
+                        self.builder.get_object("adjustment_fisher_conf")
         self.combobox_marker_style.set_active(
                         self.marker_style_dict[self.layer.get_marker_style()])
         self.adjustment_marker_size.set_value(self.layer.get_marker_size())
@@ -166,6 +174,10 @@ class LayerProperties(object):
         switch_state = self.layer.get_draw_linears()
         self.switch_render_linears.set_active(switch_state)
         self.set_linear_sensitivity(switch_state)
+        self.switch_mean_vector.set_state(self.layer.get_draw_mean_vector())
+        self.switch_fisher_sc.set_state(self.layer.get_draw_fisher_sc())
+        self.adjustment_fisher_conf.set_value(self.layer.get_fisher_conf())
+        self.set_fisher_conf_sensitivity(self.layer.get_draw_fisher_sc())
 
     def load_fault_properties(self):
         """
@@ -835,3 +847,44 @@ class LayerProperties(object):
         self.changes.append(lambda: self.layer.set_steps(steps))
         self.set_contour_range_label()
 
+    def set_fisher_conf_sensitivity(self, state):
+        """
+        Sets the sensitivity of the Fisher confidence spinbutton.
+
+        The spinbutton for the level of confidence in the direction is only
+        sensitive when the Switch for the draw-state is on (= True). The
+        method is called when the dialog starts and when the draw-state
+        of the Fisher smallcircle is changed.
+        """
+        self.spinbutton_fisher_conf.set_sensitive(state)
+
+    def on_switch_mean_vector_state_set(self, switch, state):
+        """
+        Queues up a new state for the drawing of the mean vector linear.
+
+        When the state of the Switch is changed the new state is queued in the
+        list of changes. True means that a linear is drawn for the mean
+        direction of the dataset. False means that it is not drawn.
+        """
+        self.changes.append(lambda: self.layer.set_draw_mean_vector(state))
+
+    def on_switch_fisher_sc_state_set(self, switch, state):
+        """
+        Queues up a new state for the drawing of the Fisher smallcircle.
+
+        When the state of the Switch is changed the new state is queued in the
+        list of changes. True means that a smallcircle is drawn that represents
+        the confidence in the mean direction. False means that it is not drawn.
+        """
+        self.changes.append(lambda: self.layer.set_draw_fisher_sc(state))
+        self.set_fisher_conf_sensitivity(state)
+
+    def on_spinbutton_fisher_conf_value_changed(self, spinbutton):
+        """
+        Queues up a new value for the confidence of the Fisher direction.
+
+        When the value is changed, the new value is queued in the list of
+        changes. A larger number means that a larger circle will be drawn.
+        """
+        conf = spinbutton.get_value()
+        self.changes.append(lambda: self.layer.set_fisher_conf(conf))

@@ -1701,6 +1701,36 @@ class MainWindow(object):
                     alpha=lyr_obj.get_line_alpha())
         return handler, lbl
 
+    def draw_mean_vector(self, lyr_obj, dipdir, dip, highlight=False):
+        """
+        Draws the mean vector of the current linear layer.
+        """
+        if len(dipdir) == 0:
+            return
+
+        vector, r_value = mplstereonet.find_mean_vector(dip, dipdir)
+        self.ax_stereo.line(vector[0], vector[1], marker="d",
+            markersize=8,
+            color="#ff0000",
+            markeredgewidth=1,
+            markeredgecolor="#000000",
+            clip_on=False)
+
+    def draw_fisher_smallcircle(self, lyr_obj, dipdir, dip, highlight=False):
+        """
+        Draws the confidence small circle of the current linear layer.
+        """
+        if len(dipdir) == 0:
+            return
+
+        confidence = lyr_obj.get_fisher_conf()
+        vector, stats = mplstereonet.find_fisher_stats(dip, dipdir, conf=confidence)
+        self.ax_stereo.cone(vector[0], vector[1], stats[1], facecolor="None",
+                    color=lyr_obj.get_line_color(),
+                    linewidth=lyr_obj.get_line_width(),
+                    label=lyr_obj.get_label(),
+                    linestyle=lyr_obj.get_line_style())
+
     def draw_poles(self, lyr_obj, dipdir, dip, highlight=False):
         """
         Function draws a plane pole in the stereonet. It calls the formatting
@@ -1959,6 +1989,12 @@ class MainWindow(object):
                                      color = lyr_obj.get_marker_fill(),
                                      edgecolor = lyr_obj.get_marker_edge_color(),
                                      bottom = lyr_obj.get_rose_bottom())
+
+            if lyr_obj.get_draw_mean_vector() == True:
+                self.draw_mean_vector(lyr_obj, dipdir, dip)
+
+            if lyr_obj.get_draw_fisher_sc() == True:
+                self.draw_fisher_smallcircle(lyr_obj, dipdir, dip)
 
         elif lyr_type == "faultplane":
             strike, plane_dir, plane_dip, line_dir, line_dip, \

@@ -62,6 +62,10 @@ class PlaneLayer(object):
                       "marker_edge_color": "#000000",
                       "marker_edge_width": 1.0,
                       "marker_alpha": 1.0,
+                      #Linear statistics
+                      "draw_mean_vector": False,
+                      "draw_fisher_sc": False,
+                      "fisher_conf": 95,
                       #Rose diagram properties
                       "rose_spacing": 10,
                       "rose_bottom": 0,
@@ -966,6 +970,42 @@ class PlaneLayer(object):
         received through drag-and-drop.
         """
         self.props = props
+
+    def get_draw_mean_vector(self):
+        """
+        Returns if the mean vector should be drawn.
+        """
+        return self.props["draw_mean_vector"]
+
+    def set_draw_mean_vector(self, new_state):
+        """
+        Sets a new state whether the mean direction linar should be drawn.
+        """
+        self.props["draw_mean_vector"] = new_state
+
+    def get_draw_fisher_sc(self):
+        """
+        Returns if the confidence small circle should be drawn.
+        """
+        return self.props["draw_fisher_sc"]
+
+    def set_draw_fisher_sc(self, new_state):
+        """
+        Sets a new state whether the confidence small circle should be drawn.
+        """
+        self.props["draw_fisher_sc"] = new_state
+
+    def get_fisher_conf(self):
+        """
+        Returns the confidence for calculating the Fisher Statistics.
+        """
+        return self.props["fisher_conf"]
+
+    def set_fisher_conf(self, new_conf):
+        """
+        Sets a new confidene for calculating the Fisher Statistics.
+        """
+        self.props["fisher_conf"] = new_conf
 
 
 class FaultPlaneLayer(PlaneLayer):
