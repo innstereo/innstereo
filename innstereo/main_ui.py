@@ -1092,14 +1092,10 @@ class MainWindow(object):
                 total_dipdir.append(x)
                 total_dip.append(y)
 
-        lon, lat = mplstereonet.line(total_dip, total_dipdir)
-        mean_vec, r_value = mplstereonet.stereonet_math.mean_vector(lon, lat)
-        dipdir, dip = self.convert_lonlat_to_dipdir(mean_vec[0], mean_vec[1])
-
+        vector, r_value = mplstereonet.find_mean_vector(dip, dipdir)
         new_store, new_lyr_obj = self.add_layer_dataset("eigenvector")
         new_lyr_obj.set_label("Mean Vector")
-        self.add_linear_feature(new_store, dipdir, dip, r_value)
-
+        self.add_linear_feature(new_store, vector[1], vector[0], r_value)
         self.redraw_plot()
 
     def convert_lonlat_to_dipdir(self, lon, lat):
