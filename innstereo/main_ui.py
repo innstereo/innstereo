@@ -67,6 +67,7 @@ class MainWindow(object):
         self.tb1 = builder.get_object("toolbar1")
         self.statbar = builder.get_object("statusbar")
         self.plot_menu = builder.get_object("menu_plot_views")
+        self.builder = builder
 
         context = self.tb1.get_style_context()
         context.add_class(Gtk.STYLE_CLASS_PRIMARY_TOOLBAR)
@@ -111,12 +112,100 @@ class MainWindow(object):
         self.ax_rose = None
 
         #Set up event-handlers
+        self.set_up_fisher_menu()
         self.canvas.mpl_connect('motion_notify_event', 
             self.mpl_motion_event)
         self.canvas.mpl_connect('button_press_event',
             self.mpl_canvas_clicked)
         self.redraw_plot()
         self.main_window.show_all()
+
+    def set_up_fisher_menu(self):
+        """
+        Sets up and handles the signal of the Fisher Statistics popover.
+
+        The popover contains an entry for the desired confidence (default is
+        95) and a button to start the calculation. The calculation adds a
+        smallcircle layer to the project.
+        """
+        def on_click(button, popovermenu):
+            """
+            Toggles the respective popovermenu.
+            """
+            if popovermenu.get_visible():
+                popovermenu.hide()
+            else:
+                popovermenu.show_all()
+
+        def add_fisher_confidence(signal, entry_conf, tb_fisher, pom_fisher):
+            """
+            Calculates the Fisher Confidence small circle.
+
+            Checks whether all selected layers are linear layers. If True
+            all data is collected and a small circle is added to the project.
+            The size of the small circle corresponds to the confidence in the
+            calculated direction that the user entered.
+            """
+            on_click(tb_fisher, pom_fisher)
+            selection = self.layer_view.get_selection()
+            model, row_list = selection.get_selected_rows()
+            confidence = float(entry_conf.get_text())
+
+            if len(row_list) == 0:
+                return
+
+            #Check if all selected layers are linear layers.
+            only_lines = True
+            for row in row_list:
+                lyr_obj = model[row][3]
+                if lyr_obj.get_layer_type() != "line":
+                    only_lines = False
+
+            if only_lines is False:
+                return
+
+            total_dipdir = []
+            total_dip = []
+            for row in row_list:
+                lyr_obj = model[row][3]
+                store = lyr_obj.get_data_treestore()
+                dipdir, dip, sense = self.parse_lines(store)
+                for x, y in zip(dipdir, dip):
+                    total_dipdir.append(x)
+                    total_dip.append(y)
+
+            vector, stats = mplstereonet.find_fisher_stats(total_dip, total_dipdir, conf=confidence)
+            new_store, new_lyr_obj = self.add_layer_dataset("smallcircle")
+            new_lyr_obj.set_label("Fisher Confidence: {} %".format(confidence))
+            self.add_linear_feature(new_store, vector[1], vector[0], stats[1])
+
+            self.redraw_plot()
+
+        tb_fisher = self.builder.get_object("toolbutton_fisher")
+        pom_fisher = Gtk.PopoverMenu(relative_to=tb_fisher)
+
+        lb_fisher = Gtk.ListBox()
+        pom_fisher.add(lb_fisher)
+
+        row_conf = Gtk.ListBoxRow()
+        hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0,
+                       border_width=10)
+        row_conf.add(hbox)
+        label_conf = Gtk.Label("Fisher Confidence", xalign=0)
+        hbox.pack_start(label_conf, True, True, 3)
+        entry_conf = Gtk.Entry(width_chars=3, max_width_chars=3, text="95")
+        hbox.pack_start(entry_conf, False, False, 3)
+        lb_fisher.add(row_conf)
+
+        btn_calc = Gtk.Button("Calculate")
+        row_btn = Gtk.ListBoxRow()
+        box = Gtk.Box()
+        box.pack_start(btn_calc, True, True, 0)
+        row_btn.add(box)
+        lb_fisher.add(row_btn)
+
+        btn_calc.connect("clicked", add_fisher_confidence, entry_conf, tb_fisher, pom_fisher)
+        tb_fisher.connect("clicked", on_click, pom_fisher)
 
     def copy_layer(self):
         """
@@ -2704,7 +2793,7 @@ def startup():
          "image_best_fitting_plane", "layer_right_click_menu",
          "image_create_small_circle", "menu_plot_views", "image_eigenvector",
          "poles_to_lines", "image_linears_to_planes", "image_rotate",
-         "image_pt_axis", "image_mean_vector"))
+         "image_pt_axis", "image_mean_vector", "image_fisher"))
 
     gui_instance = MainWindow(builder)
     builder.connect_signals(gui_instance)
