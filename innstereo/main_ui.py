@@ -13,7 +13,6 @@ from matplotlib.backends.backend_gtk3cairo import (FigureCanvasGTK3Cairo
                                                    as FigureCanvas)
 from matplotlib.backends.backend_gtk3 import (NavigationToolbar2GTK3 
                                               as NavigationToolbar)
-from matplotlib.colorbar import ColorbarBase
 import mplstereonet
 import numpy as np
 import scipy.spatial as spatial
@@ -30,7 +29,7 @@ from .dataview_classes import (PlaneDataView, LineDataView,
 from .layer_view import LayerTreeView
 from .layer_types import (PlaneLayer, FaultPlaneLayer, LineLayer,
                          SmallCircleLayer, EigenVectorLayer)
-from .dialog_windows import (AboutDialog, PrintDialog, StereonetProperties,
+from .dialog_windows import (AboutDialog, StereonetProperties,
                             FileChooserParse, FileChooserExport,
                             FileChooserSave, FileChooserOpen)
 from .layer_properties import LayerProperties
@@ -265,6 +264,10 @@ class MainWindow(object):
 
     def insert_layer_data(self, data_dict, drop_info=None):
         """
+        Inserts layers into a TreeStore.
+
+        This method can be used for inserting data at a certain location
+        or appending it and the end.
         """
         def drop_layer(lyr_obj_new, lyr_dict, drop_iter, drop_position):
             if lyr_obj_new == None:
