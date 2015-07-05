@@ -969,7 +969,8 @@ class PlaneLayer(object):
         called when a project is loaded or when a layer is pasted, or
         received through drag-and-drop.
         """
-        self.props = props
+        for key in props:
+            self.props[key] = props[key]
 
     def get_draw_mean_vector(self):
         """
