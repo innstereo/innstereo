@@ -3089,24 +3089,6 @@ customizable grid.</property>
                     <child>
                       <placeholder/>
                     </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
                   </object>
                   <packing>
                     <property name="position">2</property>
@@ -4042,38 +4024,46 @@ customizable grid.</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <child>
-                      <object class="GtkMenuItem" id="menuitem_stereo">
+                      <object class="GtkRadioMenuItem" id="menuitem_stereo">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">Stereonet</property>
                         <property name="use_underline">True</property>
+                        <property name="active">True</property>
+                        <property name="draw_as_radio">True</property>
                         <signal name="activate" handler="on_menuitem_stereo_activate" swapped="no"/>
                       </object>
                     </child>
                     <child>
-                      <object class="GtkMenuItem" id="menuitem_stereo_rose">
+                      <object class="GtkRadioMenuItem" id="menuitem_stereo_rose">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">Stereonet and Rose</property>
                         <property name="use_underline">True</property>
+                        <property name="draw_as_radio">True</property>
+                        <property name="group">menuitem_stereo</property>
                         <signal name="activate" handler="on_menuitem_stereo_rose_activate" swapped="no"/>
                       </object>
                     </child>
                     <child>
-                      <object class="GtkMenuItem" id="menuitem_rose_view">
+                      <object class="GtkRadioMenuItem" id="menuitem_rose_view">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">Rose diagram</property>
                         <property name="use_underline">True</property>
+                        <property name="draw_as_radio">True</property>
+                        <property name="group">menuitem_stereo</property>
                         <signal name="activate" handler="on_menuitem_rose_view_activate" swapped="no"/>
                       </object>
                     </child>
                     <child>
-                      <object class="GtkMenuItem" id="menuitem_pt_view">
+                      <object class="GtkRadioMenuItem" id="menuitem_pt_view">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">Paleostress View</property>
                         <property name="use_underline">True</property>
+                        <property name="draw_as_radio">True</property>
+                        <property name="group">menuitem_stereo</property>
                         <signal name="activate" handler="on_menuitem_pt_view_activate" swapped="no"/>
                       </object>
                     </child>

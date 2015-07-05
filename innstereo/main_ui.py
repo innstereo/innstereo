@@ -472,7 +472,7 @@ class MainWindow(object):
         else:
             self.insert_layer_data(parse, drop_info=None)
 
-    def on_menuitem_stereo_activate(self, widget):
+    def on_menuitem_stereo_activate(self, radiomenuitem):
         # pylint: disable=unused-argument
         """
         Switches to the stereonet-only view.
@@ -485,7 +485,7 @@ class MainWindow(object):
             self.view_mode = "stereonet"
             self.redraw_plot()
 
-    def on_menuitem_stereo_rose_activate(self, widget):
+    def on_menuitem_stereo_rose_activate(self, radiomenuitem):
         # pylint: disable=unused-argument
         """
         Switches to the stereonet and rose-diagram view.
@@ -498,7 +498,7 @@ class MainWindow(object):
             self.view_mode = "stereo-rose"
             self.redraw_plot()
 
-    def on_menuitem_rose_view_activate(self, widget):
+    def on_menuitem_rose_view_activate(self, radiomenuitem):
         # pylint: disable=unused-argument
         """
         Switches to the rose-diagram-only view.
@@ -511,7 +511,7 @@ class MainWindow(object):
             self.view_mode = "rose"
             self.redraw_plot()
 
-    def on_menuitem_pt_view_activate(self, widget):
+    def on_menuitem_pt_view_activate(self, radiomenuitem):
         # pylint: disable=unused-argument
         """
         Switches to the paleostress view.
