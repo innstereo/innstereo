@@ -181,7 +181,7 @@ class MainWindow(object):
             self.redraw_plot()
 
         tb_fisher = self.builder.get_object("toolbutton_fisher")
-        pom_fisher = Gtk.PopoverMenu(relative_to=tb_fisher)
+        pom_fisher = Gtk.Popover(relative_to=tb_fisher)
 
         lb_fisher = Gtk.ListBox()
         pom_fisher.add(lb_fisher)
