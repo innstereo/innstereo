@@ -395,7 +395,8 @@ class PlotSettings(object):
         Loading a file will also set the plot properties to the saved state.
         The properties are appllied to this plot.
         """
-        self.props = new_props
+        for key in new_props:
+            self.props[key] = new_props[key]
 
     def get_highlight(self):
         """
