@@ -2804,7 +2804,7 @@ class MainWindow(object):
         MenuBar.
         """
         webbrowser.open_new_tab(
-            "https://github.com/tobias47n9e/innstereo/issues")
+            "https://github.com/innstereo/innstereo/issues")
 
 
 def startup():
