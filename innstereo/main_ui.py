@@ -38,6 +38,8 @@ from .polar_axes import NorthPolarAxes
 from .file_parser import FileParseDialog
 from .rotation_dialog import RotationDialog
 
+import i18n
+_ = i18n.language.ugettext
 
 class MainWindow(object):
 
