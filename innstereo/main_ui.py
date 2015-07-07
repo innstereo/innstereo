@@ -40,6 +40,8 @@ from .file_parser import FileParseDialog
 from .rotation_dialog import RotationDialog
 from .viridis import viridis
 
+import i18n
+_ = i18n.language.ugettext
 
 class MainWindow(object):
 
