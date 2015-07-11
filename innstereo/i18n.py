@@ -34,8 +34,9 @@ class i18n:
     self.app_name = "innstereo"
 
     #app_dir = os.getcwd()
-    app_dir = os.path.abspath(os.path.dirname(__file__))
+    app_dir = os.path.dirname(os.path.abspath(os.path.dirname(__file__)))
     locale_dir = os.path.join(app_dir, 'po') 
+    print(locale_dir)
     # .mo files will then be located in APP_Dir/po/LANGUAGECODE/LC_MESSAGES/
 
     # Now we need to choose the language. We will provide a list, and gettext
