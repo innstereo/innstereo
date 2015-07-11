@@ -40,8 +40,8 @@ from .file_parser import FileParseDialog
 from .rotation_dialog import RotationDialog
 from .viridis import viridis
 
-import i18n
-_ = i18n.language.ugettext
+from .i18n import i18n
+_ = i18n().language().gettext
 
 class MainWindow(object):
 
@@ -2614,7 +2614,7 @@ class MainWindow(object):
             self.statbar.push(1, ("{0} / {1}".format(alpha_deg, gamma_deg)))
 
         def push_rose_coordinates(mpl_event):
-            self.statbar.push(1, ("Rose Diagram"))
+            self.statbar.push(1, (_("Rose Diagram")))
 
         def push_mpl_event(mpl_event):
             title = mpl_event.inaxes.get_title()
