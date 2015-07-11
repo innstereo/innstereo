@@ -55,7 +55,7 @@ class LayerTreeView(Gtk.TreeView):
 
         self.renderer_name = Gtk.CellRendererText(weight=700,
                                                   weight_set=True)
-        self.column_name = Gtk.TreeViewColumn("Layer",
+        self.column_name = Gtk.TreeViewColumn(_("Layer"),
                                               self.renderer_name, text=2)
         self.column_name.set_min_width(100)
         self.renderer_name.set_property("editable", True)

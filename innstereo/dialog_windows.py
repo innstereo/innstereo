@@ -383,7 +383,7 @@ class FileChooserParse(object):
         self.dialog = self.builder.get_object("filechooserdialog_parse")
         self.dialog.set_transient_for(main_window)
         self.filefilters = self.builder.get_object("filefilter_parse")
-        self.filefilters.set_name("Text Files")
+        self.filefilters.set_name(_("Text Files"))
         self.dialog.add_filter(self.filefilters)
         self.run_file_parser = run_file_parser
         self.builder.connect_signals(self)
@@ -716,7 +716,7 @@ class FileChooserOpen(object):
         self.dialog.add_filter(filter_json)
         filter_all = Gtk.FileFilter()
         filter_all.add_pattern("*")
-        filter_all.set_name("All Files")
+        filter_all.set_name(_("All Files"))
         self.dialog.add_filter(filter_all)
         self.open_project = open_project
         self.builder.connect_signals(self)
