@@ -1,22 +1,24 @@
 #==============================================================================#
-#        OpenStereo - Open-source, Multiplatform Stereonet Analysis            #
+#                     OpenStereoNet (fork of OpenStereo)                       #
+#                  Open-source, Multiplatform Stereonet Analysis               #
 #                                                                              #
 #    Copyright (c)  2012-2015 Matteo Pasotti <matteo.pasotti@gmail.com>        #
 #                                                                              #
 #                                                                              #
-#    This file is part of OpenStereo.                                          #
-#    OpenStereo is free software: you can redistribute it and/or modify        #
+#    This file was originally part of OpenStereoNet.                           #
+#    This file is part of InnStereo since July 2015                            #
+#    InnStereo is free software: you can redistribute it and/or modify        #
 #    it under the terms of the GNU General Public License as published by      #
-#    the Free Software Foundation, either version 3 of the License, or         #
+#    the Free Software Foundation, either version 2 of the License, or         #
 #    (at your option) any later version.                                       #
 #                                                                              #
-#    OpenStereo is distributed in the hope that it will be useful,             #
+#    InnStereo is distributed in the hope that it will be useful,             #
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of            #
 #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the             #
 #    GNU General Public License for more details.                              #
 #                                                                              #
 #    You should have received a copy of the GNU General Public License         #
-#    along with OpenStereo.  If not, see <http://www.gnu.org/licenses/>.       #
+#    along with InnStereo.  If not, see <http://www.gnu.org/licenses/>.       #
 #==============================================================================#
 # -*- coding: utf-8 -*-
 
@@ -36,7 +38,6 @@ class i18n:
     #app_dir = os.getcwd()
     app_dir = os.path.dirname(os.path.abspath(os.path.dirname(__file__)))
     locale_dir = os.path.join(app_dir, 'po') 
-    print(locale_dir)
     # .mo files will then be located in APP_Dir/po/LANGUAGECODE/LC_MESSAGES/
 
     # Now we need to choose the language. We will provide a list, and gettext
