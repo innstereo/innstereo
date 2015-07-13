@@ -145,6 +145,7 @@ class FileParseDialog(object):
             if key < start_line:
                 continue
             else:
+                line = line.rstrip()
                 string_list = re.split(r"[;,]", line)
                 self.append_data(string_list)
 
