@@ -64,7 +64,8 @@ class LayerProperties(object):
                           "YlOrBr": 16, "YlOrRd": 17, "afmhot": 18,
                           "autumn": 19, "bone": 20, "cool": 21, "copper": 22,
                           "gist_heat": 23, "gray": 24, "hot": 25, "pink": 26,
-                          "spring": 27, "summer": 28}
+                          "spring": 27, "summer": 28, "winter": 29,
+                          "viridis": 30}
 
         self.load_circle_properties()
         self.load_pole_properties()
