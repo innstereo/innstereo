@@ -13,6 +13,7 @@ from matplotlib.backends.backend_gtk3cairo import (FigureCanvasGTK3Cairo
                                                    as FigureCanvas)
 from matplotlib.backends.backend_gtk3 import (NavigationToolbar2GTK3 
                                               as NavigationToolbar)
+from matplotlib.cm import register_cmap
 import mplstereonet
 import numpy as np
 import scipy.spatial as spatial
@@ -37,6 +38,7 @@ from .plot_control import PlotSettings
 from .polar_axes import NorthPolarAxes
 from .file_parser import FileParseDialog
 from .rotation_dialog import RotationDialog
+from .viridis import viridis
 
 
 class MainWindow(object):
@@ -67,6 +69,8 @@ class MainWindow(object):
         self.statbar = builder.get_object("statusbar")
         self.plot_menu = builder.get_object("menu_plot_views")
         self.builder = builder
+
+        register_cmap('viridis', viridis)
 
         context = self.tb1.get_style_context()
         context.add_class(Gtk.STYLE_CLASS_PRIMARY_TOOLBAR)

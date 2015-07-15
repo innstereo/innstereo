@@ -76,7 +76,7 @@ class PlaneLayer(object):
                       "draw_contour_fills": False,
                       "draw_contour_lines": False,
                       "draw_contour_labels": False,
-                      "colormap": "Blues",
+                      "colormap": "viridis",
                       "contour_resolution": 40,
                       "contour_method": "exponential_kamb",
                       "contour_sigma": 2,

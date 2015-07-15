@@ -2075,6 +2075,9 @@ customizable grid.</property>
       <row>
         <col id="0" translatable="yes">winter</col>
       </row>
+      <row>
+        <col id="0" translatable="yes">viridis</col>
+      </row>
     </data>
   </object>
   <object class="GtkListStore" id="liststore_contour_method">
