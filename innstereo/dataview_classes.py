@@ -62,16 +62,13 @@ class DataTreeView(Gtk.TreeView):
         """
         self.lyr_obj = lyr_obj
 
-    def on_key_pressed(self, treeview, event, manual=False):
+    def on_key_pressed(self, treeview, event):
         """
         Triggered when a key is pressed while the TreeView is active.
         If the Tab key was pressed the current value in the active cell
         is saved and the cursor jumps to the next cell and makes it editable.
         """
-        if manual == False:
-            keyname = Gdk.keyval_name(event.keyval)
-        else:
-            keyname = "Tab"
+        keyname = Gdk.keyval_name(event.keyval)
         path, col = treeview.get_cursor()
         columns = [c for c in treeview.get_columns() if c.get_visible()]
         colnum = columns.index(col)
@@ -164,7 +161,6 @@ class PlaneDataView(DataTreeView):
         """
         self.store[path][0] = float(new_string.replace(",", "."))
         self.redraw()
-        self.on_key_pressed(self, None, manual=True)
 
     def renderer_dip_edited(self, widget, path, new_string):
         """
@@ -174,7 +170,6 @@ class PlaneDataView(DataTreeView):
         """
         self.store[path][1] = float(new_string.replace(",", "."))
         self.redraw()
-        self.on_key_pressed(self, None, manual=True)
 
     def renderer_strat_edited(self, widget, path, new_string):
         """
@@ -183,7 +178,6 @@ class PlaneDataView(DataTreeView):
         """
         self.store[path][2] = new_string
         self.redraw()
-        self.on_key_pressed(self, None, manual=True)
 
 class FaultPlaneDataView(DataTreeView):
 
@@ -270,7 +264,6 @@ class FaultPlaneDataView(DataTreeView):
         """
         self.store[path][0] = float(new_string.replace(",", "."))
         self.redraw()
-        self.on_key_pressed(self, None, manual=True)
 
     def renderer_dip_edited(self, widget, path, new_string):
         """
@@ -280,7 +273,6 @@ class FaultPlaneDataView(DataTreeView):
         """
         self.store[path][1] = float(new_string.replace(",", "."))
         self.redraw()
-        self.on_key_pressed(self, None, manual=True)
 
     def renderer_ldir_edited(self, widget, path, new_string):
         """
@@ -290,7 +282,6 @@ class FaultPlaneDataView(DataTreeView):
         """
         self.store[path][2] = float(new_string.replace(",", "."))
         self.redraw()
-        self.on_key_pressed(self, None, manual=True)
 
     def renderer_ldip_edited(self, widget, path, new_string):
         """
@@ -300,7 +291,6 @@ class FaultPlaneDataView(DataTreeView):
         """
         self.store[path][3] = float(new_string.replace(",", "."))
         self.redraw()
-        self.on_key_pressed(self, None, manual=True)
 
     def renderer_sense_edited(self, widget, path, new_string):
         """
@@ -309,7 +299,6 @@ class FaultPlaneDataView(DataTreeView):
         """
         self.store[path][4] = new_string
         self.redraw()
-        self.on_key_pressed(self, None, manual=True)
 
 class LineDataView(DataTreeView):
 
@@ -372,7 +361,6 @@ class LineDataView(DataTreeView):
         """
         self.store[path][0] = float(new_string.replace(",", "."))
         self.redraw()
-        self.on_key_pressed(self, None, manual=True)
 
     def renderer_dip_edited(self, widget, path, new_string):
         """
@@ -382,7 +370,6 @@ class LineDataView(DataTreeView):
         """
         self.store[path][1] = float(new_string.replace(",", "."))
         self.redraw()
-        self.on_key_pressed(self, None, manual=True)
 
     def renderer_sense_edited(self, widget, path, new_string):
         """
@@ -391,7 +378,6 @@ class LineDataView(DataTreeView):
         """
         self.store[path][2] = new_string
         self.redraw()
-        self.on_key_pressed(self, None, manual=True)
 
 class SmallCircleDataView(DataTreeView):
 
@@ -456,7 +442,6 @@ class SmallCircleDataView(DataTreeView):
         """
         self.store[path][0] = float(new_string.replace(",", "."))
         self.redraw()
-        self.on_key_pressed(self, None, manual=True)
 
     def renderer_dip_edited(self, widget, path, new_string):
         """
@@ -466,7 +451,6 @@ class SmallCircleDataView(DataTreeView):
         """
         self.store[path][1] = float(new_string.replace(",", "."))
         self.redraw()
-        self.on_key_pressed(self, None, manual=True)
 
     def renderer_angle_edited(self, widget, path, new_string):
         """
@@ -476,7 +460,6 @@ class SmallCircleDataView(DataTreeView):
         """
         self.store[path][2] = float(new_string.replace(",", "."))
         self.redraw()
-        self.on_key_pressed(self, None, manual=True)
 
 
 class EigenVectorView(DataTreeView):
@@ -544,7 +527,6 @@ class EigenVectorView(DataTreeView):
         """
         self.store[path][0] = float(new_string.replace(",", "."))
         self.redraw()
-        self.on_key_pressed(self, None, manual=True)
 
     def renderer_dip_edited(self, widget, path, new_string):
         """
@@ -554,7 +536,6 @@ class EigenVectorView(DataTreeView):
         """
         self.store[path][1] = float(new_string.replace(",", "."))
         self.redraw()
-        self.on_key_pressed(self, None, manual=True)
 
     def renderer_value_edited(self, widget, path, new_string):
         """
@@ -565,4 +546,3 @@ class EigenVectorView(DataTreeView):
         """
         self.store[path][2] = float(new_string.replace(",", "."))
         self.redraw()
-        self.on_key_pressed(self, None, manual=True)
