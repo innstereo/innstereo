@@ -1679,13 +1679,13 @@ class MainWindow(object):
         #ax.cone takes dip first and then dipdir!
         #facecolor needs to be "None" because there is a bug with which side to fill
             self.ax_stereo.cone(dip, dipdir, angle, facecolor="None",
-                    color=lyr_obj.get_line_color(),
+                    edgecolor=lyr_obj.get_line_color(),
                     linewidth=lyr_obj.get_line_width(),
                     label=lyr_obj.get_label(),
                     linestyle=lyr_obj.get_line_style())
         else:
             self.ax_stereo.cone(dip, dipdir, angle, facecolor="None",
-                    color=lyr_obj.get_line_color(),
+                    edgecolor=lyr_obj.get_line_color(),
                     linewidth=lyr_obj.get_line_width() + 2,
                     label=lyr_obj.get_label(),
                     linestyle=lyr_obj.get_line_style())
