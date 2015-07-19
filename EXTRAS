@@ -1,0 +1,8 @@
+# create the pot file from the source code
+xgettext --from-code=UTF-8 --keyword=translatable --keyword=_ --sort-output innstereo/*.{py,glade} -o po/innstereo.pot
+
+# to start a new localization
+msginit --locale=$LANG --input=innstereo.pot
+
+# to compile the po thus build mo
+msgfmt -o po/it_IT.UTF-8.mo po/it_IT.UTF-8.po

@@ -1053,7 +1053,7 @@ class LineLayer(PlaneLayer):
         """
         PlaneLayer.__init__(self, treestore, treeview)
         self.props["type"] = "line"
-        self.props["label"] = "Linear layer"
+        self.props["label"] = _("Linear layer")
         self.props["page"] = 1
 
     def get_pixbuf(self):
@@ -1092,7 +1092,7 @@ class EigenVectorLayer(PlaneLayer):
         """
         PlaneLayer.__init__(self, treestore, treeview)
         self.props["type"] = "eigenvector"
-        self.props["label"] = "Eigenvector layer"
+        self.props["label"] = _("Eigenvector layer")
         self.props["page"] = 1
 
     def get_pixbuf(self):
@@ -1130,5 +1130,5 @@ class SmallCircleLayer(PlaneLayer):
         """
         PlaneLayer.__init__(self, treestore, treeview)
         self.props["type"] = "smallcircle"
-        self.props["label"] = "Small circle layer"
+        self.props["label"] = _("Small circle layer")
         

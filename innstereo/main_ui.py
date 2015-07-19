@@ -40,6 +40,9 @@ from .file_parser import FileParseDialog
 from .rotation_dialog import RotationDialog
 from .viridis import viridis
 
+from .i18n import i18n
+
+_ = i18n().language().gettext
 
 class MainWindow(object):
 
@@ -194,13 +197,13 @@ class MainWindow(object):
         hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0,
                        border_width=10)
         row_conf.add(hbox)
-        label_conf = Gtk.Label("Fisher Confidence", xalign=0)
+        label_conf = Gtk.Label(_("Fisher Confidence"), xalign=0)
         hbox.pack_start(label_conf, True, True, 3)
         entry_conf = Gtk.Entry(width_chars=3, max_width_chars=3, text="95")
         hbox.pack_start(entry_conf, False, False, 3)
         lb_fisher.add(row_conf)
 
-        btn_calc = Gtk.Button("Calculate")
+        btn_calc = Gtk.Button(_("Calculate"))
         row_btn = Gtk.ListBoxRow()
         box = Gtk.Box()
         box.pack_start(btn_calc, True, True, 0)
@@ -2612,7 +2615,7 @@ class MainWindow(object):
             self.statbar.push(1, ("{0} / {1}".format(alpha_deg, gamma_deg)))
 
         def push_rose_coordinates(mpl_event):
-            self.statbar.push(1, ("Rose Diagram"))
+            self.statbar.push(1, (_("Rose Diagram")))
 
         def push_mpl_event(mpl_event):
             title = mpl_event.inaxes.get_title()
@@ -2825,6 +2828,8 @@ def startup():
     script_dir = os.path.dirname(__file__)
     rel_path = "gui_layout.glade"
     abs_path = os.path.join(script_dir, rel_path)
+
+    builder.set_translation_domain(i18n().get_ts_domain())
 
     objects = builder.add_objects_from_file(abs_path,
          ("main_window", "image_new_plane", "image_new_faultplane",
