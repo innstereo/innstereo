@@ -2467,6 +2467,8 @@ class MainWindow(object):
             itr = self.add_faultplane_feature(store, *args)
         if layer_type == "smallcircle":
             itr = self.add_smallcircle_feature(store, *args)
+        if layer_type == "eigenvector":
+            itr = self.add_eigenvector_feature(store, *args)
 
     def on_toolbutton_add_feature_clicked(self, widget):
         """
