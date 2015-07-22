@@ -892,18 +892,6 @@ class MainWindow(object):
                                               self.change_night_mode)
         plot_properties.run()
 
-    def on_toolbutton_print_figure_clicked(self, widget):
-        # pylint: disable=unused-argument
-        """
-        Prints the figure.
-
-        Triggered from the GUI. This function creates an instance of the
-        GtkPrintUnixDialog and runs it.
-        """
-        pass
-        #print_dialog = PrintDialog()
-        #print_dialog.run()
-
     def on_toolbutton_save_figure_clicked(self, widget):
         # pylint: disable=unused-argument
         """
