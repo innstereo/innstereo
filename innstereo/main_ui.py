@@ -1435,7 +1435,8 @@ class MainWindow(object):
         creates a new dataset in the currently active layer group.
         Each dataset has a corresponding data sheet.
         """
-        self.add_layer_dataset("plane")
+        store, lyr_obj_new = self.add_layer_dataset("plane")
+        return store, lyr_obj_new
 
     def on_toolbutton_create_faultplane_dataset_clicked(self, widget):
         # pylint: disable=unused-argument
@@ -1444,21 +1445,24 @@ class MainWindow(object):
         creates a new dataset in the currently active layer group.
         Each dataset has a corresponding data sheet.
         """
-        self.add_layer_dataset("faultplane")
+        store, lyr_obj_new = self.add_layer_dataset("faultplane")
+        return store, lyr_obj_new
 
     def on_toolbutton_create_line_dataset_clicked(self, widget):
         # pylint: disable=unused-argument
         """
         Creates a new line data layer.
         """
-        self.add_layer_dataset("line")
+        store, lyr_obj_new = self.add_layer_dataset("line")
+        return store, lyr_obj_new
 
     def on_toolbutton_create_small_circle_clicked(self, widget):
         # pylint: disable=unused-argument
         """
         Creates a new small circle layer.
         """
-        self.add_layer_dataset("smallcircle")
+        store, lyr_obj_new = self.add_layer_dataset("smallcircle")
+        return store, lyr_obj_new
 
     def parse_planes(self, treestore, subset=None):
         """
@@ -2292,6 +2296,7 @@ class MainWindow(object):
         When the layer name is edited this function passes the new label to the
         TreeStore along with the correct path.
         """
+        print(path, type(path))
         self.layer_store[path][2] = new_label
         lyr_obj = self.layer_store[path][3]
 
@@ -2804,7 +2809,7 @@ class MainWindow(object):
             "https://github.com/innstereo/innstereo/issues")
 
 
-def startup():
+def startup(testing=False):
     """
     Starts the GUI and the application main-loop.
 
@@ -2831,7 +2836,9 @@ def startup():
 
     gui_instance = MainWindow(builder)
     builder.connect_signals(gui_instance)
-    Gtk.main()
+    if testing == False:
+        Gtk.main()
+    return gui_instance
 
 if __name__ == "__main__":
     startup()
