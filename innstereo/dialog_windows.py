@@ -4,7 +4,7 @@
 This module contains dialog windows.
 
 Each dialog window has its own class that controls its behaviour. This module
-stores the AboutDialog-, PrintDialog-, StereonetProperties-, LayerProperties-,
+stores the AboutDialog-, StereonetProperties-, LayerProperties-,
 and FileChooserParse-class.
 """
 
@@ -69,73 +69,6 @@ class AboutDialog(object):
         self.ab.hide()
 
 
-class PrintDialog(object):
-
-    """
-    This class handles the signals of the GtkPrintUnixDialog.
-
-    The properties and signals of the Print dialog are set in Glade. This
-    class parses the Glade file and controls the signals of the dialog.
-    """
-
-    def __init__(self):
-        """
-        Initializes the Print dialog.
-
-        Loads the Gtk.Builder and parses the Glade file. An instance of the
-        Print dialog is created and the signals are connected to this class.
-        """
-        self.builder = Gtk.Builder()
-        script_dir = os.path.dirname(__file__)
-        rel_path = "gui_layout.glade"
-        abs_path = os.path.join(script_dir, rel_path)
-        self.builder.add_objects_from_file(abs_path,
-            ("printdialog", ""))
-        self.pd = self.builder.get_object("printdialog")
-        self.builder.connect_signals(self)
-
-    def run(self):
-        """
-        Runs the GtkPrintUnixDialog.
-
-        This method is called from the MainWindow-class when the user clicks on
-        the print button (on_toolbutton_print_figure_clicked). This method
-        calls the intrinsic run()-function that all GtkDialogs have.
-        """
-        self.pd.run()
-
-    def on_printdialog_destroy(self, widget):
-        # pylint: disable=unused-argument
-        """
-        Hides the GtkPrintUnixDialog.
-
-        This method is called when the dialog is destroyed. It hides the dialog.
-        """
-        self.pd.hide()
-
-    def on_printdialog_close(self):
-        """
-        Hides the GtkPrintUnixDialog.
-
-        This method is called when the dialog is closed. It hides the dialog.
-        """
-        self.pd.hide()
-
-    def on_printdialog_response(self, widget, response):
-        # pylint: disable=unused-argument
-        """
-        Catches the response of the GtkPrintUnixDialog.
-
-        This method is triggered by the DialogResponse. If the response is
-        OK the figure should be printed. If the response is Cancel the dialog
-        should be hidden.
-        """
-        if response == Gtk.ResponseType.OK:
-            pass
-        elif response == Gtk.ResponseType.CANCEL:
-            pass
-
-
 class StereonetProperties(object):
 
     """
@@ -149,7 +82,7 @@ class StereonetProperties(object):
 
     def __init__(self, settings, redraw_function, main_window, change_night_mode):
         """
-        Initializes the plot-properties dialog.        
+        Initializes the plot-properties dialog.
 
         Initializes the plot-properties dialog. Connects the Gtk.Builder
         loads the current settings and connects the signals of the dialog
@@ -182,7 +115,7 @@ class StereonetProperties(object):
                     self.builder.get_object("switch_show_cross")
         self.switch_highlight = self.builder.get_object("switch_highlight")
         self.switch_night_mode = self.builder.get_object("switch_night_mode")
-        
+
         self.redraw = redraw_function
         self.change_night_mode = change_night_mode
         self.changes = []
