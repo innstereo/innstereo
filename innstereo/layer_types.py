@@ -69,6 +69,7 @@ class PlaneLayer(object):
                       #Rose diagram properties
                       "rose_spacing": 10,
                       "rose_bottom": 0,
+                      "dip_rose_spacing": 10,
                       #Faultplane properties
                       "draw_hoeppener": False,
                       "draw_lp_plane": False,
@@ -1007,6 +1008,22 @@ class PlaneLayer(object):
         Sets a new confidene for calculating the Fisher Statistics.
         """
         self.props["fisher_conf"] = new_conf
+
+    def get_dip_rose_spacing(self):
+        """
+        Get the current value for the spacing in the dip rose diagram.
+
+        Default is 10.
+        """
+        return self.props["dip_rose_spacing"]
+
+    def set_dip_rose_spacing(self, new_steps):
+        """
+        Sets a new value for the spacing in the dip rose diagram.
+
+        Expects an integer or float.
+        """
+        self.props["dip_rose_spacing"] = new_steps
 
 
 class FaultPlaneLayer(PlaneLayer):

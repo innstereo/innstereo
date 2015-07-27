@@ -43,7 +43,8 @@ class LayerProperties(object):
             "liststore_colormaps", "liststore_contour_method",
             "adjustment_contour_sigma", "adjustment_contour_label_size",
             "adjustment_lower_limit", "adjustment_upper_limit",
-            "adjustment_steps", "adjustment_fisher_conf"))
+            "adjustment_steps", "adjustment_fisher_conf",
+            "adjustment_dip_rose_spacing"))
         self.layer = layer
         self.redraw = redraw_plot
         self.changes = []
@@ -285,8 +286,19 @@ class LayerProperties(object):
                         self.builder.get_object("spinbutton_rose_bottom")
         self.adjustment_rose_bottom = \
                         self.builder.get_object("adjustment_rose_bottom")
+        self.spinbutton_dip_rose_spacing = \
+                        self.builder.get_object("spinbutton_dip_rose_spacing")
+        self.adjustment_dip_rose_spacing = \
+                        self.builder.get_object("adjustment_dip_rose_spacing")
+        self.label_rose_spacing = \
+                        self.builder.get_object("label_rose_spacing")
+        self.label_dip_rose_spacing = \
+                        self.builder.get_object("label_dip_rose_spacing")
         self.adjustment_rose_spacing.set_value(self.layer.get_rose_spacing())
         self.adjustment_rose_bottom.set_value(self.layer.get_rose_bottom())
+        self.adjustment_dip_rose_spacing.set_value(self.layer.get_dip_rose_spacing())
+        self.set_rose_spacing_label()
+        self.set_dip_rose_spacing_label()
 
     def hide_gui_elements(self):
         """
@@ -644,6 +656,7 @@ class LayerProperties(object):
         new_rose_spacing = spinbutton.get_value()
         self.changes.append(lambda: self.layer.set_rose_spacing(
                                                     new_rose_spacing))
+        self.set_rose_spacing_label()
 
     def on_spinbutton_rose_bottom_value_changed(self, spinbutton):
         """
@@ -889,3 +902,34 @@ class LayerProperties(object):
         """
         conf = spinbutton.get_value()
         self.changes.append(lambda: self.layer.set_fisher_conf(conf))
+
+    def on_spinbutton_dip_rose_spacing_value_changed(self, spinbutton):
+        """
+        """
+        conf = spinbutton.get_value()
+        self.changes.append(lambda: self.layer.set_dip_rose_spacing(conf))
+        self.set_dip_rose_spacing_label()
+
+    def set_rose_spacing_label(self):
+        """
+        Gets the new spacing and calculates the new steps. Sets them as label.
+
+        Triggered when the dialog starts or the azimuth spacing of the rose
+        diagram is changed. Calculates the new steps between 0 and 360
+        degrees and sets the list as the new label.
+        """
+        degrees = self.spinbutton_rose_spacing.get_value()
+        brackets = np.arange(0, 360, step=degrees)
+        self.label_rose_spacing.set_text(str(brackets))
+
+    def set_dip_rose_spacing_label(self):
+        """
+        Gets the new dip spacing and calculates the new steps. Sets the label.
+
+        Triggered when the dialog starts or the dip spacing of the rose
+        diagram is changed. Calculates the new steps between 0 and 90
+        degrees and sets the list as the new label.
+        """
+        degrees = self.spinbutton_dip_rose_spacing.get_value()
+        brackets = np.arange(0, 90, step=degrees)
+        self.label_dip_rose_spacing.set_text(str(brackets))       
