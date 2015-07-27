@@ -43,7 +43,8 @@ class LayerProperties(object):
             "liststore_colormaps", "liststore_contour_method",
             "adjustment_contour_sigma", "adjustment_contour_label_size",
             "adjustment_lower_limit", "adjustment_upper_limit",
-            "adjustment_steps", "adjustment_fisher_conf"))
+            "adjustment_steps", "adjustment_fisher_conf",
+            "adjustment_dip_rose_spacing"))
         self.layer = layer
         self.redraw = redraw_plot
         self.changes = []
@@ -285,8 +286,13 @@ class LayerProperties(object):
                         self.builder.get_object("spinbutton_rose_bottom")
         self.adjustment_rose_bottom = \
                         self.builder.get_object("adjustment_rose_bottom")
+        self.spinbutton_dip_rose_spacing = \
+                        self.builder.get_object("spinbutton_dip_rose_spacing")
+        self.adjustment_dip_rose_spacing = \
+                        self.builder.get_object("adjustment_dip_rose_spacing")
         self.adjustment_rose_spacing.set_value(self.layer.get_rose_spacing())
         self.adjustment_rose_bottom.set_value(self.layer.get_rose_bottom())
+        self.adjustment_dip_rose_spacing.set_value(self.layer.get_dip_rose_spacing())
 
     def hide_gui_elements(self):
         """
@@ -889,3 +895,9 @@ class LayerProperties(object):
         """
         conf = spinbutton.get_value()
         self.changes.append(lambda: self.layer.set_fisher_conf(conf))
+
+    def on_spinbutton_dip_rose_spacing_value_changed(self, spinbutton):
+        """
+        """
+        conf = spinbutton.get_value()
+        self.changes.append(lambda: self.layer.set_dip_rose_spacing(conf))

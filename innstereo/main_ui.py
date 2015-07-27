@@ -116,6 +116,7 @@ class MainWindow(object):
         self.view_mode = "stereonet"
         self.view_changed = False
         self.ax_rose = None
+        self.ax_drose = None
 
         #Set up event-handlers
         self.set_up_fisher_menu()
@@ -503,6 +504,14 @@ class MainWindow(object):
         if self.view_mode is not "stereo-rose":
             self.view_changed = True
             self.view_mode = "stereo-rose"
+            self.redraw_plot()
+
+    def on_menuitem_stereo_two_rose_activate(self, radiomenuitem):
+        """
+        """
+        if self.view_mode is not "stereo-two-rose":
+            self.view_changed = True
+            self.view_mode = "stereo-two-rose"
             self.redraw_plot()
 
     def on_menuitem_rose_view_activate(self, radiomenuitem):
@@ -1967,6 +1976,18 @@ class MainWindow(object):
                                      edgecolor = lyr_obj.get_pole_edge_color(),
                                      bottom = lyr_obj.get_rose_bottom())
 
+            if self.ax_drose is not None:
+                num_bins = 90 / lyr_obj.get_dip_rose_spacing()
+                bin_width = (np.pi / 2) / num_bins
+                dip = np.radians(dip)
+                values, bin_edges = np.histogram(dip, num_bins,
+                                                 range = (0, np.pi / 2))
+                self.ax_drose.bar(left = bin_edges[:-1], height = values,
+                                     width = bin_width, alpha=0.5,
+                                     color = lyr_obj.get_line_color(),
+                                     edgecolor = lyr_obj.get_pole_edge_color(),
+                                     bottom = lyr_obj.get_rose_bottom())
+
         elif lyr_type == "line":
             dipdir, dip, sense = self.parse_lines(store, subset)
 
@@ -1983,6 +2004,18 @@ class MainWindow(object):
                                                  range = (0, 2 * np.pi))
 
                 self.ax_rose.bar(left = bin_edges[:-1], height = values,
+                                     width = bin_width, alpha=0.5,
+                                     color = lyr_obj.get_marker_fill(),
+                                     edgecolor = lyr_obj.get_marker_edge_color(),
+                                     bottom = lyr_obj.get_rose_bottom())
+
+            if self.ax_drose is not None:
+                num_bins = 90 / lyr_obj.get_dip_rose_spacing()
+                bin_width = (np.pi / 2) / num_bins
+                dip = np.radians(dip)
+                values, bin_edges = np.histogram(dip, num_bins,
+                                                 range = (0, np.pi / 2))
+                self.ax_drose.bar(left = bin_edges[:-1], height = values,
                                      width = bin_width, alpha=0.5,
                                      color = lyr_obj.get_marker_fill(),
                                      edgecolor = lyr_obj.get_marker_edge_color(),
@@ -2108,6 +2141,9 @@ class MainWindow(object):
             elif self.view_mode == "stereo-rose":
                 self.ax_stereo, self.ax_rose, self.ax_cbar = self.settings.get_stereo_rose()
                 inverted_transform_stereonet()
+            elif self.view_mode == "stereo-two-rose":
+                self.ax_stereo, self.ax_rose, self.ax_drose, self.ax_cbar = self.settings.get_stereo_two_rose()
+                inverted_transform_stereonet()
             elif self.view_mode == "rose":
                 self.ax_rose = self.settings.get_rose_diagram()
             elif self.view_mode == "pt":
@@ -2124,6 +2160,10 @@ class MainWindow(object):
             self.ax_rose.cla()
             self.ax_rose.set_title("ax_rose", visible=False)
 
+        def clear_drose():
+            self.ax_drose.cla()
+            self.ax_drose.set_title("ax_drose", visible=False)
+
         def clear_fluc():
             self.ax_fluc.cla()
             self.ax_fluc.set_title("ax_fluc", visible=False)
@@ -2137,6 +2177,10 @@ class MainWindow(object):
         elif self.view_mode == "stereo-rose":
             clear_stereo()
             clear_rose()
+        elif self.view_mode == "stereo-two-rose":
+            clear_stereo()
+            clear_rose()
+            clear_drose()
         elif self.view_mode == "rose":
             clear_rose()
         elif self.view_mode == "pt":

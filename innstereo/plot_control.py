@@ -304,6 +304,35 @@ class PlotSettings(object):
         ax_cbar.set_aspect(8)
         return ax_stereo, ax_rose, ax_cbar
 
+    def get_stereo_two_rose(self):
+        """
+        Resets the figure and returns a stereonet two rose diagrams axis.
+
+        When the view in the main window is changed to this setting, this
+        function is called and sets up a plot with a stereonet and two
+        rose diagram axis. One axis is for azimuth, the other one for
+        dip.
+        """
+        self.fig.clf()
+        self.fig.patch.set_facecolor(self.props["canvas_color"])
+        self.fig.set_dpi(self.props["pixel_density"])
+        gridspec = GridSpec(2, 4)
+        sp_stereo = gridspec.new_subplotspec((0, 0),
+                                             rowspan=2, colspan=2)
+        sp_cbar = gridspec.new_subplotspec((1, 2), rowspan=1, colspan=1)
+        sp_rose = gridspec.new_subplotspec((0, 3),
+                                           rowspan=1, colspan=1)
+        sp_drose = gridspec.new_subplotspec((1, 3),
+                                           rowspan=1, colspan=1)
+        ax_stereo = self.fig.add_subplot(sp_stereo,
+                                         projection=self.get_projection())
+        ax_rose = self.fig.add_subplot(sp_rose, projection="northpolar")
+        ax_drose = self.fig.add_subplot(sp_drose, projection="dippolar")
+        ax_cbar = self.fig.add_subplot(sp_cbar)
+        ax_cbar.axis("off")
+        ax_cbar.set_aspect(8)
+        return ax_stereo, ax_rose, ax_drose, ax_cbar
+
     def get_rose_diagram(self):
         """
         Resets the figure and returns the rose diagram axis.
