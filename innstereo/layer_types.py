@@ -1080,6 +1080,8 @@ class FaultPlaneLayer(PlaneLayer):
         PlaneLayer.__init__(self, treestore, treeview)
         self.props["type"] = "faultplane"
         self.props["label"] = "Faultplane layer"
+        self.props["line_color"] = "#000000"
+        self.props["marker_fill"] = "#ffffff"
 
 
 class LineLayer(PlaneLayer):
@@ -1106,6 +1108,7 @@ class LineLayer(PlaneLayer):
         self.props["type"] = "line"
         self.props["label"] = _("Linear layer")
         self.props["page"] = 1
+        self.props["marker_fill"] = "#69b3ff"
 
     def get_pixbuf(self):
         """
