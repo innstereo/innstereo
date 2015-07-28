@@ -3125,14 +3125,10 @@ customizable grid.</property>
                     <property name="margin_top">10</property>
                     <property name="margin_bottom">5</property>
                     <child>
-                      <object class="GtkCheckButton" id="checkbutton_hoeppener">
-                        <property name="label" translatable="yes">Draw Hoeppener Arrows</property>
+                      <object class="GtkLabel" id="label56">
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">False</property>
-                        <property name="xalign">0</property>
-                        <property name="draw_indicator">True</property>
-                        <signal name="toggled" handler="on_checkbutton_hoeppener_toggled" swapped="no"/>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Draw Angelier</property>
                       </object>
                       <packing>
                         <property name="left_attach">0</property>
@@ -3140,19 +3136,110 @@ customizable grid.</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkCheckButton" id="checkbutton_lp_plane">
-                        <property name="label" translatable="yes">Draw Linear-Pole-Plane</property>
+                      <object class="GtkSwitch" id="switch_draw_angelier">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="receives_default">False</property>
-                        <property name="xalign">0</property>
-                        <property name="draw_indicator">True</property>
-                        <signal name="toggled" handler="on_checkbutton_lp_plane_toggled" swapped="no"/>
+                        <property name="halign">center</property>
+                        <property name="valign">center</property>
+                        <property name="margin_left">6</property>
+                        <property name="margin_right">6</property>
+                        <property name="margin_top">5</property>
+                        <property name="margin_bottom">5</property>
+                        <signal name="state-set" handler="on_switch_draw_angelier_state_set" swapped="no"/>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="top_attach">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="label72">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Draw Hoeppener</property>
                       </object>
                       <packing>
                         <property name="left_attach">0</property>
                         <property name="top_attach">1</property>
                       </packing>
+                    </child>
+                    <child>
+                      <object class="GtkSwitch" id="switch_draw_hoeppene">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="halign">center</property>
+                        <property name="valign">center</property>
+                        <property name="margin_left">6</property>
+                        <property name="margin_right">9</property>
+                        <property name="margin_top">5</property>
+                        <property name="margin_bottom">5</property>
+                        <signal name="state-set" handler="on_switch_draw_hoeppene_state_set" swapped="no"/>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="top_attach">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="label73">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="margin_left">9</property>
+                        <property name="margin_top">5</property>
+                        <property name="margin_bottom">5</property>
+                        <property name="label" translatable="yes">Draw Hoeppener Linear-Pole-Plane</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">2</property>
+                        <property name="top_attach">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkSwitch" id="switch_draw_lp_plane">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="halign">center</property>
+                        <property name="valign">center</property>
+                        <property name="margin_left">6</property>
+                        <property name="margin_right">6</property>
+                        <property name="margin_top">5</property>
+                        <property name="margin_bottom">5</property>
+                        <signal name="state-set" handler="on_switch_draw_lp_plane_state_set" swapped="no"/>
+                      </object>
+                      <packing>
+                        <property name="left_attach">3</property>
+                        <property name="top_attach">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
                     </child>
                   </object>
                   <packing>
@@ -3887,18 +3974,6 @@ customizable grid.</property>
                         <property name="top_attach">2</property>
                         <property name="width">2</property>
                       </packing>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
                     </child>
                     <child>
                       <placeholder/>

@@ -189,12 +189,15 @@ class LayerProperties(object):
         current settings from the active layer and applies these settings to
         the interface.
         """
-        self.checkbutton_hoeppener = \
-                        self.builder.get_object("checkbutton_hoeppener")
-        self.checkbutton_lp_plane = \
-                        self.builder.get_object("checkbutton_lp_plane")
-        self.checkbutton_hoeppener.set_active(self.layer.get_draw_hoeppener())
-        self.checkbutton_lp_plane.set_active(self.layer.get_draw_lp_plane())
+        self.switch_draw_hoeppene = \
+                        self.builder.get_object("switch_draw_hoeppene")
+        self.switch_draw_angelier = \
+                        self.builder.get_object("switch_draw_angelier")
+        self.switch_draw_lp_plane = \
+                        self.builder.get_object("switch_draw_lp_plane")
+        self.switch_draw_hoeppene.set_active(self.layer.get_draw_hoeppener())
+        self.switch_draw_angelier.set_active(self.layer.get_draw_angelier())
+        self.switch_draw_lp_plane.set_active(self.layer.get_draw_lp_plane())
 
     def load_contour_properties(self):
         """
@@ -779,27 +782,35 @@ class LayerProperties(object):
         self.changes.append(
                     lambda: self.layer.set_contour_line_color(new_color))
 
-    def on_checkbutton_lp_plane_toggled(self, checkbutton):
+    def on_switch_draw_lp_plane_state_set(self, switch, state):
         """
-        Queues up a new state for the linear-pole-plane checkbutton.
+        Queues up a new state for the linear-pole-plane switch.
 
-        Triggered when a new state for the linear-pole-plane checkbutton
-        is set. Gets the new state and queues it up in the list of changes.
+        Triggered when a new state for the linear-pole-plane switch
+        is set. Queues it up in the list of changes.
         """
-        draw_lp_plane = checkbutton.get_active()
         self.changes.append(
-            lambda: self.layer.set_draw_lp_plane(draw_lp_plane))
+            lambda: self.layer.set_draw_lp_plane(state))
 
-    def on_checkbutton_hoeppener_toggled(self, checkbutton):
+    def on_switch_draw_hoeppene_state_set(self, switch, state):
         """
-        Queues up a new state for the draw Hoeppener checkbutton.
+        Queues up a new state for the draw Hoeppener switch.
 
-        Triggered when a new state for the Hoeppener checkbutton
-        is set. Gets the new state and queues it up in the list of changes.
+        Triggered when a new state for the Hoeppener switch
+        is set. Queues it up in the list of changes.
         """
-        draw_hoeppener = checkbutton.get_active()
         self.changes.append(
-            lambda: self.layer.set_draw_hoeppener(draw_hoeppener))
+            lambda: self.layer.set_draw_hoeppener(state))
+
+    def on_switch_draw_angelier_state_set(self, switch, state):
+        """
+        Queues up a new state for the draw Angelier switch.
+
+        Triggered when a new state for the Anglier switch
+        is set. Queues it up in the list of changes.
+        """
+        self.changes.append(
+            lambda: self.layer.set_draw_angelier(state))
 
     def on_switch_manual_range_state_set(self, switch, state):
         """

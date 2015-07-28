@@ -71,8 +71,10 @@ class PlaneLayer(object):
                       "rose_bottom": 0,
                       "dip_rose_spacing": 10,
                       #Faultplane properties
+                      "draw_angelier": True,
                       "draw_hoeppener": False,
                       "draw_lp_plane": False,
+                      "arrow_color": "#d51e1e",
                       #Contours
                       "draw_contour_fills": False,
                       "draw_contour_lines": False,
@@ -1024,6 +1026,38 @@ class PlaneLayer(object):
         Expects an integer or float.
         """
         self.props["dip_rose_spacing"] = new_steps
+
+    def get_draw_angelier(self):
+        """
+        Get the current state whether Angelier arrows should be drawn.
+
+        Default is False.
+        """
+        return self.props["draw_angelier"]
+
+    def set_draw_angelier(self, new_state):
+        """
+        Sets a new state whether Angelier arrows should be drawn.
+
+        Expects a boolean.
+        """
+        self.props["draw_angelier"] = new_state
+
+    def get_arrow_color(self):
+        """
+        Get the current color of the faultplane arrows.
+
+        Returns a RGP-string.
+        """
+        return self.props["arrow_color"]
+
+    def set_arrow_color(self, new_color):
+        """
+        Sets a new color for the faultplane arrows.
+
+        Expects a RGP-string
+        """
+        self.props["arrow_color"] = new_color
 
 
 class FaultPlaneLayer(PlaneLayer):
