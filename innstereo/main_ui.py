@@ -1819,6 +1819,41 @@ class MainWindow(object):
 
         self.cbar.append(cbar)
 
+    def draw_angelier(self, values):
+        """
+        Draws the Angelier arrows for a fault plane layer.
+
+        Receives the data as a list. Iterates over arrow-position and the sense
+        and displays the resulting arrow.
+        """
+        lyr_obj, plane_dir, plane_dip, strikes, \
+                 line_dir, line_dip, lp_plane_dir, lp_plane_dip, sense = values
+        lon, lat = mplstereonet.line(line_dip, line_dir)
+
+        for x, y, sns in zip(lon, lat, sense):
+            mag = np.hypot(x, y)
+            u, v = x / mag, y / mag
+
+            if sns == "up":
+                self.ax_stereo.quiver(x, y, -u, -v, width=1.5, headwidth=4,
+                                               units="dots", pivot="middle",
+                                               color=lyr_obj.get_arrow_color())
+            elif sns == "dn":
+                self.ax_stereo.quiver(x, y, u, v, width=1.5, headwidth=4,
+                                               units="dots", pivot="middle",
+                                               color=lyr_obj.get_arrow_color())
+
+            elif sns == "sin":
+                pass
+
+            elif sns == "dex":
+                pass
+
+            else:
+                pass
+
+        return None
+
     def draw_hoeppener(self, lyr_obj, plane_dir, plane_dip, line_dir,
                         line_dip, lp_plane_dir, lp_plane_dip, sense):
         """
@@ -2047,6 +2082,11 @@ class MainWindow(object):
                self.draw_hoeppener(lyr_obj, plane_dir, plane_dip,
                                    line_dir, line_dip, lp_plane_dir,
                                    lp_plane_dip, sense)
+
+            if lyr_obj.get_draw_angelier() == True:
+               self.draw_angelier([lyr_obj, plane_dir, plane_dip, strike,
+                                   line_dir, line_dip, lp_plane_dir,
+                                   lp_plane_dip, sense])
 
 
         elif lyr_type == "smallcircle":

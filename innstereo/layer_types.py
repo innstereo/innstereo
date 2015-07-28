@@ -71,8 +71,10 @@ class PlaneLayer(object):
                       "rose_bottom": 0,
                       "dip_rose_spacing": 10,
                       #Faultplane properties
+                      "draw_angelier": True,
                       "draw_hoeppener": False,
                       "draw_lp_plane": False,
+                      "arrow_color": "#d51e1e",
                       #Contours
                       "draw_contour_fills": False,
                       "draw_contour_lines": False,
@@ -91,6 +93,7 @@ class PlaneLayer(object):
                       "upper_limit": 10,
                       "steps": 10
                       }
+        self.props["label"] = _("Plane Layer")
 
     def get_page(self):
         """
@@ -1025,6 +1028,38 @@ class PlaneLayer(object):
         """
         self.props["dip_rose_spacing"] = new_steps
 
+    def get_draw_angelier(self):
+        """
+        Get the current state whether Angelier arrows should be drawn.
+
+        Default is False.
+        """
+        return self.props["draw_angelier"]
+
+    def set_draw_angelier(self, new_state):
+        """
+        Sets a new state whether Angelier arrows should be drawn.
+
+        Expects a boolean.
+        """
+        self.props["draw_angelier"] = new_state
+
+    def get_arrow_color(self):
+        """
+        Get the current color of the faultplane arrows.
+
+        Returns a RGP-string.
+        """
+        return self.props["arrow_color"]
+
+    def set_arrow_color(self, new_color):
+        """
+        Sets a new color for the faultplane arrows.
+
+        Expects a RGP-string
+        """
+        self.props["arrow_color"] = new_color
+
 
 class FaultPlaneLayer(PlaneLayer):
 
@@ -1045,7 +1080,9 @@ class FaultPlaneLayer(PlaneLayer):
         """
         PlaneLayer.__init__(self, treestore, treeview)
         self.props["type"] = "faultplane"
-        self.props["label"] = "Faultplane layer"
+        self.props["label"] = _("Faultplane Layer")
+        self.props["line_color"] = "#000000"
+        self.props["marker_fill"] = "#ffffff"
 
 
 class LineLayer(PlaneLayer):
@@ -1070,8 +1107,9 @@ class LineLayer(PlaneLayer):
         """
         PlaneLayer.__init__(self, treestore, treeview)
         self.props["type"] = "line"
-        self.props["label"] = _("Linear layer")
+        self.props["label"] = _("Linear Layer")
         self.props["page"] = 1
+        self.props["marker_fill"] = "#69b3ff"
 
     def get_pixbuf(self):
         """
@@ -1109,7 +1147,7 @@ class EigenVectorLayer(PlaneLayer):
         """
         PlaneLayer.__init__(self, treestore, treeview)
         self.props["type"] = "eigenvector"
-        self.props["label"] = _("Eigenvector layer")
+        self.props["label"] = _("Eigenvector Layer")
         self.props["page"] = 1
 
     def get_pixbuf(self):
@@ -1147,5 +1185,5 @@ class SmallCircleLayer(PlaneLayer):
         """
         PlaneLayer.__init__(self, treestore, treeview)
         self.props["type"] = "smallcircle"
-        self.props["label"] = _("Small circle layer")
+        self.props["label"] = _("Small-Circle Layer")
         
