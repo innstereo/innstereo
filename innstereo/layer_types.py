@@ -1079,7 +1079,7 @@ class FaultPlaneLayer(PlaneLayer):
         """
         PlaneLayer.__init__(self, treestore, treeview)
         self.props["type"] = "faultplane"
-        self.props["label"] = "Faultplane layer"
+        self.props["label"] = _("Faultplane layer")
         self.props["line_color"] = "#000000"
         self.props["marker_fill"] = "#ffffff"
 
