@@ -93,6 +93,7 @@ class PlaneLayer(object):
                       "upper_limit": 10,
                       "steps": 10
                       }
+        self.props["label"] = _("Plane Layer")
 
     def get_page(self):
         """
@@ -1079,7 +1080,7 @@ class FaultPlaneLayer(PlaneLayer):
         """
         PlaneLayer.__init__(self, treestore, treeview)
         self.props["type"] = "faultplane"
-        self.props["label"] = _("Faultplane layer")
+        self.props["label"] = _("Faultplane Layer")
         self.props["line_color"] = "#000000"
         self.props["marker_fill"] = "#ffffff"
 
@@ -1106,7 +1107,7 @@ class LineLayer(PlaneLayer):
         """
         PlaneLayer.__init__(self, treestore, treeview)
         self.props["type"] = "line"
-        self.props["label"] = _("Linear layer")
+        self.props["label"] = _("Linear Layer")
         self.props["page"] = 1
         self.props["marker_fill"] = "#69b3ff"
 
@@ -1146,7 +1147,7 @@ class EigenVectorLayer(PlaneLayer):
         """
         PlaneLayer.__init__(self, treestore, treeview)
         self.props["type"] = "eigenvector"
-        self.props["label"] = _("Eigenvector layer")
+        self.props["label"] = _("Eigenvector Layer")
         self.props["page"] = 1
 
     def get_pixbuf(self):
@@ -1184,5 +1185,5 @@ class SmallCircleLayer(PlaneLayer):
         """
         PlaneLayer.__init__(self, treestore, treeview)
         self.props["type"] = "smallcircle"
-        self.props["label"] = _("Small circle layer")
+        self.props["label"] = _("Small-Circle Layer")
         
