@@ -16,6 +16,7 @@ from gi.repository import Gtk, Gdk
 from matplotlib.figure import Figure
 from matplotlib.gridspec import GridSpec
 import mplstereonet
+from collections import OrderedDict
 
 
 class PlotSettings(object):
@@ -40,7 +41,7 @@ class PlotSettings(object):
         """
         self.folder_icon = Gtk.IconTheme.get_default().load_icon(
             "folder", 16, 0)
-        self.props = {"draw_grid": True,
+        self.props = OrderedDict(sorted({"draw_grid": True,
                       "equal_area_projection": True,
                       "minor_grid_spacing": 2,
                       "major_grid_spacing": 10,
@@ -54,7 +55,7 @@ class PlotSettings(object):
                       "draw_legend": True,
                       "canvas_color": "#bfbfbf",
                       "highlight": False
-                      }
+                      }.items()))
         self.night_mode = False
         self.fig = Figure(dpi=self.props["pixel_density"])
 
