@@ -52,6 +52,14 @@ class DataTreeView(Gtk.TreeView):
         number = round(number, 1)
         return number
 
+    def truncate_vector(self, number):
+        """
+        Rounds and truncates a number to 3 decimal places. Used for vector
+        magnitude.
+        """
+        number = round(number, 3)
+        return number
+
     def set_layer_object(self, lyr_obj):
         """
         Passes a layer object to this class.
@@ -102,6 +110,76 @@ class DataTreeView(Gtk.TreeView):
         """
         if self.settings.get_highlight() is True:
             self.redraw()
+
+    def validate_numeric_input(self, inp, inp_type):
+        """
+        Validates a numeric input.
+
+        Comma decimal places are replaced by dot decimal places. For the
+        different angles the boundaries are checked. Returns the valid
+        number or None.
+        """
+        if inp == "":
+            return 0
+        else:
+            try:
+                inp = float(inp.replace(",", "."))
+            except:
+                return None
+
+        if inp_type == "dir":
+            while inp < 0 or inp > 360:
+                if inp < 0:
+                    inp += 360
+                else:
+                    inp -= 360
+            return inp
+        elif inp_type == "dip":
+            if inp < 0 or inp > 90:
+                return None
+            else:
+                return inp
+        elif inp_type == "vector":
+            if inp < 0 or inp > 1:
+                return None
+            else:
+                return inp
+        elif inp_type == "angle":
+            if inp < 0 or inp > 360:
+                return None
+            else:
+                return inp
+
+    def validate_sense(self, inp):
+        """
+        Validates the movement or shear sense.
+
+        The column accepts a set of valid strings or numbers that are
+        replaced with the valid strings. Returns the valid string or None.
+        """
+        val_inp = ["", "uk", "up", "dn", "dex", "sin"]
+
+        try:
+            inp = int(inp)
+            if inp == 0:
+                sense = "uk"
+            elif inp == 1:
+                sense = "up"
+            elif inp == 2:
+                sense = "dn"
+            elif inp == 3:
+                sense = "dex"
+            elif inp == 4:
+                sense = "sin"
+            else:
+                sense = None
+            return sense
+        except:
+            if inp in val_inp:
+                return str(inp)
+            else:
+                return None
+
 
 class PlaneDataView(DataTreeView):
 
@@ -159,8 +237,13 @@ class PlaneDataView(DataTreeView):
         The function replaces a ","- with a "."-comma. Converts
         the string value to a float.
         """
-        self.store[path][0] = float(new_string.replace(",", "."))
-        self.redraw()
+        new_number = self.validate_numeric_input(new_string, "dir")
+        if new_number is not None:
+            self.store[path][0] = new_number
+            self.redraw()
+            return new_number
+        else:
+            return None
 
     def renderer_dip_edited(self, widget, path, new_string):
         """
@@ -168,8 +251,13 @@ class PlaneDataView(DataTreeView):
         The function replaces a ","- with a "."-comma. Converts
         the string value to a float.
         """
-        self.store[path][1] = float(new_string.replace(",", "."))
-        self.redraw()
+        new_number = self.validate_numeric_input(new_string, "dip")
+        if new_number is not None:
+            self.store[path][1] = new_number
+            self.redraw()
+            return new_number
+        else:
+            return None
 
     def renderer_strat_edited(self, widget, path, new_string):
         """
@@ -178,6 +266,7 @@ class PlaneDataView(DataTreeView):
         """
         self.store[path][2] = new_string
         self.redraw()
+
 
 class FaultPlaneDataView(DataTreeView):
 
@@ -262,8 +351,13 @@ class FaultPlaneDataView(DataTreeView):
         The function replaces a ","- with a "."-comma. Converts
         the string value to a float.
         """
-        self.store[path][0] = float(new_string.replace(",", "."))
-        self.redraw()
+        new_number = self.validate_numeric_input(new_string, "dir")
+        if new_number is not None:
+            self.store[path][0] = new_number
+            self.redraw()
+            return new_number
+        else:
+            return None
 
     def renderer_dip_edited(self, widget, path, new_string):
         """
@@ -271,8 +365,13 @@ class FaultPlaneDataView(DataTreeView):
         The function replaces a ","- with a "."-comma. Converts
         the string value to a float.
         """
-        self.store[path][1] = float(new_string.replace(",", "."))
-        self.redraw()
+        new_number = self.validate_numeric_input(new_string, "dip")
+        if new_number is not None:
+            self.store[path][1] = new_number
+            self.redraw()
+            return new_number
+        else:
+            return None
 
     def renderer_ldir_edited(self, widget, path, new_string):
         """
@@ -280,8 +379,13 @@ class FaultPlaneDataView(DataTreeView):
         The function replaces a ","- with a "."-comma. Converts
         the string value to a float.
         """
-        self.store[path][2] = float(new_string.replace(",", "."))
-        self.redraw()
+        new_number = self.validate_numeric_input(new_string, "dir")
+        if new_number is not None:
+            self.store[path][2] = new_number
+            self.redraw()
+            return new_number
+        else:
+            return None
 
     def renderer_ldip_edited(self, widget, path, new_string):
         """
@@ -289,16 +393,27 @@ class FaultPlaneDataView(DataTreeView):
         The function replaces a ","- with a "."-comma. Converts
         the string value to a float.
         """
-        self.store[path][3] = float(new_string.replace(",", "."))
-        self.redraw()
+        new_number = self.validate_numeric_input(new_string, "dip")
+        if new_number is not None:
+            self.store[path][3] = new_number
+            self.redraw()
+            return new_number
+        else:
+            return None
 
     def renderer_sense_edited(self, widget, path, new_string):
         """
         If the linear shear sense is edited, replace the existing value.
         The the values is replaced by the raw input-string.
         """
-        self.store[path][4] = new_string
-        self.redraw()
+        new_string = self.validate_sense(new_string)
+        if new_string is not None:
+            self.store[path][4] = new_string
+            self.redraw()
+            return new_string
+        else:
+            return None
+
 
 class LineDataView(DataTreeView):
 
@@ -359,8 +474,13 @@ class LineDataView(DataTreeView):
         The function replaces a ","- with a "."-comma. Converts
         the string value to a float.
         """
-        self.store[path][0] = float(new_string.replace(",", "."))
-        self.redraw()
+        new_number = self.validate_numeric_input(new_string, "dir")
+        if new_number is not None:
+            self.store[path][0] = new_number
+            self.redraw()
+            return new_number
+        else:
+            return None
 
     def renderer_dip_edited(self, widget, path, new_string):
         """
@@ -368,16 +488,27 @@ class LineDataView(DataTreeView):
         The function replaces a ","- with a "."-comma. Converts
         the string value to a float.
         """
-        self.store[path][1] = float(new_string.replace(",", "."))
-        self.redraw()
+        new_number = self.validate_numeric_input(new_string, "dip")
+        if new_number is not None:
+            self.store[path][1] = new_number
+            self.redraw()
+            return new_number
+        else:
+            return None
 
     def renderer_sense_edited(self, widget, path, new_string):
         """
         If the sense of the linear is edited, replace the existing value.
         The new values is the raw input-string.
         """
-        self.store[path][2] = new_string
-        self.redraw()
+        new_string = self.validate_sense(new_string)
+        if new_string is not None:
+            self.store[path][2] = new_string
+            self.redraw()
+            return new_string
+        else:
+            return None
+
 
 class SmallCircleDataView(DataTreeView):
 
@@ -440,8 +571,13 @@ class SmallCircleDataView(DataTreeView):
         The function replaces a ","- with a "."-comma. Converts
         the string value to a float.
         """
-        self.store[path][0] = float(new_string.replace(",", "."))
-        self.redraw()
+        new_number = self.validate_numeric_input(new_string, "dir")
+        if new_number is not None:
+            self.store[path][0] = new_number
+            self.redraw()
+            return new_number
+        else:
+            return None
 
     def renderer_dip_edited(self, widget, path, new_string):
         """
@@ -449,8 +585,13 @@ class SmallCircleDataView(DataTreeView):
         The function replaces a ","- with a "."-comma. Converts
         the string value to a float.
         """
-        self.store[path][1] = float(new_string.replace(",", "."))
-        self.redraw()
+        new_number = self.validate_numeric_input(new_string, "dip")
+        if new_number is not None:
+            self.store[path][1] = new_number
+            self.redraw()
+            return new_number
+        else:
+            return None
 
     def renderer_angle_edited(self, widget, path, new_string):
         """
@@ -458,8 +599,13 @@ class SmallCircleDataView(DataTreeView):
         The function replaces a ","- with a "."-comma. Converts
         the string value to a float.
         """
-        self.store[path][2] = float(new_string.replace(",", "."))
-        self.redraw()
+        new_number = self.validate_numeric_input(new_string, "angle")
+        if new_number is not None:
+            self.store[path][2] = new_number
+            self.redraw()
+            return new_number
+        else:
+            return None
 
 
 class EigenVectorView(DataTreeView):
@@ -512,7 +658,7 @@ class EigenVectorView(DataTreeView):
         column_value.set_cell_data_func(renderer_value, 
                     lambda col, cell, model, iter, unused:
                     cell.set_property("text",
-                    "{0}".format(self.truncate(model.get(iter, 2)[0]))))
+                    "{0}".format(self.truncate_vector(model.get(iter, 2)[0]))))
         self.append_column(column_value)
 
         renderer_dir.connect("edited", self.renderer_dir_edited)
@@ -525,8 +671,13 @@ class EigenVectorView(DataTreeView):
         The function replaces a ","- with a "."-comma. Converts
         the string value to a float.
         """
-        self.store[path][0] = float(new_string.replace(",", "."))
-        self.redraw()
+        new_number = self.validate_numeric_input(new_string, "dir")
+        if new_number is not None:
+            self.store[path][0] = new_number
+            self.redraw()
+            return new_number
+        else:
+            return None
 
     def renderer_dip_edited(self, widget, path, new_string):
         """
@@ -534,8 +685,13 @@ class EigenVectorView(DataTreeView):
         The function replaces a ","- with a "."-comma. Converts
         the string value to a float.
         """
-        self.store[path][1] = float(new_string.replace(",", "."))
-        self.redraw()
+        new_number = self.validate_numeric_input(new_string, "dip")
+        if new_number is not None:
+            self.store[path][1] = new_number
+            self.redraw()
+            return new_number
+        else:
+            return None
 
     def renderer_value_edited(self, widget, path, new_string):
         """
@@ -544,5 +700,10 @@ class EigenVectorView(DataTreeView):
         The new value is converted to a float and commas are replaced by
         dots. Then the new value is assigned to the cell.
         """
-        self.store[path][2] = float(new_string.replace(",", "."))
-        self.redraw()
+        new_number = self.validate_numeric_input(new_string, "vector")
+        if new_number is not None:
+            self.store[path][2] = new_number
+            self.redraw()
+            return new_number
+        else:
+            return None

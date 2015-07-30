@@ -254,3 +254,273 @@ def test_mean_vector():
     gui.on_toolbutton_mean_vector_clicked(toolbutton=None)
     data = gui.on_toolbutton_save_clicked(widget=None, testing=True)
     assert data == lyr_copy
+
+def plane_input(inp, inp_type):
+    """
+    Tests different data inputs into a plane layer. Called from test-functions.
+    """
+    reset_project()
+    store, lyr_obj_new = gui.on_toolbutton_create_plane_dataset_clicked(widget=None)
+    gui.add_planar_feature(store, 140, 50, "")
+    data_view = lyr_obj_new.get_data_treeview()
+    if inp_type == "dir":
+        entry = data_view.renderer_dir_edited(widget=None, path=0, new_string=inp)
+    elif inp_type == "dip":
+        entry = data_view.renderer_dip_edited(widget=None, path=0, new_string=inp)
+    return entry
+
+def linear_input(inp, inp_type):
+    """
+    Tests different data inputs into a linear layer. Called from test-functions.
+    """
+    reset_project()
+    store, lyr_obj_new = gui.on_toolbutton_create_line_dataset_clicked(widget=None)
+    gui.add_linear_feature(store, 220, 40, "up")
+    data_view = lyr_obj_new.get_data_treeview()
+    if inp_type == "dir":
+        entry = data_view.renderer_dir_edited(widget=None, path=0, new_string=inp)
+    elif inp_type == "dip":
+        entry = data_view.renderer_dip_edited(widget=None, path=0, new_string=inp)
+    elif inp_type == "sense":
+        entry = data_view.renderer_sense_edited(widget=None, path=0, new_string=inp)
+    return entry
+
+def smallcircle_input(inp, inp_type):
+    """
+    Tests different data inputs into a smallcircle layer. Called from test-functions.
+    """
+    reset_project()
+    store, lyr_obj_new = gui.on_toolbutton_create_small_circle_clicked(widget=None)
+    gui.add_smallcircle_feature(store, 180, 30, 30)
+    data_view = lyr_obj_new.get_data_treeview()
+    if inp_type == "dir":
+        entry = data_view.renderer_dir_edited(widget=None, path=0, new_string=inp)
+    elif inp_type == "dip":
+        entry = data_view.renderer_dip_edited(widget=None, path=0, new_string=inp)
+    elif inp_type == "angle":
+        entry = data_view.renderer_angle_edited(widget=None, path=0, new_string=inp)
+    return entry
+
+def vector_input(inp, inp_type):
+    """
+    Tests different data inputs into a vector layer. Called from test-functions.
+    """
+    reset_project()
+    store, lyr_obj_new = gui.add_layer_dataset("eigenvector")
+    gui.add_eigenvector_feature(store, 45, 10, 0.1)
+    data_view = lyr_obj_new.get_data_treeview()
+    if inp_type == "dir":
+        entry = data_view.renderer_dir_edited(widget=None, path=0, new_string=inp)
+    elif inp_type == "dip":
+        entry = data_view.renderer_dip_edited(widget=None, path=0, new_string=inp)
+    elif inp_type == "magn":
+        entry = data_view.renderer_value_edited(widget=None, path=0, new_string=inp)
+    return entry
+
+def faultplane_input(inp, inp_type):
+    """
+    Tests different data inputs for faultplane layers. Called from test-functions.
+    """
+    reset_project()
+    store, lyr_obj_new = gui.on_toolbutton_create_faultplane_dataset_clicked(widget=None)
+    gui.add_faultplane_feature(store, 115, 12, 115, 12, "up")
+    data_view = lyr_obj_new.get_data_treeview()
+    if inp_type == "dir":
+        entry = data_view.renderer_dir_edited(widget=None, path=0, new_string=inp)
+    elif inp_type == "dip":
+        entry = data_view.renderer_dip_edited(widget=None, path=0, new_string=inp)
+    elif inp_type == "ldir":
+        entry = data_view.renderer_ldir_edited(widget=None, path=0, new_string=inp)
+    elif inp_type == "ldip":
+        entry = data_view.renderer_ldip_edited(widget=None, path=0, new_string=inp)
+    elif inp_type == "sense":
+        entry = data_view.renderer_sense_edited(widget=None, path=0, new_string=inp)
+    return entry
+
+dir_cases = {
+    "aword": None,
+    "": 0,
+    "0": 0,
+    "360": 360,
+    "120.075": 120.075,
+    "120,075": 120.075,
+    "400": 40,
+    "-20": 340,
+}
+
+dip_cases = {
+    "aword": None,
+    "": 0,
+    "0": 0,
+    "90": 90,
+    "-10": None,
+    "110": None,
+    "56.045": 56.045,
+    "56,045": 56.045,
+}
+
+sense_cases ={
+    "aword": None,
+    "": "",
+    "uk": "uk",
+    "up": "up",
+    "dn": "dn",
+    "sin": "sin",
+    "dex": "dex",
+    "0": "uk",
+    "1": "up",
+    "2": "dn",
+    "3": "dex",
+    "4": "sin",
+    "5": None,
+}
+
+sc_cases = {
+    "aword": None,
+    "": 0,
+    "0": 0,
+    "360": 360,
+    "120.075": 120.075,
+    "120,075": 120.075,
+    "400": None,
+    "-20": None,
+}
+
+magnitude_cases = {
+    "aword": None,
+    "": 0,
+    "0": 0,
+    "1": 1,
+    "0.005": 0.005,
+    "-2": None,
+    "2": None,
+}
+
+def test_plane_direction_input():
+    """
+    Tests different inputs for the plane dip-direction.
+    """
+    for case in dir_cases:
+        value = plane_input(case, "dir")
+        assert value == dir_cases[case]
+
+def test_plane_dip_input():
+    """
+    Tests different inputs for the plane dip.
+    """
+    for case in dip_cases:
+        value = plane_input(case, "dip")
+        assert value == dip_cases[case]
+
+def test_linear_direction_input():
+    """
+    Test different inputs for the linear dip-direction.
+    """
+    for case in dir_cases:
+        value = linear_input(case, "dir")
+        assert value == dir_cases[case]
+
+def test_linear_dip_input():
+    """
+    Test different inputs for the linear dip.
+    """
+    for case in dip_cases:
+        value = linear_input(case, "dip")
+        assert value == dip_cases[case]
+
+def test_linear_sense_input():
+    """
+    Tests different inputs for the linear sense.
+    """
+    for case in sense_cases:
+        value = linear_input(case, "sense")
+        assert value == sense_cases[case]
+
+def test_smallcircle_direction_input():
+    """
+    Test different inputs for the smallcircle dip-direction.
+    """
+    for case in dir_cases:
+        value = smallcircle_input(case, "dir")
+        assert value == dir_cases[case]
+
+def test_smallcircle_dip_input():
+    """
+    Test different inputs for the smallcircle dip.
+    """
+    for case in dip_cases:
+        value = smallcircle_input(case, "dip")
+        assert value == dip_cases[case]
+
+def test_smallcircle_angle_input():
+    """
+    Test different inputs for the smallcircle opening angle.
+    """
+    for case in sc_cases:
+        value = smallcircle_input(case, "angle")
+        assert value == sc_cases[case]
+
+def test_vector_direction_input():
+    """
+    Test different inputs for the vector dip-direction.
+    """
+    for case in dir_cases:
+        value = vector_input(case, "dir")
+        assert value == dir_cases[case]
+
+def test_vector_dip_input():
+    """
+    Test different inputs for the vector dip.
+    """
+    for case in dip_cases:
+        value = vector_input(case, "dip")
+        assert value == dip_cases[case]
+
+def test_vector_magnitude_input():
+    """
+    Test different inputs for the vector magnitude.
+    """
+    for case in magnitude_cases:
+        value = vector_input(case, "magn")
+        assert value == magnitude_cases[case]
+
+def test_fp_plane_direction_input():
+    """
+    Test different inputs for the faultplane plane dip-direction.
+    """
+    for case in dir_cases:
+        value = faultplane_input(case, "dir")
+        assert value == dir_cases[case]
+
+def test_fp_plane_dip_input():
+    """
+    Test different inputs for the faultplane plane dip.
+    """
+    for case in dip_cases:
+        value = faultplane_input(case, "dip")
+        assert value == dip_cases[case]
+
+def test_fp_linear_direction_input():
+    """
+    Test different inputs for the faultplane linear dip-direction.
+    """
+    for case in dir_cases:
+        value = faultplane_input(case, "dir")
+        assert value == dir_cases[case]
+
+def test_fp_linear_dip_input():
+    """
+    Test different inputs for the faultplane linear dip.
+    """
+    for case in dip_cases:
+        value = faultplane_input(case, "dip")
+        assert value == dip_cases[case]
+
+def test_fp_sense_input():
+    """
+    Tests different inputs for the linear sense.
+    """
+    for case in sense_cases:
+        value = faultplane_input(case, "sense")
+        assert value == sense_cases[case]
+
