@@ -13,6 +13,7 @@ are stored in these classes.
 """
 
 from gi.repository import Gdk, GdkPixbuf
+from collections import OrderedDict
 
 
 class PlaneLayer(object):
@@ -36,7 +37,7 @@ class PlaneLayer(object):
         self.data_treestore = treestore
         self.data_treeview = treeview
 
-        self.props = {"type": "plane",
+        self.props = OrderedDict(sorted({"type": "plane",
                       "label": "Plane layer",
                       "page": 0,
                       #Great circle / Small circle properties
@@ -92,7 +93,7 @@ class PlaneLayer(object):
                       "lower_limit": 1,
                       "upper_limit": 10,
                       "steps": 10
-                      }
+                      }.items()))
         self.props["label"] = _("Plane Layer")
 
     def get_page(self):

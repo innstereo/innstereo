@@ -22,6 +22,7 @@ import os
 import csv
 from matplotlib.lines import Line2D
 import json
+from collections import OrderedDict
 
 #Internal imports
 from .dataview_classes import (PlaneDataView, LineDataView,
@@ -246,6 +247,7 @@ class MainWindow(object):
             if lyr_obj is None:
                 #No lyr_obj means that this is a folder
                 folder_props = {"type": "folder", "label": label}
+                folder_props = OrderedDict(sorted(folder_props.items()))
                 copy["layers"].append([path_str, folder_props, []])
             else:
                 properties = lyr_obj.get_properties()
@@ -267,6 +269,7 @@ class MainWindow(object):
                 append_layer(lyr_obj, path_str, label)
 
         self.layer_store.foreach(iterate_over_store, path_str)
+        copy = OrderedDict(sorted(copy.items()))
         data = json.dumps(copy)
         return data
 
@@ -461,6 +464,7 @@ class MainWindow(object):
 
         data = self.copy_layer()
         self.clipboard.set_text(data, -1)
+        return data
 
     def on_toolbutton_paste_clicked(self, toolbutton):
         """
@@ -727,7 +731,7 @@ class MainWindow(object):
 
         self.redraw_plot()
 
-    def on_toolbutton_save_clicked(self, widget):
+    def on_toolbutton_save_clicked(self, widget, testing=False):
         # pylint: disable=unused-argument
         """
         Triggered from the GUI. Saves the project.
@@ -755,6 +759,7 @@ class MainWindow(object):
             if lyr_obj is None:
                 #No lyr_obj means that this is a folder
                 folder_props = {"type": "folder", "label": label}
+                folder_props = OrderedDict(sorted(folder_props.items()))
                 copy["layers"].append([path_str, folder_props, []])
             else:
                 properties = lyr_obj.get_properties()
@@ -774,9 +779,12 @@ class MainWindow(object):
             append_layer(lyr_obj, path_str, label)
 
         self.layer_store.foreach(iterate_over_store)
+        copy = OrderedDict(sorted(copy.items()))
         dump = json.dumps(copy)
-        dlg = FileChooserSave(self.main_window, dump)
-        dlg.run()
+        if testing == False:
+            dlg = FileChooserSave(self.main_window, dump)
+            dlg.run()
+        return dump
 
     def on_toolbutton_open_clicked(self, toolbutton):
         # pylint: disable=unused-argument
