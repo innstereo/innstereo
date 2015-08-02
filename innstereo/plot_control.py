@@ -12,7 +12,7 @@ of the stereonet, and will return the correct one for either the Schmidt- or
 Wulff-Net.
 """
 
-from gi.repository import Gtk, Gdk
+from gi.repository import Gtk, Gdk, Gio
 from matplotlib.figure import Figure
 from matplotlib.gridspec import GridSpec
 import mplstereonet
@@ -58,6 +58,17 @@ class PlotSettings(object):
                       }.items()))
         self.night_mode = False
         self.fig = Figure(dpi=self.props["pixel_density"])
+        self.g_settings = Gio.Settings.new("org.gtk.innstereo")
+        self.get_defaults()
+
+    def get_defaults(self):
+        """
+        Gets the defaults from the Gio.Settings.
+        """
+        self.props["draw_legend"] = self.g_settings.get_boolean("show-legend")
+        self.props["draw_grid"] = self.g_settings.get_boolean("draw-grid")
+        self.props["equal_area_projection"] = self.g_settings.get_boolean("stereonet-projection")
+        self.props["show_cross"] = self.g_settings.get_boolean("center-cross")
 
     def get_fig(self):
         """
