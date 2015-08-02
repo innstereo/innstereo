@@ -40,6 +40,7 @@ from .polar_axes import NorthPolarAxes
 from .file_parser import FileParseDialog
 from .rotation_dialog import RotationDialog
 from .viridis import viridis
+from .settings import AppSettings
 
 from .i18n import i18n
 
@@ -553,6 +554,15 @@ class MainWindow(object):
         state = self.settings.get_night_mode()
         Gtk.Settings.get_default().set_property("gtk-application-prefer-dark-theme", state)
         self.main_window.show_all()
+
+    def on_toolbutton_settings_clicked(self, toolbutton):
+        """
+        Opens the window where the GSettings can be set for Innstereo.
+
+        An instance of the window is created and then displayed.
+        """
+        set_win = AppSettings(self.main_window)
+        set_win.run()
 
     def on_toolbutton_eigenvector_clicked(self, widget):
         # pylint: disable=unused-argument
