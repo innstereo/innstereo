@@ -69,6 +69,8 @@ class PlotSettings(object):
         self.props["draw_grid"] = self.g_settings.get_boolean("draw-grid")
         self.props["equal_area_projection"] = self.g_settings.get_boolean("stereonet-projection")
         self.props["show_cross"] = self.g_settings.get_boolean("center-cross")
+        self.night_mode = self.g_settings.get_boolean("night-mode")
+        self.props["pixel_density"] = self.g_settings.get_value("pixel-density").get_int32()
 
     def get_fig(self):
         """

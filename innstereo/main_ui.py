@@ -85,6 +85,7 @@ class MainWindow(object):
 
         #Set up default options class
         self.settings = PlotSettings()
+        self.change_night_mode()
 
         #Set up layer view and connect signals
         self.layer_store = Gtk.TreeStore(bool, GdkPixbuf.Pixbuf, str, object)
@@ -2398,7 +2399,6 @@ class MainWindow(object):
         When the layer name is edited this function passes the new label to the
         TreeStore along with the correct path.
         """
-        print(path, type(path))
         self.layer_store[path][2] = new_label
         lyr_obj = self.layer_store[path][3]
 
