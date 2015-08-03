@@ -26,6 +26,12 @@
       <summary>Always use dark interface</summary>
       <description>When True the interface will default to the dark theme.</description>
     </key>
+    <key type="i" name="pixel-density">
+      <range min="1" max="1000"/>
+      <default>75</default>
+      <summary>Pixel Density (DPI)</summary>
+      <description>Sets the pixel density the plots will use in DPI.</description>
+    </key>
   </schema>
 </schemalist>
 
