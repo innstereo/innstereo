@@ -53,3 +53,8 @@ docs/_build/
 target/
 
 *~
+
+#Pynsist
+pynsist_pkgs/
+pynsist_pkgs64/
+pynsist_pkgs32/
