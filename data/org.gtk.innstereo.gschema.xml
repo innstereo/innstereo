@@ -21,6 +21,11 @@
       <summary>Center stereonet cross</summary>
       <description>When True a cross is displayed at the center of the stereonet.</description>
     </key>
+    <key type="b" name="night-mode">
+      <default>false</default>
+      <summary>Always use dark interface</summary>
+      <description>When True the interface will default to the dark theme.</description>
+    </key>
   </schema>
 </schemalist>
 

@@ -85,6 +85,7 @@ class MainWindow(object):
 
         #Set up default options class
         self.settings = PlotSettings()
+        self.change_night_mode()
 
         #Set up layer view and connect signals
         self.layer_store = Gtk.TreeStore(bool, GdkPixbuf.Pixbuf, str, object)

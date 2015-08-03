@@ -32,6 +32,7 @@ class AppSettings(object):
         self.switch_def_cross = self.builder.get_object("switch_def_cross")
         self.radiobutton_def_area = self.builder.get_object("radiobutton_def_area")
         self.radiobutton_def_angle = self.builder.get_object("radiobutton_def_angle")
+        self.switch_def_night_mode = self.builder.get_object("switch_def_night_mode")
         self.set_win.set_transient_for(main_window)
         self.builder.connect_signals(self)
 
@@ -50,6 +51,7 @@ class AppSettings(object):
             self.radiobutton_def_area.set_active(True)
         else:
             self.radiobutton_def_angle.set_active(True)
+        self.switch_def_night_mode.set_active(self.g_settings.get_boolean("night-mode"))
 
     def on_settings_window_destroy(self, widget):
         """
@@ -87,4 +89,9 @@ class AppSettings(object):
         """
         state = radiobutton.get_active()
         self.g_settings.set_boolean("stereonet-projection", state)
-                
+
+    def on_switch_def_night_mode_state_set(self, switch, state):
+        """
+        Sets a new state for whether the interface should default to dark.
+        """
+        self.g_settings.set_boolean("night-mode", state)                
