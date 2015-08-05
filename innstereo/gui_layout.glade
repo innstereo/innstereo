@@ -4798,7 +4798,7 @@ customizable grid.</property>
               <object class="GtkToolButton" id="toolbutton_layer_properties">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Layer properties</property>
+                <property name="label" translatable="yes">Layer Properties</property>
                 <property name="use_underline">True</property>
                 <property name="stock_id">gtk-color-picker</property>
                 <signal name="clicked" handler="on_toolbutton_layer_properties_clicked" swapped="no"/>
