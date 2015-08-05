@@ -32,6 +32,11 @@
       <summary>Pixel Density (DPI)</summary>
       <description>Sets the pixel density the plots will use in DPI.</description>
     </key>
+    <key type="b" name="highlight-mode">
+      <default>false</default>
+      <summary>Highlight mode</summary>
+      <description>Sets whether selected layers or features should be highlighted.</description>
+    </key>
   </schema>
 </schemalist>
 
