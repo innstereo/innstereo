@@ -55,7 +55,7 @@ class MainWindow(object):
     for individual functions of the GUI.
     """
 
-    def __init__(self, builder):
+    def __init__(self, builder, testing):
         """
         Initializes the main window and connects different functions.
 
@@ -84,7 +84,7 @@ class MainWindow(object):
         self.clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
 
         #Set up default options class
-        self.settings = PlotSettings()
+        self.settings = PlotSettings(testing)
         self.change_night_mode()
 
         #Set up layer view and connect signals
@@ -2936,7 +2936,7 @@ def startup(testing=False):
          "poles_to_lines", "image_linears_to_planes", "image_rotate",
          "image_pt_axis", "image_mean_vector", "image_fisher"))
 
-    gui_instance = MainWindow(builder)
+    gui_instance = MainWindow(builder, testing)
     builder.connect_signals(gui_instance)
     if testing == False:
         Gtk.main()

@@ -32,7 +32,7 @@ class PlotSettings(object):
     one for either the Schmidt- or Wulff-Net.
     """
 
-    def __init__(self):
+    def __init__(self, testing):
         """
         Initalizes the default values, colors and the matplotlib-figure.
 
@@ -58,8 +58,12 @@ class PlotSettings(object):
                       }.items()))
         self.night_mode = False
         self.fig = Figure(dpi=self.props["pixel_density"])
-        self.g_settings = Gio.Settings.new("org.gtk.innstereo")
-        self.get_defaults()
+        if testing == False:
+            try:
+                self.g_settings = Gio.Settings.new("org.gtk.innstereo")
+                self.get_defaults()
+            except:
+                pass
 
     def get_defaults(self):
         """
