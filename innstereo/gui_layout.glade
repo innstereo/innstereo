@@ -40,7 +40,16 @@ In Preperation (2015)</property>
     <property name="website">http://innstereo.github.io</property>
     <property name="website_label" translatable="yes">http://innstereo.github.io</property>
     <property name="authors">Tobias Schönberg
-Matteo Pasotti</property>
+Matteo Pasotti
+
+
+Special thanks to:
+Tristan Van Berkom
+Thomas Kluyver
+Andreas Kositz
+Hugo Ortner
+Martin Reiser
+    </property>
     <property name="logo">logo_about.svg</property>
     <property name="license_type">gpl-2-0</property>
     <signal name="close" handler="on_aboutdialog_close" swapped="no"/>
