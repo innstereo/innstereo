@@ -63,7 +63,11 @@ class i18n:
 
     gettext.find(self.app_name, mo_location)
 
-    locale.bindtextdomain(self.app_name, locale_dir)
+    #This try-except is needed for platforms that have no access to locale.bindtextdomain()
+    try:
+        locale.bindtextdomain(self.app_name, locale_dir)
+    except:
+        pass
 
     gettext.bindtextdomain (self.app_name, locale_dir)
 
