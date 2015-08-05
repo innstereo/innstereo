@@ -35,6 +35,7 @@ class AppSettings(object):
         self.switch_def_night_mode = self.builder.get_object("switch_def_night_mode")
         self.spinbutton_def_pixeldens = self.builder.get_object("spinbutton_def_pixeldens")
         self.adjustment_def_pixeldens = self.builder.get_object("adjustment_def_pixeldens")
+        self.switch_def_highlight = self.builder.get_object("switch_def_highlight")
         self.set_win.set_transient_for(main_window)
         self.builder.connect_signals(self)
 
@@ -57,6 +58,7 @@ class AppSettings(object):
         pixel_density = self.g_settings.get_value("pixel-density")
         pixel_density = pixel_density.get_int32()
         self.adjustment_def_pixeldens.set_value(pixel_density)
+        self.switch_def_highlight.set_active(self.g_settings.get_boolean("highlight-mode"))
 
     def on_settings_window_destroy(self, widget):
         """
@@ -108,3 +110,9 @@ class AppSettings(object):
         value = spinbutton.get_value()
         value = GLib.Variant.new_int32(value)
         self.g_settings.set_value("pixel-density", value)
+
+    def on_switch_def_highlight_state_set(self, switch, state):
+        """
+        Sets a new default for layer and feature highlighting.
+        """
+        self.g_settings.set_boolean("highlight-mode", state)
