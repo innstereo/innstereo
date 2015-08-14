@@ -1,4 +1,7 @@
 from distutils.core import setup
+from os import path
+
+pjoin = path.join
 
 setup(
     name = "innstereo",
@@ -20,7 +23,7 @@ setup(
         "Topic :: Scientific/Engineering",
         ],
     packages = ["innstereo"],
-    scripts = ["bin/innstereo"],
+    scripts = [pjoin("bin","innstereo")],
     install_requires = ["numpy >= 1.6.0",
                         "scipy >= 0.13",
                         "matplotlib >= 1.4.0",
@@ -29,15 +32,15 @@ setup(
                       "scipy >= 0.13",
                       "matplotlib >= 1.4.0",
                       "mplstereonet >= 0.4"],
-    py_modules = ["__init__",
-                  "dataview_classes",
-                  "dialog_windows",
-                  "file_parser",
-                  "layer_types",
-                  "layer_view",
-                  "main_ui",
-                  "plot_control",
-                  "polar_axes"],
+    py_modules = [pjoin("innstereo","__init__"),
+                  pjoin("innstereo","dataview_classes"),
+                  pjoin("innstereo","dialog_windows"),
+                  pjoin("innstereo","file_parser"),
+                  pjoin("innstereo","layer_types"),
+                  pjoin("innstereo","layer_view"),
+                  pjoin("innstereo","main_ui"),
+                  pjoin("innstereo","plot_control"),
+                  pjoin("innstereo","polar_axes")],
     package_data = {"ibk_st": ["calculate_bestfit_points.svg",
                                "calculate_eigenvector.svg",
                                "calculate_plane_intersect.svg",
