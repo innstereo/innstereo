@@ -23,7 +23,7 @@ setup(
         "Topic :: Scientific/Engineering",
         ],
     packages = ["innstereo"],
-    scripts = [pjoin("bin","innstereo")],
+    scripts = [pjoin("bin","innstereo.py")],
     install_requires = ["numpy >= 1.6.0",
                         "scipy >= 0.13",
                         "matplotlib >= 1.4.0",
