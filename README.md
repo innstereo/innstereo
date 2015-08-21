@@ -22,7 +22,7 @@ Check the [releases page](https://github.com/tobias47n9e/innstereo/releases) for
 
 Currently the best way to test the program is to do the following on Linux or a Linux-Virtual-Machine. In both cases it is a good idea to test within a virtual environment:
 
-1. Install the Python 3 packages of Matplotlib, Numpy, Git, Scipy.
+1. Install the Python 3 packages of Matplotlib, Numpy, Git, Scipy. The project targets GTK+ version 3.14 and above.
 
 2. Download the newest version of MPLStereonet:
 ```Shell
@@ -34,7 +34,13 @@ pip3 install git+git://github.com/joferkington/mplstereonet.git
 git clone https://github.com/tobias47n9e/innstereo
 ```
 
-4. Run the program by executing the following code in the project folder.
+4. Copy and compile the glib-schemas (as supuser in the project directory):
+```Shell
+cp /data/org.gtk.innstereo.gschema.xml /usr/share/glib-2.0/schemas/
+glib-compile-schemas /usr/share/glib-2.0/schemas/
+```
+
+5. Run the program by executing the following code in the project folder.
 ```Shell
 python3 -m innstereo
 ```
