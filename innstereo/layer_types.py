@@ -569,7 +569,7 @@ class PlaneLayer(object):
         Expects a boolean. This method is called by the layer-properties
         dialog when a new value is set.
         """
-        self.pros["draw_gcircles"] = new_draw_gcircles_state
+        self.props["draw_gcircles"] = new_draw_gcircles_state
 
     def get_draw_poles(self):
         """

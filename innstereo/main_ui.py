@@ -1307,7 +1307,7 @@ class MainWindow(object):
             layer_prop = LayerProperties(lyr_obj, self.redraw_plot, self.main_window)
             layer_prop.run()
 
-    def on_toolbutton_layer_properties_clicked(self, toolbutton):
+    def on_toolbutton_layer_properties_clicked(self, toolbutton, testing=False):
         """
         Triggered when the toolbutton for layer properties is pressed.
 
@@ -1327,7 +1327,10 @@ class MainWindow(object):
         row = row_list[0]
         lyr_obj = self.layer_store[row][3]
         layer_prop = LayerProperties(lyr_obj, self.redraw_plot, self.main_window)
-        layer_prop.run()
+        if testing == False:
+            layer_prop.run()
+
+        return layer_prop
 
     def layer_selection_changed(self, selection):
         """
