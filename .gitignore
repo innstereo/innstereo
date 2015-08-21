@@ -58,3 +58,6 @@ target/
 pynsist_pkgs/
 pynsist_pkgs64/
 pynsist_pkgs32/
+
+#Glib
+*.compiled
