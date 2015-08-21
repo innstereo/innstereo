@@ -8,6 +8,10 @@ modules and clases are controlled from this class. The startup-function creates
 the first instance of the GUI when the program starts.
 """
 
+import gi
+
+gi.require_version('Gtk', '3.0')
+
 from gi.repository import Gtk, Gdk, GdkPixbuf
 from matplotlib.backends.backend_gtk3cairo import (FigureCanvasGTK3Cairo
                                                    as FigureCanvas)
