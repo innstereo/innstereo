@@ -7,7 +7,6 @@ Some issues are discussed at the projects issue tracker: https://github.com/tobi
  - Drag & Drop for Data View
  - Data sorting dialog
  - Undo & Redo
- - Translations
  - Adjustable legend position
  - Pixel density adjustment does not work properly
 
