@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: innstereo\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-28 13:05+0200\n"
-"PO-Revision-Date: 2015-07-28 14:49+0200\n"
+"PO-Revision-Date: 2015-08-17 10:29+0200\n"
 "Last-Translator: tobias <tobias47n9e@gmail.com>\n"
 "Language-Team: German\n"
 "Language: de\n"
@@ -16,6 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.4\n"
 
 #: innstereo/gui_layout.glade:2191
 msgid "*"
@@ -97,7 +98,7 @@ msgstr "Rotierete Daten Hinzufügen"
 
 #: innstereo/gui_layout.glade:4887
 msgid "Adds an empty row to the current layer."
-msgstr ""
+msgstr "Fügt der ausgewählten Ebene eine leere Zeile hinzu."
 
 #: innstereo/dialog_windows.py:652
 msgid "All Files"
@@ -109,7 +110,7 @@ msgstr "Übernehmen"
 
 #: innstereo/gui_layout.glade:1604
 msgid "Assign columns"
-msgstr ""
+msgstr "Spalten Zuordnen"
 
 #: innstereo/gui_layout.glade:1995
 msgid "Blues"
@@ -117,7 +118,7 @@ msgstr ""
 
 #: innstereo/gui_layout.glade:3892
 msgid "Bottom Cutoff"
-msgstr ""
+msgstr "Untere Grenze"
 
 #: innstereo/gui_layout.glade:1998
 msgid "BuGn"
@@ -137,11 +138,11 @@ msgstr "Berechnen"
 
 #: innstereo/gui_layout.glade:4495
 msgid "Calculate Best Plane"
-msgstr ""
+msgstr "Berechne durchschnittliche Fläche"
 
 #: innstereo/gui_layout.glade:4480
 msgid "Calculate Best Pole"
-msgstr ""
+msgstr "Berechne durchschnittlichen Polpunkt"
 
 #: innstereo/gui_layout.glade:4568
 msgid "Calculate Eigenvector"
@@ -153,19 +154,16 @@ msgstr "Berechne PT-Achsen"
 
 #: innstereo/gui_layout.glade:4597
 msgid "Calculates the P, T, and B axis of each row in a fault plane layer."
-msgstr ""
+msgstr "Berechnet die P, T und B-Achsen für jede Zeile eines Störungsebene."
 
 #: innstereo/gui_layout.glade:4567
 msgid ""
-"Calculates the eigenvectors and eigenvalue of the selected datasets and adds "
-"it as a new layer."
-msgstr ""
+"Calculates the eigenvectors and eigenvalue of the selected datasets and adds it as a new layer."
+msgstr "Berechnet die Eigenvektoren und -werte des ausgewählten Ebene."
 
-#: innstereo/gui_layout.glade:142 innstereo/gui_layout.glade:826
-#: innstereo/gui_layout.glade:1085 innstereo/gui_layout.glade:1152
-#: innstereo/gui_layout.glade:1208 innstereo/gui_layout.glade:1266
-#: innstereo/gui_layout.glade:1340 innstereo/gui_layout.glade:1497
-#: innstereo/gui_layout.glade:2245
+#: innstereo/gui_layout.glade:142 innstereo/gui_layout.glade:826 innstereo/gui_layout.glade:1085
+#: innstereo/gui_layout.glade:1152 innstereo/gui_layout.glade:1208 innstereo/gui_layout.glade:1266
+#: innstereo/gui_layout.glade:1340 innstereo/gui_layout.glade:1497 innstereo/gui_layout.glade:2245
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -175,7 +173,7 @@ msgstr "Leinwandfarbe"
 
 #: innstereo/gui_layout.glade:1321
 msgid "Choose file to parse"
-msgstr ""
+msgstr "Datei Auswählen"
 
 #: innstereo/gui_layout.glade:2158
 msgid "Circle"
@@ -234,8 +232,7 @@ msgid "Creates a new fold dataset."
 msgstr "Erstellt einen neuen Datensatz für Falten."
 
 #: innstereo/gui_layout.glade:4682
-msgid ""
-"Creates a new layer group. Selected layers will be placed into the new group."
+msgid "Creates a new layer group. Selected layers will be placed into the new group."
 msgstr "Erstellt eine neue Gruppenebene. Alle markierten Ebenen werden in die neue Gruppe verschoben."
 
 #: innstereo/gui_layout.glade:4697
@@ -290,8 +287,7 @@ msgstr "Diamant"
 msgid "Diamond thin"
 msgstr "Dünner Diamant"
 
-#: innstereo/gui_layout.glade:985 innstereo/gui_layout.glade:1709
-#: innstereo/gui_layout.glade:1782
+#: innstereo/gui_layout.glade:985 innstereo/gui_layout.glade:1709 innstereo/gui_layout.glade:1782
 msgid "Dip"
 msgstr "Einfallen"
 
@@ -408,14 +404,11 @@ msgid "Finds the ideal plane for a set of linear elements."
 msgstr "Berechnet den für alle Lineare bestpassenden Großkreis."
 
 #: innstereo/gui_layout.glade:4509
-msgid ""
-"Finds the mean vector of a set of linears. At least one linear layer has to "
-"be selected."
+msgid "Finds the mean vector of a set of linears. At least one linear layer has to be selected."
 msgstr "Berechnet die durchschnittliche Richtung aller ausgewählten Lineare."
 
 #: innstereo/gui_layout.glade:4552
-msgid ""
-"Finds the planes that lie normal to the currently selected linear layers."
+msgid "Finds the planes that lie normal to the currently selected linear layers."
 msgstr "Findet die Großkreise, die normal auf die ausgewählten Lineare stehen."
 
 #: innstereo/main_ui.py:201
@@ -464,11 +457,11 @@ msgstr ""
 
 #: innstereo/gui_layout.glade:2194
 msgid "Hexagon 1"
-msgstr ""
+msgstr "Hexagon 1"
 
 #: innstereo/gui_layout.glade:2198
 msgid "Hexagon 2"
-msgstr ""
+msgstr "Hexagon 2"
 
 #: innstereo/gui_layout.glade:229
 msgid "Highlight Mode"
@@ -617,8 +610,7 @@ msgid "Opens a dialog to save the project."
 msgstr "Öffnet einen Dialog um das Projekt zu speichern."
 
 #: innstereo/gui_layout.glade:4440
-msgid ""
-"Opens the plot-properties dialog, that controls the appearance of the plot."
+msgid "Opens the plot-properties dialog, that controls the appearance of the plot."
 msgstr "Öffnet den Dialog für die allgemeinen Einstellungen."
 
 #: innstereo/gui_layout.glade:2016
@@ -671,7 +663,7 @@ msgstr "Diagrammeinstellungen"
 
 #: innstereo/gui_layout.glade:2202
 msgid "Plus"
-msgstr ""
+msgstr "Plus"
 
 #: innstereo/gui_layout.glade:2150
 msgid "Point"
@@ -754,9 +746,7 @@ msgid "Rotate Layers"
 msgstr "Ebene Rotieren"
 
 #: innstereo/gui_layout.glade:4582
-msgid ""
-"Rotates the currently selected layers. The rotation settings are set in a "
-"dialog."
+msgid "Rotates the currently selected layers. The rotation settings are set in a dialog."
 msgstr "Rotiert die ausgewählten Ebenen. Öffnet einen Dialog in dem die Rotation angepasst wird."
 
 #: innstereo/gui_layout.glade:1002
@@ -808,6 +798,8 @@ msgid ""
 "Sense of linears is given as the first integer of the column.\n"
 "(0 = unknown, 1 = up, 2 = down, 3 = dextral, 4 = sinistral)"
 msgstr ""
+"Schersinn der Lineare entspricht der ersten Stelle der Spalte.\n"
+"(0 = unbekannt, 1 = Aufschiebung, 2 = Abschiebung, 3 = Dextral, 4 = Sinistral)"
 
 #: innstereo/gui_layout.glade:1542
 msgid "Separator options"
@@ -831,7 +823,7 @@ msgstr "Tabelle Anzeigen"
 
 #: innstereo/gui_layout.glade:3494
 msgid "Single Line Color"
-msgstr ""
+msgstr "Konturen einer Farbe"
 
 #: innstereo/gui_layout.glade:2541 innstereo/gui_layout.glade:2874
 msgid "Size"
@@ -867,14 +859,13 @@ msgstr ""
 
 #: innstereo/gui_layout.glade:3752
 msgid "Steps"
-msgstr ""
+msgstr "Intervalle"
 
 #: innstereo/gui_layout.glade:4040
 msgid "Stereo and Rose plot"
 msgstr "Stereonetz und Rosendiagramm"
 
-#: innstereo/gui_layout.glade:352 innstereo/gui_layout.glade:4024
-#: innstereo/gui_layout.glade:4186
+#: innstereo/gui_layout.glade:352 innstereo/gui_layout.glade:4024 innstereo/gui_layout.glade:4186
 msgid "Stereonet"
 msgstr "Stereonetz"
 
@@ -896,7 +887,7 @@ msgstr "Stil"
 
 #: innstereo/gui_layout.glade:1870
 msgid "Tectonics FPL Notation"
-msgstr ""
+msgstr "Tectonics FPL Notation"
 
 #: innstereo/dialog_windows.py:319
 msgid "Text Files"
@@ -904,19 +895,19 @@ msgstr "Textdateien"
 
 #: innstereo/gui_layout.glade:2162
 msgid "Triangle down"
-msgstr ""
+msgstr "Dreieck nach unten"
 
 #: innstereo/gui_layout.glade:2170
 msgid "Triangle left"
-msgstr ""
+msgstr "Dreieck nach links"
 
 #: innstereo/gui_layout.glade:2174
 msgid "Triangle right"
-msgstr ""
+msgstr "Dreieck nach rechts"
 
 #: innstereo/gui_layout.glade:2166
 msgid "Triangle up"
-msgstr ""
+msgstr "Dreieck nach oben"
 
 #: innstereo/gui_layout.glade:3722
 msgid "Upper Limit"
@@ -924,7 +915,7 @@ msgstr "Obere Grenze"
 
 #: innstereo/gui_layout.glade:2218
 msgid "Vertical Line"
-msgstr ""
+msgstr "Vertikale Linie"
 
 #: innstereo/gui_layout.glade:4255
 msgid "View Online Help"
@@ -936,8 +927,7 @@ msgstr "Webseite Besuchen"
 
 #: innstereo/gui_layout.glade:4872
 msgid ""
-"When turned on, features can be added to the currently selected layer by "
-"clicking on the stereonet."
+"When turned on, features can be added to the currently selected layer by clicking on the stereonet."
 msgstr ""
 
 #: innstereo/gui_layout.glade:2206
@@ -1040,8 +1030,7 @@ msgstr "http://innstereo.github.io"
 msgid "kamb"
 msgstr ""
 
-#: innstereo/gui_layout.glade:3781 innstereo/gui_layout.glade:3954
-#: innstereo/gui_layout.glade:3970
+#: innstereo/gui_layout.glade:3781 innstereo/gui_layout.glade:3954 innstereo/gui_layout.glade:3970
 msgid "label"
 msgstr ""
 
