@@ -4443,6 +4443,7 @@ customizable grid.</property>
     <property name="title" translatable="yes">InnStereo</property>
     <property name="default_width">1200</property>
     <property name="default_height">600</property>
+    <property name="icon">innstereo_icon_128.png</property>
     <signal name="destroy" handler="on_main_window_destroy" swapped="no"/>
     <child>
       <object class="GtkBox" id="box1">
