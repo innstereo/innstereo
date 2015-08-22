@@ -1,7 +1,7 @@
-# Italian translations for PACKAGE package
-# Traduzioni italiane per il pacchetto PACKAGE..
+# Italian translations for InnStereo package
+# Traduzioni italiane per il pacchetto InnStereo..
 # Copyright (C) 2015 THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# This file is distributed under the same license as the InnStereo package.
 # Matteo Pasotti <matteo.pasotti@gmail.com>, 2015.
 #
 msgid ""
