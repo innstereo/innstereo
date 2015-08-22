@@ -2388,15 +2388,15 @@ customizable grid.</property>
     <data>
       <row>
         <col id="0" translatable="yes">Butt</col>
-        <col id="1" translatable="yes">butt</col>
+        <col id="1">butt</col>
       </row>
       <row>
         <col id="0" translatable="yes">Round</col>
-        <col id="1" translatable="yes">round</col>
+        <col id="1">round</col>
       </row>
       <row>
         <col id="0" translatable="yes">Projecting</col>
-        <col id="1" translatable="yes">projecting</col>
+        <col id="1">projecting</col>
       </row>
     </data>
   </object>
@@ -2404,100 +2404,133 @@ customizable grid.</property>
     <columns>
       <!-- column-name gchararray1 -->
       <column type="gchararray"/>
+      <!-- column-name gchararray2 -->
+      <column type="gchararray"/>
     </columns>
     <data>
       <row>
         <col id="0" translatable="yes">Blues</col>
+        <col id="1">Blues</col>
       </row>
       <row>
         <col id="0" translatable="yes">BuGn</col>
+        <col id="1">BuGn</col>
       </row>
       <row>
         <col id="0" translatable="yes">BuPu</col>
+        <col id="1">BuPu</col>
       </row>
       <row>
         <col id="0" translatable="yes">GnBu</col>
+        <col id="1">GnBu</col>
       </row>
       <row>
         <col id="0" translatable="yes">Greens</col>
+        <col id="1">Greens</col>
       </row>
       <row>
         <col id="0" translatable="yes">Greys</col>
+        <col id="1">Greys</col>
       </row>
       <row>
         <col id="0" translatable="yes">Oranges</col>
+        <col id="1">Oranges</col>
       </row>
       <row>
         <col id="0" translatable="yes">OrRd</col>
+        <col id="1">OrRd</col>
       </row>
       <row>
         <col id="0" translatable="yes">PuBu</col>
+        <col id="1">PuBu</col>
       </row>
       <row>
         <col id="0" translatable="yes">PuBuGn</col>
+        <col id="1">PuBuGn</col>
       </row>
       <row>
         <col id="0" translatable="yes">PuRd</col>
+        <col id="1">PuRd</col>
       </row>
       <row>
         <col id="0" translatable="yes">Purples</col>
+        <col id="1">Purples</col>
       </row>
       <row>
         <col id="0" translatable="yes">RdPu</col>
+        <col id="1">RdPu</col>
       </row>
       <row>
         <col id="0" translatable="yes">Reds</col>
+        <col id="1">Reds</col>
       </row>
       <row>
         <col id="0" translatable="yes">YlGn</col>
+        <col id="1">YlGn</col>
       </row>
       <row>
         <col id="0" translatable="yes">YlGnBu</col>
+        <col id="1">YlGnBu</col>
       </row>
       <row>
         <col id="0" translatable="yes">YlOrBr</col>
+        <col id="1">YlOrBr</col>
       </row>
       <row>
         <col id="0" translatable="yes">YlOrRd</col>
+        <col id="1">YlOrRd</col>
       </row>
       <row>
         <col id="0" translatable="yes">afmhot</col>
+        <col id="1">afmhot</col>
       </row>
       <row>
         <col id="0" translatable="yes">autumn</col>
+        <col id="1">autumn</col>
       </row>
       <row>
         <col id="0" translatable="yes">bone</col>
+        <col id="1">bone</col>
       </row>
       <row>
         <col id="0" translatable="yes">cool</col>
+        <col id="1">cool</col>
       </row>
       <row>
         <col id="0" translatable="yes">copper</col>
+        <col id="1">copper</col>
       </row>
       <row>
         <col id="0" translatable="yes">gist_heat</col>
+        <col id="1">gist_heat</col>
       </row>
       <row>
         <col id="0" translatable="yes">gray</col>
+        <col id="1">gray</col>
       </row>
       <row>
         <col id="0" translatable="yes">hot</col>
+        <col id="1">hot</col>
       </row>
       <row>
         <col id="0" translatable="yes">pink</col>
+        <col id="1">pink</col>
       </row>
       <row>
         <col id="0" translatable="yes">spring</col>
+        <col id="1">spring</col>
       </row>
       <row>
         <col id="0" translatable="yes">summer</col>
+        <col id="1">summer</col>
       </row>
       <row>
         <col id="0" translatable="yes">winter</col>
+        <col id="1">winter</col>
       </row>
       <row>
         <col id="0" translatable="yes">viridis</col>
+        <col id="1">viridis</col>
       </row>
     </data>
   </object>
@@ -2511,19 +2544,19 @@ customizable grid.</property>
     <data>
       <row>
         <col id="0" translatable="yes">Exponential Kamb</col>
-        <col id="1" translatable="yes">exponential_kamb</col>
+        <col id="1">exponential_kamb</col>
       </row>
       <row>
         <col id="0" translatable="yes">Linear Kamb</col>
-        <col id="1" translatable="yes">linear_kamb</col>
+        <col id="1">linear_kamb</col>
       </row>
       <row>
         <col id="0" translatable="yes">Kamb Method</col>
-        <col id="1" translatable="yes">kamb</col>
+        <col id="1">kamb</col>
       </row>
       <row>
         <col id="0" translatable="yes">Schmidt (1 %)</col>
-        <col id="1" translatable="yes">schmidt</col>
+        <col id="1">schmidt</col>
       </row>
     </data>
   </object>
@@ -2537,19 +2570,19 @@ customizable grid.</property>
     <data>
       <row>
         <col id="0" translatable="yes">Solid</col>
-        <col id="1" translatable="yes">-</col>
+        <col id="1">-</col>
       </row>
       <row>
         <col id="0" translatable="yes">Dashed</col>
-        <col id="1" translatable="yes">--</col>
+        <col id="1">--</col>
       </row>
       <row>
         <col id="0" translatable="yes">Dash-Dotted</col>
-        <col id="1" translatable="yes">-.</col>
+        <col id="1">-.</col>
       </row>
       <row>
         <col id="0" translatable="yes">Dotted</col>
-        <col id="1" translatable="yes">:</col>
+        <col id="1">:</col>
       </row>
     </data>
   </object>
@@ -2563,79 +2596,79 @@ customizable grid.</property>
     <data>
       <row>
         <col id="0" translatable="yes">Point</col>
-        <col id="1" translatable="yes">.</col>
+        <col id="1">.</col>
       </row>
       <row>
         <col id="0" translatable="yes">Pixel</col>
-        <col id="1" translatable="yes">,</col>
+        <col id="1">,</col>
       </row>
       <row>
         <col id="0" translatable="yes">Circle</col>
-        <col id="1" translatable="yes">o</col>
+        <col id="1">o</col>
       </row>
       <row>
         <col id="0" translatable="yes">Triangle down</col>
-        <col id="1" translatable="yes">v</col>
+        <col id="1">v</col>
       </row>
       <row>
         <col id="0" translatable="yes">Triangle up</col>
-        <col id="1" translatable="yes">^</col>
+        <col id="1">^</col>
       </row>
       <row>
         <col id="0" translatable="yes">Triangle left</col>
-        <col id="1" translatable="yes">&lt;</col>
+        <col id="1">&lt;</col>
       </row>
       <row>
         <col id="0" translatable="yes">Triangle right</col>
-        <col id="1" translatable="yes">&gt;</col>
+        <col id="1">&gt;</col>
       </row>
       <row>
         <col id="0" translatable="yes">Square</col>
-        <col id="1" translatable="yes">s</col>
+        <col id="1">s</col>
       </row>
       <row>
         <col id="0" translatable="yes">Octagon</col>
-        <col id="1" translatable="yes">8</col>
+        <col id="1">8</col>
       </row>
       <row>
         <col id="0" translatable="yes">Pentagon</col>
-        <col id="1" translatable="yes">p</col>
+        <col id="1">p</col>
       </row>
       <row>
         <col id="0" translatable="yes">Star</col>
-        <col id="1" translatable="yes">*</col>
+        <col id="1">*</col>
       </row>
       <row>
         <col id="0" translatable="yes">Hexagon 1</col>
-        <col id="1" translatable="yes">h</col>
+        <col id="1">h</col>
       </row>
       <row>
         <col id="0" translatable="yes">Hexagon 2</col>
-        <col id="1" translatable="yes">H</col>
+        <col id="1">H</col>
       </row>
       <row>
         <col id="0" translatable="yes">Plus</col>
-        <col id="1" translatable="yes">+</col>
+        <col id="1">+</col>
       </row>
       <row>
         <col id="0" translatable="yes">X</col>
-        <col id="1" translatable="yes">x</col>
+        <col id="1">x</col>
       </row>
       <row>
         <col id="0" translatable="yes">Diamond</col>
-        <col id="1" translatable="yes">D</col>
+        <col id="1">D</col>
       </row>
       <row>
         <col id="0" translatable="yes">Diamond thin</col>
-        <col id="1" translatable="yes">d</col>
+        <col id="1">d</col>
       </row>
       <row>
         <col id="0" translatable="yes">Vertical Line</col>
-        <col id="1" translatable="yes">|</col>
+        <col id="1">|</col>
       </row>
       <row>
         <col id="0" translatable="yes">Horizontal Line</col>
-        <col id="1" translatable="yes">_</col>
+        <col id="1">_</col>
       </row>
     </data>
   </object>
