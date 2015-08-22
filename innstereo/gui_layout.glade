@@ -34,11 +34,11 @@ Author: Tobias Schönberg
     <property name="window_position">center</property>
     <property name="icon_name">help-about</property>
     <property name="type_hint">splashscreen</property>
-    <property name="program_name">An open-source structural geology program based on mplstereonet</property>
+    <property name="program_name">InnStereo</property>
     <property name="copyright" translatable="yes">How to cite:
 In Preperation (2015)</property>
     <property name="website">http://innstereo.github.io</property>
-    <property name="website_label" translatable="yes">http://innstereo.github.io</property>
+    <property name="website_label">http://innstereo.github.io</property>
     <property name="authors">Tobias Schönberg
 Matteo Pasotti
 
