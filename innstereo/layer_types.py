@@ -14,6 +14,9 @@ are stored in these classes.
 
 from gi.repository import Gdk, GdkPixbuf
 from collections import OrderedDict
+from .i18n import i18n
+
+_ = i18n().language().gettext
 
 
 class PlaneLayer(object):

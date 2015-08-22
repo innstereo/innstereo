@@ -11,6 +11,7 @@ and FileChooserParse-class.
 from gi.repository import Gtk
 import matplotlib.colors as colors
 import os
+from .i18n import i18n
 
 
 class AboutDialog(object):
@@ -31,6 +32,7 @@ class AboutDialog(object):
         are declared in the Glade file are connected to this class.
         """
         self.builder = Gtk.Builder()
+        self.builder.set_translation_domain(i18n().get_ts_domain())
         script_dir = os.path.dirname(__file__)
         rel_path = "gui_layout.glade"
         abs_path = os.path.join(script_dir, rel_path)
@@ -89,6 +91,7 @@ class StereonetProperties(object):
         window.
         """
         self.builder = Gtk.Builder()
+        self.builder.set_translation_domain(i18n().get_ts_domain())
         script_dir = os.path.dirname(__file__)
         rel_path = "gui_layout.glade"
         abs_path = os.path.join(script_dir, rel_path)
@@ -308,6 +311,7 @@ class FileChooserParse(object):
 
     def __init__(self, run_file_parser, main_window):
         self.builder = Gtk.Builder()
+        self.builder.set_translation_domain(i18n().get_ts_domain())
         script_dir = os.path.dirname(__file__)
         rel_path = "gui_layout.glade"
         abs_path = os.path.join(script_dir, rel_path)
@@ -391,6 +395,7 @@ class FileChooserExport(object):
 
     def __init__(self, export_data, main_window):
         self.builder = Gtk.Builder()
+        self.builder.set_translation_domain(i18n().get_ts_domain())
         self.export_data = export_data
         script_dir = os.path.dirname(__file__)
         rel_path = "gui_layout.glade"
@@ -488,6 +493,7 @@ class OverwriteDialog(object):
 
     def __init__(self, call_overwrite, export_dialog):
         self.builder = Gtk.Builder()
+        self.builder.set_translation_domain(i18n().get_ts_domain())
         self.call_overwrite = call_overwrite
         script_dir = os.path.dirname(__file__)
         rel_path = "gui_layout.glade"
@@ -540,6 +546,7 @@ class FileChooserSave(object):
 
     def __init__(self, main_window, data):
         self.builder = Gtk.Builder()
+        self.builder.set_translation_domain(i18n().get_ts_domain())
         self.data = data
         script_dir = os.path.dirname(__file__)
         rel_path = "gui_layout.glade"
@@ -636,6 +643,7 @@ class FileChooserOpen(object):
 
     def __init__(self, main_window, open_project):
         self.builder = Gtk.Builder()
+        self.builder.set_translation_domain(i18n().get_ts_domain())
         script_dir = os.path.dirname(__file__)
         rel_path = "gui_layout.glade"
         abs_path = os.path.join(script_dir, rel_path)

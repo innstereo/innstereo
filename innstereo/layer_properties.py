@@ -12,6 +12,7 @@ from gi.repository import Gtk
 import matplotlib.colors as colors
 import os
 import numpy as np
+from .i18n import i18n
 
 
 class LayerProperties(object):
@@ -30,6 +31,7 @@ class LayerProperties(object):
         the signals.        
         """
         self.builder = Gtk.Builder()
+        self.builder.set_translation_domain(i18n().get_ts_domain())
         script_dir = os.path.dirname(__file__)
         rel_path = "gui_layout.glade"
         abs_path = os.path.join(script_dir, rel_path)
@@ -718,7 +720,7 @@ class LayerProperties(object):
         combo_iter = combobox.get_active_iter()
         if combo_iter != None:
             model = combobox.get_model()
-            new_colormap = model[combo_iter][0]
+            new_colormap = model[combo_iter][1]
             self.changes.append(
                 lambda: self.layer.set_colormap(new_colormap))
 

@@ -15,7 +15,9 @@ confirm-edit-after-move-between-cells-with-tab-key
 """
 
 from gi.repository import Gtk, Gdk, GLib
+from .i18n import i18n
 
+_ = i18n().language().gettext
 
 class DataTreeView(Gtk.TreeView):
 
@@ -200,7 +202,7 @@ class PlaneDataView(DataTreeView):
 
         renderer_dir = Gtk.CellRendererText()
         renderer_dir.set_property("editable", True)
-        column_dir = Gtk.TreeViewColumn("Dir", renderer_dir, text=0)
+        column_dir = Gtk.TreeViewColumn(_("Dir"), renderer_dir, text=0)
         column_dir.set_alignment(0.5)
         column_dir.set_expand(True)
         column_dir.set_cell_data_func(renderer_dir, 
@@ -211,7 +213,7 @@ class PlaneDataView(DataTreeView):
 
         renderer_dip = Gtk.CellRendererText()
         renderer_dip.set_property("editable", True)
-        column_dip = Gtk.TreeViewColumn("Dip", renderer_dip, text=1)
+        column_dip = Gtk.TreeViewColumn(_("Dip"), renderer_dip, text=1)
         column_dip.set_alignment(0.5)
         column_dip.set_expand(True)
         column_dip.set_cell_data_func(renderer_dip, 
@@ -222,7 +224,7 @@ class PlaneDataView(DataTreeView):
 
         renderer_strat = Gtk.CellRendererText()
         renderer_strat.set_property("editable", True)
-        column_strat = Gtk.TreeViewColumn("Strat", renderer_strat, text=2)
+        column_strat = Gtk.TreeViewColumn(_("Strat"), renderer_strat, text=2)
         column_strat.set_alignment(0.5)
         column_strat.set_expand(True)
         self.append_column(column_strat)
@@ -289,7 +291,7 @@ class FaultPlaneDataView(DataTreeView):
 
         renderer_dir = Gtk.CellRendererText()
         renderer_dir.set_property("editable", True)
-        column_dir = Gtk.TreeViewColumn("Dir", renderer_dir, text=0)
+        column_dir = Gtk.TreeViewColumn(_("Dir"), renderer_dir, text=0)
         column_dir.set_alignment(0.5)
         column_dir.set_expand(True)
         column_dir.set_cell_data_func(renderer_dir, 
@@ -300,7 +302,7 @@ class FaultPlaneDataView(DataTreeView):
 
         renderer_dip = Gtk.CellRendererText()
         renderer_dip.set_property("editable", True)
-        column_dip = Gtk.TreeViewColumn("Dip", renderer_dip, text=1)
+        column_dip = Gtk.TreeViewColumn(_("Dip"), renderer_dip, text=1)
         column_dip.set_alignment(0.5)
         column_dip.set_expand(True)
         column_dip.set_cell_data_func(renderer_dip, 
@@ -311,7 +313,7 @@ class FaultPlaneDataView(DataTreeView):
 
         renderer_ldir = Gtk.CellRendererText()
         renderer_ldir.set_property("editable", True)
-        column_ldir = Gtk.TreeViewColumn("L-Dir", renderer_ldir, text=2)
+        column_ldir = Gtk.TreeViewColumn(_("L-Dir"), renderer_ldir, text=2)
         column_ldir.set_alignment(0.5)
         column_ldir.set_expand(True)
         column_ldir.set_cell_data_func(renderer_ldir, 
@@ -322,7 +324,7 @@ class FaultPlaneDataView(DataTreeView):
 
         renderer_ldip = Gtk.CellRendererText()
         renderer_ldip.set_property("editable", True)
-        column_ldip = Gtk.TreeViewColumn("L-Dip", renderer_ldip, text=3)
+        column_ldip = Gtk.TreeViewColumn(_("L-Dip"), renderer_ldip, text=3)
         column_ldip.set_alignment(0.5)
         column_ldip.set_expand(True)
         column_ldip.set_cell_data_func(renderer_ldip, 
@@ -334,7 +336,7 @@ class FaultPlaneDataView(DataTreeView):
         renderer_sense = Gtk.CellRendererText()
         renderer_sense.set_property("editable", True)
         renderer_sense.set_property("placeholder-text", "up/dn/sin/dex/uk")
-        column_sense = Gtk.TreeViewColumn("Sense", renderer_sense, text=4)
+        column_sense = Gtk.TreeViewColumn(_("Sense"), renderer_sense, text=4)
         column_sense.set_alignment(0.5)
         column_sense.set_expand(True)
         self.append_column(column_sense)
@@ -436,7 +438,7 @@ class LineDataView(DataTreeView):
 
         renderer_dir = Gtk.CellRendererText()
         renderer_dir.set_property("editable", True)
-        column_dir = Gtk.TreeViewColumn("Dir", renderer_dir, text=0)
+        column_dir = Gtk.TreeViewColumn(_("Dir"), renderer_dir, text=0)
         column_dir.set_alignment(0.5)
         column_dir.set_expand(True)
         column_dir.set_cell_data_func(renderer_dir, 
@@ -447,7 +449,7 @@ class LineDataView(DataTreeView):
         
         renderer_dip = Gtk.CellRendererText()
         renderer_dip.set_property("editable", True)
-        column_dip = Gtk.TreeViewColumn("Dip", renderer_dip, text=1)
+        column_dip = Gtk.TreeViewColumn(_("Dip"), renderer_dip, text=1)
         column_dip.set_alignment(0.5)
         column_dip.set_expand(True)
         column_dip.set_cell_data_func(renderer_dip, 
@@ -459,7 +461,7 @@ class LineDataView(DataTreeView):
         renderer_sense = Gtk.CellRendererText()
         renderer_sense.set_property("editable", True)
         renderer_sense.set_property("placeholder-text", "up/dn/sin/dex/uk")
-        column_sense = Gtk.TreeViewColumn("Sense", renderer_sense, text=2)
+        column_sense = Gtk.TreeViewColumn(_("Sense"), renderer_sense, text=2)
         column_sense.set_alignment(0.5)
         column_sense.set_expand(True)
         self.append_column(column_sense)
@@ -530,7 +532,7 @@ class SmallCircleDataView(DataTreeView):
 
         renderer_dir = Gtk.CellRendererText()
         renderer_dir.set_property("editable", True)
-        column_dir = Gtk.TreeViewColumn("Dir", renderer_dir, text=0)
+        column_dir = Gtk.TreeViewColumn(_("Dir"), renderer_dir, text=0)
         column_dir.set_alignment(0.5)
         column_dir.set_expand(True)
         column_dir.set_cell_data_func(renderer_dir, 
@@ -541,7 +543,7 @@ class SmallCircleDataView(DataTreeView):
         
         renderer_dip = Gtk.CellRendererText()
         renderer_dip.set_property("editable", True)
-        column_dip = Gtk.TreeViewColumn("Dip", renderer_dip, text=1)
+        column_dip = Gtk.TreeViewColumn(_("Dip"), renderer_dip, text=1)
         column_dip.set_alignment(0.5)
         column_dip.set_expand(True)
         column_dip.set_cell_data_func(renderer_dip, 
@@ -552,7 +554,7 @@ class SmallCircleDataView(DataTreeView):
 
         renderer_angle = Gtk.CellRendererText()
         renderer_angle.set_property("editable", True)
-        column_angle = Gtk.TreeViewColumn("Angle", renderer_angle, text=2)
+        column_angle = Gtk.TreeViewColumn(_("Angle"), renderer_angle, text=2)
         column_angle.set_alignment(0.5)
         column_angle.set_expand(True)
         column_angle.set_cell_data_func(renderer_angle, 
@@ -630,7 +632,7 @@ class EigenVectorView(DataTreeView):
 
         renderer_dir = Gtk.CellRendererText()
         renderer_dir.set_property("editable", True)
-        column_dir = Gtk.TreeViewColumn("Dir", renderer_dir, text=0)
+        column_dir = Gtk.TreeViewColumn(_("Dir"), renderer_dir, text=0)
         column_dir.set_alignment(0.5)
         column_dir.set_expand(True)
         column_dir.set_cell_data_func(renderer_dir, 
@@ -641,7 +643,7 @@ class EigenVectorView(DataTreeView):
         
         renderer_dip = Gtk.CellRendererText()
         renderer_dip.set_property("editable", True)
-        column_dip = Gtk.TreeViewColumn("Dip", renderer_dip, text=1)
+        column_dip = Gtk.TreeViewColumn(_("Dip"), renderer_dip, text=1)
         column_dip.set_alignment(0.5)
         column_dip.set_expand(True)
         column_dip.set_cell_data_func(renderer_dip, 
@@ -652,7 +654,7 @@ class EigenVectorView(DataTreeView):
 
         renderer_value = Gtk.CellRendererText()
         renderer_value.set_property("editable", True)
-        column_value = Gtk.TreeViewColumn("Eigenvalue", renderer_value, text=2)
+        column_value = Gtk.TreeViewColumn(_("Eigenvalue"), renderer_value, text=2)
         column_value.set_alignment(0.5)
         column_value.set_expand(True)
         column_value.set_cell_data_func(renderer_value, 
