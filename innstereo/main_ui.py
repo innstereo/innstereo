@@ -2356,7 +2356,7 @@ class MainWindow(object):
         #If no row is selected then the group is added to the end of the view
         if len(row_list) == 0:
             model.append(None,
-                [True, self.settings.get_folder_icon(), "Layer Group", None])
+                [True, self.settings.get_folder_icon(), _("Group Layer"), None])
         else:
             depth_list = []
             for row in row_list:
@@ -2389,7 +2389,7 @@ class MainWindow(object):
             parent_itr = model.iter_parent(selection_itr)
             new_group_itr = model.insert_before(parent_itr, selection_itr,
                          [True, self.settings.get_folder_icon(),
-                         "Layer group", None])
+                         _("Group Layer"), None])
             selection = self.layer_view.get_selection()
             model, row_list = selection.get_selected_rows()
             for row in reversed(row_list):
