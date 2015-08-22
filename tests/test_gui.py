@@ -200,7 +200,7 @@ def test_copy_group_layer():
     """
     Copies a group layer (folder) and asserts the string.
     """
-    folder_copy = """{"filetype": "InnStereo layer 1.0", "layers": [["0", {"label": "Layer Group", "type": "folder"}, []]]}"""
+    folder_copy = """{"filetype": "InnStereo layer 1.0", "layers": [["0", {"label": "Group Layer", "type": "folder"}, []]]}"""
     reset_project()
     gui.on_toolbutton_create_group_layer_clicked(widget=None)
     selection = gui.layer_view.get_selection()
