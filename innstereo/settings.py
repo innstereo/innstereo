@@ -8,6 +8,7 @@ default-application-settings window.
 from gi.repository import Gtk, Gdk, Gio, GLib
 from collections import OrderedDict
 import os
+from .i18n import i18n
 
 
 class AppSettings(object):
@@ -21,6 +22,7 @@ class AppSettings(object):
         Initalizes the GUI. Connects to Gio.Settings. Loads the defaults.
         """
         self.builder = Gtk.Builder()
+        self.builder.set_translation_domain(i18n().get_ts_domain())
         script_dir = os.path.dirname(__file__)
         rel_path = "gui_layout.glade"
         abs_path = os.path.join(script_dir, rel_path)
