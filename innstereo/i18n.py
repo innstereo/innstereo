@@ -21,7 +21,6 @@
 #    You should have received a copy of the GNU General Public License         #
 #    along with InnStereo.  If not, see <http://www.gnu.org/licenses/>.        #
 #==============================================================================#
-# -*- coding: utf-8 -*-
 
 import os, sys
 import locale
@@ -32,8 +31,8 @@ class i18n:
   language = None
   
   def __init__(self):
-    #  The translation files will be under
-    #  @locale_dir@/@LANGUAGE@/LC_MESSAGES/@app_name@.mo
+    # The translation files will be under
+    # @locale_dir@/@LANGUAGE@/LC_MESSAGES/@app_name@.mo
     self.app_name = "innstereo"
 
     #app_dir = os.getcwd()
@@ -43,7 +42,6 @@ class i18n:
 
     # Now we need to choose the language. We will provide a list, and gettext
     # will use the first translation available in the list
-    #
     default_languages = os.environ.get('LANG', '').split(':')
     default_languages += ['en_US']
 
@@ -52,7 +50,7 @@ class i18n:
         languages = [lc]
 
     # Concat all languages (env + default locale),
-    #  and here we have the languages and location of the translations
+    # and here we have the languages and location of the translations
     languages += default_languages
     mo_location = locale_dir
 
@@ -63,7 +61,8 @@ class i18n:
 
     gettext.find(self.app_name, mo_location)
 
-    #This try-except is needed for platforms that have no access to locale.bindtextdomain()
+    # This try-except is needed for platforms that have no
+    # access to locale.bindtextdomain()
     try:
         locale.bindtextdomain(self.app_name, locale_dir)
     except:
