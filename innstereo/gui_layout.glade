@@ -50,6 +50,7 @@ Thomas Kluyver
 Andreas Kositz
 Hugo Ortner
 Martin Reiser
+Christoph Reiter
     </property>
     <property name="logo">logo_about.svg</property>
     <property name="license_type">gpl-2-0</property>
