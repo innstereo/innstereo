@@ -13,7 +13,7 @@ Some issues are discussed at the projects issue tracker: https://github.com/tobi
 Possible Additions
 ------------------
 
- - Print Dialog
+ - Print Dialog (proably not in the scope of this program)
  - Paleostress View
     - Fluctuation histogram
     - PT-Axis
@@ -22,3 +22,4 @@ Possible Additions
  - Histograms (as opposed to Rose-Histograms)
  - Find axial planes
  - Find conjugated planes (Riedel and similar planes)
+ - Add layers from databases (SQLite, Postgres)
