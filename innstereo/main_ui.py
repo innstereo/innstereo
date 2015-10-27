@@ -22,7 +22,7 @@ import mplstereonet
 import numpy as np
 import scipy.spatial as spatial
 import webbrowser
-import os
+import os, sys
 import csv
 from matplotlib.lines import Line2D
 import json
@@ -46,7 +46,7 @@ from .rotation_dialog import RotationDialog
 from .viridis import viridis
 from .settings import AppSettings
 
-from .i18n import i18n
+from .i18n import i18n, translate_gui
 
 _ = i18n().language().gettext
 
@@ -132,6 +132,8 @@ class MainWindow(object):
         self.canvas.mpl_connect('button_press_event',
             self.mpl_canvas_clicked)
         self.redraw_plot()
+        if sys.platform == "win32":
+            translate_gui(builder)
         self.main_window.show_all()
 
     def set_up_fisher_menu(self):

@@ -10,9 +10,9 @@ and FileChooserParse-class.
 
 from gi.repository import Gtk
 import matplotlib.colors as colors
-import os
+import os, sys
 import numpy as np
-from .i18n import i18n
+from .i18n import i18n, translate_gui
 
 
 class LayerProperties(object):
@@ -79,6 +79,8 @@ class LayerProperties(object):
         self.hide_gui_elements()
         self.set_contour_range_label()
         self.builder.connect_signals(self)
+        if sys.platform == "win32":
+            translate_gui(self.builder)
 
     def load_circle_properties(self):
         """
@@ -249,6 +251,7 @@ class LayerProperties(object):
                         self.builder.get_object("adjustment_steps")
         self.label_contour_steps = \
                         self.builder.get_object("label_contour_steps")
+        self.label_contour_steps.set_text("")
         self.switch_draw_contour_fills.set_active(
                                 self.layer.get_draw_contour_fills())
         self.switch_contour_lines.set_active(

@@ -7,8 +7,8 @@ default-application-settings window.
 
 from gi.repository import Gtk, Gdk, Gio, GLib
 from collections import OrderedDict
-import os
-from .i18n import i18n
+import os, sys
+from .i18n import i18n, translate_gui
 
 
 class AppSettings(object):
@@ -43,6 +43,8 @@ class AppSettings(object):
 
         self.g_settings = Gio.Settings.new("org.gtk.innstereo")
         self.get_defaults()
+        if sys.platform == "win32":
+            translate_gui(self.builder)
 
     def get_defaults(self):
         """

@@ -10,8 +10,11 @@ and FileChooserParse-class.
 
 from gi.repository import Gtk
 import matplotlib.colors as colors
-import os
-from .i18n import i18n
+import os, sys
+from .i18n import i18n, translate_gui
+
+
+_ = i18n().language().gettext
 
 
 class AboutDialog(object):
@@ -41,6 +44,8 @@ class AboutDialog(object):
         self.ab = self.builder.get_object("aboutdialog")
         self.ab.set_transient_for(main_window)
         self.builder.connect_signals(self)
+        if sys.platform == "win32":
+            translate_gui(self.builder)
 
     def run(self):
         """
@@ -139,6 +144,8 @@ class StereonetProperties(object):
         self.switch_highlight.set_active(self.settings.get_highlight())
         self.switch_night_mode.set_active(self.settings.get_night_mode())
         self.builder.connect_signals(self)
+        if sys.platform == "win32":
+            translate_gui(self.builder)
 
     def on_spinbutton_pixel_density_value_changed(self, spinbutton):
         # pylint: disable=unused-argument
@@ -324,6 +331,8 @@ class FileChooserParse(object):
         self.dialog.add_filter(self.filefilters)
         self.run_file_parser = run_file_parser
         self.builder.connect_signals(self)
+        if sys.platform == "win32":
+            translate_gui(self.builder)
 
     def run(self):
         """
@@ -405,6 +414,8 @@ class FileChooserExport(object):
         self.dialog = self.builder.get_object("filechooserdialog_export")
         self.dialog.set_transient_for(main_window)
         self.builder.connect_signals(self)
+        if sys.platform == "win32":
+            translate_gui(self.builder)
 
     def run(self):
         """
@@ -503,6 +514,8 @@ class OverwriteDialog(object):
         self.dialog = self.builder.get_object("dialog_overwrite")
         self.dialog.set_transient_for(export_dialog)
         self.builder.connect_signals(self)
+        if sys.platform == "win32":
+            translate_gui(self.builder)
 
     def run(self):
         """
@@ -556,6 +569,8 @@ class FileChooserSave(object):
         self.dialog = self.builder.get_object("filechooserdialog_save")
         self.dialog.set_transient_for(main_window)
         self.builder.connect_signals(self)
+        if sys.platform == "win32":
+            translate_gui(self.builder)
 
     def run(self):
         """
@@ -661,6 +676,8 @@ class FileChooserOpen(object):
         self.dialog.add_filter(filter_all)
         self.open_project = open_project
         self.builder.connect_signals(self)
+        if sys.platform == "win32":
+            translate_gui(self.builder)
 
     def run(self):
         """

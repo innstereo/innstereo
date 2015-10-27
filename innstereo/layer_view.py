@@ -9,7 +9,9 @@ class inherits from Gtk.TreeView and requires a Gtk.TreeStore to initialize.
 """
 
 from gi.repository import Gtk, Gdk
+from .i18n import i18n
 
+_ = i18n().language().gettext
 
 class LayerTreeView(Gtk.TreeView):
 
