@@ -14,7 +14,8 @@ from matplotlib.backends.backend_gtk3cairo import (FigureCanvasGTK3Cairo
                                                    as FigureCanvas)
 import numpy as np
 import mplstereonet
-import os
+import os, sys
+from .i18n import i18n, translate_gui
 
 
 class RotationDialog(object):
@@ -37,6 +38,7 @@ class RotationDialog(object):
         rotated data.
         """
         self.builder = Gtk.Builder()
+        self.builder.set_translation_domain(i18n().get_ts_domain())
         script_dir = os.path.dirname(__file__)
         rel_path = "gui_layout.glade"
         abs_path = os.path.join(script_dir, rel_path)
@@ -80,6 +82,8 @@ class RotationDialog(object):
         self.redraw_plot()
         self.dialog.show_all()
         self.builder.connect_signals(self)
+        if sys.platform == "win32":
+            translate_gui(self.builder)
 
     def run(self):
         """
