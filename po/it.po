@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: innstereo\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-28 14:45+0100\n"
-"PO-Revision-Date: 2015-07-28 14:45+0100\n"
+"PO-Revision-Date: 2015-10-27 13:38+0100\n"
 "Last-Translator: xquiet <matteo.pasotti@gmail.com>\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.8.1\n"
+"X-Generator: Poedit 1.8.6\n"
 
 #: innstereo/gui_layout.glade:2191
 msgid "*"
@@ -65,6 +65,9 @@ msgid ""
 "When turned on the stereonet is displayed with a\n"
 "customizable grid."
 msgstr ""
+"<b>Disegna Griglia</b>\n"
+"Quando attivato sullo stereonet viene visualizzata una\n"
+"griglia personalizzabile."
 
 #: innstereo/gui_layout.glade:391
 msgid ""
@@ -72,10 +75,13 @@ msgid ""
 "When turned on the stereonet uses an equal area projection.\n"
 "Turned off an eqal angle projection is used."
 msgstr ""
+"<b>Stereonet Equiarea</b>\n"
+"Quando attivo lo stereonet utilizza una proiezione equi area.\n"
+"Disattivandolo viene utilizzata una proiezione equi angolare."
 
 #: innstereo/gui_layout.glade:2951
 msgid "<b>Statistics</b>"
-msgstr ""
+msgstr "<b>Statistiche</b>"
 
 #: innstereo/gui_layout.glade:2175
 msgid ">"
@@ -87,31 +93,31 @@ msgstr "Informazioni"
 
 #: innstereo/gui_layout.glade:1511
 msgid "Add Data"
-msgstr ""
+msgstr "Aggiungi Dati"
 
 #: innstereo/gui_layout.glade:4888
 msgid "Add Feature"
-msgstr ""
+msgstr "Aggiungi Proprietà"
 
 #: innstereo/gui_layout.glade:840
 msgid "Add Rotated Data"
-msgstr ""
+msgstr "Aggiunti Dati Ruotati"
 
 #: innstereo/gui_layout.glade:4887
 msgid "Adds an empty row to the current layer."
-msgstr ""
+msgstr "Aggiungi una riga vuota al layer selezionato."
 
 #: innstereo/dialog_windows.py:652
 msgid "All Files"
-msgstr ""
+msgstr "Tutti i file"
 
 #: innstereo/gui_layout.glade:156 innstereo/gui_layout.glade:2259
 msgid "Apply"
-msgstr ""
+msgstr "Applica"
 
 #: innstereo/gui_layout.glade:1604
 msgid "Assign columns"
-msgstr ""
+msgstr "Assegna colonne"
 
 #: innstereo/gui_layout.glade:1995
 msgid "Blues"
@@ -147,7 +153,7 @@ msgstr "Calcola Miglior Polo"
 
 #: innstereo/gui_layout.glade:4568
 msgid "Calculate Eigenvector"
-msgstr ""
+msgstr "Calcola Autovettore"
 
 #: innstereo/gui_layout.glade:4598
 msgid "Calculate PT-Axis"
@@ -162,6 +168,8 @@ msgid ""
 "Calculates the eigenvectors and eigenvalue of the selected datasets and adds "
 "it as a new layer."
 msgstr ""
+"Calcola autovettore e autovalore di un dataset selezionato e lo aggiunge "
+"come un nuovo layer."
 
 #: innstereo/gui_layout.glade:142 innstereo/gui_layout.glade:826
 #: innstereo/gui_layout.glade:1085 innstereo/gui_layout.glade:1152
@@ -173,27 +181,27 @@ msgstr "Annulla"
 
 #: innstereo/gui_layout.glade:265
 msgid "Canvas Colour"
-msgstr ""
+msgstr "Tavolozza Colore"
 
 #: innstereo/gui_layout.glade:1321
 msgid "Choose file to parse"
-msgstr ""
+msgstr "Scegli il file da analizzare"
 
 #: innstereo/gui_layout.glade:2158
 msgid "Circle"
-msgstr ""
+msgstr "Cerchio"
 
 #: innstereo/gui_layout.glade:3345
 msgid "Colormap"
-msgstr ""
+msgstr "Mappa colore"
 
 #: innstereo/gui_layout.glade:3027
 msgid "Confidence"
-msgstr ""
+msgstr "Confidenza"
 
 #: innstereo/gui_layout.glade:3836
 msgid "Contours"
-msgstr ""
+msgstr "Isolinee"
 
 #: innstereo/gui_layout.glade:4154 innstereo/gui_layout.glade:4402
 msgid "Copy"
@@ -201,56 +209,58 @@ msgstr "Copia"
 
 #: innstereo/gui_layout.glade:4728
 msgid "Create faultplane dataset"
-msgstr ""
+msgstr "Crea dataset piano di faglia"
 
 #: innstereo/gui_layout.glade:4744
 msgid "Create fold dataset"
-msgstr ""
+msgstr "Crea dataset di piega"
 
 #: innstereo/gui_layout.glade:4683
 msgid "Create group layer"
-msgstr ""
+msgstr "Crea gruppo di layer"
 
 #: innstereo/gui_layout.glade:4713
 msgid "Create line dataset"
-msgstr ""
+msgstr "Crea dataset linea"
 
 #: innstereo/gui_layout.glade:4698
 msgid "Create plane dataset"
-msgstr ""
+msgstr "Crea dataset piano"
 
 #: innstereo/gui_layout.glade:4758
 msgid "Create small circle dataset"
-msgstr ""
+msgstr "Crea dataset di piccolo cerchio"
 
 #: innstereo/gui_layout.glade:4712
 msgid "Creates a new dataset for linear elements."
-msgstr ""
+msgstr "Crea un nuovo dataset per elementi lineari."
 
 #: innstereo/gui_layout.glade:4727
 msgid "Creates a new faultplane dataset."
-msgstr ""
+msgstr "Crea un nuovo dataset di piano di faglia."
 
 #: innstereo/gui_layout.glade:4743
 msgid "Creates a new fold dataset."
-msgstr ""
+msgstr "Crea un nuovo dataset di piega."
 
 #: innstereo/gui_layout.glade:4682
 msgid ""
 "Creates a new layer group. Selected layers will be placed into the new group."
 msgstr ""
+"Crea un nuovo gruppo di layer. I layer selezionati verranno posizionati in "
+"un nuovo gruppo."
 
 #: innstereo/gui_layout.glade:4697
 msgid "Creates a new plane dataset."
-msgstr ""
+msgstr "Crea un nuovo dataset di piano."
 
 #: innstereo/gui_layout.glade:4308
 msgid "Creates a new project in a new window."
-msgstr ""
+msgstr "Crea un nuovo progetto in una nuova finestra."
 
 #: innstereo/gui_layout.glade:4757
 msgid "Creates a new small-circle dataset."
-msgstr ""
+msgstr "Crea un nuovo dataset di piccolo cerchio."
 
 #: innstereo/gui_layout.glade:4145 innstereo/gui_layout.glade:4388
 msgid "Cut"
