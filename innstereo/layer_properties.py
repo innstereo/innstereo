@@ -81,6 +81,7 @@ class LayerProperties(object):
         self.builder.connect_signals(self)
         if sys.platform == "win32":
             translate_gui(self.builder)
+        self.set_contour_range_label()
 
     def load_circle_properties(self):
         """
@@ -251,7 +252,6 @@ class LayerProperties(object):
                         self.builder.get_object("adjustment_steps")
         self.label_contour_steps = \
                         self.builder.get_object("label_contour_steps")
-        self.label_contour_steps.set_text("")
         self.switch_draw_contour_fills.set_active(
                                 self.layer.get_draw_contour_fills())
         self.switch_contour_lines.set_active(

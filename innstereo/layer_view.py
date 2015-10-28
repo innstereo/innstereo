@@ -31,7 +31,7 @@ class LayerTreeView(Gtk.TreeView):
         to multiple. Adds a column for the toggle, the pixbuf and the name
         of the layer.
         """
-        Gtk.TreeView.__init__(self, store)
+        Gtk.TreeView.__init__(self, model=store)
         self.store = store
         self.set_headers_visible(False)
         self.set_enable_tree_lines(True)
