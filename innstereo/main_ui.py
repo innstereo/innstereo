@@ -207,13 +207,13 @@ class MainWindow(object):
         hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0,
                        border_width=10)
         row_conf.add(hbox)
-        label_conf = Gtk.Label(_("Fisher Confidence"), xalign=0)
+        label_conf = Gtk.Label(label=_("Fisher Confidence"), xalign=0)
         hbox.pack_start(label_conf, True, True, 3)
         entry_conf = Gtk.Entry(width_chars=3, max_width_chars=3, text="95")
         hbox.pack_start(entry_conf, False, False, 3)
         lb_fisher.add(row_conf)
 
-        btn_calc = Gtk.Button(_("Calculate"))
+        btn_calc = Gtk.Button(label=_("Calculate"))
         row_btn = Gtk.ListBoxRow()
         box = Gtk.Box()
         box.pack_start(btn_calc, True, True, 0)
