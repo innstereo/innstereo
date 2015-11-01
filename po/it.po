@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: innstereo\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-28 14:45+0100\n"
-"PO-Revision-Date: 2015-10-27 13:38+0100\n"
+"PO-Revision-Date: 2015-11-01 16:39+0100\n"
 "Last-Translator: xquiet <matteo.pasotti@gmail.com>\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -276,11 +276,11 @@ msgstr ""
 
 #: innstereo/gui_layout.glade:2132
 msgid "Dash-Dotted"
-msgstr ""
+msgstr "Tratto-Punto"
 
 #: innstereo/gui_layout.glade:2128
 msgid "Dashed"
-msgstr ""
+msgstr "Tratteggiato"
 
 #: innstereo/gui_layout.glade:4842
 msgid "Data"
@@ -292,24 +292,25 @@ msgstr "Cancella Layer"
 
 #: innstereo/gui_layout.glade:4772
 msgid "Deletes the currently selected layers and their children."
-msgstr ""
+msgstr "Cancella i layer selezionati e i loro figli."
 
 #: innstereo/gui_layout.glade:2210
 msgid "Diamond"
-msgstr ""
+msgstr "Diamante"
 
 #: innstereo/gui_layout.glade:2214
 msgid "Diamond thin"
-msgstr ""
+msgstr "Diamante sottile"
 
+# fonte http://unica2.unica.it/antoniofunedda/Cartografia_geologica_2-linee%20di%20forma-sezioni%20-isopache.pdf
 #: innstereo/gui_layout.glade:985 innstereo/gui_layout.glade:1709
 #: innstereo/gui_layout.glade:1782
 msgid "Dip"
-msgstr ""
+msgstr "Direzione di inclinazione"
 
 #: innstereo/gui_layout.glade:970
 msgid "Dip Direction"
-msgstr ""
+msgstr "Direzione di immersione"
 
 #: innstereo/gui_layout.glade:3923
 msgid "Dip Spacing [Degrees]"
@@ -321,11 +322,11 @@ msgstr ""
 
 #: innstereo/gui_layout.glade:1122
 msgid "Do you want to overwrite the existing file?"
-msgstr ""
+msgstr "Vuoi sovrascrivere il file esistente?"
 
 #: innstereo/gui_layout.glade:2136
 msgid "Dotted"
-msgstr ""
+msgstr "Puntato"
 
 #: innstereo/gui_layout.glade:3131
 msgid "Draw Angelier"
@@ -333,23 +334,23 @@ msgstr ""
 
 #: innstereo/gui_layout.glade:3290
 msgid "Draw Contour Fills"
-msgstr ""
+msgstr "Disegna Riempimento Contorni"
 
 #: innstereo/gui_layout.glade:3631
 msgid "Draw Contour Labels"
-msgstr ""
+msgstr "Disegna Contorni Etichette"
 
 #: innstereo/gui_layout.glade:3614
 msgid "Draw Contour Lines"
-msgstr ""
+msgstr "Disegna Isolinee"
 
 #: innstereo/gui_layout.glade:4873
 msgid "Draw Features"
-msgstr ""
+msgstr "Disegna Lineamenti"
 
 #: innstereo/gui_layout.glade:2464
 msgid "Draw Great & Small Circles"
-msgstr ""
+msgstr "Disegna Grandi & Piccoli Cerchi"
 
 #: innstereo/gui_layout.glade:3159
 msgid "Draw Hoeppener"
@@ -361,27 +362,27 @@ msgstr ""
 
 #: innstereo/gui_layout.glade:733
 msgid "Draw Legend"
-msgstr ""
+msgstr "Disegna Legenda"
 
 #: innstereo/gui_layout.glade:2920
 msgid "Draw Linears"
-msgstr ""
+msgstr "Disegna Lineari"
 
 #: innstereo/gui_layout.glade:2685
 msgid "Draw Poles"
-msgstr ""
+msgstr "Disegna Poli"
 
 #: innstereo/gui_layout.glade:2621 innstereo/gui_layout.glade:2757
 msgid "Edge Colour"
-msgstr ""
+msgstr "Colore Bordo"
 
 #: innstereo/gui_layout.glade:2589 innstereo/gui_layout.glade:2805
 msgid "Edge Thickness"
-msgstr ""
+msgstr "Spessore Bordo"
 
 #: innstereo/layer_types.py:1150
 msgid "Eigenvector Layer"
-msgstr ""
+msgstr "Layer Autovettore"
 
 #: innstereo/gui_layout.glade:2098
 msgid "Exponential Kamb"
@@ -389,15 +390,15 @@ msgstr ""
 
 #: innstereo/gui_layout.glade:1166
 msgid "Export"
-msgstr ""
+msgstr "Esporta"
 
 #: innstereo/gui_layout.glade:4918
 msgid "Export Data"
-msgstr ""
+msgstr "Esporta Dati"
 
 #: innstereo/gui_layout.glade:4917
 msgid "Exports the data of the currently selected layer."
-msgstr ""
+msgstr "Esporta i dati del layer selezionato."
 
 #: innstereo/gui_layout.glade:3253
 msgid "Fault Plots"
@@ -405,30 +406,32 @@ msgstr ""
 
 #: innstereo/layer_types.py:1083
 msgid "Faultplane Layer"
-msgstr ""
+msgstr "Layer Piano di Faglia"
 
 #: innstereo/gui_layout.glade:2508 innstereo/gui_layout.glade:2742
 msgid "Fill Colour"
-msgstr ""
+msgstr "Colore Riempimento"
 
 #: innstereo/gui_layout.glade:4479
 msgid "Finds the average intersect of all selected plane layers."
-msgstr ""
+msgstr "Trova l'intersezione media di tutti i layer piani selezionati."
 
 #: innstereo/gui_layout.glade:4494
 msgid "Finds the ideal plane for a set of linear elements."
-msgstr ""
+msgstr "Trova il piano ideale per un set di elementi lineari."
 
 #: innstereo/gui_layout.glade:4509
 msgid ""
 "Finds the mean vector of a set of linears. At least one linear layer has to "
 "be selected."
 msgstr ""
+"Trova il vettore medio di un set di lineari. Almeno un layer lineare deve "
+"essere selezionato."
 
 #: innstereo/gui_layout.glade:4552
 msgid ""
 "Finds the planes that lie normal to the currently selected linear layers."
-msgstr ""
+msgstr "Trova i piani che giaciono sulla normale ai layer lineari selezionati."
 
 #: innstereo/main_ui.py:201
 msgid "Fisher Confidence"
@@ -444,7 +447,7 @@ msgstr ""
 
 #: innstereo/gui_layout.glade:189
 msgid "General Settings"
-msgstr ""
+msgstr "Impostazioni Generali"
 
 #: innstereo/gui_layout.glade:2004
 msgid "GnBu"
@@ -452,23 +455,23 @@ msgstr ""
 
 #: innstereo/gui_layout.glade:2488
 msgid "Great & Small Circles"
-msgstr ""
+msgstr "Grandi & Piccoli Cerchi"
 
 #: innstereo/gui_layout.glade:2007
 msgid "Greens"
-msgstr ""
+msgstr "Verdi"
 
 #: innstereo/gui_layout.glade:2010
 msgid "Greys"
-msgstr ""
+msgstr "Grigi"
 
 #: innstereo/gui_layout.glade:3586
 msgid "Grid Resolution"
-msgstr ""
+msgstr "Risoluzione Griglia"
 
 #: innstereo/gui_layout.glade:470
 msgid "Grid Spacing"
-msgstr ""
+msgstr "Spaziatura Griglia"
 
 #: innstereo/gui_layout.glade:2199
 msgid "H"
