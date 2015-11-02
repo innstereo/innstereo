@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.19.0 
+<!-- Generated with glade 3.19.0
 
 InnStereo - An open source stereographic projection program used for geology
 Copyright (C) 
@@ -2388,7 +2388,7 @@ customizable grid.</property>
     </columns>
     <data>
       <row>
-        <col id="0" translatable="yes">Butt</col>
+        <col id="0" translatable="yes">Angular</col>
         <col id="1">butt</col>
       </row>
       <row>
