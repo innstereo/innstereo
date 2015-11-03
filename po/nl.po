@@ -1,21 +1,17 @@
-# Italian translations for InnStereo package
-# Traduzioni italiane per il pacchetto InnStereo..
-# Copyright (C) 2015 THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the InnStereo package.
-# Matteo Pasotti <matteo.pasotti@gmail.com>, 2015.
+# Tobias Schönberg <tobias47n9e@gmail.com>, 2015. #zanata
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-02 23:07+0100\n"
-"PO-Revision-Date: 2015-11-02 05:36-0500\n"
-"Last-Translator: Matteo Pasotti <matteo.pasotti@gmail.com>\n"
-"Language-Team: Italian\n"
+"PO-Revision-Date: 2015-10-27 07:11-0400\n"
+"Last-Translator: Tobias Schönberg <tobias47n9e@gmail.com>\n"
+"Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: it\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: nl\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "X-Generator: Zanata 3.7.3\n"
 
 #: innstereo/gui_layout.glade:301
@@ -30,9 +26,6 @@ msgid ""
 "When turned on the stereonet is displayed with a\n"
 "customizable grid."
 msgstr ""
-"<b>Disegna Griglia</b>\n"
-"Quando attivato sullo stereonet viene visualizzata una\n"
-"griglia personalizzabile."
 
 #: innstereo/gui_layout.glade:213
 msgid ""
@@ -46,9 +39,6 @@ msgid ""
 "When turned on the stereonet uses an equal area projection.\n"
 "Turned off an eqal angle projection is used."
 msgstr ""
-"<b>Stereonet Equiarea</b>\n"
-"Quando attivo lo stereonet utilizza una proiezione equi area.\n"
-"Disattivandolo viene utilizzata una proiezione equi angolare."
 
 #: innstereo/gui_layout.glade:195
 msgid ""
@@ -64,13 +54,15 @@ msgstr ""
 
 #: innstereo/gui_layout.glade:319
 msgid "<b>Legend</b>"
-msgstr ""
+msgstr "<b>Legenda</b>"
 
 #: innstereo/gui_layout.glade:407
 msgid ""
 "<b>Night Mode</b>\n"
 "The user interface will default to the dark variant when this is True."
 msgstr ""
+"<b>Nacht Manier</b>\n"
+"De gebruikersinterface wordt standaard de donkere variant als dit waar is."
 
 #: innstereo/gui_layout.glade:443
 msgid ""
@@ -92,7 +84,7 @@ msgstr ""
 
 #: innstereo/gui_layout.glade:3400
 msgid "<b>Statistics</b>"
-msgstr "<b>Statistiche</b>"
+msgstr "<b>Statistiek</b>"
 
 #: innstereo/gui_layout.glade:231
 msgid "<b>Stereonet Grid</b>"
@@ -104,79 +96,79 @@ msgstr ""
 
 #: innstereo/gui_layout.glade:372
 msgid "<b>User Interface</b>"
-msgstr ""
+msgstr "<b>Gebruikersinterface</b>"
 
 #: innstereo/gui_layout.glade:33 innstereo/gui_layout.glade:4708
 msgid "About"
-msgstr "Informazioni"
+msgstr "Over"
 
 #: innstereo/gui_layout.glade:1927
 msgid "Add Data"
-msgstr "Aggiungi Dati"
+msgstr "Gegevens Toevoegen"
 
 #: innstereo/gui_layout.glade:5328
 msgid "Add Feature"
-msgstr "Aggiungi Proprietà"
+msgstr "Kenmerken Toevoegen"
 
 #: innstereo/gui_layout.glade:1256
 msgid "Add Rotated Data"
-msgstr "Aggiunti Dati Ruotati"
+msgstr ""
 
 #: innstereo/gui_layout.glade:5327
 msgid "Adds an empty row to the current layer."
-msgstr "Aggiungi una riga vuota al layer selezionato."
+msgstr ""
 
 #: innstereo/dialog_windows.py:675
 msgid "All Files"
-msgstr "Tutti i file"
+msgstr "Alle Bestanden"
 
 #: innstereo/dataview_classes.py:557
 msgid "Angle"
-msgstr ""
+msgstr "Hoek"
 
 #: innstereo/gui_layout.glade:2391
 msgid "Angular"
-msgstr "Angolare"
+msgstr ""
 
 #: innstereo/gui_layout.glade:572 innstereo/gui_layout.glade:2708
 msgid "Apply"
-msgstr "Applica"
+msgstr "Toepassen"
 
 #: innstereo/gui_layout.glade:2020
 msgid "Assign columns"
-msgstr "Assegna colonne"
+msgstr "Kolommen Toewijzen"
 
 #: innstereo/gui_layout.glade:2413
 msgid "Blues"
-msgstr ""
+msgstr "Blauw"
 
 #: innstereo/gui_layout.glade:4317
 msgid "Bottom Cutoff"
-msgstr ""
+msgstr "Ondergrens"
 
 #: innstereo/gui_layout.glade:2417
 msgid "BuGn"
-msgstr ""
+msgstr "Blauw-Groen"
 
 #: innstereo/gui_layout.glade:2421
 msgid "BuPu"
-msgstr ""
+msgstr "Blauw-Purper"
 
 #: innstereo/main_ui.py:216
 msgid "Calculate"
-msgstr "Calcola"
+msgstr "Bereken"
 
 #: innstereo/gui_layout.glade:4921
 msgid "Calculate Best Plane"
-msgstr "Calcola Piano Migliore"
+msgstr ""
 
 #: innstereo/gui_layout.glade:4906
 msgid "Calculate Best Pole"
-msgstr "Calcola Miglior Polo"
+msgstr ""
 
 #: innstereo/gui_layout.glade:4994
 msgid "Calculate Eigenvector"
-msgstr "Calcola Autovettore"
+msgstr ""
 
 #: innstereo/gui_layout.glade:5024
 msgid "Calculate PT-Axis"
@@ -191,8 +183,6 @@ msgid ""
 "Calculates the eigenvectors and eigenvalue of the selected datasets and adds"
 " it as a new layer."
 msgstr ""
-"Calcola autovettore e autovalore di un dataset selezionato e lo aggiunge "
-"come un nuovo layer."
 
 #: innstereo/gui_layout.glade:558 innstereo/gui_layout.glade:1242
 #: innstereo/gui_layout.glade:1501 innstereo/gui_layout.glade:1568
@@ -200,188 +190,186 @@ msgstr ""
 #: innstereo/gui_layout.glade:1756 innstereo/gui_layout.glade:1913
 #: innstereo/gui_layout.glade:2694
 msgid "Cancel"
-msgstr "Annulla"
+msgstr "Afbreken"
 
 #: innstereo/gui_layout.glade:681
 msgid "Canvas Colour"
-msgstr "Tavolozza Colore"
+msgstr ""
 
 #: innstereo/gui_layout.glade:1737
 msgid "Choose file to parse"
-msgstr "Scegli il file da analizzare"
+msgstr ""
 
 #: innstereo/gui_layout.glade:2607
 msgid "Circle"
-msgstr "Cerchio"
+msgstr "Cirkel"
 
 #: innstereo/gui_layout.glade:3770
 msgid "Colormap"
-msgstr "Mappa colore"
+msgstr ""
 
 #: innstereo/gui_layout.glade:3476
 msgid "Confidence"
-msgstr "Confidenza"
+msgstr "Betrouwbaarheid"
 
 #: innstereo/gui_layout.glade:4261
 msgid "Contours"
-msgstr "Isolinee"
+msgstr "Contourlijnen"
 
 #: innstereo/gui_layout.glade:4580 innstereo/gui_layout.glade:4828
 msgid "Copy"
-msgstr "Copia"
+msgstr "Kopiëren"
 
 #: innstereo/gui_layout.glade:5168
 msgid "Create faultplane dataset"
-msgstr "Crea dataset piano di faglia"
+msgstr "Creëer Breukvlak"
 
 #: innstereo/gui_layout.glade:5184
 msgid "Create fold dataset"
-msgstr "Crea dataset di piega"
+msgstr "Creëer Plooi"
 
 #: innstereo/gui_layout.glade:5123
 msgid "Create group layer"
-msgstr "Crea gruppo di layer"
+msgstr "Creëer Groep"
 
 #: innstereo/gui_layout.glade:5153
 msgid "Create line dataset"
-msgstr "Crea dataset linea"
+msgstr "Creëer Lineair"
 
 #: innstereo/gui_layout.glade:5138
 msgid "Create plane dataset"
-msgstr "Crea dataset piano"
+msgstr "Creëer Vlak"
 
 #: innstereo/gui_layout.glade:5198
 msgid "Create small circle dataset"
-msgstr "Crea dataset di piccolo cerchio"
+msgstr "Creëer Kleincirkel"
 
 #: innstereo/gui_layout.glade:5152
 msgid "Creates a new dataset for linear elements."
-msgstr "Crea un nuovo dataset per elementi lineari."
+msgstr ""
 
 #: innstereo/gui_layout.glade:5167
 msgid "Creates a new faultplane dataset."
-msgstr "Crea un nuovo dataset di piano di faglia."
+msgstr ""
 
 #: innstereo/gui_layout.glade:5183
 msgid "Creates a new fold dataset."
-msgstr "Crea un nuovo dataset di piega."
+msgstr ""
 
 #: innstereo/gui_layout.glade:5122
 msgid ""
 "Creates a new layer group. Selected layers will be placed into the new "
 "group."
 msgstr ""
-"Crea un nuovo gruppo di layer. I layer selezionati verranno posizionati in "
-"un nuovo gruppo."
 
 #: innstereo/gui_layout.glade:5137
 msgid "Creates a new plane dataset."
-msgstr "Crea un nuovo dataset di piano."
+msgstr ""
 
 #: innstereo/gui_layout.glade:4734
 msgid "Creates a new project in a new window."
-msgstr "Crea un nuovo progetto in una nuova finestra."
+msgstr ""
 
 #: innstereo/gui_layout.glade:5197
 msgid "Creates a new small-circle dataset."
-msgstr "Crea un nuovo dataset di piccolo cerchio."
+msgstr ""
 
 #: innstereo/gui_layout.glade:4571 innstereo/gui_layout.glade:4814
 msgid "Cut"
-msgstr "Taglia"
+msgstr "Knippen"
 
 #: innstereo/gui_layout.glade:2828
 msgid "Dash Capstyle"
-msgstr ""
+msgstr "Streekend Stijl"
 
 #: innstereo/gui_layout.glade:2581
 msgid "Dash-Dotted"
-msgstr "Tratto-Punto"
+msgstr "Streek-Punt"
 
 #: innstereo/gui_layout.glade:2577
 msgid "Dashed"
-msgstr "Tratteggiato"
+msgstr "Streek"
 
 #: innstereo/gui_layout.glade:5282
 msgid "Data"
-msgstr ""
+msgstr "Gegevens"
 
 #: innstereo/gui_layout.glade:5213
 msgid "Delete Layer"
-msgstr "Cancella Layer"
+msgstr "Laag Verwijderen"
 
 #: innstereo/gui_layout.glade:5212
 msgid "Deletes the currently selected layers and their children."
-msgstr "Cancella i layer selezionati e i loro figli."
+msgstr "Verwijdert de geselecteerde lagen en hun kinderen."
 
 #: innstereo/gui_layout.glade:2659
 msgid "Diamond"
-msgstr "Diamante"
+msgstr "Diamant"
 
 #: innstereo/gui_layout.glade:2663
 msgid "Diamond thin"
-msgstr "Diamante sottile"
+msgstr "Dunne Diamant"
 
 #: innstereo/dataview_classes.py:216 innstereo/dataview_classes.py:305
 #: innstereo/dataview_classes.py:452 innstereo/dataview_classes.py:546
 #: innstereo/dataview_classes.py:646 innstereo/gui_layout.glade:1401
 #: innstereo/gui_layout.glade:2125 innstereo/gui_layout.glade:2198
 msgid "Dip"
-msgstr "Direzione di inclinazione"
+msgstr "Helling"
 
 #: innstereo/gui_layout.glade:1386
 msgid "Dip Direction"
-msgstr "Direzione di immersione"
+msgstr "Hellingsrichting"
 
 #: innstereo/gui_layout.glade:4348
 msgid "Dip Spacing [Degrees]"
-msgstr ""
+msgstr "Hellings Tussenruimte [Graad]"
 
 #: innstereo/gui_layout.glade:2095 innstereo/gui_layout.glade:2167
 msgid "Dip direction"
-msgstr ""
+msgstr "Hellingsrichting"
 
 #: innstereo/dataview_classes.py:205 innstereo/dataview_classes.py:294
 #: innstereo/dataview_classes.py:441 innstereo/dataview_classes.py:535
 #: innstereo/dataview_classes.py:635
 msgid "Dir"
-msgstr ""
+msgstr "Richting"
 
 #: innstereo/gui_layout.glade:1538
 msgid "Do you want to overwrite the existing file?"
-msgstr "Vuoi sovrascrivere il file esistente?"
+msgstr ""
 
 #: innstereo/gui_layout.glade:2585
 msgid "Dotted"
-msgstr "Puntato"
+msgstr "Punten"
 
 #: innstereo/gui_layout.glade:3580
 msgid "Draw Angelier"
-msgstr ""
+msgstr "Angelier Trekken"
 
 #: innstereo/gui_layout.glade:3715
 msgid "Draw Contour Fills"
-msgstr "Disegna Riempimento Contorni"
+msgstr "Contourvulling Trekken"
 
 #: innstereo/gui_layout.glade:4056
 msgid "Draw Contour Labels"
-msgstr "Disegna Contorni Etichette"
+msgstr "Contouronderschrift Trekken"
 
 #: innstereo/gui_layout.glade:4039
 msgid "Draw Contour Lines"
-msgstr "Disegna Isolinee"
+msgstr "Contourlijnen Trekken"
 
 #: innstereo/gui_layout.glade:5313
 msgid "Draw Features"
-msgstr "Disegna Lineamenti"
+msgstr "Kenmerken Trekken"
 
 #: innstereo/gui_layout.glade:2913
 msgid "Draw Great & Small Circles"
-msgstr "Disegna Grandi & Piccoli Cerchi"
+msgstr "Grootcirkel & Kleincirkel Trekken"
 
 #: innstereo/gui_layout.glade:3608
 msgid "Draw Hoeppener"
-msgstr ""
+msgstr "Hoeppener Trekken"
 
 #: innstereo/gui_layout.glade:3639
 msgid "Draw Hoeppener Linear-Pole-Plane"
@@ -389,97 +377,94 @@ msgstr ""
 
 #: innstereo/gui_layout.glade:1149
 msgid "Draw Legend"
-msgstr "Disegna Legenda"
+msgstr "Legende Trekken"
 
 #: innstereo/gui_layout.glade:3369
 msgid "Draw Linears"
-msgstr "Disegna Lineari"
+msgstr "Lijnen Trekken"
 
 #: innstereo/gui_layout.glade:3134
 msgid "Draw Poles"
-msgstr "Disegna Poli"
+msgstr "Poolpunt Trekken"
 
 #: innstereo/gui_layout.glade:3070 innstereo/gui_layout.glade:3206
 msgid "Edge Colour"
-msgstr "Colore Bordo"
+msgstr "Rand Kleur"
 
 #: innstereo/gui_layout.glade:3038 innstereo/gui_layout.glade:3254
 msgid "Edge Thickness"
-msgstr "Spessore Bordo"
+msgstr "Rand Dikte"
 
 #: innstereo/dataview_classes.py:657
 msgid "Eigenvalue"
-msgstr ""
+msgstr "Eigenwaarde"
 
 #: innstereo/layer_types.py:1154
 msgid "Eigenvector Layer"
-msgstr "Layer Autovettore"
+msgstr "Eigenvector Laag"
 
 #: innstereo/gui_layout.glade:2547
 msgid "Exponential Kamb"
-msgstr ""
+msgstr "Exponentiële Kamb"
 
 #: innstereo/gui_layout.glade:1582
 msgid "Export"
-msgstr "Esporta"
+msgstr "Exporteren"
 
 #: innstereo/gui_layout.glade:5358
 msgid "Export Data"
-msgstr "Esporta Dati"
+msgstr "Gegevens Exporteren"
 
 #: innstereo/gui_layout.glade:5357
 msgid "Exports the data of the currently selected layer."
-msgstr "Esporta i dati del layer selezionato."
+msgstr ""
 
 #: innstereo/gui_layout.glade:3678
 msgid "Fault Plots"
-msgstr ""
+msgstr "Breuk Vertegenwoordiging"
 
 #: innstereo/layer_types.py:1087
 msgid "Faultplane Layer"
-msgstr "Layer Piano di Faglia"
+msgstr "Breuk Laag"
 
 #: innstereo/gui_layout.glade:2957 innstereo/gui_layout.glade:3191
 msgid "Fill Colour"
-msgstr "Colore Riempimento"
+msgstr "Opvulkleur"
 
 #: innstereo/gui_layout.glade:4905
 msgid "Finds the average intersect of all selected plane layers."
-msgstr "Trova l'intersezione media di tutti i layer piani selezionati."
+msgstr ""
 
 #: innstereo/gui_layout.glade:4920
 msgid "Finds the ideal plane for a set of linear elements."
-msgstr "Trova il piano ideale per un set di elementi lineari."
+msgstr ""
 
 #: innstereo/gui_layout.glade:4935
 msgid ""
 "Finds the mean vector of a set of linears. At least one linear layer has to "
 "be selected."
 msgstr ""
-"Trova il vettore medio di un set di lineari. Almeno un layer lineare deve "
-"essere selezionato."
 
 #: innstereo/gui_layout.glade:4978
 msgid ""
 "Finds the planes that lie normal to the currently selected linear layers."
 msgstr ""
-"Trova i piani che giaciono sulla normale ai layer lineari selezionati."
 
 #: innstereo/main_ui.py:210
 msgid "Fisher Confidence"
-msgstr ""
+msgstr "Fisher Betrouwbaarheid"
 
 #: innstereo/gui_layout.glade:3446
 msgid "Fisher Smallcircle"
-msgstr ""
+msgstr "Fisher Kleincirkel"
 
 #: innstereo/gui_layout.glade:4950
 msgid "Fisher Statistics"
-msgstr ""
+msgstr "Fisher Statistiek"
 
 #: innstereo/gui_layout.glade:605
 msgid "General Settings"
-msgstr "Impostazioni Generali"
+msgstr "Algemene Instellingen"
 
 #: innstereo/gui_layout.glade:2425
 msgid "GnBu"
@@ -487,43 +472,43 @@ msgstr ""
 
 #: innstereo/gui_layout.glade:2937
 msgid "Great & Small Circles"
-msgstr "Grandi & Piccoli Cerchi"
+msgstr "Grootcirkel & Kleincirkel"
 
 #: innstereo/gui_layout.glade:2429
 msgid "Greens"
-msgstr "Verdi"
+msgstr "Groenten"
 
 #: innstereo/gui_layout.glade:2433
 msgid "Greys"
-msgstr "Grigi"
+msgstr "Grijs"
 
 #: innstereo/gui_layout.glade:4011
 msgid "Grid Resolution"
-msgstr "Risoluzione Griglia"
+msgstr "Rooster Resolutie"
 
 #: innstereo/gui_layout.glade:886
 msgid "Grid Spacing"
-msgstr "Spaziatura Griglia"
+msgstr "Rooster Tussenruimte"
 
 #: innstereo/main_ui.py:2361 innstereo/main_ui.py:2394
 msgid "Group Layer"
-msgstr "Gruppo di Livelli"
+msgstr "Groeplaag"
 
 #: innstereo/gui_layout.glade:2643
 msgid "Hexagon 1"
-msgstr ""
+msgstr "Zeshoek 1"
 
 #: innstereo/gui_layout.glade:2647
 msgid "Hexagon 2"
-msgstr ""
+msgstr "Zeshoek 2"
 
 #: innstereo/gui_layout.glade:645
 msgid "Highlight Mode"
-msgstr ""
+msgstr "Hoogtepunt Modus"
 
 #: innstereo/gui_layout.glade:2671
 msgid "Horizontal Line"
-msgstr ""
+msgstr "Horizontal Lijn"
 
 #: innstereo/gui_layout.glade:38
 msgid ""
@@ -533,150 +518,148 @@ msgstr ""
 
 #: innstereo/gui_layout.glade:5343
 msgid "Import Data"
-msgstr ""
+msgstr "Gegevens Importeren"
 
 #: innstereo/gui_layout.glade:4477
 msgid "InnStereo"
-msgstr ""
+msgstr "InnStereo"
 
 #: innstereo/gui_layout.glade:103
 msgid "InnStereo Settings"
-msgstr ""
+msgstr "InnStereo Instellingen"
 
 #: innstereo/gui_layout.glade:2555
 msgid "Kamb Method"
-msgstr ""
+msgstr "Kamb Methode"
 
 #: innstereo/dataview_classes.py:327
 msgid "L-Dip"
-msgstr ""
+msgstr "L-Hlng."
 
 #: innstereo/dataview_classes.py:316
 msgid "L-Dir"
-msgstr ""
+msgstr "L-Rcht."
 
 #: innstereo/gui_layout.glade:3874
 msgid "Label Font Size"
-msgstr ""
+msgstr "Onderschrift Lettergrootte"
 
 #: innstereo/layer_view.py:60
 msgid "Layer"
-msgstr "Livello"
+msgstr "Laag"
 
 #: innstereo/gui_layout.glade:2678 innstereo/gui_layout.glade:4881
 msgid "Layer Properties"
-msgstr "Proprietà livello"
+msgstr "Laag Eigenschappen"
 
 #: innstereo/gui_layout.glade:5092
 msgid "Layers"
-msgstr "Livelli"
+msgstr "Lagen"
 
 #: innstereo/gui_layout.glade:1109
 msgid "Legend"
-msgstr "Legenda"
+msgstr "Legende"
 
 #: innstereo/gui_layout.glade:929
 msgid "Line Capstyle"
-msgstr ""
+msgstr "Lijn Streekend Stijl"
 
 #: innstereo/gui_layout.glade:3934
 msgid "Line Color"
-msgstr ""
+msgstr "Lijnkleur"
 
 #: innstereo/gui_layout.glade:960 innstereo/gui_layout.glade:2756
 msgid "Line Colour"
-msgstr ""
+msgstr "Lijnkleur"
 
 #: innstereo/gui_layout.glade:943 innstereo/gui_layout.glade:2789
 msgid "Line Style"
-msgstr "Stile Linea"
+msgstr "Lijnstijl"
 
 #: innstereo/gui_layout.glade:915 innstereo/gui_layout.glade:2867
 msgid "Line Thickness"
-msgstr "Spessore Linea"
+msgstr "Lijndikte"
 
 #: innstereo/gui_layout.glade:3822
 msgid "Line Type"
-msgstr "Tipo Linea"
+msgstr "Lijntype"
 
 #: innstereo/gui_layout.glade:2551
 msgid "Linear Kamb"
-msgstr ""
+msgstr "Lineaire Kamb"
 
 #: innstereo/layer_types.py:1114
 msgid "Linear Layer"
-msgstr "Livello Lineare"
+msgstr "Lineaire Laag"
 
 #: innstereo/gui_layout.glade:2260
 msgid "Linears"
-msgstr "Lineari"
+msgstr "Lineaire"
 
 #: innstereo/gui_layout.glade:4979
 msgid "Linears to Plane Layer"
-msgstr "Da Lineari a Layer Piano"
+msgstr "Lineaire naar Vlak"
 
 #: innstereo/gui_layout.glade:3561
 msgid "Lines"
-msgstr "Linee"
+msgstr "Lijnen"
 
 #: innstereo/gui_layout.glade:4117
 msgid "Lower Limit"
-msgstr "Limite Inferiore"
+msgstr "Ondergrens"
 
 #: innstereo/gui_layout.glade:4086
 msgid "Manual Range"
-msgstr "Range Manuale"
+msgstr "Handmatige Omvang"
 
 #: innstereo/gui_layout.glade:3416 innstereo/gui_layout.glade:4936
 msgid "Mean Vector"
-msgstr ""
+msgstr "Gemiddelde Vector"
 
 #: innstereo/gui_layout.glade:3699
 msgid "Method"
-msgstr "Metodo"
+msgstr "Methode"
 
 #: innstereo/gui_layout.glade:4963
 msgid "Moves the poles of a plane layer to a new linear layer."
-msgstr "Sposta i poli di un livello piano in un nuovo livello lineare."
+msgstr ""
 
 #: innstereo/gui_layout.glade:4506 innstereo/gui_layout.glade:4735
 msgid "New Project"
-msgstr "Nuovo Progetto"
+msgstr "Nieuw Project"
 
 #: innstereo/gui_layout.glade:715
 msgid "Night Mode"
-msgstr "Modo Notte"
+msgstr "Nachtmodus"
 
 #: innstereo/gui_layout.glade:2631
 msgid "Octagon"
-msgstr "Ottagono"
+msgstr "Achthoek"
 
 #: innstereo/gui_layout.glade:1638 innstereo/gui_layout.glade:1770
 msgid "Open"
-msgstr "Apri"
+msgstr "Openen"
 
 #: innstereo/gui_layout.glade:4515 innstereo/gui_layout.glade:4750
 msgid "Open Project"
-msgstr "Apri Progetto"
+msgstr "Project Openen"
 
 #: innstereo/gui_layout.glade:5342
 msgid "Open a dialog for importing data to the currently selected layer."
-msgstr "Apri una finestra per importare dati nel livello selezionato."
+msgstr ""
 
 #: innstereo/gui_layout.glade:4749
 msgid "Opens a dialog to open a previously saved project."
-msgstr "Apri una finestra per caricare un progetto salvato precedentemente."
+msgstr ""
 
 #: innstereo/gui_layout.glade:4764
 msgid "Opens a dialog to save the project."
-msgstr "Apri una finestra per salvare il progetto."
+msgstr ""
 
 #: innstereo/gui_layout.glade:4866
 msgid ""
 "Opens the plot-properties dialog, that controls the appearance of the plot."
 msgstr ""
-"Apri la finestra proprietà del grafico che ti permette di configurare "
-"l'aspetto del grafico."
 
 #: innstereo/gui_layout.glade:2441
 msgid "OrRd"
@@ -684,71 +667,71 @@ msgstr ""
 
 #: innstereo/gui_layout.glade:2437
 msgid "Oranges"
-msgstr "Arancioni"
+msgstr "Oranje"
 
 #: innstereo/gui_layout.glade:1515
 msgid "Overwrite"
-msgstr "Sovrascrivi"
+msgstr "Overschrijven"
 
 #: innstereo/gui_layout.glade:4656
 msgid "Paleostress View"
-msgstr "Vista Paleostress"
+msgstr "Paleospanning"
 
 #: innstereo/gui_layout.glade:4589 innstereo/gui_layout.glade:4842
 msgid "Paste"
-msgstr "Incolla"
+msgstr "Plakken"
 
 #: innstereo/gui_layout.glade:2635
 msgid "Pentagon"
-msgstr "Pentagono"
+msgstr "Vijfhoek"
 
 #: innstereo/gui_layout.glade:2603
 msgid "Pixel"
-msgstr ""
+msgstr "Pixel"
 
 #: innstereo/gui_layout.glade:752
 msgid "Pixel Density (DPI)"
-msgstr "Densità Pixel (DPI)"
+msgstr "Pixel Dichtheid (DPI)"
 
 #: innstereo/layer_types.py:100
 msgid "Plane Layer"
-msgstr "Livello Piano"
+msgstr "Vlak Laag"
 
 #: innstereo/gui_layout.glade:2108
 msgid "Planes"
-msgstr "Piani"
+msgstr "Vlaktes"
 
 #: innstereo/gui_layout.glade:543
 msgid "Plot Properties"
-msgstr "Proprietà Grafico"
+msgstr "Vertegenwoordiging Eigenschappen"
 
 #: innstereo/gui_layout.glade:4867
 msgid "Plot properties"
-msgstr "Proprietà Grafico"
+msgstr "Vertegenwoordiging Eigenschappen"
 
 #: innstereo/gui_layout.glade:2651
 msgid "Plus"
-msgstr ""
+msgstr "Plus"
 
 #: innstereo/gui_layout.glade:2599
 msgid "Point"
-msgstr "Punto"
+msgstr "Punt"
 
 #: innstereo/gui_layout.glade:3167
 msgid "Poles"
-msgstr "Poli"
+msgstr "Pool"
 
 #: innstereo/gui_layout.glade:4964
 msgid "Poles to Linear Layer"
-msgstr "Da Poli a Livello Lineare"
+msgstr "Pool naar Lijn Laag"
 
 #: innstereo/gui_layout.glade:2344
 msgid "Preview"
-msgstr "Anteprima"
+msgstr "Vooruitblik"
 
 #: innstereo/gui_layout.glade:2399
 msgid "Projecting"
-msgstr "Proiettando"
+msgstr "Projectie"
 
 #: innstereo/gui_layout.glade:2445
 msgid "PuBu"
@@ -760,103 +743,101 @@ msgstr ""
 
 #: innstereo/gui_layout.glade:2453
 msgid "PuRd"
-msgstr ""
+msgstr "Purper-Rood"
 
 #: innstereo/gui_layout.glade:2457
 msgid "Purples"
-msgstr "Viola"
+msgstr "Purper"
 
 #: innstereo/gui_layout.glade:4548
 msgid "Quit"
-msgstr "Chiudi"
+msgstr "Afsluiten"
 
 #: innstereo/gui_layout.glade:2461
 msgid "RdPu"
-msgstr ""
+msgstr "Rood-Purper"
 
 #: innstereo/gui_layout.glade:2465
 msgid "Reds"
-msgstr ""
+msgstr "Rood"
 
 #: innstereo/gui_layout.glade:5373
 msgid "Remove Features"
-msgstr "Rimuovi caratteristica"
+msgstr "Kenmerken Verwijdere"
 
 #: innstereo/gui_layout.glade:5372
 msgid "Removes the currently selected features from the dataset."
-msgstr "Rimuovi la caratteristica selezionata dal dataset."
+msgstr "Verwijdert de geselecteerde kenmerken."
 
 #: innstereo/gui_layout.glade:4699
 msgid "Report a Bug"
-msgstr "Segnala un Bug"
+msgstr "Een bug melden"
 
 #: innstereo/main_ui.py:2724 innstereo/gui_layout.glade:4418
 msgid "Rose Diagram"
-msgstr "Diagramma a Rosa"
+msgstr "Roos Voorstelling"
 
 #: innstereo/gui_layout.glade:4457
 msgid "Rose Plot"
-msgstr "Grafico a Rosa"
+msgstr "Roos Vertegenwoordiging"
 
 #: innstereo/gui_layout.glade:4645
 msgid "Rose diagram"
-msgstr "Diagramma a Rosa"
+msgstr "Roos Voorstelling"
 
 #: innstereo/gui_layout.glade:5009
 msgid "Rotate Layer"
-msgstr "Ruota Livello"
+msgstr "Laag Roteren"
 
 #: innstereo/gui_layout.glade:1226
 msgid "Rotate Layers"
-msgstr "Ruota Livelli"
+msgstr "Laag Roteren"
 
 #: innstereo/gui_layout.glade:5008
 msgid ""
 "Rotates the currently selected layers. The rotation settings are set in a "
 "dialog."
 msgstr ""
-"Ruota i livelli selezionati. Le impostazioni di rotazione sono configurate "
-"nella finestra."
 
 #: innstereo/gui_layout.glade:1418
 msgid "Rotation Angle"
-msgstr "Angolo Rotazione"
+msgstr "Rotatie Hoek"
 
 #: innstereo/gui_layout.glade:1331
 msgid "Rotation Axis"
-msgstr "Asse Rotazione"
+msgstr "Omwentelingsas"
 
 #: innstereo/gui_layout.glade:1308
 msgid "Rotation Settings"
-msgstr "Configurazione Rotazione"
+msgstr "Rotatie Instellingen"
 
 #: innstereo/gui_layout.glade:2395
 msgid "Round"
-msgstr "Arrotonda"
+msgstr "Rondje"
 
 #: innstereo/gui_layout.glade:1696
 msgid "Save"
-msgstr "Salva"
+msgstr "Opslaan"
 
 #: innstereo/gui_layout.glade:4790
 msgid "Save Image"
-msgstr "Salva Immagine"
+msgstr "Afbeelding Opslaan"
 
 #: innstereo/gui_layout.glade:4524 innstereo/gui_layout.glade:4765
 msgid "Save Project"
-msgstr "Salva Progetto"
+msgstr "Project Opslaan"
 
 #: innstereo/gui_layout.glade:4534
 msgid "Save Project As"
-msgstr "Salva Progetto come..."
+msgstr "Opslaan als..."
 
 #: innstereo/gui_layout.glade:4789
 msgid "Saves the current plot in various file formats."
-msgstr "Salva il grafico corrente in vari formati."
+msgstr ""
 
 #: innstereo/gui_layout.glade:2559
 msgid "Schmidt (1 %)"
-msgstr ""
+msgstr "Schmidt (1 %)"
 
 #: innstereo/dataview_classes.py:339 innstereo/dataview_classes.py:464
 #: innstereo/gui_layout.glade:2229
@@ -875,132 +856,132 @@ msgstr ""
 
 #: innstereo/gui_layout.glade:5048
 msgid "Settings"
-msgstr "Impostazioni"
+msgstr ""
 
 #: innstereo/gui_layout.glade:1053
 msgid "Show Center Cross"
-msgstr "Mostra Croce Centrale"
+msgstr ""
 
 #: innstereo/gui_layout.glade:1082
 msgid "Show Degrees"
-msgstr "Mostra Gradi"
+msgstr "Graden Tonen"
 
 #: innstereo/gui_layout.glade:1062
 msgid "Show North"
-msgstr "Mostra Nord"
+msgstr "Noorden Tonen"
 
 #: innstereo/gui_layout.glade:5228
 msgid "Show table"
-msgstr "Mostra tabella"
+msgstr "Tafel Tonen"
 
 #: innstereo/gui_layout.glade:3919
 msgid "Single Line Color"
-msgstr "Colore Singola Linea"
+msgstr "Enkele Lijnkleur"
 
 #: innstereo/gui_layout.glade:2990 innstereo/gui_layout.glade:3323
 msgid "Size"
-msgstr "Dimensione"
+msgstr "Grootte"
 
 #: innstereo/layer_types.py:1192
 msgid "Small-Circle Layer"
-msgstr ""
+msgstr "Kleincirkel Laag"
 
 #: innstereo/gui_layout.glade:2573
 msgid "Solid"
-msgstr ""
+msgstr "Ingevuld"
 
 #: innstereo/gui_layout.glade:4285
 msgid "Spacing [degrees]"
-msgstr ""
+msgstr "Tussenruimte [Graad]"
 
 #: innstereo/gui_layout.glade:2627
 msgid "Square"
-msgstr ""
+msgstr "Vierkant"
 
 #: innstereo/gui_layout.glade:3978
 msgid "Standard Deviations"
-msgstr ""
+msgstr "Standaarddeviatie"
 
 #: innstereo/gui_layout.glade:2639
 msgid "Star"
-msgstr ""
+msgstr "Ster"
 
 #: innstereo/gui_layout.glade:1979
 msgid "Start Line"
-msgstr ""
+msgstr "Lijn Begin"
 
 #: innstereo/gui_layout.glade:4177
 msgid "Steps"
-msgstr ""
+msgstr "Stappen"
 
 #: innstereo/gui_layout.glade:4465
 msgid "Stereo and Rose plot"
-msgstr ""
+msgstr "Stereo en Roos"
 
 #: innstereo/gui_layout.glade:768 innstereo/gui_layout.glade:4449
 #: innstereo/gui_layout.glade:4612
 msgid "Stereonet"
-msgstr ""
+msgstr "Stereonet"
 
 #: innstereo/gui_layout.glade:4623
 msgid "Stereonet and Azimuth Rose"
-msgstr ""
+msgstr "Stereo en Roos"
 
 #: innstereo/gui_layout.glade:4634
 msgid "Stereonet, Azimut and Dip Rose"
-msgstr ""
+msgstr "Stereo, Richting- & Helling Roos"
 
 #: innstereo/dataview_classes.py:227
 msgid "Strat"
-msgstr ""
+msgstr "Strat"
 
 #: innstereo/gui_layout.glade:2064
 msgid "Stratigraphy"
-msgstr "Stratigrafia"
+msgstr "Stratigrafie"
 
 #: innstereo/gui_layout.glade:3085 innstereo/gui_layout.glade:3285
 msgid "Style"
-msgstr "Stile"
+msgstr "Stijl"
 
 #: innstereo/gui_layout.glade:2286
 msgid "Tectonics FPL Notation"
-msgstr ""
+msgstr "Tectonics FPL Schrijfwijze"
 
 #: innstereo/dialog_windows.py:330
 msgid "Text Files"
-msgstr "File di testo"
+msgstr "Tekstbestanden"
 
 #: innstereo/gui_layout.glade:2611
 msgid "Triangle down"
-msgstr ""
+msgstr "Driehoek Naar Beneden"
 
 #: innstereo/gui_layout.glade:2619
 msgid "Triangle left"
-msgstr ""
+msgstr "Driehoek Naar Links"
 
 #: innstereo/gui_layout.glade:2623
 msgid "Triangle right"
-msgstr ""
+msgstr "Dreihoek Naar Rechts"
 
 #: innstereo/gui_layout.glade:2615
 msgid "Triangle up"
-msgstr ""
+msgstr "Dreihoek Naar Boven"
 
 #: innstereo/gui_layout.glade:4147
 msgid "Upper Limit"
-msgstr "Limite Superiore"
+msgstr "Topgrens"
 
 #: innstereo/gui_layout.glade:2667
 msgid "Vertical Line"
-msgstr "Linea Verticale"
+msgstr "Verticaal Lijn"
 
 #: innstereo/gui_layout.glade:4681
 msgid "View Online Help"
-msgstr ""
+msgstr "On-Line Hulp"
 
 #: innstereo/gui_layout.glade:4690
 msgid "Visit the Website"
-msgstr ""
+msgstr "Bezoek de Website"
 
 #: innstereo/gui_layout.glade:5312
 msgid ""
@@ -1010,11 +991,11 @@ msgstr ""
 
 #: innstereo/gui_layout.glade:2655
 msgid "X"
-msgstr ""
+msgstr "X"
 
 #: innstereo/gui_layout.glade:2469
 msgid "YlGn"
-msgstr ""
+msgstr "Geel-Groen"
 
 #: innstereo/gui_layout.glade:2473
 msgid "YlGnBu"
@@ -1022,47 +1003,47 @@ msgstr ""
 
 #: innstereo/gui_layout.glade:2477
 msgid "YlOrBr"
-msgstr ""
+msgstr "Geel-Oranje-Bruin"
 
 #: innstereo/gui_layout.glade:2481
 msgid "YlOrRd"
-msgstr ""
+msgstr "Geel-Oranje-Rood"
 
 #: innstereo/gui_layout.glade:4561
 msgid "_Edit"
-msgstr ""
+msgstr "_Uitgeven"
 
 #: innstereo/gui_layout.glade:4496
 msgid "_File"
-msgstr ""
+msgstr "_Bestand"
 
 #: innstereo/gui_layout.glade:4671
 msgid "_Help"
-msgstr ""
+msgstr "_Hulp"
 
 #: innstereo/gui_layout.glade:4602
 msgid "_View"
-msgstr ""
+msgstr "Uitzicht"
 
 #: innstereo/gui_layout.glade:2485
 msgid "afmhot"
-msgstr ""
+msgstr "Afmhot"
 
 #: innstereo/gui_layout.glade:2489
 msgid "autumn"
-msgstr ""
+msgstr "Herfst"
 
 #: innstereo/gui_layout.glade:2493
 msgid "bone"
-msgstr ""
+msgstr "Bot"
 
 #: innstereo/gui_layout.glade:2497
 msgid "cool"
-msgstr ""
+msgstr "Koel"
 
 #: innstereo/gui_layout.glade:2501
 msgid "copper"
-msgstr ""
+msgstr "Koperen"
 
 #: innstereo/gui_layout.glade:2505
 msgid "gist_heat"
@@ -1070,33 +1051,33 @@ msgstr ""
 
 #: innstereo/gui_layout.glade:2509
 msgid "gray"
-msgstr ""
+msgstr "Grijs"
 
 #: innstereo/gui_layout.glade:2513
 msgid "hot"
-msgstr ""
+msgstr "Fel"
 
 #: innstereo/gui_layout.glade:4206 innstereo/gui_layout.glade:4379
 #: innstereo/gui_layout.glade:4395
 msgid "label"
-msgstr ""
+msgstr "Onderschrift"
 
 #: innstereo/gui_layout.glade:2517
 msgid "pink"
-msgstr ""
+msgstr "Roze"
 
 #: innstereo/gui_layout.glade:2521
 msgid "spring"
-msgstr ""
+msgstr "Lente"
 
 #: innstereo/gui_layout.glade:2525
 msgid "summer"
-msgstr ""
+msgstr "Zomer"
 
 #: innstereo/gui_layout.glade:2533
 msgid "viridis"
-msgstr ""
+msgstr "Viridis"
 
 #: innstereo/gui_layout.glade:2529
 msgid "winter"
-msgstr ""
+msgstr "Winter"
