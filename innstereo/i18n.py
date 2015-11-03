@@ -37,29 +37,24 @@ class i18n:
         # @locale_dir@/@LANGUAGE@/LC_MESSAGES/@app_name@.mo
         self.app_name = "innstereo"
         app_dir = abspath(os.path.dirname(__file__))
-        print("app dir:", app_dir)
 
         # Locale are stored in innstereo/locale
         # .mo files will then be located in innstereo/locale/LANGUAGECODE/LC_MESSAGES/
         locale_dir = abspath(join(app_dir, "locale"))
-        print("locale dir", locale_dir)
 
         if sys.platform == "win32":
             # Set $LANG on MS Windows for gettext
             if os.getenv('LANG') is None:
                 lang, enc = locale.getdefaultlocale() #lang is POSIX e.g. de_DE
-                print(lang, enc)
                 os.environ['LANG'] = lang
                 languages = [lang]
 
             # Set LOCALE_DIR for MS Windows
             import ctypes
             LIB_INTL = abspath(join(app_dir, "../gnome/libintl-8.dll"))
-            print("LIB_INTL", LIB_INTL)
             libintl = ctypes.cdll.LoadLibrary(LIB_INTL)
             lc = locale.setlocale(locale.LC_ALL, "")
             locale_dir_g = abspath(join(app_dir, "locale"))
-            print(lc) # Returns local. On W e.g. German_Germany.1252
             libintl.bindtextdomain(self.app_name, locale_dir_g)
             libintl.bind_textdomain_codeset(self.app_name, "UTF-8")
         else:
@@ -101,7 +96,6 @@ _ = i18n().language().gettext
   
 def translate_gui(builder):
     for obj in builder.get_objects():
-        print(obj)
         if (not isinstance(obj, Gtk.SeparatorMenuItem)) and hasattr(obj, "get_label"):
             label = obj.get_label()
             if label is not None:
