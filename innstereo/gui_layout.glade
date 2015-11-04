@@ -111,6 +111,41 @@ Bajusz Tamás
       <object class="GtkBox" id="box10">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkLabel" id="label87">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="halign">start</property>
+            <property name="margin_top">5</property>
+            <property name="margin_bottom">10</property>
+            <property name="label" translatable="yes">&lt;b&gt;Launch Settings&lt;/b&gt;</property>
+            <property name="use_markup">True</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="label86">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="margin_left">5</property>
+            <property name="margin_right">5</property>
+            <property name="margin_top">5</property>
+            <property name="margin_bottom">5</property>
+            <property name="label" translatable="yes">These settings will be applied every time you start InnStereo.</property>
+            <property name="xalign">0</property>
+            <property name="yalign">0</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
         <child>
           <object class="GtkScrolledWindow" id="scrolledwindow1">
             <property name="visible">True</property>
@@ -494,7 +529,7 @@ Sets whether selected datasets and features should be highlighted.</property>
           <packing>
             <property name="expand">True</property>
             <property name="fill">True</property>
-            <property name="position">1</property>
+            <property name="position">2</property>
           </packing>
         </child>
       </object>
@@ -680,7 +715,7 @@ Sets whether selected datasets and features should be highlighted.</property>
                 <property name="margin_right">6</property>
                 <property name="margin_top">3</property>
                 <property name="margin_bottom">3</property>
-                <property name="label" translatable="yes">Canvas Colour</property>
+                <property name="label" translatable="yes">Canvas Color</property>
               </object>
               <packing>
                 <property name="left_attach">3</property>
@@ -959,7 +994,7 @@ customizable grid.</property>
                     <property name="margin_right">10</property>
                     <property name="margin_top">5</property>
                     <property name="margin_bottom">5</property>
-                    <property name="label" translatable="yes">Line Colour</property>
+                    <property name="label" translatable="yes">Line Color</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
@@ -2094,7 +2129,7 @@ customizable grid.</property>
                         <property name="can_focus">False</property>
                         <property name="margin_left">20</property>
                         <property name="margin_right">10</property>
-                        <property name="label" translatable="yes">Dip direction</property>
+                        <property name="label" translatable="yes">Dip Direction</property>
                       </object>
                       <packing>
                         <property name="left_attach">0</property>
@@ -2166,7 +2201,7 @@ customizable grid.</property>
                         <property name="can_focus">False</property>
                         <property name="margin_left">20</property>
                         <property name="margin_right">10</property>
-                        <property name="label" translatable="yes">Dip direction</property>
+                        <property name="label" translatable="yes">Dip Direction</property>
                       </object>
                       <packing>
                         <property name="left_attach">0</property>
@@ -2416,15 +2451,15 @@ customizable grid.</property>
         <col id="1">Blues</col>
       </row>
       <row>
-        <col id="0" translatable="yes">BuGn</col>
+        <col id="0" translatable="yes">Blue-Green</col>
         <col id="1">BuGn</col>
       </row>
       <row>
-        <col id="0" translatable="yes">BuPu</col>
+        <col id="0" translatable="yes">Blue-Purple</col>
         <col id="1">BuPu</col>
       </row>
       <row>
-        <col id="0" translatable="yes">GnBu</col>
+        <col id="0" translatable="yes">Green-Blue</col>
         <col id="1">GnBu</col>
       </row>
       <row>
@@ -2440,19 +2475,19 @@ customizable grid.</property>
         <col id="1">Oranges</col>
       </row>
       <row>
-        <col id="0" translatable="yes">OrRd</col>
+        <col id="0" translatable="yes">Orange-Red</col>
         <col id="1">OrRd</col>
       </row>
       <row>
-        <col id="0" translatable="yes">PuBu</col>
+        <col id="0" translatable="yes">Purple-Blue</col>
         <col id="1">PuBu</col>
       </row>
       <row>
-        <col id="0" translatable="yes">PuBuGn</col>
+        <col id="0" translatable="yes">Purple-Blue-Green</col>
         <col id="1">PuBuGn</col>
       </row>
       <row>
-        <col id="0" translatable="yes">PuRd</col>
+        <col id="0" translatable="yes">Purple-Red</col>
         <col id="1">PuRd</col>
       </row>
       <row>
@@ -2460,7 +2495,7 @@ customizable grid.</property>
         <col id="1">Purples</col>
       </row>
       <row>
-        <col id="0" translatable="yes">RdPu</col>
+        <col id="0" translatable="yes">Red-Purple</col>
         <col id="1">RdPu</col>
       </row>
       <row>
@@ -2468,71 +2503,71 @@ customizable grid.</property>
         <col id="1">Reds</col>
       </row>
       <row>
-        <col id="0" translatable="yes">YlGn</col>
+        <col id="0" translatable="yes">Yellow-Green</col>
         <col id="1">YlGn</col>
       </row>
       <row>
-        <col id="0" translatable="yes">YlGnBu</col>
+        <col id="0" translatable="yes">Yellow-Green-Blue</col>
         <col id="1">YlGnBu</col>
       </row>
       <row>
-        <col id="0" translatable="yes">YlOrBr</col>
+        <col id="0" translatable="yes">Yellow-Orange-Brown</col>
         <col id="1">YlOrBr</col>
       </row>
       <row>
-        <col id="0" translatable="yes">YlOrRd</col>
+        <col id="0" translatable="yes">Yellow-Orange-Red</col>
         <col id="1">YlOrRd</col>
       </row>
       <row>
-        <col id="0" translatable="yes">afmhot</col>
+        <col id="0" translatable="yes">AFM Hot</col>
         <col id="1">afmhot</col>
       </row>
       <row>
-        <col id="0" translatable="yes">autumn</col>
+        <col id="0" translatable="yes">Autumn</col>
         <col id="1">autumn</col>
       </row>
       <row>
-        <col id="0" translatable="yes">bone</col>
+        <col id="0" translatable="yes">Bone</col>
         <col id="1">bone</col>
       </row>
       <row>
-        <col id="0" translatable="yes">cool</col>
+        <col id="0" translatable="yes">Cool</col>
         <col id="1">cool</col>
       </row>
       <row>
-        <col id="0" translatable="yes">copper</col>
+        <col id="0" translatable="yes">Copper</col>
         <col id="1">copper</col>
       </row>
       <row>
-        <col id="0" translatable="yes">gist_heat</col>
+        <col id="0" translatable="yes">Gist Heat</col>
         <col id="1">gist_heat</col>
       </row>
       <row>
-        <col id="0" translatable="yes">gray</col>
+        <col id="0" translatable="yes">Gray</col>
         <col id="1">gray</col>
       </row>
       <row>
-        <col id="0" translatable="yes">hot</col>
+        <col id="0" translatable="yes">Hot</col>
         <col id="1">hot</col>
       </row>
       <row>
-        <col id="0" translatable="yes">pink</col>
+        <col id="0" translatable="yes">Pink</col>
         <col id="1">pink</col>
       </row>
       <row>
-        <col id="0" translatable="yes">spring</col>
+        <col id="0" translatable="yes">Spring</col>
         <col id="1">spring</col>
       </row>
       <row>
-        <col id="0" translatable="yes">summer</col>
+        <col id="0" translatable="yes">Summer</col>
         <col id="1">summer</col>
       </row>
       <row>
-        <col id="0" translatable="yes">winter</col>
+        <col id="0" translatable="yes">Winter</col>
         <col id="1">winter</col>
       </row>
       <row>
-        <col id="0" translatable="yes">viridis</col>
+        <col id="0" translatable="yes">Viridis</col>
         <col id="1">viridis</col>
       </row>
     </data>
@@ -2755,7 +2790,7 @@ customizable grid.</property>
                         <property name="halign">center</property>
                         <property name="margin_top">5</property>
                         <property name="margin_bottom">5</property>
-                        <property name="label" translatable="yes">Line Colour</property>
+                        <property name="label" translatable="yes">Line Color</property>
                       </object>
                       <packing>
                         <property name="left_attach">0</property>
@@ -2956,7 +2991,7 @@ customizable grid.</property>
                         <property name="can_focus">False</property>
                         <property name="margin_top">5</property>
                         <property name="margin_bottom">5</property>
-                        <property name="label" translatable="yes">Fill Colour</property>
+                        <property name="label" translatable="yes">Fill Color</property>
                       </object>
                       <packing>
                         <property name="left_attach">0</property>
@@ -3069,7 +3104,7 @@ customizable grid.</property>
                         <property name="valign">center</property>
                         <property name="margin_top">5</property>
                         <property name="margin_bottom">5</property>
-                        <property name="label" translatable="yes">Edge Colour</property>
+                        <property name="label" translatable="yes">Edge Color</property>
                       </object>
                       <packing>
                         <property name="left_attach">0</property>
@@ -3190,7 +3225,7 @@ customizable grid.</property>
                         <property name="valign">center</property>
                         <property name="margin_top">5</property>
                         <property name="margin_bottom">5</property>
-                        <property name="label" translatable="yes">Fill Colour</property>
+                        <property name="label" translatable="yes">Fill Color</property>
                       </object>
                       <packing>
                         <property name="left_attach">0</property>
@@ -3205,7 +3240,7 @@ customizable grid.</property>
                         <property name="valign">center</property>
                         <property name="margin_top">5</property>
                         <property name="margin_bottom">5</property>
-                        <property name="label" translatable="yes">Edge Colour</property>
+                        <property name="label" translatable="yes">Edge Color</property>
                       </object>
                       <packing>
                         <property name="left_attach">0</property>
@@ -4866,7 +4901,7 @@ customizable grid.</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="tooltip_text" translatable="yes">Opens the plot-properties dialog, that controls the appearance of the plot.</property>
-                <property name="label" translatable="yes">Plot properties</property>
+                <property name="label" translatable="yes">Plot Properties</property>
                 <property name="use_underline">True</property>
                 <property name="stock_id">gtk-properties</property>
                 <signal name="clicked" handler="on_toolbutton_plot_properties_clicked" swapped="no"/>
