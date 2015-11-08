@@ -1,30 +1,26 @@
-# German translations for PACKAGE package.
-# Copyright (C) 2015 THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the InnStereo package.
-# Tobias Schönberg <tobias47n9e@gmail.com>, 2015.
+# Nikolaos Argyropoulos <n.argiropgeo@gmail.com>, 2015. #zanata
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-04 19:38+0100\n"
-"PO-Revision-Date: 2015-11-04 01:50-0500\n"
-"Last-Translator: Tobias Schönberg <tobias47n9e@gmail.com>\n"
-"Language-Team: German\n"
+"PO-Revision-Date: 2015-11-06 01:23-0500\n"
+"Last-Translator: Nikolaos Argyropoulos <n.argiropgeo@gmail.com>\n"
+"Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: de\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: el\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "X-Generator: Zanata 3.7.3\n"
-"X-Poedit-SourceCharset: UTF-8\n"
 
 #: innstereo/gui_layout.glade:338
 msgid ""
 "<b>Center Cross</b>\n"
 "A cross will be shown in the center of the stereonet."
 msgstr ""
-"<b>Zentrales Kreuz</b>\n"
-"Zeichnet ein Kreuz im Zentrum des Stereonetzes."
+"<b>Σταυρόνημα Κέντρου</b>\n"
+"Εμφάνιση σταυρονήματος στο κέντρο του στερεοδιαγράμματος."
 
 #: innstereo/gui_layout.glade:882
 msgid ""
@@ -32,16 +28,17 @@ msgid ""
 "When turned on the stereonet is displayed with a\n"
 "customizable grid."
 msgstr ""
-"<b>Gitternetz Zeichnen</b>\n"
-"Zeichnet ein Gitternetz im Hintergrund des Stereonetzes."
+"<b>Σχεδίαση Καννάβου</b>\n"
+"Όταν είναι ενεργοποιημένη το στερεοδιάγραμμα\n"
+"προβάλλεται με προσαρμόσιμο κάνναβο."
 
 #: innstereo/gui_layout.glade:250
 msgid ""
 "<b>Equal Angle</b>\n"
 "Uses a Stereographic Projection or Wulff Net."
 msgstr ""
-"<b>Winkeltreue Projektion</b>\n"
-"Verwendet eine winkeltreue Projektion für das Stereonetz (Wulff'sches Netz)."
+"<b>Ισογωνιακή Προβολή</b>\n"
+"Χρήση Στερεογραφικής Προβολής ή Δικτύου Wulff."
 
 #: innstereo/gui_layout.glade:844
 msgid ""
@@ -49,178 +46,183 @@ msgid ""
 "When turned on the stereonet uses an equal area projection.\n"
 "Turned off an eqal angle projection is used."
 msgstr ""
-"<b>Flächentreue Projektion</b>\n"
-"Verwendet die azimutale Lambertprojektion für das Stereonetz (Schmidt'sches Netz)."
+"<b>Ισοεμβαδικό Στερεοδιάγραμμα</b>\n"
+"Όταν είναι ενεργοποιημένο, το στερεοδιάγραμμα χρησιμοποιεί Ισοεμβαδική Προβολή.\n"
+"Όταν είναι είναι απενεργοποιημένο, χρησιμοποιείται Ισογωνιακή Προβολή."
 
 #: innstereo/gui_layout.glade:232
 msgid ""
 "<b>Equal Area</b>\n"
 "Uses a Lambert Azimuthal Equal-Area Projection or Schmidt Net."
 msgstr ""
-"<b>Flächentreue Projektion</b>\n"
-"Verwendet die azimutale Lambertprojektion für das Stereonetz (Schmidt'sches Netz)."
+"<b>Ισοεμβαδική Προβολή</b>\n"
+"Χρήση Αζιμουθιακής Προβολής Lambert ή Δικτύου Schmidt."
 
 #: innstereo/gui_layout.glade:515
 msgid ""
 "<b>Highlight Mode</b>\n"
 "Sets whether selected datasets and features should be highlighted."
 msgstr ""
-"<b>Hervorhebungsmodus</b>\n"
-"Ausgewählte Ebenen und Strukturen werden hervorgehoben."
+"<b>Λειτουργία Επισήμανσης</b>\n"
+"Ορίζει αν θα επισημανθεί η επιλεγμένη δέσμη δεδομένων και ιδιοτήτων."
 
 #: innstereo/gui_layout.glade:122
 msgid "<b>Launch Settings</b>"
-msgstr "<b>Starteinstellungen</b>"
+msgstr "<b>Έναρξη Ρυθμίσεων</b>"
 
 #: innstereo/gui_layout.glade:356
 msgid "<b>Legend</b>"
-msgstr "<b>Legende</b>"
+msgstr "<b>Υπόμνημα</b>"
 
 #: innstereo/gui_layout.glade:444
 msgid ""
 "<b>Night Mode</b>\n"
 "The user interface will default to the dark variant when this is True."
 msgstr ""
-"<b>Nachtmodus</b>\n"
-"Die Benutzeroberfläche wird in einer dunklen Variante dargestellt."
+"<b>Νυχτερινή Λειτουργία</b>\n"
+"Το περιβάλλον εργασίας χρήστη θα έχει την σκοτεινή παραλλαγή όταν είναι επιλεγμένο."
 
 #: innstereo/gui_layout.glade:480
 msgid ""
 "<b>Screen Pixel Density</b>\n"
 "Use the same value as your primary display to get sharp drawing."
 msgstr ""
-"<b>Bildschirm Pixeldichte</b>\n"
-"Dieser Wert sollte dem des Bildschirms entsprechen."
+"<b>Πυκνότητα Εικονοστοιχείων Οθόνης</b>\n"
+"Χρησιμοποιείστε την ίδια τιμή με την κύρια οθόνη σας για να επιτύχετε ακριβή σχεδίαση."
 
 #: innstereo/gui_layout.glade:303
 msgid ""
 "<b>Show Grid</b>\n"
 "Will display a grid in the background of the stereonet."
 msgstr ""
-"<b>Gitternetz Zeichnen</b>\n"
-"Zeichnet ein Gitternetz im Hintergrund des Stereonetzes."
+"<b>Εμφάνιση Καννάβου</b>\n"
+"Προβολή καννάβου στο φόντο του στερεοδιαγράμματος."
 
 #: innstereo/gui_layout.glade:391
 msgid ""
 "<b>Show Legend</b>\n"
 "Will generate an automatic legend on the project canvas."
 msgstr ""
-"<b>Legende Anzeigen</b>\n"
-"Zeigt eine automatisch generierte Legende auf der Leinwand an."
+"<b>Προβολή Υπομνήματος</b>\n"
+"Αυτόματη δημιουργία υπομνήματος στον καμβά προβολής."
 
 #: innstereo/gui_layout.glade:3437
 msgid "<b>Statistics</b>"
-msgstr "<b>Statistik</b>"
+msgstr "<b>Στατιστικά</b>"
 
 #: innstereo/gui_layout.glade:268
 msgid "<b>Stereonet Grid</b>"
-msgstr "<b>Stereonetz-Gitternetz</b>"
+msgstr "<b>Κάνναβος Στερεοδιαγράμματος</b>"
 
 #: innstereo/gui_layout.glade:172
 msgid "<b>Stereonet Projection</b>"
-msgstr "<b>Stereonetz-Projektion</b>"
+msgstr "<b>Προβολή Στερεοδιαγράμματος</b>"
 
 #: innstereo/gui_layout.glade:409
 msgid "<b>User Interface</b>"
-msgstr "<b>Benutzeroberfläche</b>"
+msgstr "<b>Περιβάλλον Εργασίας Χρήστη</b>"
 
 #: innstereo/gui_layout.glade:2522
 msgid "AFM Hot"
-msgstr "AFM Heiß"
+msgstr "AFM Hot"
 
 #: innstereo/gui_layout.glade:33 innstereo/gui_layout.glade:4745
 msgid "About"
-msgstr "Über"
+msgstr "Περί"
 
 #: innstereo/gui_layout.glade:1964
 msgid "Add Data"
-msgstr "Daten Hinzufügen"
+msgstr "Εισαγωγή δεδομένων"
 
 #: innstereo/gui_layout.glade:5365
 msgid "Add Feature"
-msgstr "Elemente Hinzufügen"
+msgstr "Εισαγωγή ιδιότητας"
 
 #: innstereo/gui_layout.glade:1293
 msgid "Add Rotated Data"
-msgstr "Rotierete Daten Hinzufügen"
+msgstr "Εισαγωγή περιστραμμένων δεδομένων"
 
 #: innstereo/gui_layout.glade:5364
 msgid "Adds an empty row to the current layer."
-msgstr "Fügt der ausgewählten Ebene eine leere Zeile hinzu."
+msgstr "Εισάγει μία γραμμή στο τρέχον θεματικό επίπεδο."
 
 #: innstereo/dialog_windows.py:675
 msgid "All Files"
-msgstr "Alle Dateien"
+msgstr "Όλα τα αρχεία"
 
 #: innstereo/dataview_classes.py:557
 msgid "Angle"
-msgstr "Winkel"
+msgstr "Γωνία"
 
 #: innstereo/gui_layout.glade:2428
 msgid "Angular"
-msgstr "Eckig"
+msgstr "Γωνιακός"
 
 #: innstereo/gui_layout.glade:609 innstereo/gui_layout.glade:2745
 msgid "Apply"
-msgstr "Übernehmen"
+msgstr "Εφαρμογή"
 
 #: innstereo/gui_layout.glade:2057
 msgid "Assign columns"
-msgstr "Spalten Zuordnen"
+msgstr "Ανάθεση στηλών"
 
 #: innstereo/gui_layout.glade:2526
 msgid "Autumn"
-msgstr "Herbst"
+msgstr "Φθινοπωρινός"
 
 #: innstereo/gui_layout.glade:2454
 msgid "Blue-Green"
-msgstr "Blau-Grün"
+msgstr "Μπλε-Πράσινος"
 
 #: innstereo/gui_layout.glade:2458
 msgid "Blue-Purple"
-msgstr "Balu-Lila"
+msgstr "Μπλε-Μωβ"
 
 #: innstereo/gui_layout.glade:2450
 msgid "Blues"
-msgstr "Blautöne"
+msgstr "Μπλε"
 
 #: innstereo/gui_layout.glade:2530
 msgid "Bone"
-msgstr "Knochen"
+msgstr "Χρώμα οστού"
 
 #: innstereo/gui_layout.glade:4354
 msgid "Bottom Cutoff"
-msgstr "Untere Grenze"
+msgstr "Αποκοπή κάτω μέρους"
 
 #: innstereo/main_ui.py:216
 msgid "Calculate"
-msgstr "Berechnen"
+msgstr "Υπολογισμός"
 
 #: innstereo/gui_layout.glade:4958
 msgid "Calculate Best Plane"
-msgstr "Berechne durchschnittliche Fläche"
+msgstr "Υπολογισμός Καλύτερου Επιπέδου"
 
 #: innstereo/gui_layout.glade:4943
 msgid "Calculate Best Pole"
-msgstr "Berechne durchschnittlichen Polpunkt"
+msgstr "Υπολογισμός Καλύτερου Πόλου"
 
 #: innstereo/gui_layout.glade:5031
 msgid "Calculate Eigenvector"
-msgstr "Eigenvektoren Berechnen"
+msgstr "Υπολογισμός ιδιοδιανυσμάτων"
 
 #: innstereo/gui_layout.glade:5061
 msgid "Calculate PT-Axis"
-msgstr "Berechne PT-Achsen"
+msgstr "Υπολογισμός άξονα ΡΤ"
 
 #: innstereo/gui_layout.glade:5060
 msgid "Calculates the P, T, and B axis of each row in a fault plane layer."
-msgstr "Berechnet die P, T und B-Achsen für jede Zeile eines Störungsebene."
+msgstr ""
+"Υπολογίζει τους άξονες P,T και B κάθε γραμμής σε ένα θεματικό επίπεδο "
+"επιπέδων ρηγμάτων."
 
 #: innstereo/gui_layout.glade:5030
 msgid ""
 "Calculates the eigenvectors and eigenvalue of the selected datasets and adds"
 " it as a new layer."
-msgstr "Berechnet die Eigenvektoren und -werte des ausgewählten Ebene."
+msgstr ""
+"Υπολογίζει τα ιδιοδιανύσματα και τις ιδιοτιμές των επιλεγμένων δεδομένων και"
+" τα προσθέτει σε νέο θεματικό επίπεδο."
 
 #: innstereo/gui_layout.glade:595 innstereo/gui_layout.glade:1279
 #: innstereo/gui_layout.glade:1538 innstereo/gui_layout.glade:1605
@@ -228,356 +230,360 @@ msgstr "Berechnet die Eigenvektoren und -werte des ausgewählten Ebene."
 #: innstereo/gui_layout.glade:1793 innstereo/gui_layout.glade:1950
 #: innstereo/gui_layout.glade:2731
 msgid "Cancel"
-msgstr "Abbrechen"
+msgstr "Ακύρωση"
 
 #: innstereo/gui_layout.glade:718
 msgid "Canvas Color"
-msgstr "Leinwandfarbe"
+msgstr "Χρώμα Καμβά"
 
 #: innstereo/gui_layout.glade:1774
 msgid "Choose file to parse"
-msgstr "Datei Auswählen"
+msgstr "Επιλέξτε αρχείο για ανάλυση"
 
 #: innstereo/gui_layout.glade:2644
 msgid "Circle"
-msgstr "Kreis"
+msgstr "Κύκλος"
 
 #: innstereo/gui_layout.glade:3807
 msgid "Colormap"
-msgstr "Farbtabelle"
+msgstr "Χρωματικός χάρτης"
 
 #: innstereo/gui_layout.glade:3513
 msgid "Confidence"
-msgstr "Vertrauensbereich"
+msgstr "Εμπιστοσύνη"
 
 #: innstereo/gui_layout.glade:4298
 msgid "Contours"
-msgstr "Konturen"
+msgstr "Ισοκαμπύλες"
 
 #: innstereo/gui_layout.glade:2534
 msgid "Cool"
-msgstr "Kühl"
+msgstr "Ψυχρός"
 
 #: innstereo/gui_layout.glade:2538
 msgid "Copper"
-msgstr "Kupfer"
+msgstr "Χάλκινος"
 
 #: innstereo/gui_layout.glade:4617 innstereo/gui_layout.glade:4865
 msgid "Copy"
-msgstr "Kopieren"
+msgstr "Αντιγραφή"
 
 #: innstereo/gui_layout.glade:5205
 msgid "Create faultplane dataset"
-msgstr "Störungsdatensatz Erstellen"
+msgstr "Δημιουργία δέσμης δεδομένων για επίπεδα ρηγμάτων"
 
 #: innstereo/gui_layout.glade:5221
 msgid "Create fold dataset"
-msgstr "Faltendatensatz Erstellen"
+msgstr "Δημιουργία δέσμης δεδομένων για πτυχές"
 
 #: innstereo/gui_layout.glade:5160
 msgid "Create group layer"
-msgstr "Gruppenebene Erstellen"
+msgstr "Δημιουργία ομαδικού θεματικού επιπέδου"
 
 #: innstereo/gui_layout.glade:5190
 msgid "Create line dataset"
-msgstr "Lineardatensatz Erstellen"
+msgstr "Δημιουργία δέσμης δεδομένων γραμμής"
 
 #: innstereo/gui_layout.glade:5175
 msgid "Create plane dataset"
-msgstr "Flächendatensatz Erstellen"
+msgstr "Δημιουργία δέσμης δεδομένων επιπέδων"
 
 #: innstereo/gui_layout.glade:5235
 msgid "Create small circle dataset"
-msgstr "Kleinkreisdatensatz Erstellen"
+msgstr "Δημιουργία δέσμης δεδομένων μικρών κύκλων"
 
 #: innstereo/gui_layout.glade:5189
 msgid "Creates a new dataset for linear elements."
-msgstr "Erstellt einen neuen Datensatz für Lineare."
+msgstr "Δημιουργία νέας δέσμης δεδομένων για γραμμικά αντικείμενα"
 
 #: innstereo/gui_layout.glade:5204
 msgid "Creates a new faultplane dataset."
-msgstr "Erstellt einen neuen Datensatz für Störungsflächen."
+msgstr "Δημιουργία νέας δέσμης δεδομένων για επίπεδα ρηγμάτων"
 
 #: innstereo/gui_layout.glade:5220
 msgid "Creates a new fold dataset."
-msgstr "Erstellt einen neuen Datensatz für Falten."
+msgstr "Δημιουργία νέας δέσμης δεδομένων για πτυχές"
 
 #: innstereo/gui_layout.glade:5159
 msgid ""
 "Creates a new layer group. Selected layers will be placed into the new "
 "group."
 msgstr ""
-"Erstellt eine neue Gruppenebene. Alle markierten Ebenen werden in die neue "
-"Gruppe verschoben."
+"Δημιουργία νέου ομαδικού θεματικού επιπέδου. Τα επιλεγμένα θεματικά επίπεδα "
+"θα τοποθετηθούν στο νέο ομαδικό θεματικό επίπεδο."
 
 #: innstereo/gui_layout.glade:5174
 msgid "Creates a new plane dataset."
-msgstr "Erstellt einen neuen Datensatz für Flächen."
+msgstr "Δημιουργία νέας δέσμης δεδομένων για επίπεδα."
 
 #: innstereo/gui_layout.glade:4771
 msgid "Creates a new project in a new window."
-msgstr "Öffnet ein neues Projekt in einem neuen Fenster."
+msgstr "Δημιουργία νέου αντικειμένου σε νέο παράθυρο."
 
 #: innstereo/gui_layout.glade:5234
 msgid "Creates a new small-circle dataset."
-msgstr "Erstellt einen neuen Datensatz für Kleinkreise."
+msgstr "Δημιουργία νέας δέσμης δεδομένων μικρών κύκλων."
 
 #: innstereo/gui_layout.glade:4608 innstereo/gui_layout.glade:4851
 msgid "Cut"
-msgstr "Ausschneiden"
+msgstr "Αποκοπή"
 
 #: innstereo/gui_layout.glade:2865
 msgid "Dash Capstyle"
-msgstr "Linienendungen"
+msgstr "Dash Capstyle"
 
 #: innstereo/gui_layout.glade:2618
 msgid "Dash-Dotted"
-msgstr "Strich-Punkt"
+msgstr "Παύλες-Τελείες"
 
 #: innstereo/gui_layout.glade:2614
 msgid "Dashed"
-msgstr "Gestrichelt"
+msgstr "Παύλες"
 
 #: innstereo/gui_layout.glade:5319
 msgid "Data"
-msgstr "Daten"
+msgstr "Δεδομένα"
 
 #: innstereo/gui_layout.glade:5250
 msgid "Delete Layer"
-msgstr "Ebene Löschen"
+msgstr "Διαγραφή θεματικού επιπέδου"
 
 #: innstereo/gui_layout.glade:5249
 msgid "Deletes the currently selected layers and their children."
-msgstr "Löscht die selektierte Ebene und alle ihre Unterebenen."
+msgstr "Διαγραφή επιλεγμένων τρέχοντων θεματικών επιπέδων και υποεπιπέδων."
 
 #: innstereo/gui_layout.glade:2696
 msgid "Diamond"
-msgstr "Diamant"
+msgstr "Διαμάντι"
 
 #: innstereo/gui_layout.glade:2700
 msgid "Diamond thin"
-msgstr "Dünner Diamant"
+msgstr "Λεπτό σαν διαμάντι"
 
 #: innstereo/dataview_classes.py:216 innstereo/dataview_classes.py:305
 #: innstereo/dataview_classes.py:452 innstereo/dataview_classes.py:546
 #: innstereo/dataview_classes.py:646 innstereo/gui_layout.glade:1438
 #: innstereo/gui_layout.glade:2162 innstereo/gui_layout.glade:2235
 msgid "Dip"
-msgstr "Einf."
+msgstr "Κλίση"
 
 #: innstereo/gui_layout.glade:1423 innstereo/gui_layout.glade:2132
 #: innstereo/gui_layout.glade:2204
 msgid "Dip Direction"
-msgstr "Einfallrichtung"
+msgstr "Διεύθυνση Κλίσης"
 
 #: innstereo/gui_layout.glade:4385
 msgid "Dip Spacing [Degrees]"
-msgstr "Abstand des Einfallens"
+msgstr "Απόσταση κλίσης (μοίρες)"
 
 #: innstereo/dataview_classes.py:205 innstereo/dataview_classes.py:294
 #: innstereo/dataview_classes.py:441 innstereo/dataview_classes.py:535
 #: innstereo/dataview_classes.py:635
 msgid "Dir"
-msgstr "Einfr."
+msgstr "Δ/νση"
 
 #: innstereo/gui_layout.glade:1575
 msgid "Do you want to overwrite the existing file?"
-msgstr "Wollen Sie die vorhandene Datei überschreiben?"
+msgstr "Θέλετε να αντικαταστήσετε το υπάρχον αρχείο;"
 
 #: innstereo/gui_layout.glade:2622
 msgid "Dotted"
-msgstr "Gepunktet"
+msgstr "Τελείες"
 
 #: innstereo/gui_layout.glade:3617
 msgid "Draw Angelier"
-msgstr "Angelier-Darstelung Zeichnen"
+msgstr "Σχεδίαση Angelier"
 
 #: innstereo/gui_layout.glade:3752
 msgid "Draw Contour Fills"
-msgstr "Konturfüllung Zeichnen"
+msgstr "Σχεδίαση γεμίσματος ισοκαμπυλών"
 
 #: innstereo/gui_layout.glade:4093
 msgid "Draw Contour Labels"
-msgstr "Konturbeschriftung Zeichnen"
+msgstr "Σχεδίαση ετικέτας ισοκαμπυλών"
 
 #: innstereo/gui_layout.glade:4076
 msgid "Draw Contour Lines"
-msgstr "Konturlinien Zeichnen"
+msgstr "Σχεδίαση ισοκαμπυλών γραμμών"
 
 #: innstereo/gui_layout.glade:5350
 msgid "Draw Features"
-msgstr "Symbole Zeichnen"
+msgstr "Σχεδίαση ιδιοτήτων"
 
 #: innstereo/gui_layout.glade:2950
 msgid "Draw Great & Small Circles"
-msgstr "Groß- & Kleinkreise Zeichnen"
+msgstr "Σχεδίαση μικρών και μεγάλων κύκλων"
 
 #: innstereo/gui_layout.glade:3645
 msgid "Draw Hoeppener"
-msgstr "Hoeppener-Pfeile Zeichnen"
+msgstr "Σχεδίαση Hoeppener"
 
 #: innstereo/gui_layout.glade:3676
 msgid "Draw Hoeppener Linear-Pole-Plane"
-msgstr "Hoeppener Linear-Pol-Ebene Zeichnen"
+msgstr "Σχεδίαση γραμμής-πόλου-επιπέδου Hoeppener"
 
 #: innstereo/gui_layout.glade:1186
 msgid "Draw Legend"
-msgstr "Legende Zeichnen"
+msgstr "Σχεδίαση υπομνήματος"
 
 #: innstereo/gui_layout.glade:3406
 msgid "Draw Linears"
-msgstr "Lineare Zeichnen"
+msgstr "Γραμμική σχεδίαση"
 
 #: innstereo/gui_layout.glade:3171
 msgid "Draw Poles"
-msgstr "Pole Zeichnen"
+msgstr "Σχεδίαση πόλων"
 
 #: innstereo/gui_layout.glade:3107 innstereo/gui_layout.glade:3243
 msgid "Edge Color"
-msgstr "Kantenfarbe"
+msgstr "Χρώμα άκρης"
 
 #: innstereo/gui_layout.glade:3075 innstereo/gui_layout.glade:3291
 msgid "Edge Thickness"
-msgstr "Kantenstärke"
+msgstr "Πάχος άκρης"
 
 #: innstereo/dataview_classes.py:657
 msgid "Eigenvalue"
-msgstr "Eigenwert"
+msgstr "Ιδιοτιμή"
 
 #: innstereo/layer_types.py:1154
 msgid "Eigenvector Layer"
-msgstr "Eigenvektorenebene"
+msgstr "Θεματικό επίπεδο ιδιοδιανυσμάτων"
 
 #: innstereo/gui_layout.glade:2584
 msgid "Exponential Kamb"
-msgstr "Exponentiell (Kamb)"
+msgstr "Εκθετική μέθοδος Kamb"
 
 #: innstereo/gui_layout.glade:1619
 msgid "Export"
-msgstr "Exportieren"
+msgstr "Εξαγωγή"
 
 #: innstereo/gui_layout.glade:5395
 msgid "Export Data"
-msgstr "Daten Exportieren"
+msgstr "Εξαγωγή δεδομένων"
 
 #: innstereo/gui_layout.glade:5394
 msgid "Exports the data of the currently selected layer."
-msgstr "Exportiert die Daten der momentan selektieren Ebenen."
+msgstr "Εξάγει τα δεδομένα του επιλεγμένου θεματικού επιπέδου."
 
 #: innstereo/gui_layout.glade:3715
 msgid "Fault Plots"
-msgstr "Störungsdarstellungen"
+msgstr "Σχεδίαση ρηγμάτων"
 
 #: innstereo/layer_types.py:1087
 msgid "Faultplane Layer"
-msgstr "Störungsebene"
+msgstr "Θεματικό επίπεδο επιπέδων ρηγμάτων"
 
 #: innstereo/gui_layout.glade:2994 innstereo/gui_layout.glade:3228
 msgid "Fill Color"
-msgstr "Füllfarbe"
+msgstr "Χρώμα γεμίσματος"
 
 #: innstereo/gui_layout.glade:4942
 msgid "Finds the average intersect of all selected plane layers."
-msgstr ""
-"Berechnet den durschnittlichen Schnittpunkt aller selektierten Ebenen."
+msgstr "Βρίσκει το μέσο όρο τομής όλων των επιλεγμένων επιπέδων."
 
 #: innstereo/gui_layout.glade:4957
 msgid "Finds the ideal plane for a set of linear elements."
-msgstr "Berechnet den für alle Lineare bestpassenden Großkreis."
+msgstr "Βρίσκει το ιδανικό επίπεδο για ένα σύνολο γραμμικών αντικειμένων."
 
 #: innstereo/gui_layout.glade:4972
 msgid ""
 "Finds the mean vector of a set of linears. At least one linear layer has to "
 "be selected."
-msgstr "Berechnet die durchschnittliche Richtung aller ausgewählten Lineare."
+msgstr ""
+"Βρίσκει το μεσοδιάνυσμα από ένα σύνολο γραμμών. Τουλάχιστον μία γραμμή θα "
+"πρέπει να είναι επιλεγμένη."
 
 #: innstereo/gui_layout.glade:5015
 msgid ""
 "Finds the planes that lie normal to the currently selected linear layers."
 msgstr ""
-"Findet die Großkreise, die normal auf die ausgewählten Lineare stehen."
+"Βρίσκει τα επίπεδα που βρίσκονται φυσιολογικά στα τρέχοντα επιλεγμένα "
+"θεματικά επίπεδα γραμμών."
 
 #: innstereo/main_ui.py:210
 msgid "Fisher Confidence"
-msgstr "Fisher-Vertrauensbereich"
+msgstr "Εμπιστοσύνη Fisher"
 
 #: innstereo/gui_layout.glade:3483
 msgid "Fisher Smallcircle"
-msgstr "Fisher-Vertrauensbereich-Kleinkreis"
+msgstr "Μικρός κύκλος Fisher"
 
 #: innstereo/gui_layout.glade:4987
 msgid "Fisher Statistics"
-msgstr "Fisher-Statistik"
+msgstr "Στατιστικά Fisher"
 
 #: innstereo/gui_layout.glade:642
 msgid "General Settings"
-msgstr "Allgemeine Einstellungen"
+msgstr "Γενικές Ρυθμίσεις"
 
 #: innstereo/gui_layout.glade:2542
 msgid "Gist Heat"
-msgstr "Kernhitze"
+msgstr "Gist Heat"
 
 #: innstereo/gui_layout.glade:2546
 msgid "Gray"
-msgstr "Grau"
+msgstr "Γκρι"
 
 #: innstereo/gui_layout.glade:2974
 msgid "Great & Small Circles"
-msgstr "Groß- & Kleinkreise"
+msgstr "Μεγάλοι και Μικροί Κύκλοι"
 
 #: innstereo/gui_layout.glade:2462
 msgid "Green-Blue"
-msgstr "Grün-Blau"
+msgstr "Πράσινος-Μπλε"
 
 #: innstereo/gui_layout.glade:2466
 msgid "Greens"
-msgstr "Grüntöne"
+msgstr "Αποχρώσεις Πράσινου"
 
 #: innstereo/gui_layout.glade:2470
 msgid "Greys"
-msgstr "Grautöne"
+msgstr "Αποχρώσεις Γκρι"
 
 #: innstereo/gui_layout.glade:4048
 msgid "Grid Resolution"
-msgstr "Gitterauflösung"
+msgstr "Ανάλυση Καννάβου"
 
 #: innstereo/gui_layout.glade:923
 msgid "Grid Spacing"
-msgstr "Gitterabstand"
+msgstr "Απόσταση Καννάβου"
 
 #: innstereo/main_ui.py:2361 innstereo/main_ui.py:2394
 msgid "Group Layer"
-msgstr "Gruppenebene"
+msgstr "Ομαδικό Θεματικό Επίπεδο"
 
 #: innstereo/gui_layout.glade:2680
 msgid "Hexagon 1"
-msgstr "Hexagon 1"
+msgstr "Εξάγωνο 1"
 
 #: innstereo/gui_layout.glade:2684
 msgid "Hexagon 2"
-msgstr "Hexagon 2"
+msgstr "Εξάγωνο 2"
 
 #: innstereo/gui_layout.glade:682
 msgid "Highlight Mode"
-msgstr "Hervorhebungsmodus"
+msgstr "Λειτουργία Επισήμανσης"
 
 #: innstereo/gui_layout.glade:2708
 msgid "Horizontal Line"
-msgstr "Horizontale Linie"
+msgstr "Οριζόντια Γραμμή"
 
 #: innstereo/gui_layout.glade:2550
 msgid "Hot"
-msgstr "Heiß"
+msgstr "Θερμός"
 
 #: innstereo/gui_layout.glade:38
 msgid ""
 "How to cite:\n"
 "In Preperation (2015)"
-msgstr "Zitieren: In Vorbereitung (2015)"
+msgstr ""
+"Πώς να κάνετε αναφορές:\n"
+"In Preparation (2015)"
 
 #: innstereo/gui_layout.glade:5380
 msgid "Import Data"
-msgstr "Daten Importieren"
+msgstr "Εισαγωγή Δεδομένων"
 
 #: innstereo/gui_layout.glade:4514
 msgid "InnStereo"
@@ -585,313 +591,319 @@ msgstr "InnStereo"
 
 #: innstereo/gui_layout.glade:105
 msgid "InnStereo Settings"
-msgstr "InnStereo Einstellungen"
+msgstr "Ρυθμίσεις InnStereo"
 
 #: innstereo/gui_layout.glade:2592
 msgid "Kamb Method"
-msgstr "Kamb-Methode"
+msgstr "Μέθοδος Kamb"
 
 #: innstereo/dataview_classes.py:327
 msgid "L-Dip"
-msgstr "Lin.-Einf."
+msgstr "Κλίση Γραμ."
 
 #: innstereo/dataview_classes.py:316
 msgid "L-Dir"
-msgstr "Lin.-Einfr."
+msgstr "Δ/νση Γραμ."
 
 #: innstereo/gui_layout.glade:3911
 msgid "Label Font Size"
-msgstr "Schriftgröße der Beschriftung"
+msgstr "Μέγεθος Γραμματοσειράς Ετικέτας"
 
 #: innstereo/layer_view.py:60
 msgid "Layer"
-msgstr "Ebene"
+msgstr "Θεματικό Επίπεδο"
 
 #: innstereo/gui_layout.glade:2715 innstereo/gui_layout.glade:4918
 msgid "Layer Properties"
-msgstr "Ebeneneigenschaft"
+msgstr "Ιδιότητες Θεματικού Επιπέδου"
 
 #: innstereo/gui_layout.glade:5129
 msgid "Layers"
-msgstr "Ebenen"
+msgstr "Θεματικά Επίπεδα"
 
 #: innstereo/gui_layout.glade:1146
 msgid "Legend"
-msgstr "Legende"
+msgstr "Υπόμνημα"
 
 #: innstereo/gui_layout.glade:966
 msgid "Line Capstyle"
-msgstr "Linienendung"
+msgstr "Μοτίβο Γραμμής"
 
 #: innstereo/gui_layout.glade:997 innstereo/gui_layout.glade:2793
 #: innstereo/gui_layout.glade:3971
 msgid "Line Color"
-msgstr "Linienfarbe"
+msgstr "Χρώμα Γραμμής"
 
 #: innstereo/gui_layout.glade:980 innstereo/gui_layout.glade:2826
 msgid "Line Style"
-msgstr "Linienart"
+msgstr "Στυλ Γραμμής"
 
 #: innstereo/gui_layout.glade:952 innstereo/gui_layout.glade:2904
 msgid "Line Thickness"
-msgstr "Linienstärke"
+msgstr "Πάχος Γραμμής"
 
 #: innstereo/gui_layout.glade:3859
 msgid "Line Type"
-msgstr "Linienart"
+msgstr "Είδος Γραμμής"
 
 #: innstereo/gui_layout.glade:2588
 msgid "Linear Kamb"
-msgstr "Linear (Kamb)"
+msgstr "Γραμμική Μέθοδος Kamb"
 
 #: innstereo/layer_types.py:1114
 msgid "Linear Layer"
-msgstr "Linearebene"
+msgstr "Θεματικό Επίπεδο Γραμμών"
 
 #: innstereo/gui_layout.glade:2297
 msgid "Linears"
-msgstr "Lineare"
+msgstr "Γραμμικά"
 
 #: innstereo/gui_layout.glade:5016
 msgid "Linears to Plane Layer"
-msgstr "Lineare in Flächendatensatz kopieren."
+msgstr "Γραμμικά σε Θεματικά Επίπεδο Επιπέδων"
 
 #: innstereo/gui_layout.glade:3598
 msgid "Lines"
-msgstr "Linien"
+msgstr "Γραμμές"
 
 #: innstereo/gui_layout.glade:4154
 msgid "Lower Limit"
-msgstr "Unteres Limit"
+msgstr "Ελάχιστο Όριο"
 
 #: innstereo/gui_layout.glade:4123
 msgid "Manual Range"
-msgstr "Manuelle Grenzen"
+msgstr "Χειροκίνητο Εύρος"
 
 #: innstereo/gui_layout.glade:3453 innstereo/gui_layout.glade:4973
 msgid "Mean Vector"
-msgstr "Durchschnittlicher Vektor."
+msgstr "Μεσοδιάνυσμα"
 
 #: innstereo/gui_layout.glade:3736
 msgid "Method"
-msgstr "Methode"
+msgstr "Μέθοδος"
 
 #: innstereo/gui_layout.glade:5000
 msgid "Moves the poles of a plane layer to a new linear layer."
-msgstr "Kopiert die Pole eines Flächendatensatzes in einen Lineardatensatz."
+msgstr ""
+"Μετακινεί τους πόλους του θεματικού επιπέδου επιπέδων σε ένα νέο θεματικό "
+"επίπεδο γραμμών."
 
 #: innstereo/gui_layout.glade:4543 innstereo/gui_layout.glade:4772
 msgid "New Project"
-msgstr "Neues Projekt"
+msgstr "Νέο Έργο"
 
 #: innstereo/gui_layout.glade:752
 msgid "Night Mode"
-msgstr "Nachtmodus"
+msgstr "Νυχτερινή Λειτουργία"
 
 #: innstereo/gui_layout.glade:2668
 msgid "Octagon"
-msgstr "Achteck"
+msgstr "Οκτάγωνο"
 
 #: innstereo/gui_layout.glade:1675 innstereo/gui_layout.glade:1807
 msgid "Open"
-msgstr "Öffnen"
+msgstr "Άνοιγμα"
 
 #: innstereo/gui_layout.glade:4552 innstereo/gui_layout.glade:4787
 msgid "Open Project"
-msgstr "Projekt Öffnen"
+msgstr "Άνοιγμα Έργου"
 
 #: innstereo/gui_layout.glade:5379
 msgid "Open a dialog for importing data to the currently selected layer."
-msgstr "Öffnet einen Dialog für den Datenimport in die ausgewählte Ebene."
+msgstr ""
+"Άνοιγμα διαλόγου για εισαγωγή δεδομένων στο τρέχον επιλεγμένο θεματικό "
+"επίπεδο."
 
 #: innstereo/gui_layout.glade:4786
 msgid "Opens a dialog to open a previously saved project."
-msgstr "Öffnet einen Dialog um ein gespeichertes Projekt zu öffnen."
+msgstr "Ανοίγει ένα διάλογο για να ανοίξει ένα προηγούμενα αποθηκευμένο έργο."
 
 #: innstereo/gui_layout.glade:4801
 msgid "Opens a dialog to save the project."
-msgstr "Öffnet einen Dialog um das Projekt zu speichern."
+msgstr "Ανοίγει ένα διάλογο για την αποθήκευση του έργου."
 
 #: innstereo/gui_layout.glade:4903
 msgid ""
 "Opens the plot-properties dialog, that controls the appearance of the plot."
-msgstr "Öffnet den Dialog für die allgemeinen Einstellungen."
+msgstr ""
+"Ανοίγει το διάλογο των ιδιοτήτων εκτύπωσης, που ελέγχει την εμφάνιση της "
+"εκτύπωσης."
 
 #: innstereo/gui_layout.glade:2478
 msgid "Orange-Red"
-msgstr "Orange-Rot"
+msgstr "Πορτοκαλί-Κόκκινος"
 
 #: innstereo/gui_layout.glade:2474
 msgid "Oranges"
-msgstr "Orangetöne"
+msgstr "Αποχρώσεις του Πορτοκαλί"
 
 #: innstereo/gui_layout.glade:1552
 msgid "Overwrite"
-msgstr "Überschreiben"
+msgstr "Αντικατάσταση"
 
 #: innstereo/gui_layout.glade:4693
 msgid "Paleostress View"
-msgstr "Paläospannungs-Ansicht"
+msgstr "Προβολή Παλαιοτάσεων"
 
 #: innstereo/gui_layout.glade:4626 innstereo/gui_layout.glade:4879
 msgid "Paste"
-msgstr "Einfügen"
+msgstr "Επικόλληση"
 
 #: innstereo/gui_layout.glade:2672
 msgid "Pentagon"
-msgstr "Pentagon"
+msgstr "Πεντάγωνο"
 
 #: innstereo/gui_layout.glade:2554
 msgid "Pink"
-msgstr "Rosa"
+msgstr "Ροζ"
 
 #: innstereo/gui_layout.glade:2640
 msgid "Pixel"
-msgstr "Pixel"
+msgstr "Εικονοστοιχείο"
 
 #: innstereo/gui_layout.glade:789
 msgid "Pixel Density (DPI)"
-msgstr "Pixeldichte (DPI)"
+msgstr "Πυκνότητα Εικονοστοιχείων (ΕΑΙ)"
 
 #: innstereo/layer_types.py:100
 msgid "Plane Layer"
-msgstr "Flächendatensatz"
+msgstr "Θεματικό Επίπεδο Επιπέδων"
 
 #: innstereo/gui_layout.glade:2145
 msgid "Planes"
-msgstr "Flächen"
+msgstr "Επίπεδα"
 
 #: innstereo/gui_layout.glade:580 innstereo/gui_layout.glade:4904
 msgid "Plot Properties"
-msgstr "Diagrammeinstellungen"
+msgstr "Ιδιότητες Εκτύπωσης"
 
 #: innstereo/gui_layout.glade:2688
 msgid "Plus"
-msgstr "Plus"
+msgstr "Συν"
 
 #: innstereo/gui_layout.glade:2636
 msgid "Point"
-msgstr "Punkt"
+msgstr "Σημείο"
 
 #: innstereo/gui_layout.glade:3204
 msgid "Poles"
-msgstr "Pole"
+msgstr "Πόλοι"
 
 #: innstereo/gui_layout.glade:5001
 msgid "Poles to Linear Layer"
-msgstr "Pole zu Linear"
+msgstr "Πόλο σε Θεματικό Επίπεδο Γραμμών"
 
 #: innstereo/gui_layout.glade:2381
 msgid "Preview"
-msgstr "Vorschau"
+msgstr "Προεπισκόπηση"
 
 #: innstereo/gui_layout.glade:2436
 msgid "Projecting"
-msgstr "Herausragend"
+msgstr "Προβολή"
 
 #: innstereo/gui_layout.glade:2482
 msgid "Purple-Blue"
-msgstr "Lila-Blau"
+msgstr "Μωβ-Μπλε"
 
 #: innstereo/gui_layout.glade:2486
 msgid "Purple-Blue-Green"
-msgstr "Lila-Blau-Grün"
+msgstr "Μωβ-Μπλε-Πράσινος"
 
 #: innstereo/gui_layout.glade:2490
 msgid "Purple-Red"
-msgstr "Lila-Rot"
+msgstr "Μωβ-Κόκκινος"
 
 #: innstereo/gui_layout.glade:2494
 msgid "Purples"
-msgstr "Violetttöne"
+msgstr "Αποχρώσεις του Μωβ"
 
 #: innstereo/gui_layout.glade:4585
 msgid "Quit"
-msgstr "Beenden"
+msgstr "Έξοδος"
 
 #: innstereo/gui_layout.glade:2498
 msgid "Red-Purple"
-msgstr "Rot-Lila"
+msgstr "Κόκκινος-Μωβ"
 
 #: innstereo/gui_layout.glade:2502
 msgid "Reds"
-msgstr "Rottöne"
+msgstr "Αποχρώσεις του Κόκκινου"
 
 #: innstereo/gui_layout.glade:5410
 msgid "Remove Features"
-msgstr "Zeile Entfernen"
+msgstr "Απομάκρυνση Ιδιοτήτων"
 
 #: innstereo/gui_layout.glade:5409
 msgid "Removes the currently selected features from the dataset."
-msgstr "Entfert die ausgewählte Zeile des Datensatzes."
+msgstr "Απομακρύνει τα τρέχοντα επιλεγμένα στοιχεία από τη δέσμη δεδομένων."
 
 #: innstereo/gui_layout.glade:4736
 msgid "Report a Bug"
-msgstr "Problem Melden"
+msgstr "Αναφορά Σφάλματος"
 
 #: innstereo/main_ui.py:2724 innstereo/gui_layout.glade:4455
 msgid "Rose Diagram"
-msgstr "Rosendiagramm"
+msgstr "Ροδοδιάγραμμα"
 
 #: innstereo/gui_layout.glade:4494
 msgid "Rose Plot"
-msgstr "Rosendiagramm"
+msgstr "Εκτύπωση Ροδοδιαγράμματος"
 
 #: innstereo/gui_layout.glade:4682
 msgid "Rose diagram"
-msgstr "Rosendiagramm"
+msgstr "Ροδοδιάγραμμα"
 
 #: innstereo/gui_layout.glade:5046
 msgid "Rotate Layer"
-msgstr "Ebene Rotieren"
+msgstr "Περιστροφή Θεματικού Επιπέδου"
 
 #: innstereo/gui_layout.glade:1263
 msgid "Rotate Layers"
-msgstr "Ebene Rotieren"
+msgstr "Περιστροφή Θεματικών Επιπέδων"
 
 #: innstereo/gui_layout.glade:5045
 msgid ""
 "Rotates the currently selected layers. The rotation settings are set in a "
 "dialog."
 msgstr ""
-"Rotiert die ausgewählten Ebenen. Öffnet einen Dialog in dem die Rotation "
-"angepasst wird."
+"Περιστρέφει τα τρέχοντα επιλεγμένα θεματικά επίπεδα. Οι ρυθμίσεις "
+"περιστροφής ορίζονται σε ένα διάλογο."
 
 #: innstereo/gui_layout.glade:1455
 msgid "Rotation Angle"
-msgstr "Rotationswinkel"
+msgstr "Γωνία Περιστροφής"
 
 #: innstereo/gui_layout.glade:1368
 msgid "Rotation Axis"
-msgstr "Rotationsachse"
+msgstr "Άξονας Περιστροφής"
 
 #: innstereo/gui_layout.glade:1345
 msgid "Rotation Settings"
-msgstr "Rotationseinstellungen"
+msgstr "Ρυθμίσεις Περιστροφής"
 
 #: innstereo/gui_layout.glade:2432
 msgid "Round"
-msgstr "Rund"
+msgstr "Στρογγυλός"
 
 #: innstereo/gui_layout.glade:1733
 msgid "Save"
-msgstr "Speichern"
+msgstr "Αποθήκευση"
 
 #: innstereo/gui_layout.glade:4827
 msgid "Save Image"
-msgstr "Bild Speichern"
+msgstr "Αποθήκευση Εικόνας"
 
 #: innstereo/gui_layout.glade:4561 innstereo/gui_layout.glade:4802
 msgid "Save Project"
-msgstr "Projekt Speichern"
+msgstr "Αποθήκευση Έργου"
 
 #: innstereo/gui_layout.glade:4571
 msgid "Save Project As"
-msgstr "Projekt Speichern Als"
+msgstr "Αποθήκευση Έργου ως"
 
 #: innstereo/gui_layout.glade:4826
 msgid "Saves the current plot in various file formats."
-msgstr "Speichert das momentan sichtbare Diagramm."
+msgstr "Αποθηκεύει την τρέχουσα εκτύπωση σε διάφορους τύπους αρχείων."
 
 #: innstereo/gui_layout.glade:2596
 msgid "Schmidt (1 %)"
@@ -900,213 +912,215 @@ msgstr "Schmidt (1 %)"
 #: innstereo/dataview_classes.py:339 innstereo/dataview_classes.py:464
 #: innstereo/gui_layout.glade:2266
 msgid "Sense"
-msgstr "Richtung"
+msgstr "Φορά"
 
 #: innstereo/gui_layout.glade:2346
 msgid ""
 "Sense of linears is given as the first integer of the column.\n"
 "(0 = unknown, 1 = up, 2 = down, 3 = dextral, 4 = sinistral)"
 msgstr ""
-"Schersinn der Lineare entspricht der ersten Stelle der Spalte.\n"
-"(0 = unbekannt, 1 = Aufschiebung, 2 = Abschiebung, 3 = Dextral, 4 = Sinistral)"
+"Η φορά των γραμμικών δίνεται ως ο πρώτος ακέραιος της στήλης.\n"
+"(0=άγνωστη, 1=πάνω, 2=κάτω, 3=δεξιόστροφη, 4=αριστερόστροφη)"
 
 #: innstereo/gui_layout.glade:1995
 msgid "Separator options"
-msgstr "Trennzeichen"
+msgstr "Επιλογές Διαχωριστικού"
 
 #: innstereo/gui_layout.glade:5085
 msgid "Settings"
-msgstr "Einstellungen"
+msgstr "Ρυθμίσεις"
 
 #: innstereo/gui_layout.glade:1090
 msgid "Show Center Cross"
-msgstr "Kreuz Zeichnen"
+msgstr "Εμφάνιση Σταυρονήματος Κέντρου"
 
 #: innstereo/gui_layout.glade:1119
 msgid "Show Degrees"
-msgstr "Winkel Anzeigen"
+msgstr "Εμφάνιση Μοιρών"
 
 #: innstereo/gui_layout.glade:1099
 msgid "Show North"
-msgstr "Norden Anzeigen"
+msgstr "Εμφάνιση Βορρά"
 
 #: innstereo/gui_layout.glade:5265
 msgid "Show table"
-msgstr "Tabelle Anzeigen"
+msgstr "Εμφάνιση πίνακα"
 
 #: innstereo/gui_layout.glade:3956
 msgid "Single Line Color"
-msgstr "Konturen einer Farbe"
+msgstr "Χρώμα Μονής Γραμμής"
 
 #: innstereo/gui_layout.glade:3027 innstereo/gui_layout.glade:3360
 msgid "Size"
-msgstr "Größe"
+msgstr "Μέγεθος"
 
 #: innstereo/layer_types.py:1192
 msgid "Small-Circle Layer"
-msgstr "Kleinkreisdatensatz"
+msgstr "Θεματικό Επίπεδο Μικρών Κύκλων"
 
 #: innstereo/gui_layout.glade:2610
 msgid "Solid"
-msgstr "Durchgezogen"
+msgstr "Στερεό"
 
 #: innstereo/gui_layout.glade:4322
 msgid "Spacing [degrees]"
-msgstr "Abstand [Grad]"
+msgstr "Απόσταση (μοίρες)"
 
 #: innstereo/gui_layout.glade:2558
 msgid "Spring"
-msgstr "Frühling"
+msgstr "Ανοιξιάτικος"
 
 #: innstereo/gui_layout.glade:2664
 msgid "Square"
-msgstr "Quadrat"
+msgstr "Τετράγωνο"
 
 #: innstereo/gui_layout.glade:4015
 msgid "Standard Deviations"
-msgstr "Standardabweichung"
+msgstr "Τυπικές Αποκλίσεις"
 
 #: innstereo/gui_layout.glade:2676
 msgid "Star"
-msgstr "Stern"
+msgstr "Αστέρι"
 
 #: innstereo/gui_layout.glade:2016
 msgid "Start Line"
-msgstr "Startlinie"
+msgstr "Έναρξη Γραμμής"
 
 #: innstereo/gui_layout.glade:4214
 msgid "Steps"
-msgstr "Intervalle"
+msgstr "Βήματα"
 
 #: innstereo/gui_layout.glade:4502
 msgid "Stereo and Rose plot"
-msgstr "Stereonetz und Rosendiagramm"
+msgstr "Εκτύπωση Στερεοδιαγράμματος και Ροδοδιαγράμματος"
 
 #: innstereo/gui_layout.glade:805 innstereo/gui_layout.glade:4486
 #: innstereo/gui_layout.glade:4649
 msgid "Stereonet"
-msgstr "Stereonetz"
+msgstr "Στερεοδιάγραμμα"
 
 #: innstereo/gui_layout.glade:4660
 msgid "Stereonet and Azimuth Rose"
-msgstr "Stereonetz und Azimut-Rosendiagramm"
+msgstr "Στερεοδιάγραμμα και Αζιμουθιακό Ροδοδιάγραμμα"
 
 #: innstereo/gui_layout.glade:4671
 msgid "Stereonet, Azimut and Dip Rose"
-msgstr "Stereonetz, Azimut- und Einfallsrosendiagramm."
+msgstr "Στερεοδιάγραμμα, Ροδοδιάγραμμα Αζιμουθίου και Κλίσης"
 
 #: innstereo/dataview_classes.py:227
 msgid "Strat"
-msgstr "Strat."
+msgstr "Στρωματ."
 
 #: innstereo/gui_layout.glade:2101
 msgid "Stratigraphy"
-msgstr "Stratigraphie"
+msgstr "Στρωματογραφία"
 
 #: innstereo/gui_layout.glade:3122 innstereo/gui_layout.glade:3322
 msgid "Style"
-msgstr "Stil"
+msgstr "Στυλ"
 
 #: innstereo/gui_layout.glade:2562
 msgid "Summer"
-msgstr "Sommer"
+msgstr "Καλοκαιρινός"
 
 #: innstereo/gui_layout.glade:2323
 msgid "Tectonics FPL Notation"
-msgstr "Tectonics FPL Notation"
+msgstr "Τεκτονική Σημείωση FLP"
 
 #: innstereo/dialog_windows.py:330
 msgid "Text Files"
-msgstr "Textdateien"
+msgstr "Αρχεία Σημειωματαρίου"
 
 #: innstereo/gui_layout.glade:139
 msgid "These settings will be applied every time you start InnStereo."
-msgstr "Diese Einstellungen werden bei jedem Start von InnStereo geladen."
+msgstr ""
+"Αυτές οι ρυθμίσεις θα εφαρμόζονται κάθε φορά που θα εκκινείται το InnStereo."
 
 #: innstereo/gui_layout.glade:2648
 msgid "Triangle down"
-msgstr "Dreieck nach unten"
+msgstr "Τρίγωνο κάτω"
 
 #: innstereo/gui_layout.glade:2656
 msgid "Triangle left"
-msgstr "Dreieck nach links"
+msgstr "Τρίγωνο αριστερά"
 
 #: innstereo/gui_layout.glade:2660
 msgid "Triangle right"
-msgstr "Dreieck nach rechts"
+msgstr "Τρίγωνο δεξιά"
 
 #: innstereo/gui_layout.glade:2652
 msgid "Triangle up"
-msgstr "Dreieck nach oben"
+msgstr "Τρίγωνο πάνω"
 
 #: innstereo/gui_layout.glade:4184
 msgid "Upper Limit"
-msgstr "Obere Grenze"
+msgstr "Ανώτερο Όριο"
 
 #: innstereo/gui_layout.glade:2704
 msgid "Vertical Line"
-msgstr "Vertikale Linie"
+msgstr "Κάθετη Γραμμή"
 
 #: innstereo/gui_layout.glade:4718
 msgid "View Online Help"
-msgstr "Onlinehilfe Aufrufen"
+msgstr "Προβολή Βοήθειας Online"
 
 #: innstereo/gui_layout.glade:2570
 msgid "Viridis"
-msgstr "Viridis"
+msgstr "Χρώμα Ζαφειριού"
 
 #: innstereo/gui_layout.glade:4727
 msgid "Visit the Website"
-msgstr "Webseite Besuchen"
+msgstr "Επίσκεψη Ιστοσελίδας"
 
 #: innstereo/gui_layout.glade:5349
 msgid ""
 "When turned on, features can be added to the currently selected layer by "
 "clicking on the stereonet."
 msgstr ""
-"Wenn eingeschaltet, können Strukturen mit Mausklicks gezeichnet werden."
+"Όταν είναι ενεργοποιημένο, μπορούν να προστεθούν ιδιότητες στο τρέχοντα "
+"επιλεγμένο θεματικό επίπεδο κάνοντας κλίκ πάνω στο στερεοδιάγραμμα."
 
 #: innstereo/gui_layout.glade:2566
 msgid "Winter"
-msgstr "Winter"
+msgstr "Χειμωνιάτικος"
 
 #: innstereo/gui_layout.glade:2692
 msgid "X"
-msgstr "X"
+msgstr "Χ"
 
 #: innstereo/gui_layout.glade:2506
 msgid "Yellow-Green"
-msgstr "Gelb-Grün"
+msgstr "Κίτρινος-Πράσινος"
 
 #: innstereo/gui_layout.glade:2510
 msgid "Yellow-Green-Blue"
-msgstr "Gelb-Grün-Blau"
+msgstr "Κίτρινος-Πράσινος-Μπλε"
 
 #: innstereo/gui_layout.glade:2514
 msgid "Yellow-Orange-Brown"
-msgstr "Gelb-Orange-Braun"
+msgstr "Κίτρινος-Πορτοκαλί-Καφέ"
 
 #: innstereo/gui_layout.glade:2518
 msgid "Yellow-Orange-Red"
-msgstr "Gelb-Orange-Rot"
+msgstr "Κίτρινος-Πορτοκαλί-Κόκκινος"
 
 #: innstereo/gui_layout.glade:4598
 msgid "_Edit"
-msgstr "Editieren"
+msgstr "Επεξεργασία"
 
 #: innstereo/gui_layout.glade:4533
 msgid "_File"
-msgstr "Datei"
+msgstr "Αρχείο"
 
 #: innstereo/gui_layout.glade:4708
 msgid "_Help"
-msgstr "Hilfe"
+msgstr "Βοήθεια"
 
 #: innstereo/gui_layout.glade:4639
 msgid "_View"
-msgstr "Ansichten"
+msgstr "Προβολή"
 
 #: innstereo/gui_layout.glade:4243 innstereo/gui_layout.glade:4416
 #: innstereo/gui_layout.glade:4432
 msgid "label"
-msgstr "Beschriftung"
+msgstr "ετικέτα"

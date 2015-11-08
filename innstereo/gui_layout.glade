@@ -53,7 +53,10 @@ Martin Reiser
 Christoph Reiter
 Bajusz Tamás
     </property>
-    <property name="translator_credits">Audrey Bertrand</property>
+    <property name="translator_credits">Audrey Bertrand
+Nikolaos Argyropoulos (Νικόλαος Αργυρόπουλος)
+Santiago Pozas Requejo
+    </property>
     <property name="logo">logo_about.svg</property>
     <property name="license_type">gpl-2-0</property>
     <signal name="close" handler="on_aboutdialog_close" swapped="no"/>

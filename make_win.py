@@ -3,11 +3,15 @@ from os.path import join
 from subprocess import call
 import nsist
 
-localizations = ["de", "es", "fr", "it", "nl"]
+version = "beta4"
+
+localizations = ["de", "el", "es", "fr", "it", "nl"]
 
 for lc in localizations:
-    cmd = "zanata po pull --project-id=innstereo --project-version=beta3.1 --lang={} --dstdir=po".format(lc)
+    cmd = "zanata po pull --project-id=innstereo --project-version={} --lang={} --dstdir=po".format(version, lc)
     call(cmd, shell=True)
+
+input("Press Enter after checking the translations...")
 
 gsettings = "data/org.gtk.innstereo.gschema.xml"
 
@@ -56,8 +60,8 @@ for root, dirs, filenames in os.walk(translations):
             call(command, shell=True)
 
 appname = "InnStereo {} {}"
-version = "beta3"
-shortcuts = {"InnStereo beta3 64bit": {"entry_point": "innstereo:startup",
+shortcut_name = "InnStereo {} 64bit".format(version)
+shortcuts = {shortcut_name: {"entry_point": "innstereo:startup",
                            "extra_preamble": "gnome_preamble.py",
                            "console": False,
                            "icon": "innstereo_icon.ico"}}
@@ -92,7 +96,8 @@ command = "mv {} {}".format(join(project_dir, "pynsist_pkgs"),
                             join(project_dir, "pynsist_pkgs64"))
 call(command, shell=True)
 
-shortcuts = {"InnStereo beta3 32bit": {"entry_point": "innstereo:startup",
+shortcut_name = "InnStereo {} 32bit".format(version)
+shortcuts = {shortcut_name: {"entry_point": "innstereo:startup",
                            "extra_preamble": "gnome_preamble.py",
                            "console": False,
                            "icon": "innstereo_icon.ico"}}
