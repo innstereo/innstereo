@@ -5,18 +5,18 @@
 # Matteo Pasotti <matteo.pasotti@gmail.com>, 2015.
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-04 19:38+0100\n"
-"PO-Revision-Date: 2015-11-02 05:36-0500\n"
-"Last-Translator: Matteo Pasotti <matteo.pasotti@gmail.com>\n"
+"POT-Creation-Date: 2015-11-10 17:53+0100\n"
+"PO-Revision-Date: 2015-11-10 18:06+0100\n"
+"Last-Translator: xquiet <matteo.pasotti@gmail.com>\n"
 "Language-Team: Italian\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Zanata 3.7.3\n"
+"X-Generator: Poedit 1.8.6\n"
 
 #: innstereo/gui_layout.glade:338
 msgid ""
@@ -39,6 +39,8 @@ msgid ""
 "<b>Equal Angle</b>\n"
 "Uses a Stereographic Projection or Wulff Net."
 msgstr ""
+"<b>EquiAngolo</b>\n"
+"Utilizza una Proiezione Stereografica o Reticolo di Wulff."
 
 #: innstereo/gui_layout.glade:844
 msgid ""
@@ -55,6 +57,8 @@ msgid ""
 "<b>Equal Area</b>\n"
 "Uses a Lambert Azimuthal Equal-Area Projection or Schmidt Net."
 msgstr ""
+"<b>EquiArea</b>\n"
+"Utilizza una Proiezione EquiArea Azimutale di Lambert o Reticolo di Schmidt."
 
 #: innstereo/gui_layout.glade:515
 msgid ""
@@ -68,13 +72,15 @@ msgstr ""
 
 #: innstereo/gui_layout.glade:356
 msgid "<b>Legend</b>"
-msgstr ""
+msgstr "<b>Legenda</b>"
 
 #: innstereo/gui_layout.glade:444
 msgid ""
 "<b>Night Mode</b>\n"
 "The user interface will default to the dark variant when this is True."
 msgstr ""
+"<b>Modo Notte</b>\n"
+"L'interfaccia utente passerà alla variante scusa se impostato a Vero."
 
 #: innstereo/gui_layout.glade:480
 msgid ""
@@ -140,7 +146,7 @@ msgstr "Tutti i file"
 
 #: innstereo/dataview_classes.py:557
 msgid "Angle"
-msgstr ""
+msgstr "Angolo"
 
 #: innstereo/gui_layout.glade:2428
 msgid "Angular"
@@ -156,19 +162,19 @@ msgstr "Assegna colonne"
 
 #: innstereo/gui_layout.glade:2526
 msgid "Autumn"
-msgstr ""
+msgstr "Autunno"
 
 #: innstereo/gui_layout.glade:2454
 msgid "Blue-Green"
-msgstr ""
+msgstr "Blu-Verde"
 
 #: innstereo/gui_layout.glade:2458
 msgid "Blue-Purple"
-msgstr ""
+msgstr "Blu-Viola"
 
 #: innstereo/gui_layout.glade:2450
 msgid "Blues"
-msgstr ""
+msgstr "Blu"
 
 #: innstereo/gui_layout.glade:2530
 msgid "Bone"
@@ -204,8 +210,8 @@ msgstr ""
 
 #: innstereo/gui_layout.glade:5030
 msgid ""
-"Calculates the eigenvectors and eigenvalue of the selected datasets and adds"
-" it as a new layer."
+"Calculates the eigenvectors and eigenvalue of the selected datasets and adds "
+"it as a new layer."
 msgstr ""
 "Calcola autovettore e autovalore di un dataset selezionato e lo aggiunge "
 "come un nuovo layer."
@@ -220,7 +226,7 @@ msgstr "Annulla"
 
 #: innstereo/gui_layout.glade:718
 msgid "Canvas Color"
-msgstr ""
+msgstr "Colore Tela"
 
 #: innstereo/gui_layout.glade:1774
 msgid "Choose file to parse"
@@ -244,11 +250,11 @@ msgstr "Isolinee"
 
 #: innstereo/gui_layout.glade:2534
 msgid "Cool"
-msgstr ""
+msgstr "Freddo"
 
 #: innstereo/gui_layout.glade:2538
 msgid "Copper"
-msgstr ""
+msgstr "Rame"
 
 #: innstereo/gui_layout.glade:4617 innstereo/gui_layout.glade:4865
 msgid "Copy"
@@ -292,8 +298,7 @@ msgstr "Crea un nuovo dataset di piega."
 
 #: innstereo/gui_layout.glade:5159
 msgid ""
-"Creates a new layer group. Selected layers will be placed into the new "
-"group."
+"Creates a new layer group. Selected layers will be placed into the new group."
 msgstr ""
 "Crea un nuovo gruppo di layer. I layer selezionati verranno posizionati in "
 "un nuovo gruppo."
@@ -328,7 +333,7 @@ msgstr "Tratteggiato"
 
 #: innstereo/gui_layout.glade:5319
 msgid "Data"
-msgstr ""
+msgstr "Dati"
 
 #: innstereo/gui_layout.glade:5250
 msgid "Delete Layer"
@@ -422,7 +427,7 @@ msgstr "Disegna Poli"
 
 #: innstereo/gui_layout.glade:3107 innstereo/gui_layout.glade:3243
 msgid "Edge Color"
-msgstr ""
+msgstr "Colore Bordo"
 
 #: innstereo/gui_layout.glade:3075 innstereo/gui_layout.glade:3291
 msgid "Edge Thickness"
@@ -430,7 +435,7 @@ msgstr "Spessore Bordo"
 
 #: innstereo/dataview_classes.py:657
 msgid "Eigenvalue"
-msgstr ""
+msgstr "Autovalore"
 
 #: innstereo/layer_types.py:1154
 msgid "Eigenvector Layer"
@@ -454,7 +459,7 @@ msgstr "Esporta i dati del layer selezionato."
 
 #: innstereo/gui_layout.glade:3715
 msgid "Fault Plots"
-msgstr ""
+msgstr "Diagramma Faglia"
 
 #: innstereo/layer_types.py:1087
 msgid "Faultplane Layer"
@@ -462,7 +467,7 @@ msgstr "Layer Piano di Faglia"
 
 #: innstereo/gui_layout.glade:2994 innstereo/gui_layout.glade:3228
 msgid "Fill Color"
-msgstr ""
+msgstr "Colore Riempimento"
 
 #: innstereo/gui_layout.glade:4942
 msgid "Finds the average intersect of all selected plane layers."
@@ -483,8 +488,7 @@ msgstr ""
 #: innstereo/gui_layout.glade:5015
 msgid ""
 "Finds the planes that lie normal to the currently selected linear layers."
-msgstr ""
-"Trova i piani che giaciono sulla normale ai layer lineari selezionati."
+msgstr "Trova i piani che giaciono sulla normale ai layer lineari selezionati."
 
 #: innstereo/main_ui.py:210
 msgid "Fisher Confidence"
@@ -508,7 +512,7 @@ msgstr ""
 
 #: innstereo/gui_layout.glade:2546
 msgid "Gray"
-msgstr ""
+msgstr "Grigio"
 
 #: innstereo/gui_layout.glade:2974
 msgid "Great & Small Circles"
@@ -516,7 +520,7 @@ msgstr "Grandi & Piccoli Cerchi"
 
 #: innstereo/gui_layout.glade:2462
 msgid "Green-Blue"
-msgstr ""
+msgstr "Verde-Blu"
 
 #: innstereo/gui_layout.glade:2466
 msgid "Greens"
@@ -540,41 +544,43 @@ msgstr "Gruppo di Livelli"
 
 #: innstereo/gui_layout.glade:2680
 msgid "Hexagon 1"
-msgstr ""
+msgstr "Esagono 1"
 
 #: innstereo/gui_layout.glade:2684
 msgid "Hexagon 2"
-msgstr ""
+msgstr "Esagno 2"
 
 #: innstereo/gui_layout.glade:682
 msgid "Highlight Mode"
-msgstr ""
+msgstr "Modo Evidenziazione"
 
 #: innstereo/gui_layout.glade:2708
 msgid "Horizontal Line"
-msgstr ""
+msgstr "Linea Orizzontale"
 
 #: innstereo/gui_layout.glade:2550
 msgid "Hot"
-msgstr ""
+msgstr "Caldo"
 
 #: innstereo/gui_layout.glade:38
 msgid ""
 "How to cite:\n"
 "In Preperation (2015)"
 msgstr ""
+"Come citare:\n"
+"In preparazione (2015)"
 
 #: innstereo/gui_layout.glade:5380
 msgid "Import Data"
-msgstr ""
+msgstr "Importa Dati"
 
 #: innstereo/gui_layout.glade:4514
 msgid "InnStereo"
-msgstr ""
+msgstr "InnStereo"
 
 #: innstereo/gui_layout.glade:105
 msgid "InnStereo Settings"
-msgstr ""
+msgstr "Impostazioni InnStereo"
 
 #: innstereo/gui_layout.glade:2592
 msgid "Kamb Method"
@@ -590,7 +596,7 @@ msgstr ""
 
 #: innstereo/gui_layout.glade:3911
 msgid "Label Font Size"
-msgstr ""
+msgstr "Dimensione Carattere Etichetta"
 
 #: innstereo/layer_view.py:60
 msgid "Layer"
@@ -734,11 +740,11 @@ msgstr "Pentagono"
 
 #: innstereo/gui_layout.glade:2554
 msgid "Pink"
-msgstr ""
+msgstr "Rosa"
 
 #: innstereo/gui_layout.glade:2640
 msgid "Pixel"
-msgstr ""
+msgstr "Pixel"
 
 #: innstereo/gui_layout.glade:789
 msgid "Pixel Density (DPI)"
@@ -758,7 +764,7 @@ msgstr "Proprietà Grafico"
 
 #: innstereo/gui_layout.glade:2688
 msgid "Plus"
-msgstr ""
+msgstr "Più"
 
 #: innstereo/gui_layout.glade:2636
 msgid "Point"
@@ -782,15 +788,15 @@ msgstr "Proiettando"
 
 #: innstereo/gui_layout.glade:2482
 msgid "Purple-Blue"
-msgstr ""
+msgstr "Viola-Blu"
 
 #: innstereo/gui_layout.glade:2486
 msgid "Purple-Blue-Green"
-msgstr ""
+msgstr "Viola-Blue-Verde"
 
 #: innstereo/gui_layout.glade:2490
 msgid "Purple-Red"
-msgstr ""
+msgstr "Viola-Rosso"
 
 #: innstereo/gui_layout.glade:2494
 msgid "Purples"
@@ -802,11 +808,11 @@ msgstr "Chiudi"
 
 #: innstereo/gui_layout.glade:2498
 msgid "Red-Purple"
-msgstr ""
+msgstr "Rosso-Viola"
 
 #: innstereo/gui_layout.glade:2502
 msgid "Reds"
-msgstr ""
+msgstr "Rossi"
 
 #: innstereo/gui_layout.glade:5410
 msgid "Remove Features"
@@ -886,7 +892,7 @@ msgstr "Salva il grafico corrente in vari formati."
 
 #: innstereo/gui_layout.glade:2596
 msgid "Schmidt (1 %)"
-msgstr ""
+msgstr "Schmidt (1 %)"
 
 #: innstereo/dataview_classes.py:339 innstereo/dataview_classes.py:464
 #: innstereo/gui_layout.glade:2266
@@ -937,7 +943,7 @@ msgstr ""
 
 #: innstereo/gui_layout.glade:2610
 msgid "Solid"
-msgstr ""
+msgstr "Solido"
 
 #: innstereo/gui_layout.glade:4322
 msgid "Spacing [degrees]"
@@ -945,7 +951,7 @@ msgstr ""
 
 #: innstereo/gui_layout.glade:2558
 msgid "Spring"
-msgstr ""
+msgstr "Primavera"
 
 #: innstereo/gui_layout.glade:2664
 msgid "Square"
@@ -953,32 +959,32 @@ msgstr ""
 
 #: innstereo/gui_layout.glade:4015
 msgid "Standard Deviations"
-msgstr ""
+msgstr "Deviazioni Standard"
 
 #: innstereo/gui_layout.glade:2676
 msgid "Star"
-msgstr ""
+msgstr "Stella"
 
 #: innstereo/gui_layout.glade:2016
 msgid "Start Line"
-msgstr ""
+msgstr "Linea di Inizio"
 
 #: innstereo/gui_layout.glade:4214
 msgid "Steps"
-msgstr ""
+msgstr "Passi"
 
 #: innstereo/gui_layout.glade:4502
 msgid "Stereo and Rose plot"
-msgstr ""
+msgstr "Diagramma Stereo e Rosa"
 
 #: innstereo/gui_layout.glade:805 innstereo/gui_layout.glade:4486
 #: innstereo/gui_layout.glade:4649
 msgid "Stereonet"
-msgstr ""
+msgstr "Stereonet"
 
 #: innstereo/gui_layout.glade:4660
 msgid "Stereonet and Azimuth Rose"
-msgstr ""
+msgstr "Stereonet e Rosa Azimuth"
 
 #: innstereo/gui_layout.glade:4671
 msgid "Stereonet, Azimut and Dip Rose"
@@ -998,7 +1004,7 @@ msgstr "Stile"
 
 #: innstereo/gui_layout.glade:2562
 msgid "Summer"
-msgstr ""
+msgstr "Estate"
 
 #: innstereo/gui_layout.glade:2323
 msgid "Tectonics FPL Notation"
@@ -1011,6 +1017,7 @@ msgstr "File di testo"
 #: innstereo/gui_layout.glade:139
 msgid "These settings will be applied every time you start InnStereo."
 msgstr ""
+"Queste impostazioni verranno applicate ogni volta che avvierai InnStereo."
 
 #: innstereo/gui_layout.glade:2648
 msgid "Triangle down"
@@ -1038,7 +1045,7 @@ msgstr "Linea Verticale"
 
 #: innstereo/gui_layout.glade:4718
 msgid "View Online Help"
-msgstr ""
+msgstr "Visualizza Aiuto Online"
 
 #: innstereo/gui_layout.glade:2570
 msgid "Viridis"
@@ -1046,17 +1053,19 @@ msgstr ""
 
 #: innstereo/gui_layout.glade:4727
 msgid "Visit the Website"
-msgstr ""
+msgstr "Visita il Sito web"
 
 #: innstereo/gui_layout.glade:5349
 msgid ""
 "When turned on, features can be added to the currently selected layer by "
 "clicking on the stereonet."
 msgstr ""
+"Quando attivato, le proprietà possono essere aggiunte al layer selezionato "
+"cliccando sullo stereonet."
 
 #: innstereo/gui_layout.glade:2566
 msgid "Winter"
-msgstr ""
+msgstr "Inverno"
 
 #: innstereo/gui_layout.glade:2692
 msgid "X"
@@ -1064,37 +1073,37 @@ msgstr ""
 
 #: innstereo/gui_layout.glade:2506
 msgid "Yellow-Green"
-msgstr ""
+msgstr "Giallo-Verde"
 
 #: innstereo/gui_layout.glade:2510
 msgid "Yellow-Green-Blue"
-msgstr ""
+msgstr "Giallo-Verde-Blu"
 
 #: innstereo/gui_layout.glade:2514
 msgid "Yellow-Orange-Brown"
-msgstr ""
+msgstr "Giallo-Arancio-Marrone"
 
 #: innstereo/gui_layout.glade:2518
 msgid "Yellow-Orange-Red"
-msgstr ""
+msgstr "Giallo-Arancio-Rosso"
 
 #: innstereo/gui_layout.glade:4598
 msgid "_Edit"
-msgstr ""
+msgstr "_Modifica"
 
 #: innstereo/gui_layout.glade:4533
 msgid "_File"
-msgstr ""
+msgstr "_File"
 
 #: innstereo/gui_layout.glade:4708
 msgid "_Help"
-msgstr ""
+msgstr "_Aiuto"
 
 #: innstereo/gui_layout.glade:4639
 msgid "_View"
-msgstr ""
+msgstr "_Visualizza"
 
 #: innstereo/gui_layout.glade:4243 innstereo/gui_layout.glade:4416
 #: innstereo/gui_layout.glade:4432
 msgid "label"
-msgstr ""
+msgstr "etichetta"
