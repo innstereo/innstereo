@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-10 17:53+0100\n"
-"PO-Revision-Date: 2015-11-10 18:06+0100\n"
+"PO-Revision-Date: 2015-11-12 19:26+0100\n"
 "Last-Translator: xquiet <matteo.pasotti@gmail.com>\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -23,6 +23,8 @@ msgid ""
 "<b>Center Cross</b>\n"
 "A cross will be shown in the center of the stereonet."
 msgstr ""
+"<b>Croce Centrale</b>\n"
+"Una croce verrà mostrata al centro dello stereonet."
 
 #: innstereo/gui_layout.glade:882
 msgid ""
@@ -65,10 +67,13 @@ msgid ""
 "<b>Highlight Mode</b>\n"
 "Sets whether selected datasets and features should be highlighted."
 msgstr ""
+"<b>Modo Evidenziato</b>\n"
+"Imposta la funzione per cui se dataset o proprietà sono selezionati questi "
+"debbano essere evidenziati."
 
 #: innstereo/gui_layout.glade:122
 msgid "<b>Launch Settings</b>"
-msgstr ""
+msgstr "<b>Impostazioni di Avvio</b>"
 
 #: innstereo/gui_layout.glade:356
 msgid "<b>Legend</b>"
@@ -87,18 +92,25 @@ msgid ""
 "<b>Screen Pixel Density</b>\n"
 "Use the same value as your primary display to get sharp drawing."
 msgstr ""
+"<b>Densità dei Pixel dello Schermo</b>\n"
+"Usa gli stessi valori del tuo display primario per ottenere disegni più "
+"nitidi."
 
 #: innstereo/gui_layout.glade:303
 msgid ""
 "<b>Show Grid</b>\n"
 "Will display a grid in the background of the stereonet."
 msgstr ""
+"<b>Mostra Griglia</b>\n"
+"Mostrerà una griglia sullo sfondo dello stereonet."
 
 #: innstereo/gui_layout.glade:391
 msgid ""
 "<b>Show Legend</b>\n"
 "Will generate an automatic legend on the project canvas."
 msgstr ""
+"<b>Mostra Legenda</b>\n"
+"Genererà una legenda automatica sulla tela del progetto."
 
 #: innstereo/gui_layout.glade:3437
 msgid "<b>Statistics</b>"
@@ -106,15 +118,15 @@ msgstr "<b>Statistiche</b>"
 
 #: innstereo/gui_layout.glade:268
 msgid "<b>Stereonet Grid</b>"
-msgstr ""
+msgstr "<b>Griglia Stereonet</b>"
 
 #: innstereo/gui_layout.glade:172
 msgid "<b>Stereonet Projection</b>"
-msgstr ""
+msgstr "<b>Proiezione Stereonet</b>"
 
 #: innstereo/gui_layout.glade:409
 msgid "<b>User Interface</b>"
-msgstr ""
+msgstr "<b>Interfaccia Utente</b>"
 
 #: innstereo/gui_layout.glade:2522
 msgid "AFM Hot"
@@ -182,7 +194,7 @@ msgstr ""
 
 #: innstereo/gui_layout.glade:4354
 msgid "Bottom Cutoff"
-msgstr ""
+msgstr "Fondo Tagliato"
 
 #: innstereo/main_ui.py:216
 msgid "Calculate"
@@ -716,7 +728,7 @@ msgstr ""
 
 #: innstereo/gui_layout.glade:2478
 msgid "Orange-Red"
-msgstr ""
+msgstr "Arancio-Rosso"
 
 #: innstereo/gui_layout.glade:2474
 msgid "Oranges"
@@ -897,17 +909,19 @@ msgstr "Schmidt (1 %)"
 #: innstereo/dataview_classes.py:339 innstereo/dataview_classes.py:464
 #: innstereo/gui_layout.glade:2266
 msgid "Sense"
-msgstr ""
+msgstr "Senso"
 
 #: innstereo/gui_layout.glade:2346
 msgid ""
 "Sense of linears is given as the first integer of the column.\n"
 "(0 = unknown, 1 = up, 2 = down, 3 = dextral, 4 = sinistral)"
 msgstr ""
+"Il Senso di lineari è dato come il primo intero della colonna.\n"
+"(0 = sconosciuto, 1 = su, 2 = giù, 3 = destro, 4 = sinistro)"
 
 #: innstereo/gui_layout.glade:1995
 msgid "Separator options"
-msgstr ""
+msgstr "Opzioni separatore"
 
 #: innstereo/gui_layout.glade:5085
 msgid "Settings"
@@ -939,7 +953,7 @@ msgstr "Dimensione"
 
 #: innstereo/layer_types.py:1192
 msgid "Small-Circle Layer"
-msgstr ""
+msgstr "Layer Piccolo-Cerchio"
 
 #: innstereo/gui_layout.glade:2610
 msgid "Solid"
@@ -955,7 +969,7 @@ msgstr "Primavera"
 
 #: innstereo/gui_layout.glade:2664
 msgid "Square"
-msgstr ""
+msgstr "Quadrato"
 
 #: innstereo/gui_layout.glade:4015
 msgid "Standard Deviations"
