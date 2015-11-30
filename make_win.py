@@ -3,15 +3,30 @@ from os.path import join
 from subprocess import call
 import nsist
 
-version = "beta4"
+version = "beta5" #This is the version stored in Zanata
 
-localizations = ["de", "el", "es", "fr", "it", "nl"]
+translations = "po/"
+
+localizations = ["de", "el", "es", "fr", "he", "hu", "it", "nl", "pt-PT",
+                 "sk", "uz"]
+#translate the zanata local codes to Gnome local codes where needed
+gtk_locals = {"pt_PT": "pt",
+              "uz": "uz@cyrillic"}
 
 for lc in localizations:
     cmd = "zanata po pull --project-id=innstereo --project-version={} --lang={} --dstdir=po".format(version, lc)
     call(cmd, shell=True)
 
-input("Press Enter after checking the translations...")
+for root, dirs, filenames in os.walk(translations):
+    for f in filenames:
+        if f[-3:] == ".po" and f[:-3] in gtk_locals:
+            current = f[:-3]
+            new = gtk_locals[current]
+            print(current, " --> ", new)
+            cmd = "mv po/{}.po po/{}.po".format(current, new)
+            call(cmd, shell=True)
+
+input("Press Enter after checking and correcting the translations...")
 
 gsettings = "data/org.gtk.innstereo.gschema.xml"
 
@@ -28,8 +43,6 @@ try:
 except:
     print("GSettings could not be compiled")
     sys.exit()
-
-translations = "po/"
 
 if os.path.isdir("innstereo/locale") is False:
     call("mkdir innstereo/locale", shell=True)

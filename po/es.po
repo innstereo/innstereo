@@ -1,11 +1,11 @@
-# Santiago Pozas Requejo <tiagopozas@gmail.com>, 2015. #zanata
+# SANTIAGO <tiagopozas@gmail.com>, 2015. #zanata
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-04 19:38+0100\n"
-"PO-Revision-Date: 2015-11-07 08:49-0500\n"
-"Last-Translator: Santiago Pozas Requejo <tiagopozas@gmail.com>\n"
+"PO-Revision-Date: 2015-11-09 05:00-0500\n"
+"Last-Translator: SANTIAGO <tiagopozas@gmail.com>\n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -214,6 +214,8 @@ msgid ""
 "Calculates the eigenvectors and eigenvalue of the selected datasets and adds"
 " it as a new layer."
 msgstr ""
+"Calcula los vectores propios y los valores propios del conjunto de datos "
+"seleccionado y los añade como una nueva capa."
 
 #: innstereo/gui_layout.glade:595 innstereo/gui_layout.glade:1279
 #: innstereo/gui_layout.glade:1538 innstereo/gui_layout.glade:1605
@@ -224,8 +226,9 @@ msgid "Cancel"
 msgstr "Cancelar"
 
 #: innstereo/gui_layout.glade:718
+#, fuzzy
 msgid "Canvas Color"
-msgstr ""
+msgstr "Color de lienzo"
 
 #: innstereo/gui_layout.glade:1774
 msgid "Choose file to parse"
@@ -313,7 +316,7 @@ msgstr "Crea un proyecto nuevo en una ventana nueva"
 
 #: innstereo/gui_layout.glade:5234
 msgid "Creates a new small-circle dataset."
-msgstr ""
+msgstr "Crea un conjunto de datos de círculo pequeño nuevo."
 
 #: innstereo/gui_layout.glade:4608 innstereo/gui_layout.glade:4851
 msgid "Cut"
@@ -1055,6 +1058,8 @@ msgid ""
 "When turned on, features can be added to the currently selected layer by "
 "clicking on the stereonet."
 msgstr ""
+"Cuando se enciende, se pueden añadir características a la capa seleccionada "
+"haciendo clic en la proyección estereográfica."
 
 #: innstereo/gui_layout.glade:2566
 msgid "Winter"

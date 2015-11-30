@@ -10,3 +10,18 @@
 # The mo files have to go into the directory po/$LANG/LC_MESSAGES/innstereo.mo
 # e.g. Italian: po/it/LC_MESSAGES/innstereo.mo
 # e.g. French: po/fr/LC_MESSAGES/innstereo.mo
+
+Notes for the translations:
+
+## pt_PT
+
+* Some of the words are marked as orthographic errors by the Zanata Webpage, however this is not true. All the words and expressions were translated according to the current Portuguese Language Orthographic Agreement, implemented in September 2009.
+ * Direction – Direção (old style: Direcção)
+ * Project – Projeto (old style: Projecto)
+* There are words that are not exactly to the same exact word in Portuguese, because they are not used in that particular context.
+ * Diamond – Losango (Only diamonds are translated to “diamante”, the shape ◊ is called a “Losango”)
+ * Dialog (box) – Janela (we call it a Window)
+* Some English single words have to be translated to Portuguese in multiple words. If the strings get too long for the user interface abreviations have to be used.
+ * Ex. dataset – conjuntos (set) de dados (data)
+ * Stereonet – rede (net) estereográfica (stereographic)
+ * Dash Capstyle - Estilo do Limite de Tracejado.

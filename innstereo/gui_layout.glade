@@ -53,9 +53,17 @@ Martin Reiser
 Christoph Reiter
 Bajusz Tamás
     </property>
-    <property name="translator_credits">Audrey Bertrand
+    <property name="translator_credits">Alexandre Ioanees
+Audrey Bertrand
+Matteo Pasotti
+Mário Sequeira
+Nadav Navon
 Nikolaos Argyropoulos (Νικόλαος Αργυρόπουλος)
+Ondrej Pelech
 Santiago Pozas Requejo
+Shukurjon Islomov
+Szilvia Deák-Kövér
+Tobias Schönberg
     </property>
     <property name="logo">logo_about.svg</property>
     <property name="license_type">gpl-2-0</property>
