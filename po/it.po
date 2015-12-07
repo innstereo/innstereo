@@ -5,18 +5,18 @@
 # Matteo Pasotti <matteo.pasotti@gmail.com>, 2015.
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-04 19:38+0100\n"
-"PO-Revision-Date: 2015-11-02 05:36-0500\n"
-"Last-Translator: Matteo Pasotti <matteo.pasotti@gmail.com>\n"
+"POT-Creation-Date: 2015-12-07 00:07+0100\n"
+"PO-Revision-Date: 2015-12-07 12:54+0100\n"
+"Last-Translator: xquiet <matteo.pasotti@gmail.com>\n"
 "Language-Team: Italian\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Zanata 3.7.3\n"
+"X-Generator: Poedit 1.8.6\n"
 
 #: innstereo/gui_layout.glade:338
 msgid ""
@@ -68,7 +68,8 @@ msgid ""
 "Sets whether selected datasets and features should be highlighted."
 msgstr ""
 "<b>Modo Evidenziato</b>\n"
-"Imposta la funzione per cui se dataset o proprietà sono selezionati questi debbano essere evidenziati."
+"Imposta la funzione per cui se dataset o proprietà sono selezionati questi "
+"debbano essere evidenziati."
 
 #: innstereo/gui_layout.glade:122
 msgid "<b>Launch Settings</b>"
@@ -92,7 +93,8 @@ msgid ""
 "Use the same value as your primary display to get sharp drawing."
 msgstr ""
 "<b>Densità dei Pixel dello Schermo</b>\n"
-"Usa gli stessi valori del tuo display primario per ottenere disegni più nitidi."
+"Usa gli stessi valori del tuo display primario per ottenere disegni più "
+"nitidi."
 
 #: innstereo/gui_layout.glade:303
 msgid ""
@@ -210,18 +212,19 @@ msgstr "Calcola Miglior Polo"
 msgid "Calculate Eigenvector"
 msgstr "Calcola Autovettore"
 
+# Pressione-Tensione
 #: innstereo/gui_layout.glade:5061
 msgid "Calculate PT-Axis"
-msgstr ""
+msgstr "Calcola Asse-PT"
 
 #: innstereo/gui_layout.glade:5060
 msgid "Calculates the P, T, and B axis of each row in a fault plane layer."
-msgstr ""
+msgstr "Calcola gli assi P, T e B di ogni riga in un layer di piano di faglia."
 
 #: innstereo/gui_layout.glade:5030
 msgid ""
-"Calculates the eigenvectors and eigenvalue of the selected datasets and adds"
-" it as a new layer."
+"Calculates the eigenvectors and eigenvalue of the selected datasets and adds "
+"it as a new layer."
 msgstr ""
 "Calcola autovettore e autovalore di un dataset selezionato e lo aggiunge "
 "come un nuovo layer."
@@ -308,8 +311,7 @@ msgstr "Crea un nuovo dataset di piega."
 
 #: innstereo/gui_layout.glade:5159
 msgid ""
-"Creates a new layer group. Selected layers will be placed into the new "
-"group."
+"Creates a new layer group. Selected layers will be placed into the new group."
 msgstr ""
 "Crea un nuovo gruppo di layer. I layer selezionati verranno posizionati in "
 "un nuovo gruppo."
@@ -382,7 +384,7 @@ msgstr ""
 #: innstereo/dataview_classes.py:441 innstereo/dataview_classes.py:535
 #: innstereo/dataview_classes.py:635
 msgid "Dir"
-msgstr ""
+msgstr "Dir"
 
 #: innstereo/gui_layout.glade:1575
 msgid "Do you want to overwrite the existing file?"
@@ -499,8 +501,7 @@ msgstr ""
 #: innstereo/gui_layout.glade:5015
 msgid ""
 "Finds the planes that lie normal to the currently selected linear layers."
-msgstr ""
-"Trova i piani che giaciono sulla normale ai layer lineari selezionati."
+msgstr "Trova i piani che giaciono sulla normale ai layer lineari selezionati."
 
 #: innstereo/main_ui.py:210
 msgid "Fisher Confidence"
@@ -1022,7 +1023,7 @@ msgstr "Estate"
 
 #: innstereo/gui_layout.glade:2323
 msgid "Tectonics FPL Notation"
-msgstr ""
+msgstr "Notazione Tectonics FPL (FaultPlaneLayer)"
 
 #: innstereo/dialog_windows.py:330
 msgid "Text Files"
