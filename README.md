@@ -57,6 +57,7 @@ $ cd innstereo
 $ sudo cp data/org.gtk.innstereo.gschema.xml /usr/share/glib-2.0/schemas/
 $ sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
 
+$ python3 build_translations.py
 $ python3 -m innstereo
 ```
 
