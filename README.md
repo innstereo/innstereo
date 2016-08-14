@@ -60,6 +60,17 @@ $ sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
 $ python3 build_translations.py
 $ python3 -m innstereo
 ```
+Please note that building the translations probably requires you to configure a Zanata API key ([User Configuration](http://zanata-client.readthedocs.io/en/latest/configuration/)). The file needs to be created in `~/.config/zanata.ini` (Press CTRL+H in your home directory to show the folder).
+
+It contains the following lines:
+
+```
+[servers]
+translate_zanata_org.url=https://translate.zanata.org/zanata/
+translate_zanata_org.username=YOUR-ZANATA-USER-NAME
+translate_zanata_org.key=YOUR-API-KEY
+
+```
 
 ## Development
 InnStereo is developed open-source, and anybody is welcome to participate. There are many ways in which to participate (Documentation, testing, bug-reporting, user-interface improvements). If you would like to participate you can email [Tobias](https://github.com/tobias47n9e) or open an [issue](https://github.com/tobias47n9e/innstereo/issues). More advanced users can also fork the repository and create pull requests.
