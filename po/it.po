@@ -1,6 +1,6 @@
 # Italian translations for InnStereo package
 # Traduzioni italiane per il pacchetto InnStereo..
-# Copyright (C) 2015 THE PACKAGE'S COPYRIGHT HOLDER
+# Copyright (C) 2015 InnStereo
 # This file is distributed under the same license as the InnStereo package.
 # Matteo Pasotti <matteo.pasotti@gmail.com>, 2015.
 msgid ""
@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-04 19:38+0100\n"
-"PO-Revision-Date: 2015-11-02 05:36-0500\n"
+"PO-Revision-Date: 2015-11-13 06:25-0500\n"
 "Last-Translator: Matteo Pasotti <matteo.pasotti@gmail.com>\n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Zanata 3.7.3\n"
+"X-Generator: Zanata 3.9.3\n"
 
 #: innstereo/gui_layout.glade:338
 msgid ""

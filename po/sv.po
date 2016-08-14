@@ -1,17 +1,17 @@
-# Ondrej Pelech <pelech.ondrej@gmail.com>, 2015. #zanata
+# Elin Rydeblad <elinrydeblad@gmail.com>, 2016. #zanata
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-04 19:38+0100\n"
-"PO-Revision-Date: 2015-11-29 02:19-0500\n"
-"Last-Translator: Ondrej Pelech <pelech.ondrej@gmail.com>\n"
-"Language-Team: Slovak\n"
+"PO-Revision-Date: 2016-08-11 09:56-0400\n"
+"Last-Translator: Elin Rydeblad <elinrydeblad@gmail.com>\n"
+"Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: sk\n"
-"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2\n"
+"Language: sv\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "X-Generator: Zanata 3.9.3\n"
 
 #: innstereo/gui_layout.glade:338
@@ -19,8 +19,8 @@ msgid ""
 "<b>Center Cross</b>\n"
 "A cross will be shown in the center of the stereonet."
 msgstr ""
-"<b>Stredový kríž</b>\n"
-"V strede stereografickej siete sa zobrazí kríž."
+"<b>Mittpunktskryss</b>\n"
+"Ett kryss markerar mittpunkten av ditt stereonet. "
 
 #: innstereo/gui_layout.glade:882
 msgid ""
@@ -28,16 +28,16 @@ msgid ""
 "When turned on the stereonet is displayed with a\n"
 "customizable grid."
 msgstr ""
-"<b>Nakresli mriežku</b>\n"
-"Ak je zapnutý, stereografická sieť je zobrazená s nastaviteľnou mriežkou."
+"<b>Rutnät</b>\n"
+"Om detta val är aktivt så visas ditt stereonet med ett justerbart rutnät."
 
 #: innstereo/gui_layout.glade:250
 msgid ""
 "<b>Equal Angle</b>\n"
 "Uses a Stereographic Projection or Wulff Net."
 msgstr ""
-"<b>Uhlojavné zobrazenie</b>\n"
-"Používa stereografickú projekciu alebo Vuľfovu sieť."
+"<b>Likavinkel projicering</b>\n"
+"Använder en stereografisk projektion, eller Wulffnät. "
 
 #: innstereo/gui_layout.glade:844
 msgid ""
@@ -45,179 +45,181 @@ msgid ""
 "When turned on the stereonet uses an equal area projection.\n"
 "Turned off an eqal angle projection is used."
 msgstr ""
-"<b>Plochojavná stereografická sieť</b>\n"
-"Ak je zapnuté, stereografická sieť používa plochojavnú projekciu. Ak je vypnuté, použítá je uhlojavná projekcia."
+"<b>Lika-area Steronet</b>\n"
+"Om aktiv så visas ditt stereonet med en lika-area projicering.\n"
+"Om detta val lämnas inaktiv så används istället en likavinkel projicering. "
 
 #: innstereo/gui_layout.glade:232
 msgid ""
 "<b>Equal Area</b>\n"
 "Uses a Lambert Azimuthal Equal-Area Projection or Schmidt Net."
 msgstr ""
-"<b>Plochojavné zobrazenie</b>\n"
-"Pužíva Lambertovu plochojavnú projekciu alebo Schmidtovu sieť."
+"<b>Lika-area</b>\n"
+"Använder Lamberts azimutala lika-area projicering, eller ett Schmidtnät "
 
 #: innstereo/gui_layout.glade:515
 msgid ""
 "<b>Highlight Mode</b>\n"
 "Sets whether selected datasets and features should be highlighted."
 msgstr ""
-"<b>Zvýrazňovanie výberu</b>\n"
-"Nastavuje možnosť zvýrazniť vybrané dáta a objekty."
+"<b>Markeringsläge</b>\n"
+"Väljer om valda databaser och egenskaper ska var markerade eller ej."
 
 #: innstereo/gui_layout.glade:122
 msgid "<b>Launch Settings</b>"
-msgstr "<b>Nastavenia po spustení</b>"
+msgstr "<b>Öppna inställningar</b>"
 
 #: innstereo/gui_layout.glade:356
 msgid "<b>Legend</b>"
-msgstr "<b>Legenda</b>"
+msgstr "<b>Teckenförklaring</b>"
 
 #: innstereo/gui_layout.glade:444
 msgid ""
 "<b>Night Mode</b>\n"
 "The user interface will default to the dark variant when this is True."
 msgstr ""
-"<b>Nočný mód</b>\n"
-"Ak je zapnuté, puživateľské rozhranie bude po spustení tmavé."
+"<b>Nattläge</b>\n"
+"Användargränssnittet ändras automatiskt till en mörkare version när detta val är aktivt.  "
 
 #: innstereo/gui_layout.glade:480
 msgid ""
 "<b>Screen Pixel Density</b>\n"
 "Use the same value as your primary display to get sharp drawing."
 msgstr ""
-"<b>Hustota pixelov</b>\n"
-"Pre ostrý obraz použite rovnaké nastavenie ako má váš hlavný diplej."
+"<b></b>\n"
+"Använd samma värde som din primära bildskärm för att få bästa resultat. "
 
 #: innstereo/gui_layout.glade:303
 msgid ""
 "<b>Show Grid</b>\n"
 "Will display a grid in the background of the stereonet."
 msgstr ""
-"<b>Zobraz mriežku</b>\n"
-"Zobrazí mriežku v pozadí stereografickej siete."
+"<b>Visa rutnät</b>\n"
+"Om detta val är aktivt så visas ett rutnät i bakgrunden av ditt stereonet. "
 
 #: innstereo/gui_layout.glade:391
 msgid ""
 "<b>Show Legend</b>\n"
 "Will generate an automatic legend on the project canvas."
 msgstr ""
-"<b>Zobraz legendu</b>\n"
-"Vytvorí automatickú legendu na plátne projektu."
+"<b>Visa teckenförklaring</b>\n"
+"Om detta val är aktivt så genereras det automatiskt en teckenförklaring för projektet. "
 
 #: innstereo/gui_layout.glade:3437
 msgid "<b>Statistics</b>"
-msgstr "<b>Štatistika</b>"
+msgstr "<b>Statistik</b>"
 
 #: innstereo/gui_layout.glade:268
 msgid "<b>Stereonet Grid</b>"
-msgstr "<b>Mriežka stereografickej siete</b>"
+msgstr "<b>Rutnät</b>"
 
 #: innstereo/gui_layout.glade:172
 msgid "<b>Stereonet Projection</b>"
-msgstr "<b>Stereografická projekcia</b>"
+msgstr "<b>Projektion</b>"
 
 #: innstereo/gui_layout.glade:409
 msgid "<b>User Interface</b>"
-msgstr "<b>Používateľské rozhranie</b>"
+msgstr "<b>Användargränssnitt</b>"
 
 #: innstereo/gui_layout.glade:2522
 msgid "AFM Hot"
-msgstr "AFM Hot"
+msgstr "AFM varm"
 
 #: innstereo/gui_layout.glade:33 innstereo/gui_layout.glade:4745
 msgid "About"
-msgstr "O programe"
+msgstr "Om"
 
 #: innstereo/gui_layout.glade:1964
 msgid "Add Data"
-msgstr "Pridaj údaje"
+msgstr "Lägg till data"
 
 #: innstereo/gui_layout.glade:5365
 msgid "Add Feature"
-msgstr "Pridaj objekt"
+msgstr "Lägg till egenskap"
 
 #: innstereo/gui_layout.glade:1293
 msgid "Add Rotated Data"
-msgstr "Pridaj rotované údaje"
+msgstr "Lägg till roterad data"
 
 #: innstereo/gui_layout.glade:5364
 msgid "Adds an empty row to the current layer."
-msgstr "Pridaj prázdny riadok k súčasnej vrstve."
+msgstr "Lägger till en tom rad i det aktuella lagret"
 
 #: innstereo/dialog_windows.py:675
 msgid "All Files"
-msgstr "Všetky súbory"
+msgstr "Alla filer"
 
 #: innstereo/dataview_classes.py:557
 msgid "Angle"
-msgstr "Uhol"
+msgstr "Vinkel"
 
 #: innstereo/gui_layout.glade:2428
 msgid "Angular"
-msgstr "Uhlový"
+msgstr "Vinkelformig"
 
 #: innstereo/gui_layout.glade:609 innstereo/gui_layout.glade:2745
 msgid "Apply"
-msgstr "Použiť"
+msgstr "Verkställ"
 
 #: innstereo/gui_layout.glade:2057
 msgid "Assign columns"
-msgstr "Usporiadaj stĺpce"
+msgstr "Tilldela kolumner "
 
 #: innstereo/gui_layout.glade:2526
 msgid "Autumn"
-msgstr "Jeseň"
+msgstr "Höst"
 
 #: innstereo/gui_layout.glade:2454
 msgid "Blue-Green"
-msgstr "Modrozelená"
+msgstr "Blågrön"
 
 #: innstereo/gui_layout.glade:2458
 msgid "Blue-Purple"
-msgstr "Modrofialová"
+msgstr "Blålila"
 
 #: innstereo/gui_layout.glade:2450
 msgid "Blues"
-msgstr "Blues"
+msgstr "Blå"
 
 #: innstereo/gui_layout.glade:2530
 msgid "Bone"
-msgstr "Kosť"
+msgstr "Ben"
 
 #: innstereo/gui_layout.glade:4354
 msgid "Bottom Cutoff"
-msgstr "Bottom Cutoff"
+msgstr "Undre gräns"
 
 #: innstereo/main_ui.py:216
 msgid "Calculate"
-msgstr "Vypočítať"
+msgstr "Beräkna"
 
 #: innstereo/gui_layout.glade:4958
 msgid "Calculate Best Plane"
-msgstr "Vypočítať najvhodnejšiu plochu"
+msgstr "Beräkna bästa plan"
 
 #: innstereo/gui_layout.glade:4943
 msgid "Calculate Best Pole"
-msgstr "Vypočítať najvhodnejší pól"
+msgstr "Beräkna bästa pol"
 
 #: innstereo/gui_layout.glade:5031
 msgid "Calculate Eigenvector"
-msgstr "Vypočítať vlastný vektor"
+msgstr "Beräkna egenvektor"
 
 #: innstereo/gui_layout.glade:5061
 msgid "Calculate PT-Axis"
-msgstr "Vypočítať PT-os"
+msgstr "Beräkna PT-axel"
 
 #: innstereo/gui_layout.glade:5060
 msgid "Calculates the P, T, and B axis of each row in a fault plane layer."
-msgstr "Vypočíta P, T a B os pre každý riadok vrstvy zlomových plôch"
+msgstr "Beräknar P, T, och B axlar för varje rad i ett förkastningsplan."
 
 #: innstereo/gui_layout.glade:5030
 msgid ""
 "Calculates the eigenvectors and eigenvalue of the selected datasets and adds"
 " it as a new layer."
 msgstr ""
-"Vypočíta vlastný vektor a hodnoty vybraných dát a pridá ich ako novú vrstvu."
+"Beräknar egenvärden och egenvektorer för de valda datauppsättningarna och "
+"lägger till dem som en ny egenskap. "
 
 #: innstereo/gui_layout.glade:595 innstereo/gui_layout.glade:1279
 #: innstereo/gui_layout.glade:1538 innstereo/gui_layout.glade:1605
@@ -225,127 +227,126 @@ msgstr ""
 #: innstereo/gui_layout.glade:1793 innstereo/gui_layout.glade:1950
 #: innstereo/gui_layout.glade:2731
 msgid "Cancel"
-msgstr "Zrušiť"
+msgstr "Avbryt"
 
 #: innstereo/gui_layout.glade:718
 msgid "Canvas Color"
-msgstr "Farba pozadia"
+msgstr "Bakgrundsfärg"
 
 #: innstereo/gui_layout.glade:1774
 msgid "Choose file to parse"
-msgstr "Vyberte súbor, ktorý chcete analyzovať."
+msgstr "Välj en fil att tolka"
 
 #: innstereo/gui_layout.glade:2644
 msgid "Circle"
-msgstr "Kružnica"
+msgstr "Cirkel "
 
 #: innstereo/gui_layout.glade:3807
 msgid "Colormap"
-msgstr "Paleta farieb"
+msgstr "Färgkarta"
 
 #: innstereo/gui_layout.glade:3513
 msgid "Confidence"
-msgstr "Istota"
+msgstr "Felmarginal"
 
 #: innstereo/gui_layout.glade:4298
 msgid "Contours"
-msgstr "Kontúry"
+msgstr "Konturer"
 
 #: innstereo/gui_layout.glade:2534
 msgid "Cool"
-msgstr "Chladný"
+msgstr "Sval"
 
 #: innstereo/gui_layout.glade:2538
 msgid "Copper"
-msgstr "Medený"
+msgstr "Koppar"
 
 #: innstereo/gui_layout.glade:4617 innstereo/gui_layout.glade:4865
 msgid "Copy"
-msgstr "Kopírovať"
+msgstr "Kopiera"
 
 #: innstereo/gui_layout.glade:5205
 msgid "Create faultplane dataset"
-msgstr "Vytvor dataset pre zlomové plochy"
+msgstr "Skapa en datauppsättning för ett förkastningsplan"
 
 #: innstereo/gui_layout.glade:5221
 msgid "Create fold dataset"
-msgstr "Vytvor dataset pre vrásy"
+msgstr "Skapa en datauppsättning för en veckning"
 
 #: innstereo/gui_layout.glade:5160
 msgid "Create group layer"
-msgstr "Vytvor skupinu vrstiev"
+msgstr "Skapa en gruppegenskap"
 
 #: innstereo/gui_layout.glade:5190
 msgid "Create line dataset"
-msgstr "Vytvor dataset lineárnych prvkov"
+msgstr "Skapa en datauppsättning för en linje"
 
 #: innstereo/gui_layout.glade:5175
 msgid "Create plane dataset"
-msgstr "Vytvor dataset plošných prvkov"
+msgstr "Skapa en datauppsättning för ett plan"
 
 #: innstereo/gui_layout.glade:5235
 msgid "Create small circle dataset"
-msgstr "Vytvor dataset malých kruhov"
+msgstr "Skapa en datauppsättning för en liten cirkel"
 
 #: innstereo/gui_layout.glade:5189
 msgid "Creates a new dataset for linear elements."
-msgstr "Vytvorí nový dataset lineárnych prvkov."
+msgstr "Skapa en ny datauppsättning för linjära element."
 
 #: innstereo/gui_layout.glade:5204
 msgid "Creates a new faultplane dataset."
-msgstr "Vytvorí nový dataset zlomových plôch."
+msgstr "Skapar en ny datauppsättning för ett förkastningsplan."
 
 #: innstereo/gui_layout.glade:5220
 msgid "Creates a new fold dataset."
-msgstr "Vytvorí nový dataset vrás."
+msgstr "Skapar en ny datauppsättning för en veckning."
 
 #: innstereo/gui_layout.glade:5159
 msgid ""
 "Creates a new layer group. Selected layers will be placed into the new "
 "group."
 msgstr ""
-"Vytvorí novú skupinu vrstiev. Vybrané vrstvy budú umiestnené v novej "
-"skupine."
+"Skapar en ny lagergrupp.  Alla valda lager kommer att placeras i gruppen. "
 
 #: innstereo/gui_layout.glade:5174
 msgid "Creates a new plane dataset."
-msgstr "Vytvorí nový dataset plošných prvkov."
+msgstr "Skapar en ny datauppsättning för ett plan."
 
 #: innstereo/gui_layout.glade:4771
 msgid "Creates a new project in a new window."
-msgstr "Vytvorí nový projekt v novom okne."
+msgstr "Skapar ett nytt projekt som öppnas i ett nytt fönster. "
 
 #: innstereo/gui_layout.glade:5234
 msgid "Creates a new small-circle dataset."
-msgstr "Vytvorí nový dataset malých kruhov."
+msgstr "Skapar en ny datauppsättning för en liten cirkel."
 
 #: innstereo/gui_layout.glade:4608 innstereo/gui_layout.glade:4851
 msgid "Cut"
-msgstr "Vystrihnúť"
+msgstr "Klipp ut"
 
 #: innstereo/gui_layout.glade:2865
 msgid "Dash Capstyle"
-msgstr ""
+msgstr "Streckad linje (capstyle)"
 
 #: innstereo/gui_layout.glade:2618
 msgid "Dash-Dotted"
-msgstr "Bodkočiarkovaný"
+msgstr "Streckad-Punkterad"
 
 #: innstereo/gui_layout.glade:2614
 msgid "Dashed"
-msgstr "Prerušovaný"
+msgstr "Streckad"
 
 #: innstereo/gui_layout.glade:5319
 msgid "Data"
-msgstr "Údaje"
+msgstr "Data"
 
 #: innstereo/gui_layout.glade:5250
 msgid "Delete Layer"
-msgstr "Vymazať vrstvu"
+msgstr "Ta bort lager"
 
 #: innstereo/gui_layout.glade:5249
 msgid "Deletes the currently selected layers and their children."
-msgstr "Vymaže vybrané vrstvy a jej podvrstvy"
+msgstr "Tar bort det valda lagret och alla underlager. "
 
 #: innstereo/gui_layout.glade:2696
 msgid "Diamond"
@@ -353,23 +354,23 @@ msgstr "Diamant"
 
 #: innstereo/gui_layout.glade:2700
 msgid "Diamond thin"
-msgstr "Diamnod thin"
+msgstr "Tunn diamant"
 
 #: innstereo/dataview_classes.py:216 innstereo/dataview_classes.py:305
 #: innstereo/dataview_classes.py:452 innstereo/dataview_classes.py:546
 #: innstereo/dataview_classes.py:646 innstereo/gui_layout.glade:1438
 #: innstereo/gui_layout.glade:2162 innstereo/gui_layout.glade:2235
 msgid "Dip"
-msgstr "Veľkosť sklonu"
+msgstr "Stupning"
 
 #: innstereo/gui_layout.glade:1423 innstereo/gui_layout.glade:2132
 #: innstereo/gui_layout.glade:2204
 msgid "Dip Direction"
-msgstr "Smer sklonu"
+msgstr "Stupningsriktning"
 
 #: innstereo/gui_layout.glade:4385
 msgid "Dip Spacing [Degrees]"
-msgstr "Rozostup údajov [stupne]"
+msgstr "Vinkelavstånd (Grader)"
 
 #: innstereo/dataview_classes.py:205 innstereo/dataview_classes.py:294
 #: innstereo/dataview_classes.py:441 innstereo/dataview_classes.py:535
@@ -379,136 +380,137 @@ msgstr "Dir"
 
 #: innstereo/gui_layout.glade:1575
 msgid "Do you want to overwrite the existing file?"
-msgstr "Chcete prepísať existujúci súbor?"
+msgstr "Vill du skriva över den existerande filen?"
 
 #: innstereo/gui_layout.glade:2622
 msgid "Dotted"
-msgstr "Bodkovaný"
+msgstr "Prickig"
 
 #: innstereo/gui_layout.glade:3617
 msgid "Draw Angelier"
-msgstr "Vykresli Angelierove zobrazenie"
+msgstr "Rita Angelier"
 
 #: innstereo/gui_layout.glade:3752
 msgid "Draw Contour Fills"
-msgstr "Vykresli výplň kontúr"
+msgstr "Rita konturfyllning"
 
 #: innstereo/gui_layout.glade:4093
 msgid "Draw Contour Labels"
-msgstr "Vykresli označenia kontúr"
+msgstr "Rita konturetiketter "
 
 #: innstereo/gui_layout.glade:4076
 msgid "Draw Contour Lines"
-msgstr "Vykresli línie kontúr"
+msgstr "Rita konturlinjer"
 
 #: innstereo/gui_layout.glade:5350
 msgid "Draw Features"
-msgstr "Vykresli objekty"
+msgstr "Rita egenskaper"
 
 #: innstereo/gui_layout.glade:2950
 msgid "Draw Great & Small Circles"
-msgstr "Vyznač veľké a malé kruhy"
+msgstr "Rita stora och små cirklar"
 
 #: innstereo/gui_layout.glade:3645
 msgid "Draw Hoeppener"
-msgstr "Vykresli Hoeppnerove zobraznie"
+msgstr "Rita Hoeppener"
 
 #: innstereo/gui_layout.glade:3676
 msgid "Draw Hoeppener Linear-Pole-Plane"
-msgstr "Vykresli Hoeppnerove línia-pól-plocha"
+msgstr "Rita ett Hoeppener linjärt pol-plan"
 
 #: innstereo/gui_layout.glade:1186
 msgid "Draw Legend"
-msgstr "Vykresli legendu"
+msgstr "Rita teckenförklaring"
 
 #: innstereo/gui_layout.glade:3406
 msgid "Draw Linears"
-msgstr "Vykresli linárne prvky"
+msgstr "Rita linjära egenskaper"
 
 #: innstereo/gui_layout.glade:3171
 msgid "Draw Poles"
-msgstr "Vykresli póly"
+msgstr "Rita poler"
 
 #: innstereo/gui_layout.glade:3107 innstereo/gui_layout.glade:3243
 msgid "Edge Color"
-msgstr "Farba okraja"
+msgstr "Kantfärg"
 
 #: innstereo/gui_layout.glade:3075 innstereo/gui_layout.glade:3291
 msgid "Edge Thickness"
-msgstr "Hrúbka okraja"
+msgstr "Kanttjocklek"
 
 #: innstereo/dataview_classes.py:657
 msgid "Eigenvalue"
-msgstr "Vlastná hodnota"
+msgstr "Egenvärde"
 
 #: innstereo/layer_types.py:1154
 msgid "Eigenvector Layer"
-msgstr "Vrstva vlastných hodnôt"
+msgstr "Egenvektorslager"
 
 #: innstereo/gui_layout.glade:2584
 msgid "Exponential Kamb"
-msgstr "Exponenciálny Kamb"
+msgstr "Exponentiell Kamb"
 
 #: innstereo/gui_layout.glade:1619
 msgid "Export"
-msgstr "Export"
+msgstr "Exportera"
 
 #: innstereo/gui_layout.glade:5395
 msgid "Export Data"
-msgstr "Exportovať údaje"
+msgstr "Exportera data"
 
 #: innstereo/gui_layout.glade:5394
 msgid "Exports the data of the currently selected layer."
-msgstr "Exportuje dáta práve vybranej vrstvy."
+msgstr "Exporterar data från de valda lagerna.  "
 
 #: innstereo/gui_layout.glade:3715
 msgid "Fault Plots"
-msgstr "Zlomové diagramy"
+msgstr "Förkastningskurva"
 
 #: innstereo/layer_types.py:1087
 msgid "Faultplane Layer"
-msgstr "Vrstva s údajmi zlomových plôch"
+msgstr "Förkastningsplanslager"
 
 #: innstereo/gui_layout.glade:2994 innstereo/gui_layout.glade:3228
 msgid "Fill Color"
-msgstr "Farba výplne"
+msgstr "Ifyllnadsfärg"
 
 #: innstereo/gui_layout.glade:4942
 msgid "Finds the average intersect of all selected plane layers."
-msgstr "Nájde priemerný prienik všetkých vybraných planánych vrstiev."
+msgstr "Hittar den genomsnittliga korspunkten för alla valda planlager. "
 
 #: innstereo/gui_layout.glade:4957
 msgid "Finds the ideal plane for a set of linear elements."
-msgstr "Nájde ideálnu rovinu pre rad lineárnych prvkov."
+msgstr "Hittar det ideala planet för en uppsättning linjära element. "
 
 #: innstereo/gui_layout.glade:4972
 msgid ""
 "Finds the mean vector of a set of linears. At least one linear layer has to "
 "be selected."
 msgstr ""
-"Nájde priemerný vektor skupiny lineárnych prvkov. Musí byť vybraná najmenej "
-"jedna lineárna vrstva."
+"Hittar medelvärdes-vektorn av en uppsättning linjära element. Minst ett "
+"linjärt lager måste var valt. "
 
 #: innstereo/gui_layout.glade:5015
 msgid ""
 "Finds the planes that lie normal to the currently selected linear layers."
-msgstr "Nájde plochy, ktoré ležia kolmo na práve vybrané lineárne vrstvy."
+msgstr ""
+"Hittar det plan som ligger normalt gentemot de valda linjära lagerna. "
 
 #: innstereo/main_ui.py:210
 msgid "Fisher Confidence"
-msgstr "Fisherova presnosť"
+msgstr "Fisher konfidensintervall "
 
 #: innstereo/gui_layout.glade:3483
 msgid "Fisher Smallcircle"
-msgstr "Fisherova malá kružnica"
+msgstr "Liten Fishercirkel"
 
 #: innstereo/gui_layout.glade:4987
 msgid "Fisher Statistics"
-msgstr "Fisherova štatistika"
+msgstr "Fisherstatistik "
 
 #: innstereo/gui_layout.glade:642
 msgid "General Settings"
-msgstr "Všeobecné nastavenia"
+msgstr "Allmänna inställningar. "
 
 #: innstereo/gui_layout.glade:2542
 msgid "Gist Heat"
@@ -516,35 +518,35 @@ msgstr "Gist Heat"
 
 #: innstereo/gui_layout.glade:2546
 msgid "Gray"
-msgstr "Sivá"
+msgstr "Grå"
 
 #: innstereo/gui_layout.glade:2974
 msgid "Great & Small Circles"
-msgstr "Veľké a malé kružnice"
+msgstr "Stora & små cirklar"
 
 #: innstereo/gui_layout.glade:2462
 msgid "Green-Blue"
-msgstr "Zelenomodrá"
+msgstr "Grönblå"
 
 #: innstereo/gui_layout.glade:2466
 msgid "Greens"
-msgstr "Zelené"
+msgstr "Gröna färger"
 
 #: innstereo/gui_layout.glade:2470
 msgid "Greys"
-msgstr "Sivé"
+msgstr "Gråa toner"
 
 #: innstereo/gui_layout.glade:4048
 msgid "Grid Resolution"
-msgstr "Rozlíšenie mriežky"
+msgstr "Rutnätets upplösning"
 
 #: innstereo/gui_layout.glade:923
 msgid "Grid Spacing"
-msgstr "Dieliky mriežky"
+msgstr "Rutnätsavstånd"
 
 #: innstereo/main_ui.py:2361 innstereo/main_ui.py:2394
 msgid "Group Layer"
-msgstr "Skupina vrstiev"
+msgstr "Grupplager"
 
 #: innstereo/gui_layout.glade:2680
 msgid "Hexagon 1"
@@ -556,27 +558,27 @@ msgstr "Hexagon 2"
 
 #: innstereo/gui_layout.glade:682
 msgid "Highlight Mode"
-msgstr "Zvýraznený mód"
+msgstr "Markeringsläge"
 
 #: innstereo/gui_layout.glade:2708
 msgid "Horizontal Line"
-msgstr "Horizontálna línia"
+msgstr "Horisontell linje"
 
 #: innstereo/gui_layout.glade:2550
 msgid "Hot"
-msgstr "Hrúci"
+msgstr "Varm"
 
 #: innstereo/gui_layout.glade:38
 msgid ""
 "How to cite:\n"
 "In Preperation (2015)"
 msgstr ""
-"Ako citovať\n"
-"In prep (2015)"
+"Citeras som:\n"
+"In Preperation (2015)"
 
 #: innstereo/gui_layout.glade:5380
 msgid "Import Data"
-msgstr "Import Data"
+msgstr "Importera data"
 
 #: innstereo/gui_layout.glade:4514
 msgid "InnStereo"
@@ -584,11 +586,11 @@ msgstr "InnStereo"
 
 #: innstereo/gui_layout.glade:105
 msgid "InnStereo Settings"
-msgstr "Nastavenia InnStereo"
+msgstr "Inställningar för InnStereo"
 
 #: innstereo/gui_layout.glade:2592
 msgid "Kamb Method"
-msgstr "Kamb Method"
+msgstr "Kambmetoden"
 
 #: innstereo/dataview_classes.py:327
 msgid "L-Dip"
@@ -600,151 +602,151 @@ msgstr "L-Dir"
 
 #: innstereo/gui_layout.glade:3911
 msgid "Label Font Size"
-msgstr "Veľkosť fontu názvu"
+msgstr "Teckenstorlek, etiketter. "
 
 #: innstereo/layer_view.py:60
 msgid "Layer"
-msgstr "Vrstva"
+msgstr "Lager"
 
 #: innstereo/gui_layout.glade:2715 innstereo/gui_layout.glade:4918
 msgid "Layer Properties"
-msgstr "Vlastnosti vrstvy"
+msgstr "Lageregenskaper"
 
 #: innstereo/gui_layout.glade:5129
 msgid "Layers"
-msgstr "Vrstvy"
+msgstr "Lager"
 
 #: innstereo/gui_layout.glade:1146
 msgid "Legend"
-msgstr "Legenda"
+msgstr "Teckenförklaring"
 
 #: innstereo/gui_layout.glade:966
 msgid "Line Capstyle"
-msgstr "Line Capstyle"
+msgstr "Linje (capstyle)"
 
 #: innstereo/gui_layout.glade:997 innstereo/gui_layout.glade:2793
 #: innstereo/gui_layout.glade:3971
 msgid "Line Color"
-msgstr "Farba čiary"
+msgstr "Linjefärg"
 
 #: innstereo/gui_layout.glade:980 innstereo/gui_layout.glade:2826
 msgid "Line Style"
-msgstr "Štýl čiary"
+msgstr "Linjestil"
 
 #: innstereo/gui_layout.glade:952 innstereo/gui_layout.glade:2904
 msgid "Line Thickness"
-msgstr "Hrúbka čiary"
+msgstr "Linjetjocklek"
 
 #: innstereo/gui_layout.glade:3859
 msgid "Line Type"
-msgstr "Typ čiary"
+msgstr "Linjetyp"
 
 #: innstereo/gui_layout.glade:2588
 msgid "Linear Kamb"
-msgstr "Linear Kamb"
+msgstr "Linjär Kamb"
 
 #: innstereo/layer_types.py:1114
 msgid "Linear Layer"
-msgstr "Vrstva lineárnych prvkov"
+msgstr "Linjärt lager"
 
 #: innstereo/gui_layout.glade:2297
 msgid "Linears"
-msgstr "Linears"
+msgstr "Linjära egenskaper"
 
 #: innstereo/gui_layout.glade:5016
 msgid "Linears to Plane Layer"
-msgstr "Vrstva línií na plochy"
+msgstr "Linjära egenskaper till planlager"
 
 #: innstereo/gui_layout.glade:3598
 msgid "Lines"
-msgstr "Línie"
+msgstr "Linjer"
 
 #: innstereo/gui_layout.glade:4154
 msgid "Lower Limit"
-msgstr "Spodná hranica"
+msgstr "Undre gräns"
 
 #: innstereo/gui_layout.glade:4123
 msgid "Manual Range"
-msgstr "Manuálny rozsah"
+msgstr "Manuell avgränsning "
 
 #: innstereo/gui_layout.glade:3453 innstereo/gui_layout.glade:4973
 msgid "Mean Vector"
-msgstr "Priemerný vektor"
+msgstr "Medelvärdesvektor "
 
 #: innstereo/gui_layout.glade:3736
 msgid "Method"
-msgstr "Metóda"
+msgstr "Metod"
 
 #: innstereo/gui_layout.glade:5000
 msgid "Moves the poles of a plane layer to a new linear layer."
-msgstr "Presunie póly plôch do novej vrstvy s lineárnymi údajmi. "
+msgstr "Flyttar ett planlagers pol till ett nytt linjärt lager. "
 
 #: innstereo/gui_layout.glade:4543 innstereo/gui_layout.glade:4772
 msgid "New Project"
-msgstr "Nový projekt"
+msgstr "Nytt projekt"
 
 #: innstereo/gui_layout.glade:752
 msgid "Night Mode"
-msgstr "Nočný mód"
+msgstr "Nattläge"
 
 #: innstereo/gui_layout.glade:2668
 msgid "Octagon"
-msgstr "Osemuholník"
+msgstr "Oktagon"
 
 #: innstereo/gui_layout.glade:1675 innstereo/gui_layout.glade:1807
 msgid "Open"
-msgstr "Otvor"
+msgstr "Öppna"
 
 #: innstereo/gui_layout.glade:4552 innstereo/gui_layout.glade:4787
 msgid "Open Project"
-msgstr "Otvor projekt"
+msgstr "Öppna projekt"
 
 #: innstereo/gui_layout.glade:5379
 msgid "Open a dialog for importing data to the currently selected layer."
-msgstr "Otvor dialógové okno pre import dát do práve vybranej vrstvy."
+msgstr "Öppnar en dialogruta  "
 
 #: innstereo/gui_layout.glade:4786
 msgid "Opens a dialog to open a previously saved project."
-msgstr "Otvorí dialógové okno na otvorenie predtým uloženého projektu."
+msgstr ""
+"Öppnar en dialogruta dör det finns möjlighet att öppna ett tidigare sparat "
+"projekt."
 
 #: innstereo/gui_layout.glade:4801
 msgid "Opens a dialog to save the project."
-msgstr "Otvorí dialógové okno na uloženie projektu."
+msgstr "Öppnar en dialogruta där det finns möjlighet att spara projektet."
 
 #: innstereo/gui_layout.glade:4903
 msgid ""
 "Opens the plot-properties dialog, that controls the appearance of the plot."
-msgstr ""
-"Otvorí dialógové okno nastavení stereodiagramu, ktoré ovláda vzhľad "
-"stereodiagramu."
+msgstr "Öppnar kurv-egenskaperna, som kontrollerar kurvans utseende. "
 
 #: innstereo/gui_layout.glade:2478
 msgid "Orange-Red"
-msgstr "Oranžovočervená"
+msgstr "Orange-röd"
 
 #: innstereo/gui_layout.glade:2474
 msgid "Oranges"
-msgstr "Oranžové"
+msgstr "Orangea färger"
 
 #: innstereo/gui_layout.glade:1552
 msgid "Overwrite"
-msgstr "Prepísať"
+msgstr "Skriv över"
 
 #: innstereo/gui_layout.glade:4693
 msgid "Paleostress View"
-msgstr "Paleostress View"
+msgstr "Visar palaeostress.   "
 
 #: innstereo/gui_layout.glade:4626 innstereo/gui_layout.glade:4879
 msgid "Paste"
-msgstr "Vložiť"
+msgstr "Klistra in "
 
 #: innstereo/gui_layout.glade:2672
 msgid "Pentagon"
-msgstr "Päťuholník"
+msgstr "Pentagon"
 
 #: innstereo/gui_layout.glade:2554
 msgid "Pink"
-msgstr "Ružová"
+msgstr "Rosa"
 
 #: innstereo/gui_layout.glade:2640
 msgid "Pixel"
@@ -752,19 +754,19 @@ msgstr "Pixel"
 
 #: innstereo/gui_layout.glade:789
 msgid "Pixel Density (DPI)"
-msgstr "Hustota pixelov (DPI)"
+msgstr "Pixeldensitet (DPI)"
 
 #: innstereo/layer_types.py:100
 msgid "Plane Layer"
-msgstr "Plošná vrstva"
+msgstr "Planlager"
 
 #: innstereo/gui_layout.glade:2145
 msgid "Planes"
-msgstr "Plochy"
+msgstr "Plan"
 
 #: innstereo/gui_layout.glade:580 innstereo/gui_layout.glade:4904
 msgid "Plot Properties"
-msgstr "Vlastnosti stereogramu"
+msgstr "Grafegenskaper"
 
 #: innstereo/gui_layout.glade:2688
 msgid "Plus"
@@ -772,126 +774,128 @@ msgstr "Plus"
 
 #: innstereo/gui_layout.glade:2636
 msgid "Point"
-msgstr "Bod"
+msgstr "Punkt"
 
 #: innstereo/gui_layout.glade:3204
 msgid "Poles"
-msgstr "Póly"
+msgstr "Poler"
 
 #: innstereo/gui_layout.glade:5001
 msgid "Poles to Linear Layer"
-msgstr "Póly do plochy s lineárnymi prvkami."
+msgstr "Poler till linjärt lager"
 
 #: innstereo/gui_layout.glade:2381
 msgid "Preview"
-msgstr "Náhľad"
+msgstr "Förhandsgranska "
 
 #: innstereo/gui_layout.glade:2436
 msgid "Projecting"
-msgstr "Projecting"
+msgstr "Projicerar"
 
 #: innstereo/gui_layout.glade:2482
 msgid "Purple-Blue"
-msgstr "Fialovomodrá"
+msgstr "Lila-blå"
 
 #: innstereo/gui_layout.glade:2486
 msgid "Purple-Blue-Green"
-msgstr "Fialovo-modro-zelená"
+msgstr "Lila-Blågrön"
 
 #: innstereo/gui_layout.glade:2490
 msgid "Purple-Red"
-msgstr "Fialovočervená"
+msgstr "Lila-röd"
 
 #: innstereo/gui_layout.glade:2494
 msgid "Purples"
-msgstr "Fialové"
+msgstr "Lila färger"
 
 #: innstereo/gui_layout.glade:4585
 msgid "Quit"
-msgstr "Ukončiť"
+msgstr "Avsluta"
 
 #: innstereo/gui_layout.glade:2498
 msgid "Red-Purple"
-msgstr "Červenofialová"
+msgstr "Rödlila"
 
 #: innstereo/gui_layout.glade:2502
 msgid "Reds"
-msgstr "Červené"
+msgstr "Röda färger"
 
 #: innstereo/gui_layout.glade:5410
 msgid "Remove Features"
-msgstr "Odstráň objekty"
+msgstr "Ta bort egenskaper"
 
 #: innstereo/gui_layout.glade:5409
 msgid "Removes the currently selected features from the dataset."
-msgstr "Odstráni práve vybrané objekty z datasetu."
+msgstr "Tar bort de valda egenskaperna från datauppsättningen. "
 
 #: innstereo/gui_layout.glade:4736
 msgid "Report a Bug"
-msgstr "Ohlás chybu"
+msgstr "Rapportera ett fel"
 
 #: innstereo/main_ui.py:2724 innstereo/gui_layout.glade:4455
 msgid "Rose Diagram"
-msgstr "Ružicový diagram"
+msgstr "Rosdiagram"
 
 #: innstereo/gui_layout.glade:4494
 msgid "Rose Plot"
-msgstr "Ružicový graf"
+msgstr "Roskurva"
 
 #: innstereo/gui_layout.glade:4682
 msgid "Rose diagram"
-msgstr "Ružicový diagram"
+msgstr "Rosdiagram"
 
 #: innstereo/gui_layout.glade:5046
 msgid "Rotate Layer"
-msgstr "Rotovať vrstvu"
+msgstr "Rotera lager"
 
 #: innstereo/gui_layout.glade:1263
 msgid "Rotate Layers"
-msgstr "Rotovať vrstvy"
+msgstr "Rotera lager"
 
 #: innstereo/gui_layout.glade:5045
 msgid ""
 "Rotates the currently selected layers. The rotation settings are set in a "
 "dialog."
 msgstr ""
-"Rotuje práve vybrané vrstvy. Nastavenia rotácie sa menia v dialógovom okne."
+"Roterar de valda lagerna.  En separat dialogruta innehållande de olika "
+"rotationsinställningarna öppnas.  "
 
 #: innstereo/gui_layout.glade:1455
 msgid "Rotation Angle"
-msgstr "Uhol rotácie"
+msgstr "Rotationsvinkel"
 
 #: innstereo/gui_layout.glade:1368
 msgid "Rotation Axis"
-msgstr "Os rotácie"
+msgstr "Rotationsaxis"
 
 #: innstereo/gui_layout.glade:1345
 msgid "Rotation Settings"
-msgstr "Nastavenie rotácie"
+msgstr "Rotationsinställningar"
 
 #: innstereo/gui_layout.glade:2432
 msgid "Round"
-msgstr "Round"
+msgstr "Rund"
 
 #: innstereo/gui_layout.glade:1733
 msgid "Save"
-msgstr "Uložiť"
+msgstr "Spara"
 
 #: innstereo/gui_layout.glade:4827
 msgid "Save Image"
-msgstr "Uložiť obrázok"
+msgstr "Spara bild"
 
 #: innstereo/gui_layout.glade:4561 innstereo/gui_layout.glade:4802
 msgid "Save Project"
-msgstr "Uložiť projekt"
+msgstr "Spara projekt"
 
 #: innstereo/gui_layout.glade:4571
 msgid "Save Project As"
-msgstr "Uložiť projekt ako"
+msgstr "Spara projekt som"
 
 #: innstereo/gui_layout.glade:4826
 msgid "Saves the current plot in various file formats."
-msgstr "Uloží súčasný stereodiagram v rôznych súborových formátoch."
+msgstr ""
+"Sparar din nuvarande kurva. Ett flertal olika filformat är tillgängliga. "
 
 #: innstereo/gui_layout.glade:2596
 msgid "Schmidt (1 %)"
@@ -900,100 +904,100 @@ msgstr "Schmidt (1 %)"
 #: innstereo/dataview_classes.py:339 innstereo/dataview_classes.py:464
 #: innstereo/gui_layout.glade:2266
 msgid "Sense"
-msgstr "Zmysel"
+msgstr "Skjuvningsindikator"
 
 #: innstereo/gui_layout.glade:2346
 msgid ""
 "Sense of linears is given as the first integer of the column.\n"
 "(0 = unknown, 1 = up, 2 = down, 3 = dextral, 4 = sinistral)"
 msgstr ""
-"Zmysel pohybu je uvedený ako prvé číslo stĺpca\n"
-"(0 = neznýmy, 1 = hore, 2 = dole, 3 = dextral, 4 = sinistral)"
+"Skjuvningsindikatorn för linjära enheter ges  via det första heltalet i kolumnen.\n"
+"(0 = okänd, 1 = upp, 2 = ned, 3 = höger, 4 = vänster)"
 
 #: innstereo/gui_layout.glade:1995
 msgid "Separator options"
-msgstr "Vlastnosti separátora"
+msgstr "Avskiljningsalternativ"
 
 #: innstereo/gui_layout.glade:5085
 msgid "Settings"
-msgstr "Nastavenia"
+msgstr "Inställningar"
 
 #: innstereo/gui_layout.glade:1090
 msgid "Show Center Cross"
-msgstr "Zobraz stredový kríž"
+msgstr "Visa mittenkryss"
 
 #: innstereo/gui_layout.glade:1119
 msgid "Show Degrees"
-msgstr "Zobraz stupne"
+msgstr "Visa grader"
 
 #: innstereo/gui_layout.glade:1099
 msgid "Show North"
-msgstr "Zobraz sever"
+msgstr "Visa norrindikator"
 
 #: innstereo/gui_layout.glade:5265
 msgid "Show table"
-msgstr "Ukáž tabuľku"
+msgstr "Visa tabell"
 
 #: innstereo/gui_layout.glade:3956
 msgid "Single Line Color"
-msgstr "Farba jednej vrstvy"
+msgstr "Enkel linjefärg"
 
 #: innstereo/gui_layout.glade:3027 innstereo/gui_layout.glade:3360
 msgid "Size"
-msgstr "Veľkosť"
+msgstr "Storlek"
 
 #: innstereo/layer_types.py:1192
 msgid "Small-Circle Layer"
-msgstr "Vrstva malých kružníc"
+msgstr "Små-cirkel lager"
 
 #: innstereo/gui_layout.glade:2610
 msgid "Solid"
-msgstr "Plný"
+msgstr "Solid"
 
 #: innstereo/gui_layout.glade:4322
 msgid "Spacing [degrees]"
-msgstr "Stupňovanie [stupňa]"
+msgstr "Avstånd (grader)"
 
 #: innstereo/gui_layout.glade:2558
 msgid "Spring"
-msgstr "Jar"
+msgstr "Vår"
 
 #: innstereo/gui_layout.glade:2664
 msgid "Square"
-msgstr "Štvorec"
+msgstr "Fyrkant"
 
 #: innstereo/gui_layout.glade:4015
 msgid "Standard Deviations"
-msgstr "Štandardné odchýlky"
+msgstr "Standardavvikelse"
 
 #: innstereo/gui_layout.glade:2676
 msgid "Star"
-msgstr "Hviezda"
+msgstr "Stjärna"
 
 #: innstereo/gui_layout.glade:2016
 msgid "Start Line"
-msgstr "Začiatočná línia"
+msgstr "Starta linje"
 
 #: innstereo/gui_layout.glade:4214
 msgid "Steps"
-msgstr "Kroky"
+msgstr "Steg"
 
 #: innstereo/gui_layout.glade:4502
 msgid "Stereo and Rose plot"
-msgstr "Stereodiagram a ružicový diagram"
+msgstr "Stereo - och roskurva."
 
 #: innstereo/gui_layout.glade:805 innstereo/gui_layout.glade:4486
 #: innstereo/gui_layout.glade:4649
 msgid "Stereonet"
-msgstr "Stereografická sieť"
+msgstr "Stereonet"
 
 #: innstereo/gui_layout.glade:4660
 msgid "Stereonet and Azimuth Rose"
-msgstr "Stereografická sieť a ružica azimutu"
+msgstr "Stereonet och Azimuth-ros"
 
 #: innstereo/gui_layout.glade:4671
 msgid "Stereonet, Azimut and Dip Rose"
-msgstr "Stereografická sieť s ružica azimutu a veľkosti sklonu"
+msgstr "Stereonet, azimut och vinkel-ros"
 
 #: innstereo/dataview_classes.py:227
 msgid "Strat"
@@ -1001,75 +1005,76 @@ msgstr "Strat"
 
 #: innstereo/gui_layout.glade:2101
 msgid "Stratigraphy"
-msgstr "Stratigrafia"
+msgstr "Stratigrafi"
 
 #: innstereo/gui_layout.glade:3122 innstereo/gui_layout.glade:3322
 msgid "Style"
-msgstr "Štýl"
+msgstr "Stil"
 
 #: innstereo/gui_layout.glade:2562
 msgid "Summer"
-msgstr "Leto"
+msgstr "Sommar "
 
 #: innstereo/gui_layout.glade:2323
 msgid "Tectonics FPL Notation"
-msgstr "Notácia Tectonics FPL"
+msgstr "Tektonisk FPL-notation"
 
 #: innstereo/dialog_windows.py:330
 msgid "Text Files"
-msgstr "Textový súbor"
+msgstr "Textfiler"
 
 #: innstereo/gui_layout.glade:139
 msgid "These settings will be applied every time you start InnStereo."
-msgstr "Nastavenia po spustení programu InnStereo."
+msgstr ""
+"Dessa inställningar kommer att appliceras varje gång du startar InnStereo"
 
 #: innstereo/gui_layout.glade:2648
 msgid "Triangle down"
-msgstr "Trojuholník dole"
+msgstr "Triangel (nedåt)"
 
 #: innstereo/gui_layout.glade:2656
 msgid "Triangle left"
-msgstr "Trojuholník vľavo"
+msgstr "Triangel (vänster)"
 
 #: innstereo/gui_layout.glade:2660
 msgid "Triangle right"
-msgstr "Trojuholník vpravo"
+msgstr "Triangel (höger)"
 
 #: innstereo/gui_layout.glade:2652
 msgid "Triangle up"
-msgstr "Trojuholník hore"
+msgstr "Triangel (upp)"
 
 #: innstereo/gui_layout.glade:4184
 msgid "Upper Limit"
-msgstr "Horný limit"
+msgstr "Övre gräns"
 
 #: innstereo/gui_layout.glade:2704
 msgid "Vertical Line"
-msgstr "Vertikálna línia"
+msgstr "Vertikal linje"
 
 #: innstereo/gui_layout.glade:4718
 msgid "View Online Help"
-msgstr "Pozri online pomoc"
+msgstr "Visa onlinehjälp"
 
 #: innstereo/gui_layout.glade:2570
 msgid "Viridis"
-msgstr "Virdis"
+msgstr "Viridis"
 
 #: innstereo/gui_layout.glade:4727
 msgid "Visit the Website"
-msgstr "Navštívte stránku"
+msgstr "Besök hemsidan"
 
 #: innstereo/gui_layout.glade:5349
 msgid ""
 "When turned on, features can be added to the currently selected layer by "
 "clicking on the stereonet."
 msgstr ""
-"Ak je zapnuté, objekty môžu byť pridané do práve vybranej vrstvy kliknutím "
-"na stereodiagram."
+"När de är aktiva så kan egenskaper läggas till direkt i det valda lagret "
+"genom att klicka i ditt stereonet"
 
 #: innstereo/gui_layout.glade:2566
 msgid "Winter"
-msgstr "Zima"
+msgstr "Vinter"
 
 #: innstereo/gui_layout.glade:2692
 msgid "X"
@@ -1077,37 +1082,37 @@ msgstr "X"
 
 #: innstereo/gui_layout.glade:2506
 msgid "Yellow-Green"
-msgstr "Zelenomodrá"
+msgstr "Gulgrön"
 
 #: innstereo/gui_layout.glade:2510
 msgid "Yellow-Green-Blue"
-msgstr "Žlto-zeleno-modrá"
+msgstr "Gul-Grön-Blå"
 
 #: innstereo/gui_layout.glade:2514
 msgid "Yellow-Orange-Brown"
-msgstr "Žlto-oranžovo-hnedá"
+msgstr "Gul-Orange-Grön"
 
 #: innstereo/gui_layout.glade:2518
 msgid "Yellow-Orange-Red"
-msgstr "Žlot-oranžovo-červená"
+msgstr "Gul-Orange-Röd"
 
 #: innstereo/gui_layout.glade:4598
 msgid "_Edit"
-msgstr "_Edit"
+msgstr "_Editera"
 
 #: innstereo/gui_layout.glade:4533
 msgid "_File"
-msgstr "_File"
+msgstr "_Fil"
 
 #: innstereo/gui_layout.glade:4708
 msgid "_Help"
-msgstr "_Help"
+msgstr "_Hjälp"
 
 #: innstereo/gui_layout.glade:4639
 msgid "_View"
-msgstr "_View"
+msgstr "_Visa"
 
 #: innstereo/gui_layout.glade:4243 innstereo/gui_layout.glade:4416
 #: innstereo/gui_layout.glade:4432
 msgid "label"
-msgstr "label"
+msgstr "etikett"
