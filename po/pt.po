@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-04 19:38+0100\n"
-"PO-Revision-Date: 2015-11-25 10:29-0500\n"
+"PO-Revision-Date: 2015-11-30 08:48-0500\n"
 "Last-Translator: Mário Sequeira <skuddown@yahoo.com>\n"
 "Language-Team: Portuguese (Portugal)\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: pt-PT\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"X-Generator: Zanata 3.7.3\n"
+"X-Generator: Zanata 3.9.3\n"
 
 #: innstereo/gui_layout.glade:338
 msgid ""
@@ -517,7 +517,7 @@ msgstr "Configurações Gerais"
 
 #: innstereo/gui_layout.glade:2542
 msgid "Gist Heat"
-msgstr ""
+msgstr "Calor Nuclear"
 
 #: innstereo/gui_layout.glade:2546
 msgid "Gray"
@@ -670,7 +670,7 @@ msgstr "Limite Inferior"
 
 #: innstereo/gui_layout.glade:4123
 msgid "Manual Range"
-msgstr ""
+msgstr "Gama Manual"
 
 #: innstereo/gui_layout.glade:3453 innstereo/gui_layout.glade:4973
 msgid "Mean Vector"

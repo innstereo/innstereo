@@ -57,7 +57,19 @@ $ cd innstereo
 $ sudo cp data/org.gtk.innstereo.gschema.xml /usr/share/glib-2.0/schemas/
 $ sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
 
+$ python3 build_translations.py
 $ python3 -m innstereo
+```
+Please note that building the translations probably requires you to configure a Zanata API key ([User Configuration](http://zanata-client.readthedocs.io/en/latest/configuration/)). The file needs to be created in `~/.config/zanata.ini` (Press CTRL+H in your home directory to show the folder).
+
+It contains the following lines:
+
+```
+[servers]
+translate_zanata_org.url=https://translate.zanata.org/zanata/
+translate_zanata_org.username=YOUR-ZANATA-USER-NAME
+translate_zanata_org.key=YOUR-API-KEY
+
 ```
 
 ## Development

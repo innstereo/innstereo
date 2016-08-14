@@ -1,5 +1,5 @@
-# German translations for PACKAGE package.
-# Copyright (C) 2015 THE PACKAGE'S COPYRIGHT HOLDER
+# German translations for InnStereo package.
+# Copyright (C) InnStereo
 # This file is distributed under the same license as the InnStereo package.
 # Tobias Schönberg <tobias47n9e@gmail.com>, 2015.
 msgid ""
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Zanata 3.7.3\n"
+"X-Generator: Zanata 3.9.3\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #: innstereo/gui_layout.glade:338

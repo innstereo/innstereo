@@ -13,9 +13,9 @@ localizations = ["de", "el", "es", "fr", "he", "hu", "it", "nl", "pt-PT",
 gtk_locals = {"pt_PT": "pt",
               "uz": "uz@cyrillic"}
 
-for lc in localizations:
-    cmd = "zanata po pull --project-id=innstereo --project-version={} --lang={} --dstdir=po".format(version, lc)
-    call(cmd, shell=True)
+#for lc in localizations:
+#    cmd = "zanata po pull --project-id=innstereo --project-version={} --lang={} --dstdir=po".format(version, lc)
+#    call(cmd, shell=True)
 
 for root, dirs, filenames in os.walk(translations):
     for f in filenames:
