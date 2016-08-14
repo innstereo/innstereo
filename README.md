@@ -44,7 +44,21 @@ glib-compile-schemas /usr/share/glib-2.0/schemas/
 ```Shell
 python3 -m innstereo
 ```
+### Ubuntu 16.04
 
+On a fresh install of Ubuntu you will probably need to execute the following commands for Innstereo to run:
+
+```
+$ sudo apt-get install git python3-numpy python3-numpy python3-matplotlib python3-pip
+$ sudo python3 -m pip install mplstereonet
+
+$ git clone https://github.com/tobias47n9e/innstereo
+$ cd innstereo
+$ sudo cp data/org.gtk.innstereo.gschema.xml /usr/share/glib-2.0/schemas/
+$ sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
+
+$ python3 -m innstereo
+```
 
 ## Development
 InnStereo is developed open-source, and anybody is welcome to participate. There are many ways in which to participate (Documentation, testing, bug-reporting, user-interface improvements). If you would like to participate you can email [Tobias](https://github.com/tobias47n9e) or open an [issue](https://github.com/tobias47n9e/innstereo/issues). More advanced users can also fork the repository and create pull requests.
