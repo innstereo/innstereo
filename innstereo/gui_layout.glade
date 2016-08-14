@@ -42,7 +42,6 @@ In Preperation (2015)</property>
     <property name="authors">Tobias Schönberg
 Matteo Pasotti
 
-
 Special thanks to:
 Tristan Van Berkom
 Joe Kington
@@ -53,17 +52,25 @@ Martin Reiser
 Christoph Reiter
 Bajusz Tamás
     </property>
-    <property name="translator_credits">Audrey Bertrand
+    <property name="translator_credits">Ana Mladenovic
+Audrey Bertrand
+Elin Rydeblad
 Ioannis Alexandridis (Ιωάννης Αλεξανδρίδης)
+Gönenç Gil
 Matteo Pasotti
 Mário Sequeira
+Milorad Antić
 Nadav Navon
 Nikolaos Argyropoulos (Νικόλαος Αργυρόπουλος)
 Ondrej Pelech
+Onon Gantumur
 Santiago Pozas Requejo
 Shukurjon Islomov
 Szilvia Deák-Kövér
 Tobias Schönberg
+Uros Djuric
+Yorick Veenma
+Zeynep Kemal Baran
     </property>
     <property name="logo">logo_about.svg</property>
     <property name="license_type">gpl-2-0</property>
