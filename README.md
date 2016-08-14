@@ -36,7 +36,7 @@ git clone https://github.com/tobias47n9e/innstereo
 
 4. Copy and compile the glib-schemas (as supuser in the project directory):
 ```Shell
-cp /data/org.gtk.innstereo.gschema.xml /usr/share/glib-2.0/schemas/
+cp ./data/org.gtk.innstereo.gschema.xml /usr/share/glib-2.0/schemas/
 glib-compile-schemas /usr/share/glib-2.0/schemas/
 ```
 
