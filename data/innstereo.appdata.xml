@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop">
+  <id>org.gtk.innstereo</id>
+  <metadata_license>CC0</metadata_license>
+  <project_license>GPL-2.0</project_license>
+  <name>InnStereo</name>
+  <summary>A stereographic projection program</summary>
+
+  <description>
+    <p>
+      InnStereo is a stereographic projection (or stereonet) program. It
+      can be used to plot planes, linears and conical distributions. A
+      variety of calculations can be performed, such as finding the mean
+      direction, the common great-circle of a set of linears or the
+      eigenvectors of a dataset. The plots can be styled in many ways
+      including a dynamically generated legend and countours and colormaps.
+    </p>
+    <p>Features:</p>
+    <ul>
+      <li>Equal area and equal angle stereonet</li>
+      <li>Dynamically plot linears, great- and small circles</li>
+      <li>Layer managment</li>
+      <li>Import and export CSV files</li>
+      <li>Calculate eigenvectors and eigenvalues</li>
+      <li>Save plot in vector formats</li>
+      <li>Rotate datasets around arbitrary axes</li>
+    </ul>
+  </description>
+
+  <screenshots>
+    <screenshot type="default">
+      <image width="1366" height="768">http://innstereo.github.io/images/screenshot1.png</image>
+    </screenshot>
+    <screenshot type="default">
+      <caption>Fast global search</caption>
+      <image width="1366" height="768">http://innstereo.github.io/images/screenshot2.png</image>
+    </screenshot>
+    <screenshot type="default">
+      <caption>Integrated project tree</caption>
+      <image width="1366" height="768">http://innstereo.github.io/images/screenshot3.png</image>
+    </screenshot>
+    <screenshot type="default">
+      <caption>Side-by-side code editors</caption>
+      <image width="1366" height="768">http://innstereo.github.io/images/screenshot4.png</image>
+    </screenshot>
+  </screenshots>
+
+  <keywords>
+   <keyword>geology</keyword>
+   <keyword>engineering</keyword>
+   <keyword>stereonet</keyword>
+   <keyword>plotting</keyword>
+  </keywords>
+
+  <url type="homepage">http://www.innstereo.com/</url>
+  <url type="bugtracker">https://github.com/innstereo/innstereo/</url>
+  <project_group>InnStereo</project_group>
+
+  <kudos>
+    <kudo></kudo>
+  </kudos>
+
+  <update_contact></update_contact>
+  <translation type="gettext">innstereo</translation>
+</component>
+
