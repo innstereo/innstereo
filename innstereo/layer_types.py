@@ -1088,6 +1088,22 @@ class FaultPlaneLayer(PlaneLayer):
         self.props["line_color"] = "#000000"
         self.props["marker_fill"] = "#ffffff"
 
+    def return_data(self):
+        """
+        Returns the data stored in a fautplane layer
+
+        Overrides the defualt 'return_data' method. Iterates over the
+        treestore associated with this layer and copies all
+        data into a list of rows. Returns the list.
+        """
+        store_data = []
+        def iterate_over_data(model, path, itr):
+            row = model[path]
+            store_data.append([row[0], row[1], row[2], row[3], row[4]])
+
+        self.data_treestore.foreach(iterate_over_data)
+        return store_data
+
 
 class LineLayer(PlaneLayer):
 
@@ -1190,4 +1206,4 @@ class SmallCircleLayer(PlaneLayer):
         PlaneLayer.__init__(self, treestore, treeview)
         self.props["type"] = "smallcircle"
         self.props["label"] = _("Small-Circle Layer")
-        
+
