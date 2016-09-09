@@ -2,6 +2,6 @@
 <config xmlns="http://zanata.org/namespace/config/">
   <url>https://translate.zanata.org/zanata/</url>
   <project>innstereo</project>
-  <project-version>beta3.1</project-version>
+  <project-version>beta7</project-version>
   <project-type>podir</project-type>
 </config>

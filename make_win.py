@@ -3,7 +3,7 @@ from os.path import join
 from subprocess import call
 import nsist
 
-version = "beta5" #This is the version stored in Zanata
+version = "beta7" #This is the version stored in Zanata
 
 translations = "po/"
 
@@ -53,10 +53,10 @@ for root, dirs, filenames in os.walk(translations):
             command = "msgfmt -o po/{0}.mo po/{0}.po".format(f[:-3])
             call(command, shell=True)
 
-            #command = "cp po/{0}.mo pynsist_pkgs64/gnome/share/locale/{0}/LC_MESSAGES/innstereo.mo".format(f[:-3])
-            #call(command, shell=True)
-            #command = "cp po/{0}.mo pynsist_pkgs32/gnome/share/locale/{0}/LC_MESSAGES/innstereo.mo".format(f[:-3])
-            #call(command, shell=True)
+            command = "cp po/{0}.mo pynsist_pkgs64/gnome/share/locale/{0}/LC_MESSAGES/innstereo.mo".format(f[:-3])
+            call(command, shell=True)
+            command = "cp po/{0}.mo pynsist_pkgs32/gnome/share/locale/{0}/LC_MESSAGES/innstereo.mo".format(f[:-3])
+            call(command, shell=True)
 
             command = "innstereo/locale/{0}".format(f[:-3])
             if os.path.isdir(command) == False:
@@ -134,3 +134,4 @@ installer32.run()
 command = "mv {} {}".format(join(project_dir, "pynsist_pkgs"),
                             join(project_dir, "pynsist_pkgs32"))
 call(command, shell=True)
+

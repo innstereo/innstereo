@@ -5,12 +5,12 @@ pjoin = path.join
 
 setup(
     name = "innstereo",
-    version = "1.0-b2",
+    version = "1.0-b7",
     description = "Sterographic plotting for structural geology",
     author = "Tobias Schoenberg",
     author_email = "tobias47n9e@gmail.com",
     license = "GPL2",
-    url = "https://github.com/tobias47n9e/innstereo",
+    url = "https://github.com/innstereo/innstereo",
     keywords = ["geology", "stereonet", "structural geology"],
     classifiers = [
         "Programming Language :: Python",
