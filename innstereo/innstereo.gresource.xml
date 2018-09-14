@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
-  <gresource prefix="/org/gtk/innstereo">
+  <gresource prefix="/org/gnome/innstereo">
     <file>gui_layout.glade</file>
   </gresource>
 </gresources>

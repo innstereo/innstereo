@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
-  <schema id="org.gtk.innstereo" path="/org/gtk/innstereo/">
+  <schema id="org.gnome.innstereo" path="/org/gnome/innstereo/">
     <key type="b" name="draw-grid">
       <default>true</default>
       <summary>Draw stereonet grid</summary>

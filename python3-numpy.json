@@ -2,13 +2,22 @@
     "name": "python3-numpy",
     "buildsystem": "simple",
     "build-commands": [
-        "pip3 install --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} numpy"
+        "python3 -W ignore::UserWarning:distutils.dist setup.py build -j 0",
+        "python3 setup.py install --prefix=/app --root=/ --optimize=1"
     ],
+    "build-options": {
+        "env": {
+            "ATLAS": "None",
+            "BLAS": "/app/lib",
+            "LAPACK": "/app/lib"
+        }
+    },
+    "cleanup": [ "/bin" ],
     "sources": [
         {
-            "type": "file",
-            "url": "https://files.pythonhosted.org/packages/65/ab/4dfcc20234fae12ee40c714b98077d6e3a10652496bd1488fa4828529b22/numpy-1.15.1.zip",
-            "sha256": "7b9e37f194f8bcdca8e9e6af92e2cbad79e360542effc2dd6b98d63955d8d8a3"
+            "type": "archive",
+            "url": "https://pypi.python.org/packages/0b/66/86185402ee2d55865c675c06a5cfef742e39f4635a4ce1b1aefd20711c13/numpy-1.14.2.zip",
+            "sha256": "facc6f925c3099ac01a1f03758100772560a0b020fb9d70f210404be08006bcb"
         }
     ]
 }

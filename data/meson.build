@@ -29,7 +29,7 @@ if appstream_util.found()
   )
 endif
 
-install_data('org.gtk.innstereo.gschema.xml',
+install_data('org.gnome.innstereo.gschema.xml',
   install_dir: join_paths(get_option('datadir'), 'glib-2.0/schemas')
 )
 
