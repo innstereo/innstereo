@@ -60,7 +60,7 @@ class PlotSettings(object):
         self.fig = Figure(dpi=self.props["pixel_density"])
         if testing == False:
             try:
-                self.g_settings = Gio.Settings.new("org.gtk.innstereo")
+                self.g_settings = Gio.Settings.new("org.gnome.innstereo")
                 self.get_defaults()
             except:
                 pass

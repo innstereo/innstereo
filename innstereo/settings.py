@@ -41,7 +41,7 @@ class AppSettings(object):
         self.set_win.set_transient_for(main_window)
         self.builder.connect_signals(self)
 
-        self.g_settings = Gio.Settings.new("org.gtk.innstereo")
+        self.g_settings = Gio.Settings.new("org.gnome.innstereo")
         self.get_defaults()
         if sys.platform == "win32":
             translate_gui(self.builder)
