@@ -15,7 +15,7 @@
         "--env=DCONF_USER_CONFIG_DIR=.config/dconf"
     ],
     "sdk-extensions": [
-    	"org.freedesktop.Sdk.Extension.gfortran-62"
+        "org.freedesktop.Sdk.Extension.gfortran-62"
     ],
     "build-options": {
         "cflags": "-O2 -g",
@@ -38,17 +38,17 @@
         "*.a"
     ],
     "modules": [
-    	{
+        {
             "name": "gfortran",
             "buildsystem": "simple",
             "build-commands": [ "/usr/lib/sdk/gfortran-62/install.sh" ]
-	},
-    	{
+        },
+        {
             "name": "lapack",
             "buildsystem": "cmake",
             "builddir": true,
-	    "append-path": "/usr/lib/sdk/gfortran-62/bin",
-	    "config-opts": [
+        "append-path": "/usr/lib/sdk/gfortran-62/bin",
+        "config-opts": [
                 "-DCMAKE_INSTALL_PREFIX=/app",
                 "-DCMAKE_INSTALL_LIBDIR=lib",
                 "-DCMAKE_BUILD_TYPE=Release",
@@ -67,23 +67,25 @@
             ],
             "cleanup": [ "/lib/cmake" ]
         },
-    	"python3-setuptools_scm.json",
-    	"python3-numpy.json",
-    	"python3-matplotlib.json",
-    	"python3-mplstereonet.json",
-    	"python3-scipy.json",
+        "python3-setuptools_scm.json",
+        "python3-numpy.json",
+        "python3-matplotlib.json",
+        "python3-mplstereonet.json",
+        "python3-scipy.json",
         {
-            "name": "innstero",
+            "name": "innstereo",
             "buildsystem": "meson",
             "config-opts": [ "--libdir=lib" ],
             "builddir": true,
-	    "append-path": "/usr/lib/sdk/gfortran-62/bin",
             "sources": [
                 {
                     "type": "git",
                     "url": "file:///home/tobias/rust/innstereo"
                 }
-            ]
+            ],
+            "post-install": [
+                 "glib-compile-schemas /app/share/glib-2.0/schemas/"
+             ]
         }
     ]
 }
