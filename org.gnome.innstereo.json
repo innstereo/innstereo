@@ -20,7 +20,6 @@
     "build-options": {
         "cflags": "-O2 -g",
         "cxxflags": "-O2 -g",
-        "append-path": "/usr/lib/sdk/gfortran-62/bin",
         "env": {
             "V": "1",
             "PATH": "/app/bin:/usr/bin:/usr/lib/sdk/gfortran-62/bin"
@@ -47,8 +46,7 @@
             "name": "lapack",
             "buildsystem": "cmake",
             "builddir": true,
-        "append-path": "/usr/lib/sdk/gfortran-62/bin",
-        "config-opts": [
+            "config-opts": [
                 "-DCMAKE_INSTALL_PREFIX=/app",
                 "-DCMAKE_INSTALL_LIBDIR=lib",
                 "-DCMAKE_BUILD_TYPE=Release",
@@ -80,6 +78,7 @@
             "sources": [
                 {
                     "type": "git",
+                    "branch": "feature/flatpak",
                     "url": "file:///home/tobias/rust/innstereo"
                 }
             ],
